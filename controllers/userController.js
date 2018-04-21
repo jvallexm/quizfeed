@@ -12,6 +12,12 @@ module.exports = {
 
     update: (req,res)=>{
 
+    },
+    
+    getOne: (req,res)=>{
+
+
+        
     }
 
 }
