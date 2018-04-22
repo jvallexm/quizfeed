@@ -37,7 +37,7 @@ module.exports = {
 
     createOne: (req,res)=>{
 
-        db.Book.create(req.body)
+        db.Quiz.create(req.body)
                .then(quizzes => res.json(true))
                .catch(err => res.status(422).json(err));
                

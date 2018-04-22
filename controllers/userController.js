@@ -6,17 +6,25 @@ module.exports = {
 
     create: (req,res)=>{
 
+        db.User.create(req.body)
+               .then(user => res.json(true))
+               .catch(err => res.status(422).json(err));
+
     },
 
     /* Updates an existing user */
 
     update: (req,res)=>{
 
+
+        
     },
     
     getOne: (req,res)=>{
 
-
+        db.User.findById(req.params.id)
+               .then(user => res.json(user))
+               .catch(err => res.status(422).json(err));
         
     }
 
