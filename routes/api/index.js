@@ -1,10 +1,10 @@
 const router     = require("express").Router();
-const quizRoutes = require("./quizes");
+const quizRoutes = require("./quizzes");
 const userRoutes = require("./users");
 
 // API Routes 
 
-router.use("/quizes", quizRoutes);  // Quiz routes
+router.use("/quizzes", quizRoutes);  // Quiz routes
 router.use("/users", quizRoutes);   // user routes
 
 module.exports = router;
