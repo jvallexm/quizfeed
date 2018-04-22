@@ -9,7 +9,10 @@ module.exports = {
 
         db.Quiz.find({})
                .sort({created_on: -1})
-               .then(quizzes => res.json(quizzes))
+               .then(quizzes =>{
+                   console.log(quizzes);
+                   res.json(quizzes)
+               })
                .catch(err => res.status(422).json(err));
     },
 
