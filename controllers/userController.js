@@ -30,11 +30,6 @@ module.exports = {
                .then(user => res.json(user))
                .catch(err => res.status(422).json(err));
         
-    },
-
-    pushStar: (req,res)=>{
-
-        
     }
-
+    
 }
