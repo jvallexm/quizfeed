@@ -33,7 +33,7 @@ module.exports = {
 
         db.Quiz.findById(req.params.id)
                .then(quizzes => res.json(quizzes))
-               .catch(err => res.status(422).json(err));
+               .catch(err => res.send(false));
 
     },
 

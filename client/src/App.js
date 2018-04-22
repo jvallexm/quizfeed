@@ -1,19 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import EditQuiz from "./pages/EditQuiz";
 
 
 const App = () => (
   <Router>
     <div>
       <Switch>
-        {/*
-        <Route exact path="/" component={<h1>Hot Poppers</h1>} />
-        <Route exact path="/page/:offset" component={<h1>Hot Poppers</h1>}/>
-        <Route exact path="/newQuiz" component={<h1>Hot Poppers</h1>}/>
-        <Route exact path="/editQuiz/:id" component={<h1>Hot Poppers</h1>}/>
-        <Route exact path="/userQuizzes/:id" component={<h1>Hot Poppers</h1>}/>
-        <Route component={<p>ff</p>}/>*/}
-        <h1>Hot Poppers</h1>
+        
+        <Route exact path="/" component={Home} />
+        <Route exact path="/userQuizzes/:id" component={Home}/>
+        <Route exact path="/page/:offset" component={Home}/>
+        <Route exact path="/newQuiz" component={EditQuiz}/>
+        <Route exact path="/editQuiz/:id" component={EditQuiz}/>
+
       </Switch>
     </div>
   </Router>
