@@ -16,15 +16,24 @@ module.exports = {
 
     update: (req,res)=>{
 
-
+        db.User.findOneandUpdate({_id: req.params.id},req.body)
+               .then(user => res.json(user))
+               .catch(err => res.status(422).json(err));
         
     },
     
+    /* Gets a user by id */
+
     getOne: (req,res)=>{
 
         db.User.findById(req.params.id)
                .then(user => res.json(user))
                .catch(err => res.status(422).json(err));
+        
+    },
+
+    pushStar: (req,res)=>{
+
         
     }
 

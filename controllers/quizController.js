@@ -1,5 +1,6 @@
 const db = require(`../models`);
 
+
 module.exports = {
 
     /* Finds all quizzes */
@@ -59,8 +60,15 @@ module.exports = {
 
     /* Updates quiz data when users have taken it */
 
-    updateData: (req,res)=>{
+    pushComment: (req,res)=>{
+
+    },
+
+    pushStar: (req,res)=>{
+
+    },
+
+    pushResult: (req,res)=>{
 
     }
-
 }
