@@ -60,15 +60,18 @@ module.exports = {
 
     /* Updates quiz data when users have taken it */
 
-    pushComment: (req,res)=>{
+    updateData: (req,res)=>{
 
-    },
+        let type = req.params.type;
 
-    pushStar: (req,res)=>{
+        if(type === "comment"){
 
-    },
+        } else if (type === "star"){
 
-    pushResult: (req,res)=>{
+        } else if (type === "result"){
+
+        }
 
     }
+    
 }

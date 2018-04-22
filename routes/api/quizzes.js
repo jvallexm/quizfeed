@@ -7,10 +7,12 @@ router.route("/")
 
 router.route("/:id")
       .get(quizController.findOne)        // Finds a quiz by id
-      .put(quizController.updateData)     // Updates user data for quiz
       .post(quizController.editQuiz)      // Updates fields of a quiz
       .delete(quizController.deleteOne);  // Deletes a quiz
  
+router.route("/data/:type/:id")
+      .post(quizController.updataData);
+
 router.route("/user/:id")
       .get(quizController.findAllByUser); // Finds all quizes by a single user
 
