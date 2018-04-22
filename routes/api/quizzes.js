@@ -11,7 +11,7 @@ router.route("/:id")
       .delete(quizController.deleteOne);  // Deletes a quiz
  
 router.route("/data/:type/:id")
-      .post(quizController.updataData);
+      .post(quizController.updateData);
 
 router.route("/user/:id")
       .get(quizController.findAllByUser); // Finds all quizes by a single user
