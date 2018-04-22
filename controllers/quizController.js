@@ -66,12 +66,20 @@ module.exports = {
 
         if(type === "comment"){
 
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {comments: req.body}})
+                   .then(quizzes => res.json(true))
+                   .catch(err => res.status(422).json(err));
+
         } else if (type === "star"){
+
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {stars: req.params.id}})
+                   .then(quizzes => res.json(true))
+                   .catch(err => res.status(422).json(err));
 
         } else if (type === "result"){
 
         }
 
     }
-    
+
 }
