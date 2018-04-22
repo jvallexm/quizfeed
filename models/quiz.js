@@ -23,7 +23,8 @@ const quizSchema = new Schema({
     },
 
     created_by: {type: String, requried: true},
-    created_on: { type: Date, default: Date.now }
+    created_on: { type: Date, default: Date.now },
+    last_edited: { type: Date, default: Date.now }
 
 });
 
