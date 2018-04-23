@@ -20,7 +20,7 @@ class FourOhFour extends React.Component{
 
         return(
 
-            <h1>potters hop {this.state.errorCode ? "CODE" : "NO CODE"}</h1>
+            <h1>YOU GOT AN ERROR {this.state.errorCode ? "CODE" : "NO CODE"}</h1>
 
         )
 

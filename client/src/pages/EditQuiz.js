@@ -11,7 +11,7 @@ class EditQuiz extends React.Component{
         redirect: false
 
     }
-
+    
     componentDidMount(){
 
         let id = this.props.match.params.id;
@@ -53,11 +53,11 @@ class EditQuiz extends React.Component{
     render(){
 
         if(this.state.redirect)
-            return <Redirect to="/"/>
+            return <Redirect to="/404"/>
 
         return(
 
-            <h1>Poppers Hot</h1>
+            <h1>Loading...</h1>
 
         )
 
