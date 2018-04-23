@@ -9,6 +9,17 @@ import FourOhFour from "./pages/Error";
 
 class App extends React.Component{
 
+  state = {
+
+    user: false
+  }
+
+  setUser(user){
+
+    this.setState({user: user});
+
+  }
+
   render(){
 
     return(
@@ -17,13 +28,13 @@ class App extends React.Component{
         <div>
           <Switch>
             
-            <Route exact path="/"                component={Home} />
-            <Route exact path="/userQuizzes/:id" component={Home}/>
-            <Route exact path="/page/:offset"    component={Home}/>
-            <Route exact path="/newQuiz"         component={EditQuiz}/>
-            <Route exact path="/editQuiz/:id"    component={EditQuiz}/>
-            <Route exact path="/quiz/:id"        component={Home}/>
-            <Route exact path="/404/:code?"      component={FourOhFour}/>
+            <Route exact path="/"                render={ (props)=> <Home       {...props} /> } />
+            <Route exact path="/userQuizzes/:id" render={ (props)=> <Home       {...props} /> } />
+            <Route exact path="/page/:offset"    render={ (props)=> <Home       {...props} /> } />
+            <Route exact path="/newQuiz"         render={ (props)=> <EditQuiz   {...props} /> } />
+            <Route exact path="/editQuiz/:id"    render={ (props)=> <EditQuiz   {...props} /> } />
+            <Route exact path="/quiz/:id"        render={ (props)=> <Home       {...props} /> } />
+            <Route exact path="/404/:code?"      render={ (props)=> <FourOhFour {...props} /> } />
 
           </Switch>
         </div>
