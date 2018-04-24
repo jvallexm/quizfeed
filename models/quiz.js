@@ -8,20 +8,15 @@ const quizSchema = new Schema({
         title:        {type: String, requried: true},
         header_color: {type: String, default: "red"},
         author:       {type: String, requried: true},
+        author_id:    {type: String, requried: true},
         questions:    [Object],
         results:      [Object]
 
     },
 
-    data: {
-
-        comments:  [Object],
-        stars:     [String],
-        author_id: {type: String, requried: true},
-        results:   [Number]
-
-    },
-
+    comments:  [Object],
+    stars:     [String],
+    results:   [Number],
     created_by:  { type: String, requried: true  },
     created_on:  { type: Date, default: Date.now },
     last_edited: { type: Date, default: Date.now }

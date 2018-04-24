@@ -71,17 +71,33 @@ module.exports = {
 
             /* Pushes a new comments to the form data comments array */
 
-            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"data.comments": req.body}})
-                   .then(quizzes => res.json(true))
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"comments": req.body}})
+                   .then(q =>
+
+                         db.Headline.findOneAndUpdate({_id: req.params.id},{$push: {"comments": req.params.id}})
+                                    .then(q2 => res.json(true))
+                                    .catch(err => res.status(422).json(err))
+                   )
                    .catch(err => res.status(422).json(err));
 
         } else if (type === "star"){
 
-            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"data.stars": req.params.id}})
-                   .then(quizzes => res.json(true))
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"stars": req.params.id}})
+                   .then(q =>
+
+                        db.Headline.findOneAndUpdate({_id: req.params.id},{$push: {"stars": req.params.id}})
+                               .then(q2 => res.json(true))
+                               .catch(err => res.status(422).json(err))
+                   )
                    .catch(err => res.status(422).json(err));
 
-        } else if (type === "result"){
+        } else if (type === "unstar") {
+
+
+
+        } else if (type === "result") {
+
+
 
         }
 
