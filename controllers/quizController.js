@@ -23,7 +23,7 @@ module.exports = {
         db.Headline.find({created_by: req.params.id})
                .sort({created_on: -1})
                .then(quizzes => res.json(quizzes))
-               .catch(err => res.status(422).json(err));
+               .catch(err => res.send(false));
 
     },
 

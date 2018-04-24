@@ -8,22 +8,22 @@ const quizSchema = new Schema({
         title:        {type: String, requried: true},
         header_color: {type: String, default: "red"},
         author:       {type: String, requried: true},
-        questions: [Object],
-        results:   [Object]
+        questions:    [Object],
+        results:      [Object]
 
     },
 
     data: {
 
-        comments: [Object],
-        stars: [String],
+        comments:  [Object],
+        stars:     [String],
         author_id: {type: String, requried: true},
-        results: [Number]
+        results:   [Number]
 
     },
 
-    created_by: {type: String, requried: true},
-    created_on: { type: Date, default: Date.now },
+    created_by:  { type: String, requried: true  },
+    created_on:  { type: Date, default: Date.now },
     last_edited: { type: Date, default: Date.now }
 
 });
@@ -37,9 +37,10 @@ let example = {
     _id: 0,
     form: {
         title: "What form block are you?",
-        header_color: "#000000",
+        
         author: "Jen",
         questions: [{
+            header_color: "#000000", // or header_image
             block_type: "multiple_choice_img",
             question: "And you call them steamed hams despite the fact that they are obviously grilled?",
             answers: [{
@@ -78,40 +79,3 @@ let example = {
     created_by: "0",
     created_on: 0
 }
-
-/*
-
-{
-    _id
-    form: {
-        title,
-        author, //author name
-        questions: [
-            {
-                block_type:
-                answers: [{
-                    name:
-                }]
-            }
-
-        ],
-        results: [
-
-        ],
-    }
-    data: {
-
-        comments: [],
-        stars: 
-        results: [],
-        votes: []
-
-    }
-
-    created_on: 
-    created_by:  //user id
-
-}
-
-
-*/

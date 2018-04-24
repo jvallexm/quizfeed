@@ -2,9 +2,7 @@ import React        from "react";
 
 class FourOhFour extends React.Component{
 
-    state = {}
-
-
+    state = {};
     
     componentDidMount(){
 
@@ -14,7 +12,7 @@ class FourOhFour extends React.Component{
             this.setState({errorCode: code});
         }
 
-    }
+    };
 
     render(){
 
