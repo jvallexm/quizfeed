@@ -5,12 +5,13 @@ const headlineSchema = new Schema({
   
     title:       {type: String, requried: true},
     author:      {type: String, requried: true},
-    created_by:  {type: String, requried: true},
-    created_on:  {type: Date, default: Date.now},
-    last_edited: {type: Date, default: Date.now},
-    stars:       [String],
+    author_id:   {type: String, requried: true},
     comments:    [Object],
-    results:     {type: Number, default: 0}
+    stars:       [String],
+    results:     [Number],
+    created_by:  { type: String, requried: true  },
+    created_on:  { type: Date, default: Date.now },
+    last_edited: { type: Date, default: Date.now }
 
 })
 
