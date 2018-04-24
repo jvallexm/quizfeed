@@ -6,10 +6,9 @@ const app        = express();
 const PORT       = process.env.PORT || 3001;
 const env        = require('dotenv').config();
 
-
-// Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI);
 // Serve up static assets
