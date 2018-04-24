@@ -41,8 +41,12 @@ module.exports = {
 
     createOne: (req,res)=>{
 
-        db.Quiz.create(req.body)
-               .then(quizzes => res.json(true))
+        db.Quiz.create(req.body.form)
+               .then(quizzes => {
+                   db.Headline.create(req.body.data)
+                              .then(done => res.send(true))
+                              .catch(err => res.status(422).json(err))
+               })
                .catch(err => res.status(422).json(err));
                
 
