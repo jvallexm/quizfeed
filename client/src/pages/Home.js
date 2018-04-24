@@ -1,5 +1,6 @@
 import React from "react";
 import API   from "../utils/api";
+import { Jumbotron, Button } from 'reactstrap';
 
 class Home extends React.Component{
 
@@ -41,7 +42,15 @@ class Home extends React.Component{
 
         return(
 
-            <h1>Hot Poppers</h1>
+                <div>
+      <Jumbotron>
+        <h1 className="display-3">Hot Poppers</h1>
+        <h3>(quizfeed)</h3>
+        <p className="lead">
+          <Button color="primary">Create a Quiz</Button>
+        </p>
+      </Jumbotron>
+    </div>
 
         )
 
