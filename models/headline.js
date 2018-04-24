@@ -8,7 +8,9 @@ const headlineSchema = new Schema({
     created_by:  {type: String, requried: true},
     created_on:  {type: Date, default: Date.now},
     last_edited: {type: Date, default: Date.now},
-    stars:       {type: Number, default: 0}
+    stars:       [String],
+    comments:    [Object],
+    results:     {type: Number, default: 0}
 
 })
 
