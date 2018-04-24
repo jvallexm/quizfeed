@@ -28,7 +28,7 @@ class Home extends React.Component{
 
             console.log("finding all quizzes");
 
-            API.findAll(id).then(res=>{
+            API.findAll().then(res=>{
 
                 this.setState({quizzes: res.data});
 

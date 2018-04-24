@@ -9,7 +9,8 @@ class EditQuiz extends React.Component{
     state = {
 
         quiz: {
-            questions: []
+            questions: [],
+            results: []
         },
         redirect: false,
         isNew: false
@@ -57,14 +58,34 @@ class EditQuiz extends React.Component{
 
     /* Creates a new question block */
 
-    pushNewBlock(type){
+    pushNewBlock(arr,type){
 
         let quiz = this.state.quiz;
-        quiz.questions.push({
+        quiz[arr].push({
             type: type,
             answers: []
         })
         this.setState({quiz: quiz});
+    }
+
+    /* Deletes a question from the quiz object */
+
+    deleteBlock(arr,ind){
+
+        let quiz = this.state.quiz;
+        let remove = quiz[arr].splice(ind,1);
+        this.setState({quiz: quiz});
+
+    }
+
+    /* Saves an edited block */
+
+    saveBlock(arr,ind,obj){
+
+        let quiz = this.state.quiz;
+        quiz[arr][ind] = obj;
+        this.setState({quiz: quiz});
+
     }
 
     /* Adds a new answer to the question at index ind */
@@ -90,15 +111,25 @@ class EditQuiz extends React.Component{
 
     }
 
-    /* Deletes a question from the quiz object */
+    /* Saves an answer */
 
-    deleteQuestion(ind){
+    saveAnswer(qInd,aInd,obj){
 
-        let quiz = this.state.quiz;
-        let remove = quiz.questions.splice(ind,1);
+        let quiz = this.state.quiz; 
+        quiz.questions[qInd].answers[aInd] = obj;
         this.setState({quiz: quiz});
 
     }
+
+    /* Saving for later
+
+    componentDidUpdate(prevProps, prevState, snapshot){
+
+        console.log("component did update");
+
+    }
+
+    */
 
     render(){
 
@@ -109,7 +140,7 @@ class EditQuiz extends React.Component{
         
         <div>
 
-        <button className="btn" onClick={()=>this.pushNewBlock("multiple_choice_image")}>Add a Block</button>
+        <button className="btn" onClick={()=>this.pushNewBlock("questions","multiple_choice_image")}>Add a Block</button>
 
         {this.state.quiz.questions.map((ele,i)=>
 
