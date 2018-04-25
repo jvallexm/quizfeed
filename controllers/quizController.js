@@ -27,6 +27,16 @@ module.exports = {
 
     },
 
+    /* Finds drafts by a logged in user */
+
+    findDrafts: (req,res)=>{
+
+        db.Quiz.find({_id: req.params.id, isDraft: true})
+               .then(quizzes => res.json(quizzes))
+               .catch(err => res.send(false));
+
+    },
+
     /* Finds one quiz by id */
 
     findOne:   (req,res)=>{
