@@ -37,16 +37,34 @@ module.exports = {
 
     },
 
+    /* Saves a quiz as a draft */
+
+    saveDraft: (req,res)=>{
+
+        db.Quiz.findOneAndUpdate({_id: req.params.id},req.body.quiz)
+               .then(q=> res.send(true))
+               .catch(err => res.status(422).json(err));
+
+    },
+
+    publish: (req,res)=>{
+
+        db.Quiz.findOneAndUpdate({_id: req.params.id},req.body.quiz)
+               .then(q =>{
+                     db.Headline.create(req.body.headline)
+                                .then(done => res.send(true))
+                                .catch(err => res.status(422).json(err))
+               })
+               .catch(err => res.status(422).json(err));
+
+    },
+
     /* Creates a new quiz */
 
     createOne: (req,res)=>{
 
-        db.Quiz.create(req.body.form)
-               .then(quizzes => {
-                   db.Headline.create(req.body.data)
-                              .then(done => res.send(true))
-                              .catch(err => res.status(422).json(err))
-               })
+        db.Quiz.create(req.body.quiz)
+               .then(quizzes => res.send(true))
                .catch(err => res.status(422).json(err));
                
 
