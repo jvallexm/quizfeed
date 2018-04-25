@@ -10,7 +10,8 @@ class EditQuiz extends React.Component{
 
         quiz: {
             questions: [],
-            results: []
+            results: [],
+            isDraft: true
         },
         redirect: false,
         isNew: false
