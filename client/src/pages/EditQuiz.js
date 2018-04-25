@@ -51,9 +51,24 @@ class EditQuiz extends React.Component{
             /* Needs logic to redirect if a user is not logged in */
 
             console.log("this quiz is new!");
+            let quiz = this.state.quiz;
+            quiz._id = Date.now();
+
+            // POST QUIZ TO API then set state
+
             this.setState({isNew: true});
 
         }
+
+    }
+
+    saveAsDraft(){
+
+        API.saveAsDraft(this.quiz._id)
+           .then(res=>{
+               if(res)
+                 console.log("autosave success");
+           })
 
     }
 
@@ -121,6 +136,8 @@ class EditQuiz extends React.Component{
         this.setState({quiz: quiz});
 
     }
+
+    
 
     /* Saving for later
 

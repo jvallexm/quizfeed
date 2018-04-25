@@ -36,6 +36,10 @@ export default {
 
     deleteQuiz: (id)=>{
         return axios.delte("/api/quizzes/" + id);
+    },
+
+    saveAsDraft: (id)=>{
+        return axios.post("/api/quizzes/edit/" +id);
     }
 
 }
