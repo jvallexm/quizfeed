@@ -9,6 +9,7 @@ class EditQuiz extends React.Component{
     state = {
 
         quiz: {
+            title: "",
             questions: [],
             results: [],
             isDraft: true
@@ -88,6 +89,7 @@ class EditQuiz extends React.Component{
                                  image: "",
                                  srcUrl: "",
                                  text: ""  };
+
         quiz[arr].push(newObj)
         this.setState({quiz: quiz});
     }
@@ -192,7 +194,7 @@ class EditQuiz extends React.Component{
         
         <div>
 
-        <button className="btn" onClick={()=>this.pushNewBlock("questions","multiple_choice_image")}>Add a Block</button>
+        <button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Block</button>
 
         {this.state.quiz.questions.map((ele,i)=>
 
