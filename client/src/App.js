@@ -11,7 +11,10 @@ class App extends React.Component{
 
   state = {
 
-    user: false
+    user: {
+      name: "hot poppers",
+      _id: 42069
+    }
   }
 
   setUser(user){
@@ -29,13 +32,13 @@ class App extends React.Component{
           <Switch>
             
             {/* Home page */}
-            <Route exact path="/"                render={ (props)=> <Home       {...props} /> } />
+            <Route exact path="/"                render={ (props)=> <Home       {...props} user={this.state.user} /> } />
             {/* Quizzes by User */}
             <Route exact path="/userQuizzes/:id" render={ (props)=> <Home       {...props} /> } />
             {/* Overflow quiz pages */}
             <Route exact path="/page/:offset"    render={ (props)=> <Home       {...props} /> } />
             {/* Creating a new quiz */}
-            <Route exact path="/newQuiz"         render={ (props)=> <EditQuiz   {...props} /> } />
+            <Route exact path="/newQuiz"         render={ (props)=> <EditQuiz   {...props} user={this.state.user} /> } />
             {/* Editing existing quiz */}
             <Route exact path="/editQuiz/:id"    render={ (props)=> <EditQuiz   {...props} /> } />
             {/* Taking a Quiz*/}
