@@ -77,10 +77,18 @@ class EditQuiz extends React.Component{
     pushNewBlock(arr,type){
 
         let quiz = this.state.quiz;
-        quiz[arr].push({
-            type: type,
-            answers: []
-        })
+        let newObj = type === "questions" 
+
+                    /* Default question block */ 
+                              ? { type:            type,
+                                 backgroundColor: "#AAAAAA",
+                                 answers: []}
+                    /* Default result block */  
+                             : { title: "",
+                                 image: "",
+                                 srcUrl: "",
+                                 text: ""  };
+        quiz[arr].push(newObj)
         this.setState({quiz: quiz});
     }
 
@@ -110,10 +118,36 @@ class EditQuiz extends React.Component{
 
         let quiz = this.state.quiz;
         console.log("trying to push new answer to " + ind);
-        quiz.questions[ind].answers.push({
-            name: null,
-            img: null
-        })
+
+        /* Initialized the type of answer */
+
+        let type = quiz.questions[ind].type;
+        let newAnswer
+        if(type === "image"){
+
+            newAnswer = {
+                srcUrl: "",
+                image: ""
+            }
+
+        } else if (type === "text") {
+
+            newAnswer = {
+                text: "",
+                backgroundColor: "#AAAAAA"
+            }
+
+        } else if (type === "imageAndText"){
+
+            newAnswer = {
+                text: "",
+                srcUrl: "",
+                image: ""
+            }
+
+        }
+
+        quiz.questions[ind].answers.push(newAnswer)
         this.setState({quiz: quiz});
     }
 

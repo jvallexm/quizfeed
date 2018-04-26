@@ -12,6 +12,12 @@ class Home extends React.Component{
 
     componentDidMount(){
 
+
+        if(this.props.user){
+
+            console.log("has user");
+
+        }
         let id = this.props.match.params.id;
 
         if(id) {
