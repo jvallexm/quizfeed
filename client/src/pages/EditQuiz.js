@@ -152,9 +152,11 @@ class EditQuiz extends React.Component{
 
         return(
         
-        <div>
+        <div className="text-center container-fluid">
 
         <button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Block</button>
+
+        <center>
 
         {this.state.quiz.questions.map((ele,i)=>
 
@@ -164,6 +166,8 @@ class EditQuiz extends React.Component{
                          qInd={i}/>
             
         )}
+
+        </center>
             
         {/*
              <Card>
