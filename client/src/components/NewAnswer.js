@@ -7,8 +7,8 @@ const NewAnswer = () => {
 
                     <Card>
             <CardBody>
-                
-<h5>Sample Answer: Hot Poppers</h5>
+                <h5>Answer Block<Button className="close" aria-label="Close"><span aria-hidden="true">×</span></Button></h5>
+<Button>Add an Image</Button><Button>Add Text</Button>
 
             </CardBody>
                 </Card>
