@@ -2,6 +2,7 @@ import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router'
 import { Card, CardHeader, CardBody, Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import NewQuestion from '../components/NewQuestion';
 
 
 class EditQuiz extends React.Component{
@@ -78,7 +79,7 @@ class EditQuiz extends React.Component{
     pushNewBlock(arr,type){
 
         let quiz = this.state.quiz;
-        let newObj = type === "questions" 
+        let newObj = arr === "questions" 
 
                     /* Default question block */ 
                               ? { type:            type,
@@ -89,6 +90,8 @@ class EditQuiz extends React.Component{
                                  image: "",
                                  srcUrl: "",
                                  text: ""  };
+
+        console.log(newObj);
 
         quiz[arr].push(newObj)
         this.setState({quiz: quiz});
@@ -198,7 +201,11 @@ class EditQuiz extends React.Component{
 
         {this.state.quiz.questions.map((ele,i)=>
 
-            <div key={"block-" + i}>
+            <NewQuestion question={ele} pushNewAnswer={()=>this.pushNewAnswer(i)}/>
+            
+        )}
+
+        {/*<div key={"block-" + i}>
 
                 <h4 onClick={()=>console.log(ele)}>New Question:</h4>
 
@@ -213,9 +220,7 @@ class EditQuiz extends React.Component{
                     Add an Answer
                 </button>
             
-            </div>
-            
-        )}
+            </div>*/}
             
         {/*
              <Card>
