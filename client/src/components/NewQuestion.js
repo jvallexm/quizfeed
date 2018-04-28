@@ -2,7 +2,18 @@ import React        from "react";
 
 class NewQuestion extends React.Component{
 
-    state = {}
+    constructor(props){
+        super(props);
+        this.state = {}
+
+        /* Autosaves to the parent state every 30 seconds */
+
+        this.interval = setInterval(()=>{
+            this.save();
+        },30000);
+        
+    }
+    
 
     componentWillReceiveProps(){
 
@@ -10,6 +21,7 @@ class NewQuestion extends React.Component{
         this.setState(this.props.question);
 
     }
+
 
     componentWillMount(){
 
@@ -56,6 +68,15 @@ class NewQuestion extends React.Component{
 
         answers.push(newAnswer);
         this.setState({answers: answers});
+    }
+
+    deleteAnswer(ind){
+
+        let answers = this.state.answers;
+        let remove  = answers.splice(ind,1);
+        console.log("removing object " + remove);
+        this.setState({answers: answers});
+
     }
 
     render(){
