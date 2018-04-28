@@ -1,17 +1,22 @@
 import React        from "react";
+import NewAnswer    from "./NewAnswer";
 
 class NewQuestion extends React.Component{
 
     constructor(props){
         super(props);
+
         this.state = {}
+        this.handleChange       = this.handleChange.bind(this);
+        this.handleAnswerChange = this.handleAnswerChange.bind(this);
 
         /* Autosaves to the parent state every 30 seconds */
 
         this.interval = setInterval(()=>{
+            console.log("Autosaving...");
             this.save();
         },30000);
-        
+
     }
     
 
@@ -25,6 +30,7 @@ class NewQuestion extends React.Component{
 
     componentWillMount(){
 
+        console.log("moutning props")
         this.setState(this.props.question);
 
     }
@@ -79,16 +85,35 @@ class NewQuestion extends React.Component{
 
     }
 
+    handleChange(e){
+        
+        this.setState({[e.target.name]: e.target.value});
+
+    }
+
+    handleAnswerChange(e){
+
+        let index   = parseInt(e.target.getAttribute("data-ind"),10);
+        let answers = this.state.answers;
+        answers[index][e.target.name] = e.target.value;
+        this.setState({answers: answers});
+
+    }
+
     render(){
 
         return(
 
             <div>
-                <h1 onClick={()=>console.log(this.props.question)}>{this.props.question.type}</h1>
-                <input placeholder="What Question Title Are You?"/>
+                <h1 onClick={()=>console.log(this.props.question)}>{this.state.title}</h1>
+                <input placeholder="What Question Title Are You?" 
+                       name="title" 
+                       onChange={this.handleChange}/>
                 {
                     this.props.question.answers.map((ele,i)=>
-                        <h5 key={"question-" + this.props.qInd + "-answer-" + i}>Hot Poppers</h5>
+
+                        <NewAnswer key={"question-" + this.props.qInd + "-answer-" + i} 
+                                   ind={i}/>
                     )
                 }
                 <br/>
