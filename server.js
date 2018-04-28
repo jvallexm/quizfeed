@@ -12,7 +12,7 @@ var api = shutterstock.v2({
   clientSecret: process.env.SHUTTERSTOCK_CLIENT_SECRET,
 });
  
-api.image.get('pancakes', function(err, data) {
+api.image.get('108559295', function(err, data) {
   if (err) throw err;
       console.log(data);
 });

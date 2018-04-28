@@ -47,7 +47,7 @@ class App extends React.Component{
             {/* Creating a new quiz */}
             <Route exact path="/newQuiz"         render={ (props)=> <EditQuiz   {...props} user={this.state.user} /> } />
             {/* Editing existing quiz */}
-            <Route exact path="/editQuiz/:id"    render={ (props)=> <EditQuiz   {...props} /> } />
+            <Route exact path="/editQuiz/:id"    render={ (props)=> <EditQuiz   {...props} user={this.state.user} /> } />
             {/* Taking a Quiz*/}
             <Route exact path="/quiz/:id"        render={ (props)=> <Home       {...props} /> } />
             {/* Error Page */}
