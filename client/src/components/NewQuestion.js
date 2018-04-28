@@ -116,7 +116,7 @@ class NewQuestion extends React.Component{
   
                 </InputGroup>
                 <br/>
-                <Button onClick={()=>this.pushNewAnswer()}>Add a new Answer</Button><Button onClick={()=>this.save()}>Save</Button>
+                <Button color="success" onClick={()=>this.pushNewAnswer()}>Add a new Answer</Button><Button onClick={()=>this.save()}>Save</Button>
             </CardBody>
                 </Card>
 
