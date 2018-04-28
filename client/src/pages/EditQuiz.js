@@ -25,6 +25,14 @@ class EditQuiz extends React.Component{
         }
 
         this.saveBlock = this.saveBlock.bind(this);
+        this.interval  = setInterval(()=>{
+
+            if(this.state.quiz.isDraft)
+                console.log("This is where the component would autosave...");
+            else
+                console.log("Autosaving is disabled for published quizzes");
+
+        },60000);
 
     }
     
@@ -126,32 +134,6 @@ class EditQuiz extends React.Component{
         this.setState({quiz: quiz});
 
     }
-
-    /* Adds a new answer to the question at index ind */
-
-    
-
-    /* Deletes an answer from the question at index qInd */
-
-    deleteAnswer(qInd,aInd){
-
-        let quiz = this.state.quiz;
-        let remove = quiz.questions[qInd].answers.splice(aInd,1);
-        this.setState({quiz: quiz});
-
-    }
-
-    /* Saves an answer */
-
-    saveAnswer(qInd,aInd,obj){
-
-        let quiz = this.state.quiz; 
-        quiz.questions[qInd].answers[aInd] = obj;
-        this.setState({quiz: quiz});
-
-    }
-
-    
 
     /* Saving for later
 
