@@ -24,7 +24,8 @@ class EditQuiz extends React.Component{
     
         }
 
-        this.saveBlock = this.saveBlock.bind(this);
+        this.saveBlock    = this.saveBlock.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.interval  = setInterval(()=>{
 
             if(this.state.quiz.isDraft)
@@ -135,6 +136,14 @@ class EditQuiz extends React.Component{
 
     }
 
+    handleChange(e){
+
+        let quiz = this.state.quiz;
+        quiz[e.target.name] = e.target.value;
+        this.setState({quiz: quiz});
+
+    }
+
     /* Saving for later
 
     componentDidUpdate(prevProps, prevState, snapshot){
@@ -152,59 +161,28 @@ class EditQuiz extends React.Component{
 
         return(
         
-        <div className="text-center container-fluid">
+            <div className="text-center container-fluid">
 
-        <button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Block</button>
 
-        <center>
+            <h2> Give Your Quiz a Title </h2>
+            <input name="title" onChange={this.handleChange} />
 
-        {this.state.quiz.questions.map((ele,i)=>
+            <center>
 
-            <NewQuestion key={"question-"+i}
-                         question={ele} 
-                         save={this.saveBlock}
-                         qInd={i}/>
-            
-        )}
+                {this.state.quiz.questions.map((ele,i)=>
 
-        </center>
-            
-        {/*
-             <Card>
-        <CardHeader>
-        <h1>Loading...</h1>
-          {this.state.isNew ? <h4>New Quiz</h4>:<h4>Edit Quiz</h4>}
-        </CardHeader>
-        <CardBody>
-          <Container>
-           <Form>
-              <FormGroup>
-                <Label for="question">Question:</Label>
-                <Input type="text" name="question" value={this.state.question} onChange={this.onChange} placeholder="Question" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="answer1">Answer1:</Label>
-                <Input type="text" name="answer1" value={this.state.answer1} onChange={this.onChange} placeholder="answer1" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="answer2">Answer2:</Label>
-                <Input type="text" name="answer2" value={this.state.answer2} onChange={this.onChange} placeholder="answer2" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="answer3">Answer3:</Label>
-                <Input type="textarea" name="answer3" value={this.state.answer2} onChange={this.onChange} placeholder="answer3" cols="80" rows="3"/>
-              </FormGroup>
-              <FormGroup>
-                <Label for="answer4">Answer4:</Label>
-                <Input type="number" name="answer4" value={this.state.answer4} onChange={this.onChange} placeholder="answer4" />
-              </FormGroup>
-              <Button onClick={this.onSubmit} color="primary">Submit</Button>
-            </Form>
-          </Container>
-        </CardBody>
-        </Card>*/}
+                    <NewQuestion key={"question-"+i}
+                                question={ele} 
+                                save={this.saveBlock}
+                                qInd={i}/>
+                    
+                )}
 
-      </div>
+            </center>
+
+            <button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Block</button>
+    
+        </div>
 
         )
 

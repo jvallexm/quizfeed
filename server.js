@@ -14,8 +14,7 @@ var api = shutterstock.v2({
  
 api.image.get('108559295', function(err, data) {
   if (err) throw err;
- 
-  console.log(data);
+      console.log(data);
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
