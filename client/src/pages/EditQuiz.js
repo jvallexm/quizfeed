@@ -6,19 +6,28 @@ import NewQuestion from '../components/NewQuestion';
 
 
 class EditQuiz extends React.Component{
+    
 
-    state = {
+    constructor(props){
 
-        quiz: {
-            title: "",
-            questions: [],
-            results: [],
-            isDraft: true
-        },
-        redirect: false,
-        isNew: false
+        super(props);
+        this.state = {
+
+            quiz: {
+                title: "",
+                questions: [],
+                results: [],
+                isDraft: true
+            },
+            redirect: false,
+            isNew: false
+    
+        }
+
+        this.saveBlock = this.saveBlock.bind(this);
 
     }
+    
     
     componentDidMount(){
 
@@ -119,42 +128,7 @@ class EditQuiz extends React.Component{
 
     /* Adds a new answer to the question at index ind */
 
-    pushNewAnswer(ind){
-
-        let quiz = this.state.quiz;
-        console.log("trying to push new answer to " + ind);
-
-        /* Initialized the type of answer */
-
-        let type = quiz.questions[ind].type;
-        let newAnswer
-        if(type === "image"){
-
-            newAnswer = {
-                srcUrl: "",
-                image: ""
-            }
-
-        } else if (type === "text") {
-
-            newAnswer = {
-                text: "",
-                backgroundColor: "#AAAAAA"
-            }
-
-        } else if (type === "imageAndText"){
-
-            newAnswer = {
-                text: "",
-                srcUrl: "",
-                image: ""
-            }
-
-        }
-
-        quiz.questions[ind].answers.push(newAnswer)
-        this.setState({quiz: quiz});
-    }
+    
 
     /* Deletes an answer from the question at index qInd */
 
@@ -201,7 +175,10 @@ class EditQuiz extends React.Component{
 
         {this.state.quiz.questions.map((ele,i)=>
 
-            <NewQuestion question={ele} pushNewAnswer={()=>this.pushNewAnswer(i)}/>
+            <NewQuestion key={"question-"+i}
+                         question={ele} 
+                         save={this.saveBlock}
+                         qInd={i}/>
             
         )}
 
