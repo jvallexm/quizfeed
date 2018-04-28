@@ -120,6 +120,7 @@ class EditQuiz extends React.Component{
 
     saveBlock(arr,ind,obj){
 
+        console.log(`Saving ${arr} at index ${ind}`)
         let quiz = this.state.quiz;
         quiz[arr][ind] = obj;
         this.setState({quiz: quiz});
@@ -181,23 +182,6 @@ class EditQuiz extends React.Component{
                          qInd={i}/>
             
         )}
-
-        {/*<div key={"block-" + i}>
-
-                <h4 onClick={()=>console.log(ele)}>New Question:</h4>
-
-
-                {ele.answers.map((ans,ii)=>
-
-                    <h5 key={"block-" + i + "-answer-" + ii}
-                        onClick={()=>this.deleteAnswer(i,ii)}> Answer {ii}</h5>
-                )}
-
-                <button className="btn" onClick={()=>this.pushNewAnswer(i)}>
-                    Add an Answer
-                </button>
-            
-            </div>*/}
             
         {/*
              <Card>
