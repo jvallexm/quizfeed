@@ -2,7 +2,12 @@ import React        from "react";
 
 class NewQuestion extends React.Component{
 
-    state = {
+    state = {}
+
+    componentWillReceiveProps(){
+
+        console.log("new question new props");
+        this.setState(this.props.question);
 
     }
 
@@ -10,6 +15,47 @@ class NewQuestion extends React.Component{
 
         this.setState(this.props.question);
 
+    }
+
+    save(){
+
+        this.props.save("questions",this.props.qInd,this.state);
+
+    }
+
+    pushNewAnswer(){
+
+        let answers = this.state.answers;
+        /* Initialized the type of answer */
+
+        let type = this.state.type;
+        let newAnswer
+        if(type === "image"){
+
+            newAnswer = {
+                srcUrl: "",
+                image: ""
+            }
+
+        } else if (type === "text") {
+
+            newAnswer = {
+                text: "",
+                backgroundColor: "#AAAAAA"
+            }
+
+        } else if (type === "imageAndText"){
+
+            newAnswer = {
+                text: "",
+                srcUrl: "",
+                image: ""
+            }
+
+        }
+
+        answers.push(newAnswer);
+        this.setState({answers: answers});
     }
 
     render(){
@@ -21,11 +67,11 @@ class NewQuestion extends React.Component{
                 <input placeholder="What Question Title Are You?"/>
                 {
                     this.props.question.answers.map((ele,i)=>
-                        <h5>Hot Poppers</h5>
+                        <h5 key={"question-" + this.props.qInd + "-answer-" + i}>Hot Poppers</h5>
                     )
                 }
                 <br/>
-                <button onClick={()=>this.props.pushNewAnswer()}>Add a new Answer</button>
+                <button onClick={()=>this.pushNewAnswer()}>Add a new Answer</button><button onClick={()=>this.save()}>Save</button>
             </div>
 
         )
