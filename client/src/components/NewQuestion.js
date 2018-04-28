@@ -5,10 +5,13 @@ class NewQuestion extends React.Component{
     constructor(props){
         super(props);
         this.state = {}
+
+        /* Autosaves to the parent state every 30 seconds */
+
         this.interval = setInterval(()=>{
             this.save();
-            console.log("tick");
-        },60000);
+        },30000);
+        
     }
     
 
