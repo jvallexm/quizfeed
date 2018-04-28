@@ -1,5 +1,7 @@
 import React        from "react";
 import NewAnswer    from "./NewAnswer";
+import { InputGroup, Card, CardBody, CardTitle, Button, Label, Input } from 'reactstrap';
+import "./NewQuestion.css"
 
 class NewQuestion extends React.Component{
 
@@ -105,10 +107,19 @@ class NewQuestion extends React.Component{
         return(
 
             <div>
-                <h1 onClick={()=>console.log(this.props.question)}>{this.state.title}</h1>
-                <input placeholder="What Question Title Are You?" 
-                       name="title" 
-                       onChange={this.handleChange}/>
+
+            <Card>
+            <CardBody>
+                <h3 onClick={()=>console.log(this.props.question)}>Question Type: {this.props.question.type}</h3>
+                <InputGroup>
+                <Input type="textarea" name="title" id="quizQuestion" placeholder="Type Your Question Here!" onChange={this.handleChange} />
+  
+                </InputGroup>
+                <br/>
+                <Button onClick={()=>this.pushNewAnswer()}>Add a new Answer</Button><Button onClick={()=>this.save()}>Save</Button>
+            </CardBody>
+                </Card>
+
                 {
                     this.props.question.answers.map((ele,i)=>
 
@@ -116,8 +127,6 @@ class NewQuestion extends React.Component{
                                    ind={i}/>
                     )
                 }
-                <br/>
-                <button onClick={()=>this.pushNewAnswer()}>Add a new Answer</button><button onClick={()=>this.save()}>Save</button>
             </div>
 
         )

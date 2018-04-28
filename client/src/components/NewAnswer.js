@@ -1,10 +1,17 @@
 import React from "react";
+import { InputGroup, Card, CardBody, CardTitle, Button, Label, Input } from 'reactstrap';
 
 const NewAnswer = () => {
 
     return(
 
-        <h5> Hot Poppers </h5>
+                    <Card>
+            <CardBody>
+                
+<h5>Sample Answer: Hot Poppers</h5>
+
+            </CardBody>
+                </Card>
 
     )
 
