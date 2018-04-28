@@ -9,13 +9,20 @@ import FourOhFour from "./pages/Error";
 
 class App extends React.Component{
 
-  state = {
+  constructor(props){
 
-    user: {
-      name: "hot poppers",
-      _id: 42069
+    super(props);
+    this.state = {
+
+      user: {
+        name: "hot poppers",
+        _id: 42069
+      }
     }
+    this.setUser = this.setUser.bind(this);
+
   }
+  
 
   setUser(user){
 
