@@ -3,7 +3,7 @@ const quizController = require("../../controllers/quizController");
 
 router.route("/")
       .get(quizController.findAll)        // Finds all quizes
-      .post(quizController.createOne);    // Posts a new quiz
+      .post(quizController.createOne);    // publishes a new quiz
 
 router.route("/edit/:id")
       .post(quizController.saveDraft)
