@@ -1,8 +1,10 @@
 import React        from "react";
 import API          from "../utils/api";
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
 import { Card, CardHeader, CardBody, Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
+import "./EditQuiz.css";
+import { SketchPicker } from 'react-color';
 
 
 class EditQuiz extends React.Component{
@@ -17,10 +19,12 @@ class EditQuiz extends React.Component{
                 title: "",
                 questions: [],
                 results: [],
-                isDraft: true
+                isDraft: true,
+                backgroundColor: "bisque"
             },
             redirect: false,
-            isNew: false
+            isNew: false,
+            displayColorPicker: false
     
         }
 
@@ -154,34 +158,76 @@ class EditQuiz extends React.Component{
 
     */
 
+   handleClick = () => {
+    this.setState({ displayColorPicker: !this.state.displayColorPicker })
+  };
+
+  handleClose = () => {
+    this.setState({ displayColorPicker: false })
+  };
+
+  handleChangeComplete = (color) => {
+    let quiz = this.state.quiz;
+    quiz.backgroundColor = color.hex;
+    this.setState({quiz:quiz})
+  };
+
     render(){
 
         if(this.state.redirect)
             return <Redirect to="/404"/>
 
+            
+                const popover = {
+                  position: 'absolute',
+                  zIndex: '2',
+                }
+                const cover = {
+                  position: 'fixed',
+                  top: '0px',
+                  right: '0px',
+                  bottom: '0px',
+                  left: '0px',
+                }
+            
+
         return(
         
-            <div className="text-center container-fluid">
+            <div className="container">
+<section class="jumbotron text-center" style={{backgroundColor: this.state.quiz.backgroundColor}}>
+
+        { this.state.displayColorPicker ? <div style={ popover }>
+          <div style={ cover } onClick={ this.handleClose }/>
+          <SketchPicker 
+          color={ this.state.background }
+          onChangeComplete={ this.handleChangeComplete }/>
+        </div> : null }
+
+<Button className="close" aria-label="Close" onClick={ this.handleClick }><span aria-hidden="true"><i class="fas fa-paint-brush"></i></span></Button>
+                    <div class="container">
 
 
-            <h2> Give Your Quiz a Title </h2>
-            <input name="title" onChange={this.handleChange} />
+            
+            <input name="title" className="quiz-title" placeholder="Type Here to Give Your Quiz a Title" onChange={this.handleChange} />
+            
+            
+            </div>
+                </section>
 
-            <center>
+                <center>
 
-                {this.state.quiz.questions.map((ele,i)=>
+{this.state.quiz.questions.map((ele,i)=>
 
-                    <NewQuestion key={"question-"+i}
-                                question={ele} 
-                                save={this.saveBlock}
-                                qInd={i}/>
-                    
-                )}
-
-            </center>
-
-            <button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Block</button>
+    <NewQuestion key={"question-"+i}
+                question={ele} 
+                save={this.saveBlock}
+                qInd={i}/>
     
+)}
+
+</center>
+
+<button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Question</button>
         </div>
 
         )

@@ -112,7 +112,7 @@ class NewQuestion extends React.Component{
             <CardBody>
                 <h3 onClick={()=>console.log(this.props.question)}>Question Type: {this.props.question.type}</h3>
                 <InputGroup>
-                <Input type="textarea" name="title" id="quizQuestion" placeholder="Type Your Question Here!" onChange={this.handleChange} />
+                <Input name="title" id="quizQuestion" placeholder="Type Your Question Here!" onChange={this.handleChange} />
   
                 </InputGroup>
                 <br/>
@@ -127,6 +127,7 @@ class NewQuestion extends React.Component{
                                    ind={i}/>
                     )
                 }
+                
             </div>
 
         )

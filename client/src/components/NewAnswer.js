@@ -7,11 +7,11 @@ const NewAnswer = () => {
 
                     <Card>
             <CardBody>
-                <h5>Answer Block<Button className="close" aria-label="Close"><span aria-hidden="true">×</span></Button></h5>
+                <h5>Answer Block<Button className="close" aria-label="Close" onClick={this.toggle}><span aria-hidden="true">×</span></Button></h5>
 <Button>Add an Image</Button><Button>Add Text</Button>
-
             </CardBody>
                 </Card>
+
 
     )
 
