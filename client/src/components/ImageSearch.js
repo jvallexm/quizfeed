@@ -54,7 +54,7 @@ class ImageSearch extends React.Component{
                 {this.state.noneFound ? <h5>We couldn't find {this.state.lastQuery}. Try searching for something else!</h5> :""}
                 {this.state.images.map((img,i)=>
 
-                    <img src={img} className="search-image"/>
+                    <img key={"searc-image-"+img}src={img} className="search-image" onClick={()=>this.props.setImage(img)}/>
 
                 )}
                 {this.state.loading?<h4>Loading <i className="fa fa-spinner fa-spin"/></h4>:""}

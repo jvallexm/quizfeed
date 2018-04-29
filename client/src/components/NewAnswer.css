@@ -2,5 +2,18 @@
     width:100%;
     background-color: rgba(0,0,0,0);
     border-width: 0;
-    height: 80px;
+}
+.search-for{
+
+    color: white;
+    height: 100px;
+	min-width: 100%;
+    background-color: gray;
+    display           : flex;
+    justify-content   : center;
+    flex-direction    : column; 
+
+}
+.answer-image{
+    max-width: 100%;
 }

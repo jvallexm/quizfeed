@@ -1,22 +1,60 @@
 import React from "react";
-import { InputGroup, Card, CardBody, CardTitle, Button, ButtonGroup, Label, Input } from 'reactstrap';
+import { InputGroup, Card, CardBody, CardTitle, Button, ButtonGroup, Label, Input, CardHeader } from 'reactstrap';
 import "./NewAnswer.css"
+import ImageSearch from "./ImageSearch";
 
-const NewAnswer = () => {
+class NewAnswer extends React.Component {
 
-    return(
+    constructor(props){
 
-                    <div className="col-md-4">
-                        <Card className="mb-4 box-shadow">
-                            <a href="https://placeholder.com"><img className="card-img-top" src="http://via.placeholder.com/150x150"></img></a>
+        super(props);
+        this.state = {
+
+            search: false
+
+        }
+
+        this.setImage = this.setImage.bind(this);
+
+    }
+
+    setImage(src){
+
+        this.props.imageChange(src,this.props.ind);
+        this.setState({search: false});
+
+    }
+
+    render()
+    {
+        return(
+
+            <div className="col-md-4">
+                
+                <Card className="mb-4 box-shadow">
+                    <CardHeader>
+
+                        { !this.state.search && !this.props.image 
+                        ?
+                                
+                            <div className="search-for" onClick={()=>this.setState({search: true})}>
+                                <i className="fa fa-search"/>
+                                    <h5>Search For An Image</h5>
+                                </div>
+
+                        : this.props.image && !this.state.search
+                        ? <img className="answer-image" src={this.props.image}/>
+                        : <ImageSearch setImage={this.setImage}/> }
+
+                            </CardHeader>
                             <CardBody>
-                            <p><input name="Answer" className="answer-title" placeholder="Type Your Answer Here" onChange={this.handleChange} /></p>
+                                <input name="Answer" className="answer-title" placeholder="Type Your Answer Here" onChange={this.handleChange} />
+                                {this.props.image ?
                                 <div className="d-flex justify-content-between align-items-center">
                                     <ButtonGroup className="pull-right">
-                                        <Button type="button" className="btn btn-sm btn-outline-secondary pull-right">Add an Image</Button>
-                                        <Button type="button" className="btn btn-sm btn-outline-secondary pull-right">Delete Answer</Button>
+                                        <Button type="button" onClick={()=>this.setState({search: !this.state.search})}className="btn btn-sm btn-outline-secondary pull-right">{this.state.search ? "Nevermind" : "Choose a New Image"}</Button>
                                     </ButtonGroup>
-                                </div>
+                                </div>:""}
                             </CardBody>
                         </Card>
                     </div>
@@ -26,6 +64,8 @@ const NewAnswer = () => {
 
 
     )
+
+    }
 
 }
 

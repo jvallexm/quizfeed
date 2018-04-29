@@ -16,8 +16,9 @@ class NewQuestion extends React.Component{
                 color: "black"
             }
         }
-        this.handleChange       = this.handleChange.bind(this);
-        this.handleAnswerChange = this.handleAnswerChange.bind(this);
+        this.handleChange            = this.handleChange.bind(this);
+        this.handleAnswerChange      = this.handleAnswerChange.bind(this);
+        this.handleAnswerImageChange = this.handleAnswerImageChange.bind(this);
 
         /* Autosaves to the parent state every 30 seconds */
 
@@ -105,6 +106,16 @@ class NewQuestion extends React.Component{
         let index   = parseInt(e.target.getAttribute("data-ind"),10);
         let answers = this.state.answers;
         answers[index][e.target.name] = e.target.value;
+        this.setState({answers: answers});
+
+    }
+
+    handleAnswerImageChange(src,i){
+
+        console.log("handling image change for  " + i);
+
+        let answers = this.state.answers;
+        answers[i].image = src;
         this.setState({answers: answers});
 
     }
@@ -199,7 +210,9 @@ class NewQuestion extends React.Component{
                     this.props.question.answers.map((ele,i)=>
 
                         <NewAnswer key={"question-" + this.props.qInd + "-answer-" + i} 
-                                   ind={i}/>
+                                   ind={i}
+                                   image={ele.image === "" ? false : ele.image}
+                                   imageChange={this.handleAnswerImageChange}/>
                     )
                 }
                 
