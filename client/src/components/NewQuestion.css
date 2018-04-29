@@ -5,3 +5,14 @@
 .btn {
 	margin-right: 5px;
 }
+
+.image-search{
+	max-height: 400px;
+	overflow: scroll;
+	max-width: 175px;
+}
+.search-image{
+
+	max-width: 200px;
+
+}
