@@ -1,8 +1,9 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Card, CardHeader, CardBody, Container, Button, Form, FormGroup, Label, Input, Col, Row } from "reactstrap";
+import { Button } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
+import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
 import { SketchPicker } from 'react-color';
 
@@ -33,6 +34,8 @@ class EditQuiz extends React.Component{
 
         this.saveBlock    = this.saveBlock.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.pushNewBlock = this.pushNewBlock.bind(this);
+
         this.interval  = setInterval(()=>{
 
             if(this.state.quiz.isDraft)
@@ -108,7 +111,8 @@ class EditQuiz extends React.Component{
 
                     /* Default question block */ 
                               ? { type:            type,
-                                 backgroundColor: "#AAAAAA",
+                                 backgroundColor: "aquamarine",
+                                 color: "black",
                                  answers: []}
                     /* Default result block */  
                              : { title: "",
@@ -163,7 +167,7 @@ class EditQuiz extends React.Component{
 
     */
 
-    /* Click andler for the color picker */
+    /* Click handler for the color picker */
 
     handleClick = (bg) => {
 
@@ -238,6 +242,8 @@ class EditQuiz extends React.Component{
 
                     </div>
 
+                    {/* Quiz Title */}
+
                     <div class="container">
                         <input name="title" 
                                className="quiz-title" 
@@ -252,10 +258,13 @@ class EditQuiz extends React.Component{
 
                         {this.state.quiz.questions.map((ele,i)=>
 
-                            <NewQuestion key={"question-"+i}
-                                        question={ele} 
-                                        save={this.saveBlock}
-                                        qInd={i}/>
+                            <NewQuestion key             = { "question-"+i       }
+                                         question        = { ele                 } 
+                                         save            = { this.saveBlock      }
+                                         qInd            = { i                   }
+                                         backgroundColor = { ele.backgroundColor }
+                                         color           = { ele.color           }
+                                         type            = { ele.type            } />
                             
                         )}
 
@@ -269,25 +278,7 @@ class EditQuiz extends React.Component{
                     Add a Question
                   </button>
                 
-                : <div id="picking-row">
-                    <Row>
-                        <Col>
-                            <Card onClick={()=>this.pushNewBlock("questions","image")}>
-                                Add an Image Block
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card>
-                                Add a Text Block
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card>
-                                Add an Image and Text Block
-                            </Card>
-                        </Col>
-                    </Row>
-                  </div> }
+                : <PickingRow newImageBlock={()=>this.pushNewBlock("questions","image")}/> }
 
              </div>
 

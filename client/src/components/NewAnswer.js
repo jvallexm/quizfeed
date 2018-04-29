@@ -34,6 +34,8 @@ class NewAnswer extends React.Component {
                 <Card className="mb-4 box-shadow">
                     <CardHeader>
 
+                        {/* Renders either a search block or the image based on state*/}
+
                         { !this.state.search && !this.props.image 
                         ?
                                 
@@ -43,12 +45,32 @@ class NewAnswer extends React.Component {
                                 </div>
 
                         : this.props.image && !this.state.search
+
                         ? <img className="answer-image" src={this.props.image}/>
+
                         : <ImageSearch setImage={this.setImage}/> }
 
-                            </CardHeader>
-                            <CardBody>
-                                <input name="Answer" className="answer-title" placeholder="Type Your Answer Here" onChange={this.handleChange} />
+                    </CardHeader>
+                    
+                        <CardBody>
+
+                            {/* Question Title */}
+
+                                <input name        = "title" 
+                                       className   = "answer-title" 
+                                       placeholder = "Type Your Answer Here" 
+                                       data-ind    = {this.props.ind}
+                                       onChange    = {this.props.handleChange} />
+
+                                {/* Image URL */}
+
+                                <input name        = "image" 
+                                       className   = "answer-title" 
+                                       placeholder = "Add Image by URL" 
+                                       data-ind    = {this.props.ind}
+                                       onChange    = {this.props.handleChange} 
+                                       value       = {this.props.image ? this.props.image : ""}/>
+
                                 {this.props.image ?
                                 <div className="d-flex justify-content-between align-items-center">
                                     <ButtonGroup className="pull-right">

@@ -5,17 +5,7 @@ const routes       = require("./routes");
 const app          = express();
 const PORT         = process.env.PORT || 3001;
 const env          = require('dotenv').config();
-const shutterstock = require('shutterstock');
- 
-var api = shutterstock.v2({
-  clientId: process.env.SHUTTERSTOCK_CLIENT_ID,
-  clientSecret: process.env.SHUTTERSTOCK_CLIENT_SECRET,
-});
- 
-api.image.search('pancakes', (err,data)=>{
-  if (err) throw err;
-    console.log("Got images: " + data.data.length);
-});
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
