@@ -11,6 +11,14 @@
 
 }
 
+.jumbotron{
+
+    position: relative;
+
+}
+
 .close {
-	float: left!important;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
