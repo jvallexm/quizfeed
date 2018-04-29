@@ -40,6 +40,10 @@ export default {
 
     saveAsDraft: (id)=>{
         return axios.post("/api/quizzes/edit/" +id);
+    },
+    
+    getImages: (q)=>{
+        return axios.get("/api/images/search/" + q);
     }
 
 }

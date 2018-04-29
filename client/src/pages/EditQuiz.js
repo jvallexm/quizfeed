@@ -5,6 +5,7 @@ import { Card, CardHeader, CardBody, Container, Button, Form, FormGroup, Label, 
 import NewQuestion from '../components/NewQuestion';
 import "./EditQuiz.css";
 import { SketchPicker } from 'react-color';
+import ImageSearch from "../components/ImageSearch";
 
 
 class EditQuiz extends React.Component{
@@ -44,7 +45,7 @@ class EditQuiz extends React.Component{
     }
     
     
-    componentDidMount(){
+    componentWillMount(){
 
         let id = this.props.match.params.id;
 
@@ -192,7 +193,7 @@ class EditQuiz extends React.Component{
                 }
                 const cover = {
                   position: 'fixed',
-                  top: '0px',
+                  top: '-15px',
                   right: '0px',
                   bottom: '0px',
                   left: '0px',
@@ -203,7 +204,7 @@ class EditQuiz extends React.Component{
         
             <div className="container">
 
-                <section class="jumbotron text-center" style={{backgroundColor: this.state.quiz.backgroundColor}}>
+                <section className="jumbotron text-center" style={{backgroundColor: this.state.quiz.backgroundColor}}>
 
                     {/* Renders color picker */}
 
@@ -263,6 +264,8 @@ class EditQuiz extends React.Component{
                 </center>
 
                 <button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Question</button>
+                
+                <ImageSearch />
 
              </div>
 
