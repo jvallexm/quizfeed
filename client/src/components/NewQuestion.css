@@ -12,14 +12,12 @@
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
-
-
 .btn {
 	margin-right: 5px;
 }
 
 .image-search{
-	max-height: 400px;
+	max-height: 200px;
 	overflow: scroll;
 	max-width: 175px;
 }

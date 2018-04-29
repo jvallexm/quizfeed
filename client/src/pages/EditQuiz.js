@@ -5,7 +5,6 @@ import { Card, CardHeader, CardBody, Container, Button, Form, FormGroup, Label, 
 import NewQuestion from '../components/NewQuestion';
 import "./EditQuiz.css";
 import { SketchPicker } from 'react-color';
-import ImageSearch from "../components/ImageSearch";
 
 
 class EditQuiz extends React.Component{
@@ -264,8 +263,6 @@ class EditQuiz extends React.Component{
                 </center>
 
                 <button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Question</button>
-                
-                <ImageSearch />
 
              </div>
 
