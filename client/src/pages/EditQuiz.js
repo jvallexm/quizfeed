@@ -20,11 +20,13 @@ class EditQuiz extends React.Component{
                 questions: [],
                 results: [],
                 isDraft: true,
-                backgroundColor: "bisque"
+                backgroundColor: "bisque",
+                color: "black"
             },
             redirect: false,
             isNew: false,
-            displayColorPicker: false
+            displayColorPicker: false,
+            bg: false
     
         }
 
@@ -158,8 +160,9 @@ class EditQuiz extends React.Component{
 
     */
 
-   handleClick = () => {
-    this.setState({ displayColorPicker: !this.state.displayColorPicker })
+  handleClick = (bg) => {
+    this.setState({ displayColorPicker: !this.state.colorpicker,
+                    bg: bg ? true : false })
   };
 
   handleClose = () => {
@@ -168,7 +171,12 @@ class EditQuiz extends React.Component{
 
   handleChangeComplete = (color) => {
     let quiz = this.state.quiz;
-    quiz.backgroundColor = color.hex;
+    if(this.state.bg)
+        quiz.backgroundColor = color.hex;
+    else{    
+        quiz.color = color.hex;
+        console.log("quiz text should be " + quiz.color);
+    }
     this.setState({quiz:quiz})
   };
 
@@ -194,41 +202,58 @@ class EditQuiz extends React.Component{
         return(
         
             <div className="container">
-<section class="jumbotron text-center" style={{backgroundColor: this.state.quiz.backgroundColor}}>
 
-        { this.state.displayColorPicker ? <div style={ popover }>
-          <div style={ cover } onClick={ this.handleClose }/>
-          <SketchPicker 
-          color={ this.state.background }
-          onChangeComplete={ this.handleChangeComplete }/>
-        </div> : null }
+                <section class="jumbotron text-center" style={{backgroundColor: this.state.quiz.backgroundColor}}>
 
-<Button className="close" aria-label="Close" onClick={ this.handleClick }><span aria-hidden="true"><i class="fas fa-paint-brush"></i></span></Button>
+                    {/* Renders color picker */}
+
+                    {   
+                        this.state.displayColorPicker 
+                    ? <div style={ popover }>
+                            <div style={ cover } onClick={ this.handleClose }/>
+                                <SketchPicker color ={ this.state.bg ? this.state.quiz.backgroundColor : this.state.quiz.color}
+                                              onChangeComplete={ this.handleChangeComplete }/>
+                        </div> : null 
+                    }
+                    <div className="close">
+                        <Button aria-label="Close" onClick={()=> this.handleClick(true) }>
+                            <span aria-hidden="true">
+                                <i class="fas fa-paint-brush"></i>
+                            </span>
+                        </Button>
+                        <Button aria-label="Close" onClick={()=> this.handleClick(false) }>
+                            <span aria-hidden="true">
+                            <i class="fas fa-font"></i>
+                            </span>
+                        </Button>
+                    </div>
+
                     <div class="container">
+                        <input name="title" 
+                               className="quiz-title" 
+                               style={{color: this.state.quiz.color}}
+                               placeholder="Type Here to Give Your Quiz a Title" 
+                               onChange={this.handleChange} />
+                    </div>
 
-
-            
-            <input name="title" className="quiz-title" placeholder="Type Here to Give Your Quiz a Title" onChange={this.handleChange} />
-            
-            
-            </div>
                 </section>
 
                 <center>
 
-{this.state.quiz.questions.map((ele,i)=>
+                        {this.state.quiz.questions.map((ele,i)=>
 
-    <NewQuestion key={"question-"+i}
-                question={ele} 
-                save={this.saveBlock}
-                qInd={i}/>
-    
-)}
+                            <NewQuestion key={"question-"+i}
+                                        question={ele} 
+                                        save={this.saveBlock}
+                                        qInd={i}/>
+                            
+                        )}
 
-</center>
+                </center>
 
-<button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Question</button>
-        </div>
+                <button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Question</button>
+
+             </div>
 
         )
 
