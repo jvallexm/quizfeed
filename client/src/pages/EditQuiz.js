@@ -1,7 +1,7 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Card, CardHeader, CardBody, Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Card, CardHeader, CardBody, Container, Button, Form, FormGroup, Label, Input, Col, Row } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import "./EditQuiz.css";
 import { SketchPicker } from 'react-color';
@@ -26,7 +26,8 @@ class EditQuiz extends React.Component{
             redirect: false,
             isNew: false,
             displayColorPicker: false,
-            bg: false
+            bg: false,
+            addingQuestion: false
     
         }
 
@@ -118,7 +119,7 @@ class EditQuiz extends React.Component{
         console.log(newObj);
 
         quiz[arr].push(newObj)
-        this.setState({quiz: quiz});
+        this.setState({quiz: quiz, addingQuestion: false});
     }
 
     /* Deletes a question from the quiz object */
@@ -142,6 +143,8 @@ class EditQuiz extends React.Component{
 
     }
 
+    /* Change handler for the quiz input fields */
+
     handleChange(e){
 
         let quiz = this.state.quiz;
@@ -160,45 +163,41 @@ class EditQuiz extends React.Component{
 
     */
 
-  handleClick = (bg) => {
-    this.setState({ displayColorPicker: !this.state.colorpicker,
+    /* Click andler for the color picker */
+
+    handleClick = (bg) => {
+
+        /* If bg is true, it sets the color picker to check the background
+           Otherwise is changes the text color  */
+
+        this.setState({ displayColorPicker: !this.state.colorpicker,
                     bg: bg ? true : false })
-  };
+    };
 
-  handleClose = () => {
-    this.setState({ displayColorPicker: false })
-  };
+    /* Close handler for the color picker */
 
-  handleChangeComplete = (color) => {
-    let quiz = this.state.quiz;
-    if(this.state.bg)
-        quiz.backgroundColor = color.hex;
-    else{    
-        quiz.color = color.hex;
-        console.log("quiz text should be " + quiz.color);
-    }
-    this.setState({quiz:quiz})
-  };
+    handleClose = () => {
+
+        this.setState({ displayColorPicker: false })
+
+    };
+
+    /* Handler for the color picker complete */
+
+    handleChangeComplete = (color) => {
+        let quiz = this.state.quiz; 
+        let changeField = this.state.bg ? "backgroundColor" : "color"; // Checks to see if it needs to change the background or text color
+        quiz[changeField] = color.hex;
+        this.setState({quiz:quiz})
+    };
 
     render(){
 
+        // Redirects on an error
+
         if(this.state.redirect)
             return <Redirect to="/404"/>
-
             
-                const popover = {
-                  position: 'absolute',
-                  zIndex: '2',
-                }
-                const cover = {
-                  position: 'fixed',
-                  top: '-15px',
-                  right: '0px',
-                  bottom: '0px',
-                  left: '0px',
-                }
-            
-
         return(
         
             <div className="container">
@@ -209,8 +208,8 @@ class EditQuiz extends React.Component{
 
                     {   
                         this.state.displayColorPicker 
-                    ? <div style={ popover }>
-                            <div style={ cover } onClick={ this.handleClose }/>
+                    ? <div className="popover">
+                            <div className="cover" onClick={ this.handleClose }/>
                                 <SketchPicker color ={ this.state.bg ? this.state.quiz.backgroundColor : this.state.quiz.color}
                                               onChangeComplete={ this.handleChangeComplete }/>
                         </div> : null 
@@ -243,7 +242,7 @@ class EditQuiz extends React.Component{
                         <input name="title" 
                                className="quiz-title" 
                                style={{color: this.state.quiz.color}}
-                               placeholder="Type Here to Give Your Quiz a Title" 
+                               placeholder={this.state.quiz.color === "black" ? "Type Here to Give Your Quiz a Title" : "Enter a Title to See Your Color Changes!"}
                                onChange={this.handleChange} />
                     </div>
 
@@ -261,8 +260,34 @@ class EditQuiz extends React.Component{
                         )}
 
                 </center>
+                {/**/}
+                        
+                { !this.state.addingQuestion 
 
-                <button className="btn" onClick={()=>this.pushNewBlock("questions","image")}>Add a Question</button>
+                ? <button className="btn" 
+                        onClick={()=>this.setState({addingQuestion: true})}>
+                    Add a Question
+                  </button>
+                
+                : <div id="picking-row">
+                    <Row>
+                        <Col>
+                            <Card onClick={()=>this.pushNewBlock("questions","image")}>
+                                Add an Image Block
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card>
+                                Add a Text Block
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card>
+                                Add an Image and Text Block
+                            </Card>
+                        </Col>
+                    </Row>
+                  </div> }
 
              </div>
 
