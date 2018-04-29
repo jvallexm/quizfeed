@@ -111,7 +111,8 @@ class EditQuiz extends React.Component{
 
                     /* Default question block */ 
                               ? { type:            type,
-                                 backgroundColor: "#AAAAAA",
+                                 backgroundColor: "aquamarine",
+                                 color: "black",
                                  answers: []}
                     /* Default result block */  
                              : { title: "",
@@ -166,7 +167,7 @@ class EditQuiz extends React.Component{
 
     */
 
-    /* Click andler for the color picker */
+    /* Click handler for the color picker */
 
     handleClick = (bg) => {
 
@@ -257,10 +258,13 @@ class EditQuiz extends React.Component{
 
                         {this.state.quiz.questions.map((ele,i)=>
 
-                            <NewQuestion key={"question-"+i}
-                                        question={ele} 
-                                        save={this.saveBlock}
-                                        qInd={i}/>
+                            <NewQuestion key             = { "question-"+i       }
+                                         question        = { ele                 } 
+                                         save            = { this.saveBlock      }
+                                         qInd            = { i                   }
+                                         backgroundColor = { ele.backgroundColor }
+                                         color           = { ele.color           }
+                                         type            = { ele.type            } />
                             
                         )}
 
