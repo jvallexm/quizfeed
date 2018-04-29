@@ -1,6 +1,18 @@
-.card {
-	max-width: 320px;
+.question-card {
+	width: 100%;
 }
+
+.question-title {
+	width: 90%;
+	background-color: rgba(0,0,0,0);
+	text-align: center; 
+    border-width: 0;
+    font-weight: 300;
+    font-size: 1.5rem;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+
 
 .btn {
 	margin-right: 5px;

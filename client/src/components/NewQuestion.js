@@ -1,6 +1,7 @@
 import React        from "react";
 import NewAnswer    from "./NewAnswer";
 import { InputGroup, Card, CardBody, CardTitle, Button, Label, Input } from 'reactstrap';
+import { SketchPicker } from 'react-color';
 import "./NewQuestion.css"
 
 class NewQuestion extends React.Component{
@@ -8,7 +9,13 @@ class NewQuestion extends React.Component{
     constructor(props){
         super(props);
 
-        this.state = {}
+        this.state = {
+
+            question: {
+                backgroundColor: "aquamarine",
+                color: "black"
+            }
+        }
         this.handleChange       = this.handleChange.bind(this);
         this.handleAnswerChange = this.handleAnswerChange.bind(this);
 
@@ -102,19 +109,87 @@ class NewQuestion extends React.Component{
 
     }
 
+    handleClick = (bg) => {
+        this.setState({ displayColorPicker: !this.state.colorpicker,
+                        bg: bg ? true : false })
+      };
+    
+      handleClose = () => {
+        this.setState({ displayColorPicker: false })
+      };
+
+    handleChangeComplete = (color) => {
+        let question = this.state.question;
+        if(this.state.bg)
+            question.backgroundColor = color.hex;
+        else{    
+            question.color = color.hex;
+            console.log("question text should be " + question.color);
+        }
+        this.setState({question:question})
+      };
+
+
     render(){
+
+        const popover = {
+            position: 'absolute',
+            zIndex: '2',
+          }
+          const cover = {
+            position: 'fixed',
+            top: '0px',
+            right: '0px',
+            bottom: '0px',
+            left: '0px',
+          }
 
         return(
 
             <div>
 
-            <Card>
-            <CardBody>
-                <h3 onClick={()=>console.log(this.props.question)}>Question Type: {this.props.question.type}</h3>
-                <InputGroup>
-                <Input name="title" id="quizQuestion" placeholder="Type Your Question Here!" onChange={this.handleChange} />
+            <Card className="question-card">
+            {/* Renders color picker */}
+
+                    {   
+                        this.state.displayColorPicker 
+                    ? <div style={ popover }>
+                            <div style={ cover } onClick={ this.handleClose }/>
+                                <SketchPicker color ={ this.state.bg ? this.state.question.backgroundColor : this.state.question.color}
+                                              onChangeComplete={ this.handleChangeComplete }/>
+                        </div> : null 
+                    }
+                    <div className="close">
+
+                        {/* Background color fill */}
+
+                        <Button aria-label="Close" 
+                                onClick={()=> this.handleClick(true)} 
+                                title="Change Background Color!">
+                            <span aria-hidden="true">
+                                <i class="fas fa-paint-brush"></i>
+                            </span>
+                        </Button>
+
+                        {/* Text Color Fill */}
+
+                        <Button aria-label="Close" 
+                                onClick={()=> this.handleClick(false)} 
+                                title="Change Font Color!">
+                            <span aria-hidden="true">
+                            <i class="fas fa-font"></i>
+                            </span>
+                        </Button>
+
+                    </div>
+
+            <CardBody className="question-card-body" style={{backgroundColor: this.state.question.backgroundColor}}>
+                {/* <h3 className="hidden" onClick={()=>console.log(this.props.question)}>Question Type: {this.props.question.type}</h3> */}
+               
+                <input 
+                className="question-title" name="question" id="quizQuestion" placeholder="Type Your Question Here!" onChange={this.handleChange} />
   
-                </InputGroup>
+               
                 <br/>
                 <Button color="success" onClick={()=>this.pushNewAnswer()}>Add a new Answer</Button><Button onClick={()=>this.save()}>Save</Button>
             </CardBody>
