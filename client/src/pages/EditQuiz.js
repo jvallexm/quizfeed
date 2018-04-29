@@ -216,16 +216,27 @@ class EditQuiz extends React.Component{
                         </div> : null 
                     }
                     <div className="close">
-                        <Button aria-label="Close" onClick={()=> this.handleClick(true) }>
+
+                        {/* Background color fill */}
+
+                        <Button aria-label="Close" 
+                                onClick={()=> this.handleClick(true)} 
+                                title="Change Background Color!">
                             <span aria-hidden="true">
                                 <i class="fas fa-paint-brush"></i>
                             </span>
                         </Button>
-                        <Button aria-label="Close" onClick={()=> this.handleClick(false) }>
+
+                        {/* Text Color Fill */}
+
+                        <Button aria-label="Close" 
+                                onClick={()=> this.handleClick(false)} 
+                                title="Change Font Color!">
                             <span aria-hidden="true">
                             <i class="fas fa-font"></i>
                             </span>
                         </Button>
+
                     </div>
 
                     <div class="container">
