@@ -57,7 +57,12 @@ class NewResult extends React.Component{
         return(
             
             <Card className="result-card text-center container-fluid">
+
+                {/* Result buttons */}
+
                 <div className="close-left">
+
+                    {/* Save Button */}
 
                     <Button aria-label="Close" 
                             onClick={()=> this.save()} 
@@ -66,6 +71,8 @@ class NewResult extends React.Component{
                             <i class="fa fa-save"></i>
                         </span>
                     </Button>
+
+                    {/* Search again after image has been selected */}
 
                     {this.state.result.image !== "" ?
 
@@ -78,7 +85,13 @@ class NewResult extends React.Component{
                     </Button> : ""}
 
                 </div>
+
+                {/* Main card info */}
+
                 <Row>
+
+                    {/* Displays image, search block, or image search */}
+
                     <Col>
                         {!this.state.search && this.state.result.image == "" ?
                             <div className="search-for result-image-search" onClick={()=>this.setState({search: true})}>
@@ -91,6 +104,9 @@ class NewResult extends React.Component{
                             </div>: 
                         <img className="result-image" src={this.state.result.image}/>}
                     </Col>
+
+                    {/* Where users fill in answers */}
+
                     <Col className="text-left">
                         <div className="row">
                             <div className="col-md-4">

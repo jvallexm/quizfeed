@@ -58,17 +58,23 @@ class NewAnswer extends React.Component {
 
             <div className="col-md-4">
 
-                { this.state.displayColorPicker 
+                {/* Color picker popover */}
+
+                { 
                 
-                ? <div className="popover">
-                    <div className="cover" onClick={ this.handleClose }/>
-                        <SketchPicker color ={ this.state.bg ? this.props.backgroundColor : this.props.color}
-                                      onChangeComplete={ this.handleChangeComplete }/>
-                 </div> 
-                
-                : null 
+                    this.state.displayColorPicker 
+                    
+                    ? <div className="popover">
+                        <div className="cover" onClick={ this.handleClose }/>
+                            <SketchPicker color ={ this.state.bg ? this.props.backgroundColor : this.props.color}
+                                        onChangeComplete={ this.handleChangeComplete }/>
+                    </div> 
+                    
+                    : null 
                 
                 }
+
+                {/* Icons bar */}
 
                 <Card className="mb-4 box-shadow">
 
@@ -76,26 +82,40 @@ class NewAnswer extends React.Component {
 
                         {/* Background color fill */}
 
-                        { this.props.type === "text" ?
-                        <Button aria-label="Close" 
-                                onClick={()=> this.handleClick(true)} 
-                                title="Change Background Color!">
-                            <span aria-hidden="true">
-                                <i class="fas fa-paint-brush"></i>
-                            </span>
-                        </Button> : ""}
+                        { 
+                            this.props.type === "text" 
+                            
+                            ?
+                            
+                            <Button aria-label="Close" 
+                                    onClick={()=> this.handleClick(true)} 
+                                    title="Change Background Color!">
+                                <span aria-hidden="true">
+                                    <i class="fas fa-paint-brush"></i>
+                                </span>
+                            </Button> 
+                            
+                            : ""
+                        }
 
                         {/* Text Color Fill */}
 
-                        {this.props.title !== "" && this.props.type !== "image" ?
+                        {
+                            
+                            this.props.title !== "" && this.props.type !== "image" 
+                            
+                            ?
 
-                        <Button aria-label="Close" 
-                                onClick={()=> this.handleClick(false)} 
-                                title="Change Font Color!">
-                            <span aria-hidden="true">
-                                <i class="fas fa-font"></i>
-                            </span>
-                        </Button> : ""}
+                            <Button aria-label="Close" 
+                                    onClick={()=> this.handleClick(false)} 
+                                    title="Change Font Color!">
+                                <span aria-hidden="true">
+                                    <i class="fas fa-font"></i>
+                                </span>
+                            </Button> 
+                            
+                            : ""
+                        }
 
                         {/* Image Search */}
 
