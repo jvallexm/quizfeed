@@ -274,8 +274,15 @@ class NewQuestion extends React.Component{
                                    plusTwo         = { ele.plusTwo                                    } />
                     )
                 }
-</Row>
+                <div className="col-md-4">
+                <Card className="mb-4 box-shadow">
+                    <CardBody>
                          <Button color="success" onClick={()=>this.pushNewAnswer()}>Add a new Answer</Button>
+                         </CardBody>
+                         </Card>
+                         </div>
+</Row>
+
                          
 
                 </CardFooter>
