@@ -202,7 +202,7 @@ class NewAnswer extends React.Component {
                                        onChange    = {this.props.handleChange} 
                                        value       = {this.props.image ? this.props.image : ""}/> : ""}
 
-                                <Button className="smol" onClick={()=>this.setState({showUrl: !this.state.showUrl})}>{this.state.showUrl ? "Hide" : "Add Image By Url"}</Button>
+                                <button className="smol" onClick={()=>this.setState({showUrl: !this.state.showUrl})}>{this.state.showUrl ? "Hide" : "Add Image By Url"}</button>
 
 
                             </CardBody>
