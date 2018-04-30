@@ -46,3 +46,6 @@ CardHeader{
     padding: 0!important;
     justify-content: center;
 }
+.smol{
+    font-size: 50%;
+}
