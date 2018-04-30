@@ -262,7 +262,7 @@ class EditQuiz extends React.Component{
                 {
                     this.state.quiz.results.map((ele,i)=>
 
-                        <NewResult key={"result-"+i}result={ele} 
+                        <NewResult key={"result-"+i}
                                    result={ele}
                                    save={this.saveBlock}
                                    rInd={i}/>
