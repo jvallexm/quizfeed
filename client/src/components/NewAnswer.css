@@ -17,3 +17,24 @@
 .answer-image{
     max-width: 100%;
 }
+.text-block-head{
+
+    height: 200px;
+
+}
+
+CardHeader{
+    position: relative;
+}
+
+.text-float{
+    left: 0px;
+    top: 0px;
+    padding: 5px;
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    display           : flex;
+    justify-content   : center;
+    flex-direction    : column; 
+}

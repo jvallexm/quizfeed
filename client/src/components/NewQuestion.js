@@ -78,14 +78,14 @@ class NewQuestion extends React.Component{
         } else if (type === "text") {
 
             newAnswer = {
-                text: "",
+                title: "",
                 backgroundColor: "#AAAAAA"
             }
 
         } else if (type === "imageAndText"){
 
             newAnswer = {
-                text: "",
+                title: "",
                 srcUrl: "",
                 image: ""
             }
@@ -121,6 +121,7 @@ class NewQuestion extends React.Component{
 
         let index   = parseInt(e.target.getAttribute("data-ind"),10);
         let answers = this.state.answers;
+        console.log("changing " + e.target.name + " at index " + index)
         answers[index][e.target.name] = e.target.value;
         this.setState({answers: answers});
 
@@ -166,18 +167,6 @@ class NewQuestion extends React.Component{
 
     render(){
 
-        const popover = {
-            position: 'absolute',
-            zIndex: '2',
-          }
-          const cover = {
-            position: 'fixed',
-            top: '0px',
-            right: '0px',
-            bottom: '0px',
-            left: '0px',
-          }
-
         return(
 
             <div>
@@ -222,6 +211,18 @@ class NewQuestion extends React.Component{
 
                 </div>
 
+                <div className="close-right">
+
+                    <Button aria-label="Close" 
+                            onClick={()=> this.save()} 
+                            title="Save Your Changes!">
+                        <span aria-hidden="true">
+                            <i class="fas fa-save"></i>
+                        </span>
+                    </Button>
+
+                </div>
+
                 <CardBody className="question-card-body" style={{backgroundColor: this.state.backgroundColor}}>
                
                     <input className   = "question-title" 
@@ -236,7 +237,7 @@ class NewQuestion extends React.Component{
                 <CardFooter>
 
                          <Button color="success" onClick={()=>this.pushNewAnswer()}>Add a new Answer</Button>
-                         <Button onClick={()=>this.save()}>Save</Button>
+                         
 
                 </CardFooter>
                 </Card>
@@ -248,7 +249,9 @@ class NewQuestion extends React.Component{
                                    ind          = { i                                              }
                                    image        = { ele.image === "" ? false : ele.image           }
                                    imageChange  = { this.handleAnswerImageChange                   }
-                                   handleChange = { this.handleAnswerChange                        } />
+                                   handleChange = { this.handleAnswerChange                        } 
+                                   type         = { this.state.type                                } 
+                                   title        = { ele.title               }                     />
                     )
                 }
                 

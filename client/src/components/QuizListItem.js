@@ -2,7 +2,10 @@ import React        from "react";
 import { Row, Col } from 'reactstrap';
 
 
-class QuizListItem extends React.Component{
+const QuizListItem = () =>{
+
+
+  return(
 
     <Row>
         <Col md="4">
@@ -15,8 +18,8 @@ class QuizListItem extends React.Component{
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
           <p class="byline text-right">by Jamez Kurosami</p>
           </Col>
-          <hr>
-      </Row>
+          <hr/>
+      </Row> )
 
 }
 

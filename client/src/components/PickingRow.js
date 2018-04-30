@@ -13,12 +13,12 @@ const PickingRow = (props) =>{
                             </Card>
                         </Col>
                         <Col>
-                            <Card>
+                            <Card onClick={()=>props.newTextBlock()}>
                                 Add a Text Block
                             </Card>
                         </Col>
                         <Col>
-                            <Card>
+                            <Card onClick={()=>props.newImageAndTextBlock()}>
                                 Add an Image and Text Block
                             </Card>
                         </Col>

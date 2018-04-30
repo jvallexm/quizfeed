@@ -29,12 +29,12 @@ class EditQuiz extends React.Component{
             displayColorPicker: false,
             bg: false,
             addingQuestion: false
-    
+
         }
 
-        this.saveBlock    = this.saveBlock.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.pushNewBlock = this.pushNewBlock.bind(this);
+        this.saveBlock        = this.saveBlock.bind(this);
+        this.handleChange     = this.handleChange.bind(this);
+        this.pushNewBlock     = this.pushNewBlock.bind(this);
 
         this.interval  = setInterval(()=>{
 
@@ -278,7 +278,9 @@ class EditQuiz extends React.Component{
                     Add a Question
                   </button>
                 
-                : <PickingRow newImageBlock={()=>this.pushNewBlock("questions","image")}/> }
+                : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
+                              newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
+                              newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
 
              </div>
 
