@@ -73,7 +73,9 @@ class NewQuestion extends React.Component{
 
             newAnswer = {
                 srcUrl: "",
-                image: ""
+                image: "",
+                plusOne: "",
+                plusTwo: ""
             }
 
         } else if (type === "text") {
@@ -81,7 +83,9 @@ class NewQuestion extends React.Component{
             newAnswer = {
                 title: "",
                 backgroundColor: "taupe",
-                color: "black"
+                color: "black",
+                plusOne: "",
+                plusTwo: ""
             }
 
         } else if (type === "imageAndText"){
@@ -90,7 +94,9 @@ class NewQuestion extends React.Component{
                 title: "",
                 srcUrl: "",
                 image: "",
-                color: "black"
+                color: "black",
+                plusOne: "",
+                plusTwo: ""
             }
 
         }
@@ -184,7 +190,6 @@ class NewQuestion extends React.Component{
 
             <div >
 
-
             <Card className="question-card">
 
                 {/* Renders color picker */}
@@ -270,7 +275,9 @@ class NewQuestion extends React.Component{
                                    colorChange     = { this.handleAnswerColorChange                   } 
                                    color           = { ele.color                                      }
                                    backgroundColor = { ele.backgroundColor                            } 
-                                   results         = { this.props.results                             }/>
+                                   results         = { this.props.results                             }
+                                   plusOne         = { ele.plusOne                                    } 
+                                   plusTwo         = { ele.plusTwo                                    } />
                     )
                 }
                 

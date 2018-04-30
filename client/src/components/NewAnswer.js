@@ -72,11 +72,10 @@ class NewAnswer extends React.Component {
 
                 <Card className="mb-4 box-shadow">
 
-                        {this.props.type !== "image" ?
-
                        <div className="close">
 
                         {/* Background color fill */}
+
                         { this.props.type === "text" ?
                         <Button aria-label="Close" 
                                 onClick={()=> this.handleClick(true)} 
@@ -88,7 +87,7 @@ class NewAnswer extends React.Component {
 
                         {/* Text Color Fill */}
 
-                        {this.props.title !== "" ?
+                        {this.props.title !== "" && this.props.type !== "image" ?
 
                         <Button aria-label="Close" 
                                 onClick={()=> this.handleClick(false)} 
@@ -98,7 +97,20 @@ class NewAnswer extends React.Component {
                             </span>
                         </Button> : ""}
 
-                        </div> :""}
+                        {/* Image Search */}
+
+                        {this.props.image && this.props.type !=="text"  ?
+
+                            <Button aria-label="Close" 
+                                    onClick={()=>this.setState({search: !this.state.search})} 
+                                    title={this.state.search ? "Go Back" : "Search for a new image"}>
+                                <span aria-hidden="true">
+                                    <i className={this.state.search ? "fa fa-step-backward" : "fa fa-search"}/>
+                                </span>
+                            </Button> : 
+                        ""} 
+                        
+                        </div>
 
                     <CardHeader className={this.props.type === "text" ? "text-block-head" : "image-head"}>
 
@@ -150,24 +162,21 @@ class NewAnswer extends React.Component {
                                        onChange    = {this.props.handleChange} 
                                        value       = {this.props.image ? this.props.image : ""}/> : ""}
 
-                                {this.props.image && this.props.type !=="text" ?
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <ButtonGroup className="pull-right">
-                                        <Button type="button" onClick={()=>this.setState({search: !this.state.search})}className="btn btn-sm btn-outline-secondary pull-right">{this.state.search ? "Nevermind" : "Choose a New Image"}</Button>
-                                    </ButtonGroup>
-                                </div>:""}
+
                             </CardBody>
                             <CardFooter>    
                                 <div>
                                     +2 Points
-                                    <select>
-                                         {this.props.results.map((r,i)=> <option key={"answer-" + this.props.ind + "-primary-" +i }>{r.title}</option> )}
+                                    <select name="plusTwo" onChange={this.props.handleChange} data-ind = {this.props.ind} value={this.props.plusTwo}>
+                                         <option value="-1">-</option>
+                                         {this.props.results.map((r,i)=> <option key={"answer-" + this.props.ind + "-primary-" +i } value={i}>{r.title}</option> )}
                                     </select>
                                 </div>
                                 <div>
                                     +1 Point 
-                                    <select>
-                                     {this.props.results.map((r,i)=> <option key={"answer-" + this.props.ind + "-secondary-" +i }>{r.title}</option> )}
+                                    <select name="plusOne" onChange={this.props.handleChange} data-ind = {this.props.ind} value={this.props.plusOne}>
+                                        <option value="-1">-</option>
+                                        {this.props.results.map((r,i)=> <option key={"answer-" + this.props.ind + "-secondary-" +i } value={i}>{r.title}</option> )}
                                     </select>
                                 </div>
                             </CardFooter>
