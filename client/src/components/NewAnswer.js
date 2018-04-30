@@ -1,5 +1,5 @@
 import React from "react";
-import { InputGroup, Card, CardBody, CardTitle, Button, ButtonGroup, Label, Input, CardHeader, CardFooter } from 'reactstrap';
+import { Card, CardBody, Button, CardHeader, CardFooter } from 'reactstrap';
 import "./NewAnswer.css"
 import ImageSearch from "./ImageSearch";
 import {SketchPicker} from 'react-color';
@@ -150,7 +150,7 @@ class NewAnswer extends React.Component {
                         {/* Renders text if the block type is not image */}
 
                         {
-                            this.props.type !== "image" && !this.state.search && (this.props.image || this.props.type == "text")
+                            this.props.type !== "image" && !this.state.search && (this.props.image || this.props.type === "text")
                             ?    
                                 <div className="text-float" style={this.props.type === "text" ? {color: this.props.color, backgroundColor: this.props.backgroundColor} : {color: this.props.color }}>
                                     {this.props.title}
@@ -173,7 +173,7 @@ class NewAnswer extends React.Component {
 
                         : this.props.image && !this.state.search && this.props.type !== "text"
 
-                        ? <img className="answer-image" src={this.props.image}/>
+                        ? <img className="answer-image" alt="" src={this.props.image}/>
 
                         : this.props.type !== "text" ? <ImageSearch setImage={this.setImage}/> : ""}
                         

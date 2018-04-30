@@ -1,6 +1,6 @@
 import React        from "react";
 import NewAnswer    from "./NewAnswer";
-import { InputGroup, Card, CardBody, CardTitle, Button, Label, Input, CardFooter, Row } from 'reactstrap';
+import {Card, CardBody, Button, CardFooter, Row } from 'reactstrap';
 import { SketchPicker } from 'react-color';
 import "./NewQuestion.css"
 
