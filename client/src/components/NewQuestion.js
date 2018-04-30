@@ -182,7 +182,7 @@ class NewQuestion extends React.Component{
 
         return(
 
-            <div>
+            <div >
 
             <Card className="question-card">
 
@@ -246,6 +246,7 @@ class NewQuestion extends React.Component{
                            style       = {{backgroundColor: this.state.backgroundColor, color: this.state.color}}/>
   
                     <br/>
+
                 </CardBody>
                 <CardFooter>
 

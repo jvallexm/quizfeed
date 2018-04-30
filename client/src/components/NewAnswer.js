@@ -100,7 +100,7 @@ class NewAnswer extends React.Component {
 
                         </div> :""}
 
-                    <CardHeader className={this.props.type === "text" ? "text-block-head" : ""}>
+                    <CardHeader className={this.props.type === "text image-card" ? "text-block-head image-card" : "image-card"}>
 
                         {/* Renders text if the block type is not image */}
 
@@ -119,7 +119,7 @@ class NewAnswer extends React.Component {
                             <div className="search-for" onClick={()=>this.setState({search: true})}>
                                 <i className="fa fa-search"/>
                                     <h5>Search For An Image</h5>
-                                </div>
+                            </div>
 
                         : this.props.image && !this.state.search && this.props.type !== "text"
 

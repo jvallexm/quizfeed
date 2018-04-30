@@ -6,6 +6,8 @@ import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
 import { SketchPicker } from 'react-color';
+import NewResult from "../components/NewResult";
+
 
 
 class EditQuiz extends React.Component{
@@ -253,7 +255,20 @@ class EditQuiz extends React.Component{
                     </div>
 
                 </section>
+                <button className="btn" 
+                        onClick={()=>this.pushNewBlock("results")}>
+                    Add a Result
+                </button>
+                {
+                    this.state.quiz.results.map((ele,i)=>
 
+                        <NewResult key={"result-"+i}result={ele} 
+                                   result={ele}
+                                   save={this.saveBlock}
+                                   rInd={i}/>
+
+                    )
+                }
                 <center>
 
                         {this.state.quiz.questions.map((ele,i)=>
