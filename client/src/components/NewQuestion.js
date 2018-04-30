@@ -184,6 +184,7 @@ class NewQuestion extends React.Component{
 
             <div >
 
+
             <Card className="question-card">
 
                 {/* Renders color picker */}
@@ -268,7 +269,8 @@ class NewQuestion extends React.Component{
                                    title           = { ele.title                                      }
                                    colorChange     = { this.handleAnswerColorChange                   } 
                                    color           = { ele.color                                      }
-                                   backgroundColor = { ele.backgroundColor                            } />
+                                   backgroundColor = { ele.backgroundColor                            } 
+                                   results         = { this.props.results                             }/>
                     )
                 }
                 

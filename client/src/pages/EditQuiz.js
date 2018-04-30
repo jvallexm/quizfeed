@@ -279,7 +279,8 @@ class EditQuiz extends React.Component{
                                          qInd            = { i                   }
                                          backgroundColor = { ele.backgroundColor }
                                          color           = { ele.color           }
-                                         type            = { ele.type            } />
+                                         type            = { ele.type            } 
+                                         results         = { this.state.quiz.results   }/>
                             
                         )}
 
