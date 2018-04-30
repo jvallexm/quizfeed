@@ -19,11 +19,11 @@
 .image-search{
 	max-height: 200px;
 	overflow: scroll;
-	max-width: 175px;
+	width: 100%;
 }
 .search-image{
 
-	max-width: 200px;
+	max-width: 100%;
 
 }
 .popover {

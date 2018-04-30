@@ -1,5 +1,5 @@
 import React from "react";
-import { InputGroup, Card, CardBody, CardTitle, Button, ButtonGroup, Label, Input, CardHeader } from 'reactstrap';
+import { InputGroup, Card, CardBody, CardTitle, Button, ButtonGroup, Label, Input, CardHeader, CardFooter } from 'reactstrap';
 import "./NewAnswer.css"
 import ImageSearch from "./ImageSearch";
 import {SketchPicker} from 'react-color';
@@ -100,7 +100,7 @@ class NewAnswer extends React.Component {
 
                         </div> :""}
 
-                    <CardHeader className={this.props.type === "text" ? "text-block-head" : ""}>
+                    <CardHeader className={this.props.type === "text" ? "text-block-head" : "image-head"}>
 
                         {/* Renders text if the block type is not image */}
 
@@ -119,7 +119,7 @@ class NewAnswer extends React.Component {
                             <div className="search-for" onClick={()=>this.setState({search: true})}>
                                 <i className="fa fa-search"/>
                                     <h5>Search For An Image</h5>
-                                </div>
+                            </div>
 
                         : this.props.image && !this.state.search && this.props.type !== "text"
 
@@ -157,6 +157,20 @@ class NewAnswer extends React.Component {
                                     </ButtonGroup>
                                 </div>:""}
                             </CardBody>
+                            <CardFooter>    
+                                <div>
+                                    +2 Points
+                                    <select>
+                                         {this.props.results.map((r,i)=> <option key={"answer-" + this.props.ind + "-primary-" +i }>{r.title}</option> )}
+                                    </select>
+                                </div>
+                                <div>
+                                    +1 Point 
+                                    <select>
+                                     {this.props.results.map((r,i)=> <option key={"answer-" + this.props.ind + "-secondary-" +i }>{r.title}</option> )}
+                                    </select>
+                                </div>
+                            </CardFooter>
                         </Card>
                     </div>
 
