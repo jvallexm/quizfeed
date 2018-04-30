@@ -64,7 +64,7 @@ class NewResult extends React.Component{
 
                     {/* Save Button */}
 
-                    <Button aria-label="Close" 
+                    <Button aria-label="Fill" 
                             onClick={()=> this.save()} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
@@ -76,7 +76,7 @@ class NewResult extends React.Component{
 
                     {this.state.result.image !== "" ?
 
-                    <Button aria-label="Close" 
+                    <Button aria-label="Text" 
                             onClick={()=> this.setState({search: !this.state.search})} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
