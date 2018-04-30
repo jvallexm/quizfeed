@@ -1,6 +1,6 @@
 import React        from "react";
 import NewAnswer    from "./NewAnswer";
-import { InputGroup, Card, CardBody, CardTitle, Button, Label, Input, CardFooter } from 'reactstrap';
+import { InputGroup, Card, CardBody, CardTitle, Button, Label, Input, CardFooter, Row } from 'reactstrap';
 import { SketchPicker } from 'react-color';
 import "./NewQuestion.css"
 
@@ -255,13 +255,7 @@ class NewQuestion extends React.Component{
 
                 </CardBody>
                 <CardFooter>
-
-                         <Button color="success" onClick={()=>this.pushNewAnswer()}>Add a new Answer</Button>
-                         
-
-                </CardFooter>
-                </Card>
-
+<Row>
                 {
                     this.props.question.answers.map((ele,i)=>
 
@@ -280,6 +274,14 @@ class NewQuestion extends React.Component{
                                    plusTwo         = { ele.plusTwo                                    } />
                     )
                 }
+</Row>
+                         <Button color="success" onClick={()=>this.pushNewAnswer()}>Add a new Answer</Button>
+                         
+
+                </CardFooter>
+                </Card>
+
+
                 
             </div>
 
