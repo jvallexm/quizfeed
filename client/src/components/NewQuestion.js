@@ -160,10 +160,8 @@ class NewQuestion extends React.Component{
     /* Handler for the color picker complete */
 
     handleChangeComplete = (color) => {
-        let quiz = this.state.quiz; 
         let changeField = this.state.bg ? "backgroundColor" : "color"; // Checks to see if it needs to change the background or text color
-        quiz[changeField] = color.hex;
-        this.setState({quiz:quiz})
+        this.setState({[changeField]: color.hex})
     };
 
     render(){
@@ -224,13 +222,14 @@ class NewQuestion extends React.Component{
 
                 </div>
 
-                <CardBody className="question-card-body" style={{backgroundColor: this.state.question.backgroundColor}}>
+                <CardBody className="question-card-body" style={{backgroundColor: this.state.backgroundColor}}>
                
                     <input className   = "question-title" 
                            name        = "question" 
                            id          = "quizQuestion" 
-                           placeholder = {this.state.question.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
-                           onChange    = {this.handleChange} />
+                           placeholder = {this.state.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
+                           onChange    = {this.handleChange} 
+                           style       = {{backgroundColor: this.state.backgroundColor, color: this.state.color}}/>
   
                     <br/>
                 </CardBody>

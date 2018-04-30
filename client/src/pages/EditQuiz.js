@@ -226,7 +226,7 @@ class EditQuiz extends React.Component{
                                 onClick={()=> this.handleClick(true)} 
                                 title="Change Background Color!">
                             <span aria-hidden="true">
-                                <i class="fas fa-paint-brush"></i>
+                                <i className="fas fa-paint-brush"></i>
                             </span>
                         </Button>
 
@@ -245,11 +245,11 @@ class EditQuiz extends React.Component{
                     {/* Quiz Title */}
 
                     <div class="container">
-                        <input name="title" 
-                               className="quiz-title" 
-                               style={{color: this.state.quiz.color}}
-                               placeholder={this.state.quiz.color === "black" ? "Type Here to Give Your Quiz a Title" : "Enter a Title to See Your Color Changes!"}
-                               onChange={this.handleChange} />
+                        <input name        = "title" 
+                               className   = "quiz-title" 
+                               style       = { {color: this.state.quiz.color} }
+                               placeholder = { this.state.quiz.color === "black" ? "Type Here to Give Your Quiz a Title" : "Enter a Title to See Your Color Changes!" }
+                               onChange    = { this.handleChange} />
                     </div>
 
                 </section>
