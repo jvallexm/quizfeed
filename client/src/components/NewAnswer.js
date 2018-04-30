@@ -2,6 +2,7 @@ import React from "react";
 import { InputGroup, Card, CardBody, CardTitle, Button, ButtonGroup, Label, Input, CardHeader } from 'reactstrap';
 import "./NewAnswer.css"
 import ImageSearch from "./ImageSearch";
+import {SketchPicker} from 'react-color';
 
 class NewAnswer extends React.Component {
 
@@ -10,7 +11,8 @@ class NewAnswer extends React.Component {
         super(props);
         this.state = {
 
-            search: false
+            search: false,
+            bg: false
 
         }
 
@@ -25,20 +27,85 @@ class NewAnswer extends React.Component {
 
     }
 
+        /* Click andler for the color picker */
+
+    handleClick = (bg) => {
+
+        /* If bg is true, it sets the color picker to check the background
+        Otherwise is changes the text color  */
+
+        this.setState({ displayColorPicker: !this.state.colorpicker,
+                    bg: bg ? true : false })
+    };
+
+    /* Close handler for the color picker */
+
+    handleClose = () => {
+
+        this.setState({ displayColorPicker: false })
+
+    };
+
+    handleChangeComplete = (color) =>{
+        
+        this.props.colorChange(color,this.state.bg,this.props.ind)
+
+    }
+
     render()
     {
         return(
 
             <div className="col-md-4">
-            
+
+                { this.state.displayColorPicker 
+                
+                ? <div className="popover">
+                    <div className="cover" onClick={ this.handleClose }/>
+                        <SketchPicker color ={ this.state.bg ? this.props.backgroundColor : this.props.color}
+                                      onChangeComplete={ this.handleChangeComplete }/>
+                 </div> 
+                
+                : null 
+                
+                }
 
                 <Card className="mb-4 box-shadow">
+
+                        {this.props.type !== "image" ?
+
+                       <div className="close">
+
+                        {/* Background color fill */}
+                        { this.props.type === "text" ?
+                        <Button aria-label="Close" 
+                                onClick={()=> this.handleClick(true)} 
+                                title="Change Background Color!">
+                            <span aria-hidden="true">
+                                <i class="fas fa-paint-brush"></i>
+                            </span>
+                        </Button> : ""}
+
+                        {/* Text Color Fill */}
+
+                        {this.props.title !== "" ?
+
+                        <Button aria-label="Close" 
+                                onClick={()=> this.handleClick(false)} 
+                                title="Change Font Color!">
+                            <span aria-hidden="true">
+                                <i class="fas fa-font"></i>
+                            </span>
+                        </Button> : ""}
+
+                        </div> :""}
+
                     <CardHeader className={this.props.type === "text" ? "text-block-head" : ""}>
 
                         {/* Renders text if the block type is not image */}
 
-                        {this.props.type !== "image" && !this.state.search && this.props.image
-                            ?    <div className="text-float">
+                        {this.props.type !== "image" && !this.state.search && (this.props.image || this.props.type == "text")
+                            ?    <div className="text-float" style={this.props.type === "text" ? {color: this.props.color, backgroundColor: this.props.backgroundColor} : {color: this.props.color }}>
                                     {this.props.title}
                                 </div>
                             :""

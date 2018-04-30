@@ -23,6 +23,7 @@ class NewQuestion extends React.Component{
         this.handleChange            = this.handleChange.bind(this);
         this.handleAnswerChange      = this.handleAnswerChange.bind(this);
         this.handleAnswerImageChange = this.handleAnswerImageChange.bind(this);
+        this.handleAnswerColorChange = this.handleAnswerColorChange.bind(this);
 
         /* Autosaves to the parent state every 30 seconds */
 
@@ -79,7 +80,8 @@ class NewQuestion extends React.Component{
 
             newAnswer = {
                 title: "",
-                backgroundColor: "#AAAAAA"
+                backgroundColor: "taupe",
+                color: "black"
             }
 
         } else if (type === "imageAndText"){
@@ -87,7 +89,8 @@ class NewQuestion extends React.Component{
             newAnswer = {
                 title: "",
                 srcUrl: "",
-                image: ""
+                image: "",
+                color: "black"
             }
 
         }
@@ -139,6 +142,15 @@ class NewQuestion extends React.Component{
 
     }
 
+    handleAnswerColorChange(color,bg,ind){
+
+
+        let answers = this.state.answers;
+        answers[ind][bg ? "backgroundColor" : "color"] = color.hex;
+        this.setState({answers: answers});
+
+    }
+
     /* Click andler for the color picker */
 
     handleClick = (bg) => {
@@ -164,6 +176,7 @@ class NewQuestion extends React.Component{
         let changeField = this.state.bg ? "backgroundColor" : "color"; // Checks to see if it needs to change the background or text color
         this.setState({[changeField]: color.hex})
     };
+
 
     render(){
 
@@ -245,13 +258,16 @@ class NewQuestion extends React.Component{
                 {
                     this.props.question.answers.map((ele,i)=>
 
-                        <NewAnswer key          = { "question-" + this.props.qInd + "-answer-" + i } 
-                                   ind          = { i                                              }
-                                   image        = { ele.image === "" ? false : ele.image           }
-                                   imageChange  = { this.handleAnswerImageChange                   }
-                                   handleChange = { this.handleAnswerChange                        } 
-                                   type         = { this.state.type                                } 
-                                   title        = { ele.title               }                     />
+                        <NewAnswer key             = { "question-" + this.props.qInd + "-answer-" + i } 
+                                   ind             = { i                                              }
+                                   image           = { ele.image === "" ? false : ele.image           }
+                                   imageChange     = { this.handleAnswerImageChange                   }
+                                   handleChange    = { this.handleAnswerChange                        } 
+                                   type            = { this.state.type                                } 
+                                   title           = { ele.title                                      }
+                                   colorChange     = { this.handleAnswerColorChange                   } 
+                                   color           = { ele.color                                      }
+                                   backgroundColor = { ele.backgroundColor                            } />
                     )
                 }
                 
