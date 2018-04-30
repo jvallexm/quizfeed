@@ -41,3 +41,8 @@ CardHeader{
 .image-head{
     height: 200px;
 }
+
+.card-header {
+    padding: 0!important;
+    justify-content: center;
+}
