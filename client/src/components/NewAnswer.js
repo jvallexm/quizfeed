@@ -197,7 +197,7 @@ class NewAnswer extends React.Component {
                                 {this.props.type !== "text"  && this.state.showUrl?
                                 <input name        = "image" 
                                        className   = "answer-title" 
-                                       placeholder = "Add Image by URL" 
+                                       placeholder = "Enter Your URL Here" 
                                        data-ind    = {this.props.ind}
                                        onChange    = {this.props.handleChange} 
                                        value       = {this.props.image ? this.props.image : ""}/> : ""}
@@ -253,6 +253,7 @@ class NewAnswer extends React.Component {
                                 </div>
                             </CardFooter>
                         </Card>
+
                     </div>
 
 

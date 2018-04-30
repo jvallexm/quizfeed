@@ -188,7 +188,7 @@ class NewQuestion extends React.Component{
 
         return(
 
-            <div >
+            <div className="space">
 
             <Card className="question-card">
 
@@ -210,7 +210,7 @@ class NewQuestion extends React.Component{
 
                     {/* Background color fill */}
 
-                    <Button aria-label="Close" 
+                    <Button aria-label="Fill" 
                             onClick={()=> this.handleClick(true)} 
                             title="Change Background Color!">
                         <span aria-hidden="true">
@@ -220,7 +220,7 @@ class NewQuestion extends React.Component{
 
                     {/* Text Color Fill */}
 
-                    <Button aria-label="Close" 
+                    <Button aria-label="Font" 
                             onClick={()=> this.handleClick(false)} 
                             title="Change Font Color!">
                         <span aria-hidden="true">
@@ -232,11 +232,23 @@ class NewQuestion extends React.Component{
 
                 <div className="close-right">
 
-                    <Button aria-label="Close" 
+                    <Button aria-label="Save" 
                             onClick={()=> this.save()} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
                             <i class="fas fa-save"></i>
+                        </span>
+                    </Button>
+
+                </div>
+
+                <div className="close-bottom-right">
+
+                    <Button aria-label="Trash" 
+                            onClick={()=>console.log("hot poppers")} 
+                            title="Save Your Changes!">
+                        <span aria-hidden="true">
+                            <i class="fas fa-trash"></i>
                         </span>
                     </Button>
 
@@ -255,7 +267,8 @@ class NewQuestion extends React.Component{
 
                 </CardBody>
                 <CardFooter>
-<Row>
+                
+                <Row>
                 {
                     this.props.question.answers.map((ele,i)=>
 
@@ -281,7 +294,7 @@ class NewQuestion extends React.Component{
                          </CardBody>
                          </Card>
                          </div>
-</Row>
+                </Row>
 
                          
 
