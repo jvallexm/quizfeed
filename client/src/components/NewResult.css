@@ -1,6 +1,6 @@
 .result-card{
     padding:10px;
-    max-width: 700px;
+    max-width: 750px;
     position: relative;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -43,4 +43,8 @@
 }
 .url{
     margin-top: 10px;
+}
+.result-text-col
+{
+    padding-left: 0!important;
 }

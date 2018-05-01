@@ -9,3 +9,7 @@
 .close {
 	float: left!important;
 }
+
+body {
+	background-image: url("/images/round.png");
+}
