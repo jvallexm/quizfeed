@@ -44,6 +44,8 @@ class EditQuiz extends React.Component{
         this.handleQuestionChange      = this.handleQuestionChange.bind(this);
         this.handleAnswerImageChange   = this.handleAnswerImageChange.bind(this);
         this.handleAnswerChange        = this.handleAnswerChange.bind(this);
+        this.handleResultChange        = this.handleResultChange.bind(this);
+        this.handleResultImageChange   = this.handleResultImageChange.bind(this);
 
 
         this.interval  = setInterval(()=>{
@@ -270,7 +272,7 @@ class EditQuiz extends React.Component{
 
     }
 
-        /* Handler for the color picker complete */
+    /* Handler for the color picker complete */
 
     handleQuestionColorChange(color,bg,qInd){
         let changeField = bg ? "backgroundColor" : "color"; // Checks to see if it needs to change the background or text color
@@ -319,6 +321,22 @@ class EditQuiz extends React.Component{
         quiz[changeField] = color.hex;
         this.setState({quiz:quiz})
     };
+
+    handleResultChange(e,rInd){
+
+        let quiz = this.state.quiz;
+        quiz.results[rInd][e.target.name] = e.target.value;
+        this.setState({quiz: quiz });
+
+    }
+
+    handleResultImageChange(src,rInd){
+
+        let quiz = this.state.quiz;
+        quiz.results[rInd].image = src;
+        this.setState({quiz: quiz});
+
+    }
 
     render(){
 
@@ -388,7 +406,9 @@ class EditQuiz extends React.Component{
                         <NewResult key={"result-"+i}
                                    result={ele}
                                    save={this.saveBlock}
-                                   rInd={i}/>
+                                   rInd={i}
+                                   handleChange={this.handleResultChange}
+                                   setImage    = { this.handleResultImageChange }/>
 
                     )
                 }

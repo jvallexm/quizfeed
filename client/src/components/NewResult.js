@@ -12,10 +12,7 @@ class NewResult extends React.Component{
         }
         this.setImage = this.setImage.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.interval = setInterval(()=>{
-            console.log("Autosaving...");
-            this.save();
-        },30000);
+
     }
 
     /* When the question object state changes it updates the state */
@@ -35,21 +32,15 @@ class NewResult extends React.Component{
         this.setState({result: this.props.result});
 
     }
-    save(){
-
-        this.props.save("results",this.props.rInd,this.state.result);
-
-    }
     setImage(src){
-        let result = this.state.result;
-        result.image = src;
-        this.setState({result: result, search: false});
+        
+        this.props.setImage(src,this.props.rInd);
+        this.setState({search: false});
+
     }
     handleChange(e){
 
-        let result = this.state.result;
-        result[e.target.name] = e.target.value;
-        this.setState({result: result});
+        this.props.handleChange(e,this.props.rInd);
 
     }
     render(){
@@ -62,16 +53,6 @@ class NewResult extends React.Component{
                 {/* Result buttons */}
 
                 <div className="close-left">
-
-                    {/* Save Button */}
-
-                    <Button aria-label="Fill" 
-                            onClick={()=> this.save()} 
-                            title="Save Your Changes!">
-                        <span aria-hidden="true">
-                            <i class="fa fa-save"></i>
-                        </span>
-                    </Button>
 
                     {/* Search again after image has been selected */}
 
