@@ -190,7 +190,14 @@ class NewQuestion extends React.Component{
 
             <div className="space">
 
+                
+
             <Card className="question-card">
+                <div className="sidebar">
+                    <i className="fa fa-arrow-up" onClick={()=>console.log("Hot Poppers")}/>
+                    {this.props.qInd + 1}
+                    <i className="fa fa-arrow-down" onClick={()=>console.log("Hot Poppers")}/>
+                </div>
 
                 {/* Renders color picker */}
 
@@ -214,7 +221,7 @@ class NewQuestion extends React.Component{
                             onClick={()=> this.handleClick(true)} 
                             title="Change Background Color!">
                         <span aria-hidden="true">
-                            <i class="fas fa-paint-brush"></i>
+                            <i className="fas fa-paint-brush"></i>
                         </span>
                     </Button>
 
@@ -224,7 +231,7 @@ class NewQuestion extends React.Component{
                             onClick={()=> this.handleClick(false)} 
                             title="Change Font Color!">
                         <span aria-hidden="true">
-                            <i class="fas fa-font"></i>
+                            <i className="fas fa-font"></i>
                         </span>
                     </Button>
 
@@ -236,7 +243,7 @@ class NewQuestion extends React.Component{
                             onClick={()=> this.save()} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
-                            <i class="fas fa-save"></i>
+                            <i className="fas fa-save"></i>
                         </span>
                     </Button>
 
@@ -248,7 +255,7 @@ class NewQuestion extends React.Component{
                             onClick={()=>console.log("hot poppers")} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
-                            <i class="fas fa-trash"></i>
+                            <i className="fas fa-trash"></i>
                         </span>
                     </Button>
 
@@ -269,7 +276,7 @@ class NewQuestion extends React.Component{
                 <CardFooter>
                 
                 <Row>
-                {
+                {   this.props.question.answers ?
                     this.props.question.answers.map((ele,i)=>
 
                         <NewAnswer key             = { "question-" + this.props.qInd + "-answer-" + i } 
@@ -285,7 +292,7 @@ class NewQuestion extends React.Component{
                                    results         = { this.props.results                             }
                                    plusOne         = { ele.plusOne                                    } 
                                    plusTwo         = { ele.plusTwo                                    } />
-                    )
+                    ) : ""
                 }
                 <div className="col-md-4">
                 <Card className="mb-4 box-shadow">
