@@ -21,32 +21,6 @@ class NewQuestion extends React.Component{
 
     }
 
-    /* When the question object state changes it updates the state */
-
-    componentWillReceiveProps(){
-
-        console.log("new question new props");
-        this.setState(this.props.question);
-
-    }
-
-    /* Updates the state with data when mounting */
-
-    componentWillMount(){
-
-        console.log("moutning props")
-        this.setState(this.props.question);
-
-    }
-
-    /* Saves to the parent state */
-
-    save(){
-
-        this.props.save("questions",this.props.qInd,this.state);
-
-    }
-
     /* Handler for answer text changes */
 
     handleAnswerChange(e){
