@@ -37,6 +37,7 @@ class EditQuiz extends React.Component{
         this.saveBlock        = this.saveBlock.bind(this);
         this.handleChange     = this.handleChange.bind(this);
         this.pushNewBlock     = this.pushNewBlock.bind(this);
+        this.moveIt           = this.moveIt.bind(this);
 
         this.interval  = setInterval(()=>{
 
@@ -188,6 +189,19 @@ class EditQuiz extends React.Component{
 
     };
 
+    moveIt(up,ind,arr){
+
+       let quiz = this.state.quiz;
+       console.log(quiz[arr][ind]);
+       let remove = quiz[arr].splice(ind,1);
+       let moveBy = up ? -1 : 1;
+       if(up)
+         quiz[arr].unshift(remove[0]);
+       this.setState({quiz: quiz});
+
+    }
+
+
     /* Handler for the color picker complete */
 
     handleChangeComplete = (color) => {
@@ -238,7 +252,7 @@ class EditQuiz extends React.Component{
                                 onClick={()=> this.handleClick(false)} 
                                 title="Change Font Color!">
                             <span aria-hidden="true">
-                            <i class="fas fa-font"></i>
+                            <i className="fas fa-font"></i>
                             </span>
                         </Button>
 
@@ -246,7 +260,7 @@ class EditQuiz extends React.Component{
 
                     {/* Quiz Title */}
 
-                    <div class="container">
+                    <div className="container">
                         <input name        = "title" 
                                className   = "quiz-title" 
                                style       = { {color: this.state.quiz.color} }
@@ -273,14 +287,15 @@ class EditQuiz extends React.Component{
 
                         {this.state.quiz.questions.map((ele,i)=>
 
-                            <NewQuestion key             = { "question-"+i       }
-                                         question        = { ele                 } 
-                                         save            = { this.saveBlock      }
-                                         qInd            = { i                   }
-                                         backgroundColor = { ele.backgroundColor }
-                                         color           = { ele.color           }
-                                         type            = { ele.type            } 
-                                         results         = { this.state.quiz.results   }/>
+                            <NewQuestion key             = { "question-"+i             }
+                                         question        = { ele                       } 
+                                         save            = { this.saveBlock            }
+                                         qInd            = { i                         }
+                                         backgroundColor = { ele.backgroundColor       }
+                                         color           = { ele.color                 }
+                                         type            = { ele.type                  } 
+                                         results         = { this.state.quiz.results   }
+                                         moveIt          = { this.moveIt               } />
                             
                         )}
 
