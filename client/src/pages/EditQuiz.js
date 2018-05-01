@@ -398,7 +398,7 @@ class EditQuiz extends React.Component{
                 </section>
                 <button className="btn" 
                         onClick={()=>this.pushNewBlock("results")}>
-                    Add a Result
+                    Add a Final Result
                 </button>
                 {
                     this.state.quiz.results.map((ele,i)=>
