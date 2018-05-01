@@ -23,7 +23,7 @@ class NewAnswer extends React.Component {
 
     setImage(src){
 
-        this.props.imageChange(src,this.props.ind);
+        this.props.imageChange(src,this.props.qInd,this.props.ind);
         this.setState({search: false});
 
     }
@@ -49,7 +49,7 @@ class NewAnswer extends React.Component {
 
     handleChangeComplete = (color) =>{
         
-        this.props.colorChange(color,this.state.bg,this.props.ind)
+        this.props.colorChange(color,this.state.bg,this.props.qInd,this.props.ind)
 
     }
 
