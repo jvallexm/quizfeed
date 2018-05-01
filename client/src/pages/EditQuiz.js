@@ -34,10 +34,17 @@ class EditQuiz extends React.Component{
 
         }
 
-        this.saveBlock        = this.saveBlock.bind(this);
-        this.handleChange     = this.handleChange.bind(this);
-        this.pushNewBlock     = this.pushNewBlock.bind(this);
-        this.moveIt           = this.moveIt.bind(this);
+        this.saveBlock                 = this.saveBlock.bind(this);
+        this.handleChange              = this.handleChange.bind(this);
+        this.pushNewBlock              = this.pushNewBlock.bind(this);
+        this.moveIt                    = this.moveIt.bind(this);
+        this.pushNewAnswer             = this.pushNewAnswer.bind(this);
+        this.handleAnswerColorChange   = this.handleAnswerColorChange.bind(this);
+        this.handleQuestionColorChange = this.handleQuestionColorChange.bind(this);
+        this.handleQuestionChange      = this.handleQuestionChange.bind(this);
+        this.handleAnswerImageChange   = this.handleAnswerImageChange.bind(this);
+        this.handleAnswerChange        = this.handleAnswerChange.bind(this);
+
 
         this.interval  = setInterval(()=>{
 
@@ -195,12 +202,114 @@ class EditQuiz extends React.Component{
        console.log(quiz[arr][ind]);
        let remove = quiz[arr].splice(ind,1);
        let moveBy = up ? -1 : 1;
-       if(up)
-         quiz[arr].unshift(remove[0]);
        this.setState({quiz: quiz});
 
     }
 
+        /* Adds a new answer */
+
+    pushNewAnswer(ind){
+
+        let quiz = this.state.quiz;
+        /* Initialized the type of answer */
+    
+        let type = quiz.questions[ind].type;
+        let newAnswer
+        if(type === "image"){
+    
+            newAnswer = {
+                srcUrl: "",
+                    image: "",
+                    plusOne: "",
+                    plusTwo: ""
+                }
+    
+            } else if (type === "text") {
+    
+                newAnswer = {
+                    title: "",
+                    backgroundColor: "taupe",
+                    color: "black",
+                    plusOne: "",
+                    plusTwo: ""
+                }
+    
+            } else if (type === "imageAndText"){
+    
+                newAnswer = {
+                    title: "",
+                    srcUrl: "",
+                    image: "",
+                    color: "black",
+                    plusOne: "",
+                    plusTwo: ""
+                }
+    
+            }
+    
+            quiz.questions[ind].answers.push(newAnswer);
+            this.setState({quiz: quiz});
+        }
+    
+        /* Deletes an answer */
+
+    deleteAnswer(qInd,ind){
+
+        let quiz = this.state.quiz;
+        let remove  = quiz.questions.answers.splice(ind,1);
+        console.log("removing object " + remove);
+        this.setState({quiz: quiz});
+
+    }
+
+    handleAnswerChange(e,qInd,ind){
+
+        let quiz = this.state.quiz;
+        quiz.questions[qInd].answers[ind][e.target.name] = e.target.value;
+        this.setState({quiz: quiz});
+
+    }
+
+        /* Handler for the color picker complete */
+
+    handleQuestionColorChange(color,bg,qInd){
+        let changeField = bg ? "backgroundColor" : "color"; // Checks to see if it needs to change the background or text color
+        let quiz = this.state.quiz;
+        quiz.questions[qInd][changeField] = color.hex;
+        console.log(`changing question ${qInd} ${changeField} to ${color.hex}`);
+        this.setState({quiz: quiz});
+    };
+
+    handleAnswerColorChange(color,bg,qInd,ind){
+
+
+        let quiz = this.state.quiz;
+        quiz.questions[qInd].answers[ind][bg ? "backgroundColor" : "color"] = color.hex;
+        this.setState({quiz: quiz});
+
+    }
+
+    /* Handles changes for answer images */
+
+    handleAnswerImageChange(src,qInd,ind){
+
+        console.log("handling image change for  " + ind);
+
+        let quiz = this.state.quiz;
+        quiz.questions[qInd].answers[ind].image = src;
+        this.setState({quiz: quiz});
+
+    }
+
+        /* Handlechange for text fields */
+
+    handleQuestionChange(e,qInd){
+        
+        let quiz = this.state.quiz;
+        quiz.questions[qInd][e.target.name] = e.target.value
+        this.setState({quiz: quiz});
+    
+    }
 
     /* Handler for the color picker complete */
 
@@ -287,15 +396,22 @@ class EditQuiz extends React.Component{
 
                         {this.state.quiz.questions.map((ele,i)=>
 
-                            <NewQuestion key             = { "question-"+i             }
-                                         question        = { ele                       } 
-                                         save            = { this.saveBlock            }
-                                         qInd            = { i                         }
-                                         backgroundColor = { ele.backgroundColor       }
-                                         color           = { ele.color                 }
-                                         type            = { ele.type                  } 
-                                         results         = { this.state.quiz.results   }
-                                         moveIt          = { this.moveIt               } />
+                            <NewQuestion key                     = { "question-"+i                  }
+                                         question                = { ele                            } 
+                                         save                    = { this.saveBlock                 }
+                                         qInd                    = { i                              }
+                                         backgroundColor         = { ele.backgroundColor            }
+                                         color                   = { ele.color                      }
+                                         type                    = { ele.type                       } 
+                                         results                 = { this.state.quiz.results        }
+                                         moveIt                  = { this.moveIt                    } 
+                                         pushNewAnswer           = { this.pushNewAnswer             }
+                                         deleteAnswer            = { this.deleteAnswer              } 
+                                         handleAnswerColorChange = { this.handleAnswerColorChange   }
+                                         handleColorChange       = { this.handleQuestionColorChange }
+                                         handleAnswerImageChange = { this.handleAnswerImageChange   }
+                                         handleQuestionChange    = { this.handleQuestionChange      }
+                                         handleAnswerChange      = { this.handleAnswerChange        }/>
                             
                         )}
 
