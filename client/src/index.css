@@ -6,10 +6,15 @@
 	background-color: #a8ffff!important;
 }
 
+
 .close {
 	float: left!important;
 }
 
 body {
-	background-image: url("/images/round.png");
+	background-image: url("/images/round_blu.png");
+}
+
+.jumbotron {
+	margin-bottom: 1rem!important;
 }
