@@ -11,21 +11,25 @@ const PickingRow = (props) =>{
                         <Col>
                         <Card className="pick-card" onClick={()=>props.newImageBlock()}>
                                 <CardBody className="pick-card-body text-center">
-                                Add an Image Block
+                                <img className="pick-img img-fluid" alt="IMAGE answer" src="/images/question_block_image.png"/>
+                                <p>Add Question with IMAGE answers</p>
+                                
                                 </CardBody>
                             </Card>
                         </Col>
                         <Col>
                             <Card className="pick-card" onClick={()=>props.newTextBlock()}>
                             <CardBody className="pick-card-body text-center">
-                                Add a Text Block
+                            <img className="pick-img img-fluid" alt="TEXT answer" src="/images/question_block_text.png"/>
+                                <p>Add a Question with TEXT answers</p>
                                 </CardBody>
                             </Card>
                         </Col>
                         <Col>
                             <Card className="pick-card" onClick={()=>props.newImageAndTextBlock()}>
                             <CardBody className="pick-card-body text-center">
-                                Add an Image and Text Block
+                            <img className="pick-img img-fluid" alt="IMAGE and TEXT answer" src="/images/question_block_both.png"/>
+                                <p>Add a Question with IMAGE & TEXT answers</p>
                                 </CardBody>
                             </Card>
                         </Col>
