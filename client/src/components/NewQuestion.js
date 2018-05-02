@@ -114,22 +114,10 @@ class NewQuestion extends React.Component{
 
                 </div>
 
-                <div className="close-right">
-
-                    <Button aria-label="Save" 
-                            onClick={()=> this.save()} 
-                            title="Save Your Changes!">
-                        <span aria-hidden="true">
-                            <i className="fas fa-save"></i>
-                        </span>
-                    </Button>
-
-                </div>
-
                 <div className="close-bottom-right">
 
                     <Button aria-label="Trash" 
-                            onClick={()=>console.log("hot poppers")} 
+                            onClick={()=>this.props.trash()} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
                             <i className="fas fa-trash"></i>
@@ -143,7 +131,7 @@ class NewQuestion extends React.Component{
                     <input className   = "question-title" 
                            name        = "question" 
                            id          = "quizQuestion" 
-                           placeholder = {this.state.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
+                           placeholder = {this.props.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
                            onChange    = {this.handleChange} 
                            style       = {{backgroundColor: this.props.backgroundColor, color: this.props.color}}/>
   
@@ -162,7 +150,7 @@ class NewQuestion extends React.Component{
                                    qInd            = { this.props.qInd                                }
                                    imageChange     = { this.props.handleAnswerImageChange             }
                                    handleChange    = { this.handleAnswerChange                        } 
-                                   type            = { this.state.type                                } 
+                                   type            = { this.props.type                                } 
                                    title           = { ele.title                                      }
                                    colorChange     = { this.props.handleAnswerColorChange             } 
                                    color           = { ele.color                                      }
@@ -170,7 +158,8 @@ class NewQuestion extends React.Component{
                                    results         = { this.props.results                             }
                                    plusOne         = { ele.plusOne                                    } 
                                    plusTwo         = { ele.plusTwo                                    } 
-                                   howMany         = { this.props.question.answers.length             } />
+                                   howMany         = { this.props.question.answers.length             } 
+                                   trash           = { ()=>this.props.trashAnswer(this.props.qInd,i)  }/>
                     ) : ""
                 }
                 {this.props.question.answers.length < 9 ?
