@@ -7,7 +7,7 @@
 
 ***
 
-### Table of Contents  
+## Table of Contents  
 [Getting Started](#gettingStarted)  
 [Creating A Quiz](#creatingAQuiz)  
 [Built With](#builtWith)  
@@ -18,6 +18,18 @@
 <a name="gettingStarted"/>
 
 ## Getting Started
+To get the application up and running follow these simple steps:
+
+   1. Clone the repository onto your computer.
+   ```
+   git clone git@github.com:jvallexm/quizfeed.git
+   ```
+   2. Install npm packages into the root folder and into the client folder. In the command line, cd to the root folder then follow these commands: 
+   ```
+   npm intall
+   cd client
+   npm install
+   ```
 
 <a name="creatingAQuiz"/>
 
@@ -26,8 +38,16 @@
 <a name="builtWith"/>
 
 ## Built With
- - [React](https://github.com/facebook/react) - Javascript library for building user interfaces.
- - [Create React App](https://github.com/facebookincubator/create-react-app) - Used for building the React framework.
+ - [Axios](https://www.npmjs.com/package/axios) - Handles HTTP requests
+ - [Body-Parser](https://www.npmjs.com/package/body-parser) - Middleware to parse request bodies
+ - [Bootstrap](https://getbootstrap.com/) - Front end framework
+ - [Express](https://expressjs.com/) - Node.js web application framework
+ - [Mocha](https://mochajs.org/) - Test framework
+ - [Mongoose](http://mongoosejs.com/) - Object modeling for node.js
+ - [Shutterstock](https://developers.shutterstock.com/) - Image search tool
+ - [Create React App](https://github.com/facebookincubator/create-react-app) - Used for building the React framework
+ - [React](https://github.com/facebook/react) - Javascript library for building user interfaces
+ 
 
 
 <a name="authors"/>
