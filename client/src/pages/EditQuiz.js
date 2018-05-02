@@ -23,7 +23,7 @@ class EditQuiz extends React.Component{
                 questions: [],
                 results: [],
                 isDraft: true,
-                backgroundColor: "bisque",
+                backgroundColor: "#b7f5a2",
                 color: "black"
             },
             redirect: false,

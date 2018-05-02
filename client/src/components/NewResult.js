@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputGroup, Card, CardBody, CardTitle, Button, ButtonGroup, Label, Input, CardHeader, Row, Col } from 'reactstrap';
+import { Card, CardBody, Button, Row, Col } from 'reactstrap';
 import "./NewResult.css"
 import ImageSearch from './ImageSearch';
 
@@ -46,8 +46,9 @@ class NewResult extends React.Component{
     render(){
 
         return(
-            
-            <Card className="result-card text-center container-fluid">
+            <center>
+            <div className="space">
+            <Card className="result-card text-center">
             <CardBody>
 
                 {/* Result buttons */}
@@ -84,7 +85,7 @@ class NewResult extends React.Component{
                             <div className="tall">
                                 <ImageSearch setImage={this.setImage}/> 
                             </div>: 
-                        <img className="result-image" src={this.state.result.image}/>}
+                        <img className="result-image" alt="Final Result" src={this.state.result.image}/>}
                     </Col>
 
                     {/* Where users fill in answers */}
@@ -123,7 +124,8 @@ class NewResult extends React.Component{
                 <input className="result-headline url" name="image" value={this.state.result.image} placeholder="Or enter an image url" onChange={this.handleChange}/>
            </CardBody>
             </Card>
-
+</div>
+</center>
         )
 
     }

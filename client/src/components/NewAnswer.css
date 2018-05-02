@@ -49,3 +49,7 @@ CardHeader{
 .smol{
     font-size: 50%;
 }
+
+.btn-success {
+    width: 100%
+}

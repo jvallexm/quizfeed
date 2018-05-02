@@ -1,9 +1,11 @@
 .result-card{
     padding:10px;
-    max-width: 750px;
+    width: 75%;
+    /* max-width: 750px; */
     position: relative;
     margin-top: 10px;
     margin-bottom: 10px;
+    background-color: #82d3f3!important
 }
 .result-image-search{
     background-color: gray;
