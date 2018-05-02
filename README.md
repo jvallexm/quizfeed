@@ -3,7 +3,7 @@
 
 # A Buzzfeed-Style Quiz Maker 
 
-### The overview of our application is to create a BuzzFeed-style site where users can search for quizzes (by quiz name or user name) and they can create quizzes of their own. Answer options will be randomized images, words or a combination of both. We feel this is valuable for a couple of reasons. First, quizzes are fun! Second, the use of quizzes as a marketing tool can be very effective because they tend to drive tons of traffic to a site and they are a great way to collect email addresses. Email marketing continues to be one of the top ways businesses drive sales, so this would be a great lead generation tool.
+ The overview of our application is to create a BuzzFeed-style site where users can search for quizzes (by quiz name or user name) and they can create quizzes of their own. Answer options will be randomized images, words or a combination of both. We feel this is valuable for a couple of reasons. First, quizzes are fun! Second, the use of quizzes as a marketing tool can be very effective because they tend to drive tons of traffic to a site and they are a great way to collect email addresses. Email marketing continues to be one of the top ways businesses drive sales, so this would be a great lead generation tool.
 
 ***
 
@@ -41,7 +41,7 @@
 <a name="license"/>
 
 ## License
-[](../blob/master/LICENSE)
+
 
 
 
