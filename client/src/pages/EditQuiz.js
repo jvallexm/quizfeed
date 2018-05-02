@@ -1,7 +1,7 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button } from "reactstrap";
+import { Button, Jumbotron } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
@@ -397,18 +397,6 @@ class EditQuiz extends React.Component{
 
                 </section>
 
-                        
-                { !this.state.addingQuestion 
-
-                ? <button className="btn btn-add-block" 
-                        onClick={()=>this.setState({addingQuestion: true})}>
-                    Add a Question
-                  </button>
-                
-                : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
-                              newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
-                              newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
-
                 <button className="btn btn-add-block" 
                         onClick={()=>this.pushNewBlock("results")}>
                     Add a Final Result
@@ -449,7 +437,21 @@ class EditQuiz extends React.Component{
                         )}
 
                 </center>
+
+                { !this.state.addingQuestion 
+
+                    ? <button className="btn btn-add-block" 
+                            onClick={()=>this.setState({addingQuestion: true})}>
+                        Add a Question
+                    </button>
+
+                    : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
+                                newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
+                                newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
+
                 {/**/}
+
+                <button className = "jumbotron" onClick={()=>console.log(this.state.quiz)}>Publish</button>
 
              </div>
 
