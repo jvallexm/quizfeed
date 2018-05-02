@@ -41,3 +41,9 @@
             bottom: 0px;
             left: 0px;
 }
+
+.btn-add-block {
+    background-color: #ac68ea;
+    margin-bottom: 5px;
+    min-width: 140px;
+}
