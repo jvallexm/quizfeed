@@ -1,43 +1,46 @@
-# Create React Express App
 
-## About This Boilerplate
+![alt text](client/public/images/Quizfeed-Logo-sm.png)
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+# A Buzzfeed-Style Quiz Maker 
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+## Application description - what it is and why
+***
 
-## Starting the app locally
+### Table of Contents  
+[Getting Started](#gettingStarted)  
+[Creating A Quiz](#creatingAQuiz)  
+[Built With](#builtWith)  
+[Authors](#authors)  
+[License](#license)
 
-Start by installing front and backend dependencies. While in this directory, run the following commands:
 
-```
-yarn install
-cd client
-yarn install
-cd ..
-``
+<a name="gettingStarted"/>
 
-After both installations complete, run the following command in your terminal:
+## Getting Started - Installations
 
-```
-yarn start
-```
+<a name="creatingAQuiz"/>
 
-That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+## Creating A Quiz
 
-## Deployment (Heroku)
+<a name="builtWith"/>
 
-After confirming that you have an up to date git repository and a Heroku app created, complete the following:
+## Built With
 
-1. Build the React app for production by running the following command:
+<a name="authors"/>
 
-```
-yarn build
-```
+## Authors
 
-2. Add and commit all changes to git
+<a name="license"/>
 
-3. Push to Heroku
+## License
+[](../blob/master/LICENSE)
 
-If all previous steps were followed correctly, your application should be deployed to Heroku!
-# quizfeed
+
+
+
+
+
+
+
+
+
