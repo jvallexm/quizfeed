@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button, CardHeader, CardFooter } from 'reactstrap';
+import { Card, CardBody, Button, CardHeader, CardFooter, FormGroup, Label, Col, Input } from 'reactstrap';
 import "./NewAnswer.css"
 import ImageSearch from "./ImageSearch";
 import {SketchPicker} from 'react-color';
@@ -181,23 +181,15 @@ class NewAnswer extends React.Component {
 
                     </CardHeader>
                     
-                    <CardBody>
+                    <CardBody className="text-center answer-block">
 
-                        {/* Question Title */}
-
-                                {this.props.type !== "image" ?
-                                <input name        = "title" 
-                                       className   = "answer-title" 
-                                       placeholder = "Type Your Answer Here" 
-                                       data-ind    = {this.props.ind}
-                                       onChange    = {this.props.handleChange} /> :""}
 
                         {/* Image URL */}
 
                                 {this.props.type !== "text"  && this.state.showUrl?
                                 <input name        = "image" 
                                        className   = "answer-title" 
-                                       placeholder = "Enter Your URL Here" 
+                                       placeholder = "Enter Your Image URL Here" 
                                        data-ind    = {this.props.ind}
                                        onChange    = {this.props.handleChange} 
                                        value       = {this.props.image ? this.props.image : ""}/> : ""}
@@ -205,13 +197,40 @@ class NewAnswer extends React.Component {
                                 <button className="smol" onClick={()=>this.setState({showUrl: !this.state.showUrl})}>{this.state.showUrl ? "Hide" : "Add Image By Url"}</button>
 
 
+                        {/* Question Title */}
+
+                                {this.props.type !== "image" ?
+                                <input name        = "title" 
+                                       className   = "answer-title text-center" 
+                                       placeholder = "Type Your Answer Here" 
+                                       data-ind    = {this.props.ind}
+                                       onChange    = {this.props.handleChange} /> :""}
+
+                       
+
+
                             </CardBody>
                             <CardFooter>    
 
                                 {/* Selector for +2 Points */}
 
+
+
+
+
                                 <div>
-                                    +2 Points
+                                <FormGroup row>
+          <Label for="plusTwo" bsSize="sm" className="text-right" sm={4}>+2 Points</Label>
+          <Col sm={8}>
+            <Input type="select" 
+                    bsSize="sm"
+                    name="plusTwo" 
+                    onChange = {this.props.handleChange} 
+                    data-ind = {this.props.ind} 
+                    value    = {this.props.plusTwo} />
+          </Col>
+        </FormGroup>
+                                    +2 Points &nbsp;
                                     <select name     = "plusTwo" 
                                             onChange = {this.props.handleChange} 
                                             data-ind = {this.props.ind} 
@@ -233,7 +252,7 @@ class NewAnswer extends React.Component {
                                 {/* Selector for +1 Points */}
 
                                 <div>
-                                    +1 Point 
+                                    +1 Point &nbsp;
                                     <select name     = "plusOne" 
                                             onChange = {this.props.handleChange} 
                                             data-ind = {this.props.ind} 

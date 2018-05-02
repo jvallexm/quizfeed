@@ -2,6 +2,7 @@
     width:100%;
     background-color: rgba(0,0,0,0);
     border-width: 0;
+
 }
 .search-for{
 
@@ -49,9 +50,14 @@ CardHeader{
     flex-direction    : column; 
 }
 .smol{
+    margin-top: -15px;
     font-size: 50%;
 }
 
 .btn-success {
     width: 100%
+}
+
+.answer-block {
+    padding: 10px!important;
 }
