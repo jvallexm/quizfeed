@@ -57,7 +57,7 @@ class NewAnswer extends React.Component {
     {
         return(
 
-            <div className="col-md-4">
+            <div className={this.props.howMany < 4 ? "col-md-6" : "col-md-4"}>
 
                 {/* Color picker popover */}
 
