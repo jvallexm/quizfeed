@@ -57,3 +57,7 @@
 	width: 20px;
 	color: gray;
 }
+
+.card-body {
+	border-radius: .75rem .75rem 0rem 0rem!important;
+}
