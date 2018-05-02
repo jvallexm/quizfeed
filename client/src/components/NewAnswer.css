@@ -45,6 +45,8 @@ CardHeader{
 .card-header {
     padding: 0!important;
     justify-content: center;
+    display: flex;
+    flex-direction    : column; 
 }
 .smol{
     font-size: 50%;

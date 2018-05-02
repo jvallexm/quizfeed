@@ -7,6 +7,8 @@ const PickingRow = (props) =>{
     return(
 
         <div id="picking-row">
+        <section className="jumbotron text-center picking-row-jumbo">
+        <h4>Pick a Question Style!</h4>
                     <Row>
                         <Col>
                         <Card className="pick-card" onClick={()=>props.newImageBlock()}>
@@ -34,6 +36,7 @@ const PickingRow = (props) =>{
                             </Card>
                         </Col>
                     </Row>
+</section>
         </div>
     );
 

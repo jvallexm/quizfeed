@@ -69,8 +69,6 @@ class NewQuestion extends React.Component{
 
             <div className="space">
 
-                
-
             <Card className="question-card">
                 <div className="sidebar">
                     <i className="fa fa-arrow-up" onClick={()=>console.log("Hot Poppers")}/>
