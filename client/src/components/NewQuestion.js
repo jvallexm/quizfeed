@@ -169,18 +169,21 @@ class NewQuestion extends React.Component{
                                    backgroundColor = { ele.backgroundColor                            } 
                                    results         = { this.props.results                             }
                                    plusOne         = { ele.plusOne                                    } 
-                                   plusTwo         = { ele.plusTwo                                    } />
+                                   plusTwo         = { ele.plusTwo                                    } 
+                                   howMany         = { this.props.question.answers.length             } />
                     ) : ""
                 }
-                <div className="col-md-4">
-                <Card className="mb-4 box-shadow">
-                    <CardBody>
-                         <Button color="success" onClick={()=>this.props.pushNewAnswer(this.props.qInd)}>Add a new Answer</Button>
-                         </CardBody>
-                         </Card>
-                         </div>
+                {this.props.question.answers.length < 9 ?
+                
+                <div className={this.props.question.answers.length < 3 ? "col-md-6" : "col-md-4"}>
+                
+                    <Card className="mb-4 box-shadow">
+                        <CardBody>
+                            <Button color="success" onClick={()=>this.props.pushNewAnswer(this.props.qInd)}>Add a new Answer</Button>
+                        </CardBody>
+                    </Card>
+                </div> :""}
                 </Row>
-
                          
 
                 </CardFooter>
