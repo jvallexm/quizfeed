@@ -396,7 +396,20 @@ class EditQuiz extends React.Component{
                     </div>
 
                 </section>
-                <button className="btn" 
+
+                        
+                { !this.state.addingQuestion 
+
+                ? <button className="btn btn-add-block" 
+                        onClick={()=>this.setState({addingQuestion: true})}>
+                    Add a Question
+                  </button>
+                
+                : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
+                              newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
+                              newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
+
+                <button className="btn btn-add-block" 
                         onClick={()=>this.pushNewBlock("results")}>
                     Add a Final Result
                 </button>
@@ -437,17 +450,6 @@ class EditQuiz extends React.Component{
 
                 </center>
                 {/**/}
-                        
-                { !this.state.addingQuestion 
-
-                ? <button className="btn" 
-                        onClick={()=>this.setState({addingQuestion: true})}>
-                    Add a Question
-                  </button>
-                
-                : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
-                              newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
-                              newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
 
              </div>
 
