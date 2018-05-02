@@ -179,7 +179,7 @@ class NewQuestion extends React.Component{
                 
                     <Card className="mb-4 box-shadow">
                         <CardBody>
-                            <Button color="success" onClick={()=>this.props.pushNewAnswer(this.props.qInd)}>Add a new Answer</Button>
+                            <Button color="success" onClick={()=>this.props.pushNewAnswer(this.props.qInd)}>Add a new Answer Block</Button>
                         </CardBody>
                     </Card>
                 </div> :""}
