@@ -46,10 +46,11 @@ class ImageSearch extends React.Component{
         return(
 
             <div className="image-search">
-                <h5>Search for Images</h5>
+                
                 <form onSubmit={this.handleSubmit}>
                     <input onChange={this.handleChange}/><button type="submit"><i className="fa fa-search"/></button>
                 </form>
+                <h5>Search for an Image</h5>
                 {this.state.noneFound ? <h5>We couldn't find {this.state.lastQuery}. Try searching for something else!</h5> :""}
                 {this.state.images.map((img,i)=>
 
