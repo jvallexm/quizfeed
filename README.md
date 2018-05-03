@@ -31,11 +31,27 @@ To get the application up and running follow these simple steps:
    ```
    3. Obtain your own [Shutterstock](https://developers.shutterstock.com/) Client ID and Client Secret. Add these to your .env file.
 
-   4. Finally, implement MongoDB and add your mlab variables to your .env as well. 
+   4. Finally, implement [MongoDB](https://www.mongodb.com/) and add your mlab variables to your .env as well. 
+
+   5. `npm start` in the command line will run the app on your local server!
 
 <a name="creatingAQuiz"/>
 
 ## Creating A Quiz
+1. Choose a title for your quiz, a background color and text color.
+
+    ![alt text](client/public/images/title.png)
+2. Next, you'll need to work backwards by adding what the final results of the quiz will be, ie 'You Got...'
+
+    ![alt text](client/public/images/result.png)
+
+    Search for an image or add an image URL, and then give the result a title and description.
+
+    ![alt text](client/public/images/boxer.png)
+
+
+
+
 
 <a name="builtWith"/>
 
