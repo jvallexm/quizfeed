@@ -61,12 +61,11 @@ class EditQuiz extends React.Component{
 
             if(this.state.quiz.isDraft && this.state.quiz.title !== "" && this.state.quiz.questions.length > 0){
 
-                console.log("autosaving...")
+                console.log("autosaving..." + this.state.published)
 
                 if(!this.state.published)
 
                     API.postQuiz(this.state.quiz).then((r)=>{
-                        if(r && !this.state.published)
                             this.setState({published: true});
                     })
 
@@ -78,7 +77,7 @@ class EditQuiz extends React.Component{
                 console.log("Autosaving is disabled for published quizzes");
             }
 
-        },60000);
+        },3000);
 
     }
     
@@ -97,12 +96,13 @@ class EditQuiz extends React.Component{
 
             API.getQuizById(id).then(res=>{
 
+                console.log(`author quiz ${res.data.author_id} user ${this.props.user._id}`)
+
                 /* Needs logic to set redirect to true if the user is not the quiz author */
-                
 
-                if(res.data){
+                if(res.data.author_id === this.props.user._id){
 
-                    console.log("Quiz found");
+                    this.setState({quiz: res.data, published: true});
 
                 } else {
 
@@ -424,7 +424,8 @@ class EditQuiz extends React.Component{
                                className   = "quiz-title" 
                                style       = { {color: this.state.quiz.color} }
                                placeholder = { this.state.quiz.color === "black" ? "Type Here to Give Your Quiz a Title" : "Enter a Title to See Your Color Changes!" }
-                               onChange    = { this.handleChange} />
+                               onChange    = { this.handleChange } 
+                               value       = { this.state.quiz.title }/>
                     </div>
 
                 </section>
@@ -486,7 +487,7 @@ class EditQuiz extends React.Component{
 
                 {/**/}
 
-                <button className = "jumbotron">Publish</button>
+                <button disabled={!this.state.published ? "disabled" : false}className = "jumbotron" onClick={()=>API.editQuiz(this.state.quiz._id,this.state.quiz).then(res => console.log(res))} >Publish</button>
 
              </div>
 

@@ -16,7 +16,7 @@ class App extends React.Component{
 
       user: {
         name: "hot poppers",
-        _id: 42069
+        _id: "42069"
       }
     }
     this.setUser = this.setUser.bind(this);
