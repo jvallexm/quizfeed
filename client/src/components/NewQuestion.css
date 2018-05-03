@@ -59,4 +59,5 @@
 }
 
 .card-body {
+	border-radius: .25rem .25rem 0rem 0rem!important;
 }
