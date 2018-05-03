@@ -24,7 +24,10 @@ class EditQuiz extends React.Component{
                 results: [],
                 isDraft: true,
                 backgroundColor: "#b7f5a2",
-                color: "black"
+                color: "black",
+                _id: Date.now(),
+                author: this.props.user.name,
+                author_id: this.props.user._id
             },
             redirect: false,
             isNew: false,
@@ -167,6 +170,8 @@ class EditQuiz extends React.Component{
     handleChange(e){
 
         let quiz = this.state.quiz;
+        if(e.target.value > 60)
+            return false;
         quiz[e.target.name] = e.target.value;
         this.setState({quiz: quiz});
 
@@ -311,7 +316,9 @@ class EditQuiz extends React.Component{
     handleQuestionChange(e,qInd){
         
         let quiz = this.state.quiz;
-        quiz.questions[qInd][e.target.name] = e.target.value
+        if(e.target.value.length > 60)
+            return false;
+        quiz.questions[qInd][e.target.name] = e.target.value;
         this.setState({quiz: quiz});
     
     }
@@ -328,6 +335,8 @@ class EditQuiz extends React.Component{
     handleResultChange(e,rInd){
 
         let quiz = this.state.quiz;
+        if((e.target.name === "title" && e.target.value.length > 50) || (e.target.name === "text" && e.target.value.length>500))
+            return false;
         quiz.results[rInd][e.target.name] = e.target.value;
         this.setState({quiz: quiz });
 
@@ -457,7 +466,7 @@ class EditQuiz extends React.Component{
 
                 {/**/}
 
-                <button className = "jumbotron" onClick={()=>console.log(this.state.quiz)}>Publish</button>
+                <button className = "jumbotron" onClick={()=>API.postQuiz(this.state.quiz).then((res)=>console.log(res))}>Publish</button>
 
              </div>
 

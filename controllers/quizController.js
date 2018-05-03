@@ -73,9 +73,15 @@ module.exports = {
 
     createOne: (req,res)=>{
 
-        db.Quiz.create(req.body.quiz)
+        console.log("I CREATE QUIZ");
+        console.log(req.body);
+
+        db.Quiz.create(req.body)
                .then(quizzes => res.send(true))
-               .catch(err => res.status(422).json(err));
+               .catch(err =>{
+                    console.log(err);
+                    res.status(422).json(err)
+                });
                
 
     },

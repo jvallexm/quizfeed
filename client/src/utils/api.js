@@ -6,8 +6,8 @@ export default {
         return axios.get("/api/quizzes");
     },
 
-    postQuiz: ()=>{
-        return axios.post("/api/quizzes")
+    postQuiz: (quiz)=>{
+        return axios.post("/api/quizzes/",quiz)
     },
 
     getAllByUser: (id)=>{

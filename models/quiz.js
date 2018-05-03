@@ -2,15 +2,13 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const quizSchema = new Schema({
-
+    
+    _id: {type: String, required: true},
     title:        {type: String, requried: true},
-    header_color: {type: String, default: "red"},
-    questions:    [Object],
-    results:      [Object],
     author_id:   {type: String, requried: true},
     last_edited: { type: Date, default: Date.now }
 
-});
+},{ strict: false });
 
 const Quiz = mongoose.model("Quiz",quizSchema);
 
