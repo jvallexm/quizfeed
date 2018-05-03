@@ -61,12 +61,14 @@ module.exports = {
 
     publish: (req,res)=>{
 
-        db.Quiz.findOneAndUpdate({_id: req.params.id},req.body.quiz)
-               .then(q =>{
-                     db.Headline.create(req.body.headline)
-                                .then(done => res.send(true))
-                                .catch(err => res.status(422).json(err))
-               })
+        let quiz = req.body;
+        quiz.isDraft = false;
+
+        console.log("I publish");
+        console.log(quiz.isDraft);
+
+        db.Quiz.findOneAndUpdate({_id: req.params.id},quiz)
+               .then(q=> res.send(true))
                .catch(err => res.status(422).json(err));
 
     },

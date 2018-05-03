@@ -19,7 +19,7 @@ export default {
     },
 
     editQuiz: (id,quiz)=>{
-        return axios.post("/api/quizzes/" + id);
+        return axios.post("/api/quizzes/" + id,quiz);
     },
 
     pushComment: (id)=>{
