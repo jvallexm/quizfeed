@@ -153,7 +153,7 @@ class NewAnswer extends React.Component {
                             this.props.type !== "image" && !this.state.search && (this.props.image || this.props.type === "text")
                             ?    
                                 <div className="text-float" style={this.props.type === "text" ? {color: this.props.color, backgroundColor: this.props.backgroundColor} : {color: this.props.color }}>
-                                    {this.props.title}
+                                    <h2>{this.props.title}</h2>
                                 </div>
 
                             :""

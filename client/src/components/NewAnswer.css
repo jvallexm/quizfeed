@@ -42,6 +42,7 @@ CardHeader{
 }
 .image-head{
     height: 200px;
+    background-color: #353079!important;
 }
 
 .card-header {

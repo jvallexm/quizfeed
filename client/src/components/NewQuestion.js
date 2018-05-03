@@ -143,7 +143,7 @@ class NewQuestion extends React.Component{
                     <input className   = "question-title" 
                            name        = "question" 
                            id          = "quizQuestion" 
-                           placeholder = {this.state.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
+                           placeholder = {this.state.color == "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
                            onChange    = {this.handleChange} 
                            style       = {{backgroundColor: this.props.backgroundColor, color: this.props.color}}/>
   

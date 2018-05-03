@@ -49,6 +49,7 @@
 	z-index: 2;
 	bottom: 10px;
 	right: 10px;
+	opacity: .5;
 }
 .sidebar{
 	position: absolute;
@@ -59,4 +60,8 @@
 }
 
 .card-body {
+}
+
+.close-right {
+	opacity: .5;
 }
