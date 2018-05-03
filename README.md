@@ -1,9 +1,9 @@
 
 ![alt text](client/public/images/Quizfeed-Logo-sm.png)
 
-# A Buzzfeed-Style Quiz Maker 
+# A Buzzfeed-Style Quiz Maker
 
- The overview of our application is to create a BuzzFeed-style site where users can search for quizzes (by quiz name or user name) and they can create quizzes of their own. Answer options will be randomized images, words or a combination of both. We feel this is valuable for a couple of reasons. First, quizzes are fun! Second, the use of quizzes as a marketing tool can be very effective because they tend to drive tons of traffic to a site and they are a great way to collect email addresses. Email marketing continues to be one of the top ways businesses drive sales, so this would be a great lead generation tool.
+ This application creates a BuzzFeed-style site where users can search for quizzes (by quiz name or user name) and they can create quizzes of their own. Question, answer and result options will be randomized images, words or a combination of both. We believe this is valuable for a couple of reasons. First, quizzes are fun! Second, the use of quizzes as a marketing tool can be very effective because they tend to drive tons of traffic to a site and they are a great way to collect email addresses. Email marketing continues to be one of the top ways businesses drive sales, so this would be a great lead generation tool. Quizzes are fun to create and easy to share!
 
 
 ## Table of Contents  
@@ -23,12 +23,15 @@ To get the application up and running follow these simple steps:
    ```
    git clone git@github.com:jvallexm/quizfeed.git
    ```
-   2. Install npm packages into the root folder and into the client folder. In the command line, cd to the root folder then follow these commands: 
+   2. Install npm packages into the root folder and into the client folder of your application. In the command line, cd to the root folder then follow these commands: 
    ```
-   npm intall
+   npm install
    cd client
    npm install
    ```
+   3. Obtain your own [Shutterstock](https://developers.shutterstock.com/) Client ID and Client Secret. Add these to your .env file.
+
+   4. Finally, implement MongoDB and add your mlab variables to your .env as well. 
 
 <a name="creatingAQuiz"/>
 

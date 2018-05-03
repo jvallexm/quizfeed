@@ -6,6 +6,19 @@
 	background-color: #a8ffff!important;
 }
 
+
 .close {
 	float: left!important;
+}
+
+body {
+	background-image: url("/images/round_blu.png");
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+.jumbotron {
+	margin-bottom: 1rem!important;
+}
+
+.card {
 }

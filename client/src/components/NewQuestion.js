@@ -1,6 +1,6 @@
 import React        from "react";
 import NewAnswer    from "./NewAnswer";
-import { InputGroup, Card, CardBody, CardTitle, Button, Label, Input, CardFooter, Row } from 'reactstrap';
+import {Card, CardBody, Button, CardFooter, Row } from 'reactstrap';
 import { SketchPicker } from 'react-color';
 import "./NewQuestion.css"
 
@@ -11,116 +11,13 @@ class NewQuestion extends React.Component{
 
         this.state = {
 
-            question: {
-                backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : "aquamarine", // Initializes background color and 
-                color:           this.props.color           ? this.props.color           : "black"       
-            }
-
         }
 
         /* Binding state handlers to be passed to children */
 
-        this.handleChange            = this.handleChange.bind(this);
+        this.handleChange           = this.handleChange.bind(this);
         this.handleAnswerChange      = this.handleAnswerChange.bind(this);
-        this.handleAnswerImageChange = this.handleAnswerImageChange.bind(this);
-        this.handleAnswerColorChange = this.handleAnswerColorChange.bind(this);
-
-        /* Autosaves to the parent state every 30 seconds */
-
-        this.interval = setInterval(()=>{
-            console.log("Autosaving...");
-            this.save();
-        },30000);
-
-    }
-
-    /* When the question object state changes it updates the state */
-
-    componentWillReceiveProps(){
-
-        console.log("new question new props");
-        this.setState(this.props.question);
-
-    }
-
-    /* Updates the state with data when mounting */
-
-    componentWillMount(){
-
-        console.log("moutning props")
-        this.setState(this.props.question);
-
-    }
-
-    /* Saves to the parent state */
-
-    save(){
-
-        this.props.save("questions",this.props.qInd,this.state);
-
-    }
-
-    /* Adds a new answer */
-
-    pushNewAnswer(){
-
-        let answers = this.state.answers;
-        /* Initialized the type of answer */
-
-        let type = this.state.type;
-        let newAnswer
-        if(type === "image"){
-
-            newAnswer = {
-                srcUrl: "",
-                image: "",
-                plusOne: "",
-                plusTwo: ""
-            }
-
-        } else if (type === "text") {
-
-            newAnswer = {
-                title: "",
-                backgroundColor: "taupe",
-                color: "black",
-                plusOne: "",
-                plusTwo: ""
-            }
-
-        } else if (type === "imageAndText"){
-
-            newAnswer = {
-                title: "",
-                srcUrl: "",
-                image: "",
-                color: "black",
-                plusOne: "",
-                plusTwo: ""
-            }
-
-        }
-
-        answers.push(newAnswer);
-        this.setState({answers: answers});
-    }
-
-    /* Deletes an answer */
-
-    deleteAnswer(ind){
-
-        let answers = this.state.answers;
-        let remove  = answers.splice(ind,1);
-        console.log("removing object " + remove);
-        this.setState({answers: answers});
-
-    }
-
-    /* Handlechange for text fields */
-
-    handleChange(e){
-        
-        this.setState({[e.target.name]: e.target.value});
+        this.handleChangeComplete    = this.handleChangeComplete.bind(this);
 
     }
 
@@ -129,33 +26,16 @@ class NewQuestion extends React.Component{
     handleAnswerChange(e){
 
         let index   = parseInt(e.target.getAttribute("data-ind"),10);
-        let answers = this.state.answers;
-        console.log("changing " + e.target.name + " at index " + index)
-        answers[index][e.target.name] = e.target.value;
-        this.setState({answers: answers});
+        this.props.handleAnswerChange(e,this.props.qInd,index);
 
     }
 
-    /* Handles changes for answer images */
+    handleChange(e){
 
-    handleAnswerImageChange(src,i){
-
-        console.log("handling image change for  " + i);
-
-        let answers = this.state.answers;
-        answers[i].image = src;
-        this.setState({answers: answers});
+        this.props.handleQuestionChange(e,this.props.qInd);
 
     }
 
-    handleAnswerColorChange(color,bg,ind){
-
-
-        let answers = this.state.answers;
-        answers[ind][bg ? "backgroundColor" : "color"] = color.hex;
-        this.setState({answers: answers});
-
-    }
 
     /* Click andler for the color picker */
 
@@ -176,21 +56,25 @@ class NewQuestion extends React.Component{
 
     };
 
-    /* Handler for the color picker complete */
+    handleChangeComplete(color){
 
-    handleChangeComplete = (color) => {
-        let changeField = this.state.bg ? "backgroundColor" : "color"; // Checks to see if it needs to change the background or text color
-        this.setState({[changeField]: color.hex})
-    };
+        this.props.handleColorChange(color,this.state.bg,this.props.qInd);
+
+    }
 
 
     render(){
 
         return(
 
-            <div >
+            <div className="space">
 
             <Card className="question-card">
+                <div className="sidebar">
+                    <i className="fa fa-arrow-up" onClick={()=>console.log("Hot Poppers")}/>
+                    {this.props.qInd + 1}
+                    <i className="fa fa-arrow-down" onClick={()=>console.log("Hot Poppers")}/>
+                </div>
 
                 {/* Renders color picker */}
 
@@ -198,7 +82,7 @@ class NewQuestion extends React.Component{
                 
                 ? <div className="popover">
                     <div className="cover" onClick={ this.handleClose }/>
-                        <SketchPicker color ={ this.state.bg ? this.state.question.backgroundColor : this.state.question.color}
+                        <SketchPicker color ={ this.state.bg ? this.props.backgroundColor : this.props.color}
                                       onChangeComplete={ this.handleChangeComplete }/>
                  </div> 
                 
@@ -210,21 +94,21 @@ class NewQuestion extends React.Component{
 
                     {/* Background color fill */}
 
-                    <Button aria-label="Close" 
+                    <Button aria-label="Fill" 
                             onClick={()=> this.handleClick(true)} 
                             title="Change Background Color!">
                         <span aria-hidden="true">
-                            <i class="fas fa-paint-brush"></i>
+                            <i className="fas fa-paint-brush"></i>
                         </span>
                     </Button>
 
                     {/* Text Color Fill */}
 
-                    <Button aria-label="Close" 
+                    <Button aria-label="Font" 
                             onClick={()=> this.handleClick(false)} 
                             title="Change Font Color!">
                         <span aria-hidden="true">
-                            <i class="fas fa-font"></i>
+                            <i className="fas fa-font"></i>
                         </span>
                     </Button>
 
@@ -232,57 +116,74 @@ class NewQuestion extends React.Component{
 
                 <div className="close-right">
 
-                    <Button aria-label="Close" 
+                    <Button aria-label="Save" 
                             onClick={()=> this.save()} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
-                            <i class="fas fa-save"></i>
+                            <i className="fas fa-save"></i>
                         </span>
                     </Button>
 
                 </div>
 
-                <CardBody className="question-card-body" style={{backgroundColor: this.state.backgroundColor}}>
+                <div className="close-bottom-right">
+
+                    <Button aria-label="Trash" 
+                            onClick={()=>console.log("hot poppers")} 
+                            title="Save Your Changes!">
+                        <span aria-hidden="true">
+                            <i className="fas fa-trash"></i>
+                        </span>
+                    </Button>
+
+                </div>
+
+                <CardBody className="question-card-body" style={{backgroundColor: this.props.backgroundColor}}>
                
                     <input className   = "question-title" 
                            name        = "question" 
                            id          = "quizQuestion" 
                            placeholder = {this.state.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
                            onChange    = {this.handleChange} 
-                           style       = {{backgroundColor: this.state.backgroundColor, color: this.state.color}}/>
+                           style       = {{backgroundColor: this.props.backgroundColor, color: this.props.color}}/>
   
                     <br/>
 
                 </CardBody>
                 <CardFooter>
-<Row>
-                {
+                
+                <Row>
+                {   this.props.question.answers ?
                     this.props.question.answers.map((ele,i)=>
 
                         <NewAnswer key             = { "question-" + this.props.qInd + "-answer-" + i } 
                                    ind             = { i                                              }
                                    image           = { ele.image === "" ? false : ele.image           }
-                                   imageChange     = { this.handleAnswerImageChange                   }
+                                   qInd            = { this.props.qInd                                }
+                                   imageChange     = { this.props.handleAnswerImageChange             }
                                    handleChange    = { this.handleAnswerChange                        } 
                                    type            = { this.state.type                                } 
                                    title           = { ele.title                                      }
-                                   colorChange     = { this.handleAnswerColorChange                   } 
+                                   colorChange     = { this.props.handleAnswerColorChange             } 
                                    color           = { ele.color                                      }
                                    backgroundColor = { ele.backgroundColor                            } 
                                    results         = { this.props.results                             }
                                    plusOne         = { ele.plusOne                                    } 
-                                   plusTwo         = { ele.plusTwo                                    } />
-                    )
+                                   plusTwo         = { ele.plusTwo                                    } 
+                                   howMany         = { this.props.question.answers.length             } />
+                    ) : ""
                 }
-                <div className="col-md-4">
-                <Card className="mb-4 box-shadow">
-                    <CardBody>
-                         <Button color="success" onClick={()=>this.pushNewAnswer()}>Add a new Answer</Button>
-                         </CardBody>
-                         </Card>
-                         </div>
-</Row>
-
+                {this.props.question.answers.length < 9 ?
+                
+                <div className={this.props.question.answers.length < 3 ? "col-md-6" : "col-md-4"}>
+                
+                    <Card className="mb-4 box-shadow">
+                        <CardBody>
+                            <Button color="success" onClick={()=>this.props.pushNewAnswer(this.props.qInd)}>Add a new Answer Block</Button>
+                        </CardBody>
+                    </Card>
+                </div> :""}
+                </Row>
                          
 
                 </CardFooter>

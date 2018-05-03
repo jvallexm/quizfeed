@@ -1,7 +1,7 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button } from "reactstrap";
+import { Button, Jumbotron } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
@@ -23,7 +23,7 @@ class EditQuiz extends React.Component{
                 questions: [],
                 results: [],
                 isDraft: true,
-                backgroundColor: "bisque",
+                backgroundColor: "#b7f5a2",
                 color: "black"
             },
             redirect: false,
@@ -34,9 +34,19 @@ class EditQuiz extends React.Component{
 
         }
 
-        this.saveBlock        = this.saveBlock.bind(this);
-        this.handleChange     = this.handleChange.bind(this);
-        this.pushNewBlock     = this.pushNewBlock.bind(this);
+        this.saveBlock                 = this.saveBlock.bind(this);
+        this.handleChange              = this.handleChange.bind(this);
+        this.pushNewBlock              = this.pushNewBlock.bind(this);
+        this.moveIt                    = this.moveIt.bind(this);
+        this.pushNewAnswer             = this.pushNewAnswer.bind(this);
+        this.handleAnswerColorChange   = this.handleAnswerColorChange.bind(this);
+        this.handleQuestionColorChange = this.handleQuestionColorChange.bind(this);
+        this.handleQuestionChange      = this.handleQuestionChange.bind(this);
+        this.handleAnswerImageChange   = this.handleAnswerImageChange.bind(this);
+        this.handleAnswerChange        = this.handleAnswerChange.bind(this);
+        this.handleResultChange        = this.handleResultChange.bind(this);
+        this.handleResultImageChange   = this.handleResultImageChange.bind(this);
+
 
         this.interval  = setInterval(()=>{
 
@@ -188,6 +198,121 @@ class EditQuiz extends React.Component{
 
     };
 
+    moveIt(up,ind,arr){
+
+       let quiz = this.state.quiz;
+       console.log(quiz[arr][ind]);
+       let remove = quiz[arr].splice(ind,1);
+       let moveBy = up ? -1 : 1;
+       this.setState({quiz: quiz});
+
+    }
+
+        /* Adds a new answer */
+
+    pushNewAnswer(ind){
+
+        let quiz = this.state.quiz;
+        /* Initialized the type of answer */
+    
+        let type = quiz.questions[ind].type;
+        let newAnswer
+        if(type === "image"){
+    
+            newAnswer = {
+                srcUrl: "",
+                    image: "",
+                    plusOne: "",
+                    plusTwo: ""
+                }
+    
+            } else if (type === "text") {
+    
+                newAnswer = {
+                    title: "",
+                    backgroundColor: "taupe",
+                    color: "black",
+                    plusOne: "",
+                    plusTwo: ""
+                }
+    
+            } else if (type === "imageAndText"){
+    
+                newAnswer = {
+                    title: "",
+                    srcUrl: "",
+                    image: "",
+                    color: "black",
+                    plusOne: "",
+                    plusTwo: ""
+                }
+    
+            }
+    
+            quiz.questions[ind].answers.push(newAnswer);
+            this.setState({quiz: quiz});
+        }
+    
+        /* Deletes an answer */
+
+    deleteAnswer(qInd,ind){
+
+        let quiz = this.state.quiz;
+        let remove  = quiz.questions.answers.splice(ind,1);
+        console.log("removing object " + remove);
+        this.setState({quiz: quiz});
+
+    }
+
+    handleAnswerChange(e,qInd,ind){
+
+        let quiz = this.state.quiz;
+        quiz.questions[qInd].answers[ind][e.target.name] = e.target.value;
+        this.setState({quiz: quiz});
+
+    }
+
+    /* Handler for the color picker complete */
+
+    handleQuestionColorChange(color,bg,qInd){
+        let changeField = bg ? "backgroundColor" : "color"; // Checks to see if it needs to change the background or text color
+        let quiz = this.state.quiz;
+        quiz.questions[qInd][changeField] = color.hex;
+        console.log(`changing question ${qInd} ${changeField} to ${color.hex}`);
+        this.setState({quiz: quiz});
+    };
+
+    handleAnswerColorChange(color,bg,qInd,ind){
+
+
+        let quiz = this.state.quiz;
+        quiz.questions[qInd].answers[ind][bg ? "backgroundColor" : "color"] = color.hex;
+        this.setState({quiz: quiz});
+
+    }
+
+    /* Handles changes for answer images */
+
+    handleAnswerImageChange(src,qInd,ind){
+
+        console.log("handling image change for  " + ind);
+
+        let quiz = this.state.quiz;
+        quiz.questions[qInd].answers[ind].image = src;
+        this.setState({quiz: quiz});
+
+    }
+
+        /* Handlechange for text fields */
+
+    handleQuestionChange(e,qInd){
+        
+        let quiz = this.state.quiz;
+        quiz.questions[qInd][e.target.name] = e.target.value
+        this.setState({quiz: quiz});
+    
+    }
+
     /* Handler for the color picker complete */
 
     handleChangeComplete = (color) => {
@@ -196,6 +321,22 @@ class EditQuiz extends React.Component{
         quiz[changeField] = color.hex;
         this.setState({quiz:quiz})
     };
+
+    handleResultChange(e,rInd){
+
+        let quiz = this.state.quiz;
+        quiz.results[rInd][e.target.name] = e.target.value;
+        this.setState({quiz: quiz });
+
+    }
+
+    handleResultImageChange(src,rInd){
+
+        let quiz = this.state.quiz;
+        quiz.results[rInd].image = src;
+        this.setState({quiz: quiz});
+
+    }
 
     render(){
 
@@ -238,7 +379,7 @@ class EditQuiz extends React.Component{
                                 onClick={()=> this.handleClick(false)} 
                                 title="Change Font Color!">
                             <span aria-hidden="true">
-                            <i class="fas fa-font"></i>
+                            <i className="fas fa-font"></i>
                             </span>
                         </Button>
 
@@ -246,7 +387,7 @@ class EditQuiz extends React.Component{
 
                     {/* Quiz Title */}
 
-                    <div class="container">
+                    <div className="container">
                         <input name        = "title" 
                                className   = "quiz-title" 
                                style       = { {color: this.state.quiz.color} }
@@ -255,17 +396,20 @@ class EditQuiz extends React.Component{
                     </div>
 
                 </section>
-                <button className="btn" 
+
+                <button className="btn btn-add-block" 
                         onClick={()=>this.pushNewBlock("results")}>
-                    Add a Result
+                    Add a Final Result
                 </button>
                 {
                     this.state.quiz.results.map((ele,i)=>
 
-                        <NewResult key={"result-"+i}result={ele} 
+                        <NewResult key={"result-"+i}
                                    result={ele}
                                    save={this.saveBlock}
-                                   rInd={i}/>
+                                   rInd={i}
+                                   handleChange={this.handleResultChange}
+                                   setImage    = { this.handleResultImageChange }/>
 
                     )
                 }
@@ -273,30 +417,41 @@ class EditQuiz extends React.Component{
 
                         {this.state.quiz.questions.map((ele,i)=>
 
-                            <NewQuestion key             = { "question-"+i       }
-                                         question        = { ele                 } 
-                                         save            = { this.saveBlock      }
-                                         qInd            = { i                   }
-                                         backgroundColor = { ele.backgroundColor }
-                                         color           = { ele.color           }
-                                         type            = { ele.type            } 
-                                         results         = { this.state.quiz.results   }/>
+                            <NewQuestion key                     = { "question-"+i                  }
+                                         question                = { ele                            } 
+                                         save                    = { this.saveBlock                 }
+                                         qInd                    = { i                              }
+                                         backgroundColor         = { ele.backgroundColor            }
+                                         color                   = { ele.color                      }
+                                         type                    = { ele.type                       } 
+                                         results                 = { this.state.quiz.results        }
+                                         moveIt                  = { this.moveIt                    } 
+                                         pushNewAnswer           = { this.pushNewAnswer             }
+                                         deleteAnswer            = { this.deleteAnswer              } 
+                                         handleAnswerColorChange = { this.handleAnswerColorChange   }
+                                         handleColorChange       = { this.handleQuestionColorChange }
+                                         handleAnswerImageChange = { this.handleAnswerImageChange   }
+                                         handleQuestionChange    = { this.handleQuestionChange      }
+                                         handleAnswerChange      = { this.handleAnswerChange        }/>
                             
                         )}
 
                 </center>
-                {/**/}
-                        
+
                 { !this.state.addingQuestion 
 
-                ? <button className="btn" 
-                        onClick={()=>this.setState({addingQuestion: true})}>
-                    Add a Question
-                  </button>
-                
-                : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
-                              newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
-                              newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
+                    ? <button className="btn btn-add-block" 
+                            onClick={()=>this.setState({addingQuestion: true})}>
+                        Add a Question
+                    </button>
+
+                    : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
+                                newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
+                                newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
+
+                {/**/}
+
+                <button className = "jumbotron" onClick={()=>console.log(this.state.quiz)}>Publish</button>
 
              </div>
 

@@ -2,6 +2,7 @@
     width:100%;
     background-color: rgba(0,0,0,0);
     border-width: 0;
+
 }
 .search-for{
 
@@ -16,6 +17,7 @@
 }
 .answer-image{
     max-width: 100%;
+    max-height: 200px;
 }
 .text-block-head{
 
@@ -45,4 +47,18 @@ CardHeader{
 .card-header {
     padding: 0!important;
     justify-content: center;
+    display: flex;
+    flex-direction    : column; 
+}
+.smol{
+    margin-top: -15px;
+    font-size: 50%;
+}
+
+.btn-success {
+    width: 100%
+}
+
+.answer-block {
+    padding: 10px!important;
 }

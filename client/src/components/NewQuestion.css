@@ -39,3 +39,24 @@
 	bottom: 0px;
 	left: 0px;
 }
+.space{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	position: relative;
+}
+.close-bottom-right{
+	position: absolute;
+	z-index: 2;
+	bottom: 10px;
+	right: 10px;
+}
+.sidebar{
+	position: absolute;
+	top: 0px;
+	left: -25px;
+	width: 20px;
+	color: gray;
+}
+
+.card-body {
+}
