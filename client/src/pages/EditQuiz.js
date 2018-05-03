@@ -27,13 +27,17 @@ class EditQuiz extends React.Component{
                 color: "black",
                 _id: Date.now(),
                 author: this.props.user.name,
-                author_id: this.props.user._id
+                author_id: this.props.user._id,
+                comments: [],
+                stars: [],
+                results: []
             },
             redirect: false,
             isNew: false,
             displayColorPicker: false,
             bg: false,
-            addingQuestion: false
+            addingQuestion: false,
+            published: false
 
         }
 
@@ -55,10 +59,24 @@ class EditQuiz extends React.Component{
 
         this.interval  = setInterval(()=>{
 
-            if(this.state.quiz.isDraft)
-                console.log("This is where the component would autosave...");
-            else
+            if(this.state.quiz.isDraft && this.state.quiz.title !== "" && this.state.quiz.questions.length > 0){
+
+                console.log("autosaving...")
+
+                if(!this.state.published)
+
+                    API.postQuiz(this.state.quiz).then((r)=>{
+                        if(r && !this.state.published)
+                            this.setState({published: true});
+                    })
+
+                else
+                
+                    API.saveAsDraft(this.state.quiz._id, this.state.quiz)
+
+            } else {
                 console.log("Autosaving is disabled for published quizzes");
+            }
 
         },60000);
 
@@ -68,6 +86,8 @@ class EditQuiz extends React.Component{
     componentWillMount(){
 
         let id = this.props.match.params.id;
+
+        API.findAll().then(arr=>console.log(arr));
 
         /* If id is part of the request it tried to find the quiz to edit */
 
@@ -466,7 +486,7 @@ class EditQuiz extends React.Component{
 
                 {/**/}
 
-                <button className = "jumbotron" onClick={()=>API.postQuiz(this.state.quiz).then((res)=>console.log(res))}>Publish</button>
+                <button className = "jumbotron">Publish</button>
 
              </div>
 

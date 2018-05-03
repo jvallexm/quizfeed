@@ -7,7 +7,9 @@ module.exports = {
 
     findAll:   (req,res)=>{
 
-        db.Headline.find({})
+        console.log("I find quiz")
+
+        db.Quiz.find({})
                .sort({created_on: -1})
                .then(quizzes =>{
                    console.log(quizzes);

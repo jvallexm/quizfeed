@@ -18,7 +18,7 @@ export default {
         return axios.get("/api/quizzes/" + id);
     },
 
-    editQuiz: (id)=>{
+    editQuiz: (id,quiz)=>{
         return axios.post("/api/quizzes/" + id);
     },
 
@@ -38,8 +38,8 @@ export default {
         return axios.delte("/api/quizzes/" + id);
     },
 
-    saveAsDraft: (id)=>{
-        return axios.post("/api/quizzes/edit/" +id);
+    saveAsDraft: (id,quiz)=>{
+        return axios.post("/api/quizzes/edit/" +id,quiz);
     },
     
     getImages: (q)=>{
