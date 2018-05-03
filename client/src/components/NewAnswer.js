@@ -145,6 +145,18 @@ class NewAnswer extends React.Component {
                         
                     </div>
 
+                    <div className="close-bottom-right">
+
+                        <Button aria-label="Trash" 
+                                onClick={()=>this.props.trash()} 
+                                title="Save Your Changes!">
+                            <span aria-hidden="true">
+                                <i className="fas fa-trash"></i>
+                            </span>
+                        </Button>
+
+                    </div>
+
                     <CardHeader className={this.props.type === "text" ? "text-block-head" : "image-head"}>
 
                         {/* Renders text if the block type is not image */}
@@ -284,5 +296,7 @@ class NewAnswer extends React.Component {
     }
 
 }
+
+
 
 export default NewAnswer;

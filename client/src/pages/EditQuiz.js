@@ -24,13 +24,20 @@ class EditQuiz extends React.Component{
                 results: [],
                 isDraft: true,
                 backgroundColor: "#b7f5a2",
-                color: "black"
+                color: "black",
+                _id: Date.now(),
+                author: this.props.user.name,
+                author_id: this.props.user._id,
+                comments: [],
+                stars: [],
+                results: []
             },
             redirect: false,
             isNew: false,
             displayColorPicker: false,
             bg: false,
-            addingQuestion: false
+            addingQuestion: false,
+            published: false
 
         }
 
@@ -46,14 +53,30 @@ class EditQuiz extends React.Component{
         this.handleAnswerChange        = this.handleAnswerChange.bind(this);
         this.handleResultChange        = this.handleResultChange.bind(this);
         this.handleResultImageChange   = this.handleResultImageChange.bind(this);
+        this.deleteBlock               = this.deleteBlock.bind(this);
+        this.deleteAnswer              = this.deleteAnswer.bind(this);
 
 
         this.interval  = setInterval(()=>{
 
-            if(this.state.quiz.isDraft)
-                console.log("This is where the component would autosave...");
-            else
+            if(this.state.quiz.isDraft && this.state.quiz.title !== "" && this.state.quiz.questions.length > 0){
+
+                console.log("autosaving...")
+
+                if(!this.state.published)
+
+                    API.postQuiz(this.state.quiz).then((r)=>{
+                        if(r && !this.state.published)
+                            this.setState({published: true});
+                    })
+
+                else
+                
+                    API.saveAsDraft(this.state.quiz._id, this.state.quiz)
+
+            } else {
                 console.log("Autosaving is disabled for published quizzes");
+            }
 
         },60000);
 
@@ -63,6 +86,8 @@ class EditQuiz extends React.Component{
     componentWillMount(){
 
         let id = this.props.match.params.id;
+
+        API.findAll().then(arr=>console.log(arr));
 
         /* If id is part of the request it tried to find the quiz to edit */
 
@@ -119,6 +144,7 @@ class EditQuiz extends React.Component{
     pushNewBlock(arr,type){
 
         let quiz = this.state.quiz;
+        console.log("pushing block " + type);
         let newObj = arr === "questions" 
 
                     /* Default question block */ 
@@ -164,6 +190,8 @@ class EditQuiz extends React.Component{
     handleChange(e){
 
         let quiz = this.state.quiz;
+        if(e.target.value > 60)
+            return false;
         quiz[e.target.name] = e.target.value;
         this.setState({quiz: quiz});
 
@@ -258,7 +286,7 @@ class EditQuiz extends React.Component{
     deleteAnswer(qInd,ind){
 
         let quiz = this.state.quiz;
-        let remove  = quiz.questions.answers.splice(ind,1);
+        let remove  = quiz.questions[qInd].answers.splice(ind,1);
         console.log("removing object " + remove);
         this.setState({quiz: quiz});
 
@@ -308,7 +336,9 @@ class EditQuiz extends React.Component{
     handleQuestionChange(e,qInd){
         
         let quiz = this.state.quiz;
-        quiz.questions[qInd][e.target.name] = e.target.value
+        if(e.target.value.length > 60)
+            return false;
+        quiz.questions[qInd][e.target.name] = e.target.value;
         this.setState({quiz: quiz});
     
     }
@@ -325,6 +355,8 @@ class EditQuiz extends React.Component{
     handleResultChange(e,rInd){
 
         let quiz = this.state.quiz;
+        if((e.target.name === "title" && e.target.value.length > 50) || (e.target.name === "text" && e.target.value.length>500))
+            return false;
         quiz.results[rInd][e.target.name] = e.target.value;
         this.setState({quiz: quiz });
 
@@ -409,7 +441,8 @@ class EditQuiz extends React.Component{
                                    save={this.saveBlock}
                                    rInd={i}
                                    handleChange={this.handleResultChange}
-                                   setImage    = { this.handleResultImageChange }/>
+                                   setImage    = { this.handleResultImageChange }
+                                   trash = {()=>this.deleteBlock("results",i)}/>
 
                     )
                 }
@@ -432,7 +465,9 @@ class EditQuiz extends React.Component{
                                          handleColorChange       = { this.handleQuestionColorChange }
                                          handleAnswerImageChange = { this.handleAnswerImageChange   }
                                          handleQuestionChange    = { this.handleQuestionChange      }
-                                         handleAnswerChange      = { this.handleAnswerChange        }/>
+                                         handleAnswerChange      = { this.handleAnswerChange        }
+                                         trash                   = { ()=>this.deleteBlock("questions",i)}
+                                         trashAnswer             = { this.deleteAnswer              }/>
                             
                         )}
 
@@ -451,7 +486,7 @@ class EditQuiz extends React.Component{
 
                 {/**/}
 
-                <button className = "jumbotron" onClick={()=>console.log(this.state.quiz)}>Publish</button>
+                <button className = "jumbotron">Publish</button>
 
              </div>
 

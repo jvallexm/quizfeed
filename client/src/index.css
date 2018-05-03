@@ -12,13 +12,19 @@
 }
 
 body {
-	background-image: url("/images/round_blu.png");
+	background-color: #ddfafa!important;
+	/* background-image: url("https://www.transparenttextures.com/patterns/vichy.png"); */
+	background-image: url("https://www.transparenttextures.com/patterns/white-diamond.png");
+
+	/* background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); */
 	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 .jumbotron {
 	margin-bottom: 1rem!important;
+	border-radius: .25rem!important;
 }
 
 .card {
+	border-radius: .25rem!important;
 }
