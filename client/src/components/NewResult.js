@@ -126,6 +126,8 @@ class NewResult extends React.Component{
             </Card>
 </div>
 </center>
+
+
         )
 
     }

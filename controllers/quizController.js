@@ -7,7 +7,9 @@ module.exports = {
 
     findAll:   (req,res)=>{
 
-        db.Headline.find({})
+        console.log("I find quiz")
+
+        db.Quiz.find({})
                .sort({created_on: -1})
                .then(quizzes =>{
                    console.log(quizzes);
@@ -73,9 +75,15 @@ module.exports = {
 
     createOne: (req,res)=>{
 
-        db.Quiz.create(req.body.quiz)
+        console.log("I CREATE QUIZ");
+        console.log(req.body);
+
+        db.Quiz.create(req.body)
                .then(quizzes => res.send(true))
-               .catch(err => res.status(422).json(err));
+               .catch(err =>{
+                    console.log(err);
+                    res.status(422).json(err)
+                });
                
 
     },
