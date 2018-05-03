@@ -1,7 +1,7 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button } from "reactstrap";
+import { Button, Jumbotron } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
@@ -46,6 +46,8 @@ class EditQuiz extends React.Component{
         this.handleAnswerChange        = this.handleAnswerChange.bind(this);
         this.handleResultChange        = this.handleResultChange.bind(this);
         this.handleResultImageChange   = this.handleResultImageChange.bind(this);
+        this.deleteBlock               = this.deleteBlock.bind(this);
+        this.deleteAnswer              = this.deleteAnswer.bind(this);
 
 
         this.interval  = setInterval(()=>{
@@ -119,6 +121,7 @@ class EditQuiz extends React.Component{
     pushNewBlock(arr,type){
 
         let quiz = this.state.quiz;
+        console.log("pushing block " + type);
         let newObj = arr === "questions" 
 
                     /* Default question block */ 
@@ -258,7 +261,7 @@ class EditQuiz extends React.Component{
     deleteAnswer(qInd,ind){
 
         let quiz = this.state.quiz;
-        let remove  = quiz.questions.answers.splice(ind,1);
+        let remove  = quiz.questions[qInd].answers.splice(ind,1);
         console.log("removing object " + remove);
         this.setState({quiz: quiz});
 
@@ -397,18 +400,6 @@ class EditQuiz extends React.Component{
 
                 </section>
 
-                        
-                { !this.state.addingQuestion 
-
-                ? <button className="btn btn-add-block" 
-                        onClick={()=>this.setState({addingQuestion: true})}>
-                    Add a Question
-                  </button>
-                
-                : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
-                              newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
-                              newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
-
                 <button className="btn btn-add-block" 
                         onClick={()=>this.pushNewBlock("results")}>
                     Add a Final Result
@@ -421,7 +412,8 @@ class EditQuiz extends React.Component{
                                    save={this.saveBlock}
                                    rInd={i}
                                    handleChange={this.handleResultChange}
-                                   setImage    = { this.handleResultImageChange }/>
+                                   setImage    = { this.handleResultImageChange }
+                                   trash = {()=>this.deleteBlock("results",i)}/>
 
                     )
                 }
@@ -444,12 +436,28 @@ class EditQuiz extends React.Component{
                                          handleColorChange       = { this.handleQuestionColorChange }
                                          handleAnswerImageChange = { this.handleAnswerImageChange   }
                                          handleQuestionChange    = { this.handleQuestionChange      }
-                                         handleAnswerChange      = { this.handleAnswerChange        }/>
+                                         handleAnswerChange      = { this.handleAnswerChange        }
+                                         trash                   = { ()=>this.deleteBlock("questions",i)}
+                                         trashAnswer             = { this.deleteAnswer              }/>
                             
                         )}
 
                 </center>
+
+                { !this.state.addingQuestion 
+
+                    ? <button className="btn btn-add-block" 
+                            onClick={()=>this.setState({addingQuestion: true})}>
+                        Add a Question
+                    </button>
+
+                    : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
+                                newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
+                                newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
+
                 {/**/}
+
+                <button className = "jumbotron" onClick={()=>console.log(this.state.quiz)}>Publish</button>
 
              </div>
 

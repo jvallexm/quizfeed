@@ -17,6 +17,7 @@
 }
 .answer-image{
     max-width: 100%;
+    max-height: 200px;
 }
 .text-block-head{
 
@@ -60,4 +61,10 @@ CardHeader{
 
 .answer-block {
     padding: 10px!important;
+}
+.close-bottom-right{
+	position: absolute;
+	z-index: 2;
+	bottom: 10px;
+	right: 10px;
 }

@@ -30,7 +30,8 @@ class ImageSearch extends React.Component{
         API.getImages(this.state.query).then((data)=>{
 
             let images = [];
-            data.data.data.forEach(i=>images.push(i.assets.preview.url));
+            if(data)
+                data.data.data.forEach(i=>images.push(i.assets.preview.url));
             this.setState({images: images, 
                            loading: false, 
                            noneFound: images.length > 0 ? false : true, 
