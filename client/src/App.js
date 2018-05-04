@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home       from "./pages/Home";
 import EditQuiz   from "./pages/EditQuiz";
 import FourOhFour from "./pages/Error";
+import Quiz       from "./pages/Quiz"
 
 
 /* https://tylermcginnis.com/react-router-pass-props-to-components/ */
@@ -49,7 +50,7 @@ class App extends React.Component{
             {/* Editing existing quiz */}
             <Route exact path="/editQuiz/:id"    render={ (props)=> <EditQuiz   {...props} user={this.state.user} /> } />
             {/* Taking a Quiz*/}
-            <Route exact path="/quiz/:id"        render={ (props)=> <Home       {...props} /> } />
+            <Route exact path="/quiz/:id"        render={ (props)=> <Quiz       {...props} user={this.state.user} /> } />
             {/* Error Page */}
             <Route exact path="/404/:code?"      render={ (props)=> <FourOhFour {...props} /> } />
 
