@@ -35,21 +35,17 @@ class Question extends React.Component{
                     this.props.question.answers.map((ele,i)=>
 
                         <Answer key             = { "question-" + this.props.qInd + "-answer-" + i } 
-                                   ind             = { i                                              }
-                                   image           = { ele.image === "" ? false : ele.image           }
-                                   qInd            = { this.props.qInd                                }
-                                   imageChange     = { this.props.handleAnswerImageChange             }
-                                   handleChange    = { this.handleAnswerChange                        } 
-                                   type            = { this.props.type                                } 
-                                   title           = { ele.title                                      }
-                                   colorChange     = { this.props.handleAnswerColorChange             } 
-                                   color           = { ele.color                                      }
-                                   backgroundColor = { ele.backgroundColor                            } 
-                                   results         = { this.props.results                             }
-                                   plusOne         = { ele.plusOne                                    } 
-                                   plusTwo         = { ele.plusTwo                                    } 
-                                   howMany         = { this.props.question.answers.length             } 
-                                   trash           = { ()=>this.props.trashAnswer(this.props.qInd,i)  }/>
+                                ind             = { i                                              }
+                                image           = { ele.image === "" ? false : ele.image           }
+                                qInd            = { this.props.qInd                                }
+                                type            = { this.props.type                                } 
+                                title           = { ele.title                                      }
+                                color           = { ele.color                                      }
+                                backgroundColor = { ele.backgroundColor                            } 
+                                results         = { this.props.results                             }
+                                plusOne         = { ele.plusOne                                    } 
+                                plusTwo         = { ele.plusTwo                                    } 
+                                howMany         = { this.props.question.answers.length             } />
                     ) : ""
                 }
                 {this.props.question.answers.length < 9 ?

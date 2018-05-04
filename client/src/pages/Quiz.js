@@ -32,7 +32,8 @@ class Quiz extends React.Component{
                 stars: [],
                 results: []
             },
-            redirect: false
+            redirect: false,
+            score: []
 
         }
 
@@ -87,7 +88,7 @@ class Quiz extends React.Component{
                     {/* Quiz Title */}
 
                  
-                        <h1 className = "quiz-title" style= { {color: this.state.quiz.color} }>
+                        <h1  style= { {color: this.state.quiz.color} }>
  { this.state.quiz.title }</h1>
                    
 
@@ -98,23 +99,13 @@ class Quiz extends React.Component{
                         {this.state.quiz.questions.map((ele,i)=>
 
                             <Question key                     = { "question-"+i                  }
-                                         question                = { ele                            } 
-                                         save                    = { this.saveBlock                 }
-                                         qInd                    = { i                              }
-                                         backgroundColor         = { ele.backgroundColor            }
-                                         color                   = { ele.color                      }
-                                         type                    = { ele.type                       } 
-                                         results                 = { this.state.quiz.results        }
-                                         moveIt                  = { this.moveIt                    } 
-                                         pushNewAnswer           = { this.pushNewAnswer             }
-                                         deleteAnswer            = { this.deleteAnswer              } 
-                                         handleAnswerColorChange = { this.handleAnswerColorChange   }
-                                         handleColorChange       = { this.handleQuestionColorChange }
-                                         handleAnswerImageChange = { this.handleAnswerImageChange   }
-                                         handleQuestionChange    = { this.handleQuestionChange      }
-                                         handleAnswerChange      = { this.handleAnswerChange        }
-                                         trash                   = { ()=>this.deleteBlock("questions",i)}
-                                         trashAnswer             = { this.deleteAnswer              }/>
+                                      question                = { ele                            } 
+                                      save                    = { this.saveBlock                 }
+                                      qInd                    = { i                              }
+                                      backgroundColor         = { ele.backgroundColor            }
+                                      color                   = { ele.color                      }
+                                      type                    = { ele.type                       } 
+                                      results                 = { this.state.quiz.results        } />
                             
                         )}
 

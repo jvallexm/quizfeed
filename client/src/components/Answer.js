@@ -60,16 +60,7 @@ class Answer extends React.Component {
 
                         {/* Renders either a search block or the image based on state*/}
 
-                        { !this.state.search && !this.props.image && this.props.type !== "text"
-
-                        ?
-                                
-                            <div className="search-for" onClick={()=>this.setState({search: true})}>
-                                <i className="fa fa-search"/>
-                                    <h5>Search For An Image</h5>
-                            </div>
-
-                        : this.props.image && !this.state.search && this.props.type !== "text"
+                        { this.props.image && !this.state.search && this.props.type !== "text"
 
                         ? 
                         
