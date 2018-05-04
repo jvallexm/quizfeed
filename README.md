@@ -93,7 +93,7 @@ To get the application up and running follow these simple steps:
 <a name="license"/>
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/jvallexm/quizfeed/blob/readme/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/jvallexm/quizfeed/blob/readme/LICENSE) file for details.
 
 
 
