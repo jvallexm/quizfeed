@@ -53,13 +53,14 @@ class NewResult extends React.Component{
 
                 {/* Result buttons */}
 
-                <div className="close-left">
+                <div className="close">
 
                     {/* Search again after image has been selected */}
 
                     {this.state.result.image !== "" ?
 
-                    <Button aria-label="Text" 
+                    <Button className="btn-search"
+                            aria-label="Text" 
                             onClick={()=> this.setState({search: !this.state.search})} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
