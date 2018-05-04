@@ -1,43 +1,92 @@
-# Create React Express App
 
-## About This Boilerplate
+![alt text](client/public/images/Quizfeed-Logo-sm.png)
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+# A Buzzfeed-Style Quiz Maker
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+ This application creates a BuzzFeed-style site where users can search for quizzes (by quiz name or user name) and they can create quizzes of their own. Question, answer and result options will be randomized images, words or a combination of both. We believe this is valuable for a couple of reasons. First, quizzes are fun! Second, the use of quizzes as a marketing tool can be very effective because they tend to drive tons of traffic to a site and they are a great way to collect email addresses. Email marketing continues to be one of the top ways businesses drive sales, so this would be a great lead generation tool. Quizzes are fun to create and easy to share!
 
-## Starting the app locally
 
-Start by installing front and backend dependencies. While in this directory, run the following commands:
+## Table of Contents  
+[Getting Started](#gettingStarted)  
+[Creating A Quiz](#creatingAQuiz)  
+[Built With](#builtWith)  
+[Authors](#authors)  
+[License](#license)
 
-```
-yarn install
-cd client
-yarn install
-cd ..
-``
 
-After both installations complete, run the following command in your terminal:
+<a name="gettingStarted"/>
 
-```
-yarn start
-```
+## Getting Started
+To get the application up and running follow these simple steps:
 
-That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+   1. Clone the repository onto your computer.
+   ```
+   git clone git@github.com:jvallexm/quizfeed.git
+   ```
+   2. Install npm packages into the root folder and into the client folder of your application. In the command line, cd to the root folder then follow these commands: 
+   ```
+   npm install
+   cd client
+   npm install
+   ```
+   3. Obtain your own [Shutterstock](https://developers.shutterstock.com/) Client ID and Client Secret. Add these to your .env file.
 
-## Deployment (Heroku)
+   4. Finally, implement [MongoDB](https://www.mongodb.com/) and add your mlab variables to your .env as well. 
 
-After confirming that you have an up to date git repository and a Heroku app created, complete the following:
+   5. `npm start` in the command line will run the app on your local server!
 
-1. Build the React app for production by running the following command:
+<a name="creatingAQuiz"/>
 
-```
-yarn build
-```
+## Creating A Quiz
+1. Choose a title for your quiz, a background color and text color.
 
-2. Add and commit all changes to git
+    ![alt text](client/public/images/title.png)
+2. Next, you'll need to work backwards by adding what the final results of the quiz will be, ie 'You Got...'
 
-3. Push to Heroku
+    ![alt text](client/public/images/result.png)
 
-If all previous steps were followed correctly, your application should be deployed to Heroku!
-# quizfeed
+    Search for an image or add an image URL, and then give the result a title and description.
+
+    ![alt text](client/public/images/boxer.png)
+
+
+
+
+
+<a name="builtWith"/>
+
+## Built With
+ - [Axios](https://www.npmjs.com/package/axios) - Handles HTTP requests
+ - [Body-Parser](https://www.npmjs.com/package/body-parser) - Middleware to parse request bodies
+ - [Bootstrap](https://getbootstrap.com/) - Front end framework
+ - [Express](https://expressjs.com/) - Node.js web application framework
+ - [Mocha](https://mochajs.org/) - Test framework
+ - [Mongoose](http://mongoosejs.com/) - Object modeling for node.js
+ - [Shutterstock](https://developers.shutterstock.com/) - Image search tool
+ - [Create React App](https://github.com/facebookincubator/create-react-app) - Used for building the React framework
+ - [React](https://github.com/facebook/react) - Javascript library for building user interfaces
+ 
+
+
+<a name="authors"/>
+
+## Authors
+* [Jennifer Valle](https://github.com/jvallexm) (http://jennifer-valle.com)
+* [Peter Johnstone](https://github.com/p2bilt) (http://p2bilt.com)
+* [Amy Lumpkin](https://github.com/amylumpkin)
+* [Melissa Capps](https://github.com/melissable)
+
+<a name="license"/>
+
+## License
+
+
+
+
+
+
+
+
+
+
+
