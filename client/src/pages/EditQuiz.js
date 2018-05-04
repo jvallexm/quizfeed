@@ -86,8 +86,6 @@ class EditQuiz extends React.Component{
 
         let id = this.props.match.params.id;
 
-        API.findAll().then(arr=>console.log(arr));
-
         /* If id is part of the request it tried to find the quiz to edit */
 
         if(id) {
@@ -96,19 +94,24 @@ class EditQuiz extends React.Component{
 
             API.getQuizById(id).then(res=>{
 
-                console.log(`author quiz ${res.data.author_id} user ${this.props.user._id}`)
-
-                /* Needs logic to set redirect to true if the user is not the quiz author */
-
-                if(res.data.author_id === this.props.user._id){
-
-                    this.setState({quiz: res.data, published: true});
-
+                if(!res.data){
+                    this.setState({redirect: true});
                 } else {
 
-                    console.log("Error: no quiz");
-                    this.setState({redirect: true});
+                    console.log(`author quiz ${res.data.author_id} user ${this.props.user._id}`)
 
+                    /* Needs logic to set redirect to true if the user is not the quiz author */
+
+                    if(res.data.author_id === this.props.user._id){
+
+                        this.setState({quiz: res.data, published: true});
+
+                    } else {
+
+                        console.log("Error: no quiz");
+                        this.setState({redirect: true});
+
+                    }
                 }
 
             });
@@ -455,6 +458,7 @@ class EditQuiz extends React.Component{
                                          question                = { ele                            } 
                                          save                    = { this.saveBlock                 }
                                          qInd                    = { i                              }
+                                         title = {ele.title}
                                          backgroundColor         = { ele.backgroundColor            }
                                          color                   = { ele.color                      }
                                          type                    = { ele.type                       } 

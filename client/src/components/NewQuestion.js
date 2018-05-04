@@ -127,16 +127,20 @@ class NewQuestion extends React.Component{
 
                 </div>
 
+                
+
                 <CardBody className="question-card-body" style={{backgroundColor: this.props.backgroundColor}}>
+
+                
                
                     <input className   = "question-title" 
                            name        = "question" 
                            id          = "quizQuestion" 
+                           value       = { this.props.question.question }
+                           placeholder = { this.props.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
 
-                           placeholder = {this.props.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
-
-                           onChange    = {this.handleChange} 
-                           style       = {{backgroundColor: this.props.backgroundColor, color: this.props.color}}/>
+                           onChange    = { this.handleChange} 
+                           style       = { {backgroundColor: this.props.backgroundColor, color: this.props.color}}/>
   
                     <br/>
 
@@ -180,8 +184,6 @@ class NewQuestion extends React.Component{
 
                 </CardFooter>
                 </Card>
-
-
                 
             </div>
 
