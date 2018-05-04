@@ -2,10 +2,9 @@
 ![alt text](client/public/images/Quizfeed-Logo-sm.png)
 
 # A Buzzfeed-Style Quiz Maker
-
 [![npm](https://img.shields.io/badge/npm-v5.6.0-blue.svg)](https://www.npmjs.com/)
-[![mongodb](https://img.shields.io/badge/mongodb-v3.6.3-blue.svg)](https://www.mongodb.com/)
-[![license](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![mongodb](https://img.shields.io/badge/mongodb-v3.6.3-blue.svg)](https://www.mongodb.com/) 
+[![license](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/jvallexm/quizfeed/blob/readme/LICENSE)
 
 This application creates a BuzzFeed-style site where users can search for quizzes (by quiz name or user name) and they can create quizzes of their own. Question, answer and result options will be randomized images, words or a combination of both. We believe this is valuable for a couple of reasons. First, quizzes are fun! Second, the use of quizzes as a marketing tool can be very effective because they tend to drive tons of traffic to a site and they are a great way to collect email addresses. Email marketing continues to be one of the top ways businesses drive sales, so this would be a great lead generation tool. Quizzes are fun to create and easy to share!
 
@@ -94,7 +93,7 @@ To get the application up and running follow these simple steps:
 <a name="license"/>
 
 ## License
-
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/jvallexm/quizfeed/blob/readme/LICENSE) file for details.
 
 
 
