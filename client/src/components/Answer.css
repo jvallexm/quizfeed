@@ -1,3 +1,19 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+          box-sizing: border-box;
+}
+ 
+body {
+  background: #333;
+}
+ 
+.pic {
+  /* float: left; */
+  overflow: hidden;
+}
+
 .answer-title {
     width:100%;
     background-color: rgba(0,0,0,0);
@@ -15,10 +31,7 @@
     flex-direction    : column; 
 
 }
-/* .answer-image{
-    max-width: 100%;
-    max-height: 200px;
-} */
+
 .text-block-head{
 
     height: 200px;
@@ -70,3 +83,20 @@ CardHeader{
 	bottom: 10px;
 	right: 10px;
 }
+
+/*GROW*/
+.grow img {
+
+    width: 100%;
+   
+    -webkit-transition: all 1s ease;
+       -moz-transition: all 1s ease;
+         -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+            transition: all 1s ease;
+  }
+   
+  .grow img:hover {
+    width: 110%;
+
+  }
