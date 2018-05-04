@@ -53,3 +53,9 @@
     font-weight: 700;
 
 }
+
+.btn-publish:hover, .btn-publish:focus, .btn-publish:active, .btn-publish.active, .btn-publish:active:focus, .open>.dropdown-toggle.btn-publish {
+    color: #fff;
+    background-color: #00b3db;
+    border-color: #285e8e; /*set the color you want here*/
+}
