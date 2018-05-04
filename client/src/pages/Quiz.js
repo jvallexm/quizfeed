@@ -383,43 +383,15 @@ class Quiz extends React.Component{
 
                 <section className="jumbotron text-center" style={{backgroundColor: this.state.quiz.backgroundColor}}>
 
-                    {/* Renders color picker */}
-
-                    {   
-                        this.state.displayColorPicker 
-                    ? <div className="popover">
-                            <div className="cover" onClick={ this.handleClose }/>
-                                <SketchPicker color ={ this.state.bg ? this.state.quiz.backgroundColor : this.state.quiz.color}
-                                              onChangeComplete={ this.handleChangeComplete }/>
-                        </div> : null 
-                    }
-
                     {/* Quiz Title */}
 
                     <div className="container">
-                        <input name        = "title" 
-                               className   = "quiz-title" 
-                               style       = { {color: this.state.quiz.color} }
-                               placeholder = { this.state.quiz.color === "black" ? "Type Here to Give Your Quiz a Title" : "Enter a Title to See Your Color Changes!" }
-                               onChange    = { this.handleChange } 
-                               value       = { this.state.quiz.title }/>
+                        <h1 className = "quiz-title" style= { {color: this.state.quiz.color} }>
+ { this.state.quiz.title }</h1>
                     </div>
 
                 </section>
 
-                {
-                    this.state.quiz.results.map((ele,i)=>
-
-                        <Result key={"result-"+i}
-                                   result={ele}
-                                   save={this.saveBlock}
-                                   rInd={i}
-                                   handleChange={this.handleResultChange}
-                                   setImage    = { this.handleResultImageChange }
-                                   trash = {()=>this.deleteBlock("results",i)}/>
-
-                    )
-                }
                 <center>
 
                         {this.state.quiz.questions.map((ele,i)=>
@@ -446,6 +418,20 @@ class Quiz extends React.Component{
                         )}
 
                 </center>
+
+                                {
+                    this.state.quiz.results.map((ele,i)=>
+
+                        <Result key={"result-"+i}
+                                   result={ele}
+                                   save={this.saveBlock}
+                                   rInd={i}
+                                   handleChange={this.handleResultChange}
+                                   setImage    = { this.handleResultImageChange }
+                                   trash = {()=>this.deleteBlock("results",i)}/>
+
+                    )
+                }
              </div>
 
         )

@@ -79,27 +79,14 @@ class NewResult extends React.Component{
                             </div>
                             <div className="col-md-8 result-text-col">
 
-                                <input 
-                                    className="result-headline" 
-                                    name="title" 
-                                    placeholder="Name Your Result Here..."
-                                    value={this.state.result.title} 
-                                    onChange={this.handleChange}/>
-                                <div className="text-right input-count">
-                                    {this.state.result.title.length} / 50
-                                </div>
+                                <h4> {this.state.result.title} 
+                                    </h4>
+
                             </div>
                         </div>
                         <div className="text-area-container">
-                            <div className="text-area-count">
-                                {this.state.result.text.length} / 500
-                            </div>
-                            <textarea 
-                                className="result-text" 
-                                name="text" 
-                                placeholder="...And Describe Your Result Here."
-                                value={this.state.result.text} 
-                                onChange={this.handleChange}/>
+                            <p>{this.state.result.text} 
+                                </p>
                         </div>
                     </Col>
                 </Row>

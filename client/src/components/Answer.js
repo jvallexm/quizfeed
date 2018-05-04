@@ -132,11 +132,8 @@ class Answer extends React.Component {
                         {/* Question Title */}
 
                                 {this.props.type !== "image" ?
-                                <input name        = "title" 
-                                       className   = "answer-title text-center" 
-                                       placeholder = "Type Your Answer Here" 
-                                       data-ind    = {this.props.ind}
-                                       onChange    = {this.props.handleChange} /> :""}
+                                <h1>{this.props.ind}
+                                       </h1> :""}
 
                        
 
