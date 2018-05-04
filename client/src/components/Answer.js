@@ -11,47 +11,11 @@ class Answer extends React.Component {
         super(props);
         this.state = {
 
-            search: false,
-            bg: false,
-            showUrl: false
-
         }
 
-        this.setImage = this.setImage.bind(this);
 
     }
 
-    setImage(src){
-
-        this.props.imageChange(src,this.props.qInd,this.props.ind);
-        this.setState({search: false});
-
-    }
-
-        /* Click andler for the color picker */
-
-    handleClick = (bg) => {
-
-        /* If bg is true, it sets the color picker to check the background
-        Otherwise is changes the text color  */
-
-        this.setState({ displayColorPicker: !this.state.colorpicker,
-                    bg: bg ? true : false })
-    };
-
-    /* Close handler for the color picker */
-
-    handleClose = () => {
-
-        this.setState({ displayColorPicker: false })
-
-    };
-
-    handleChangeComplete = (color) =>{
-        
-        this.props.colorChange(color,this.state.bg,this.props.qInd,this.props.ind)
-
-    }
 
     render()
     {
