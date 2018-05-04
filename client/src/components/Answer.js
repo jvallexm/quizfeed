@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardBody, Button, CardHeader, CardFooter, FormGroup, Label, Col, Input } from 'reactstrap';
-import "./NewAnswer.css"
+import "./Answer.css"
 import Image from "./Image";
 import {SketchPicker} from 'react-color';
 
@@ -107,7 +107,11 @@ class Answer extends React.Component {
 
                         : this.props.image && !this.state.search && this.props.type !== "text"
 
-                        ? <img className="answer-image" alt="" src={this.props.image}/>
+                        ? 
+                        
+                        <div className="grow pic">
+                        <img className="answer-image" alt="" src={this.props.image}/>
+                        </div>
 
                         : this.props.type !== "text" ? <Image setImage={this.setImage}/> : ""}
                         
