@@ -116,7 +116,8 @@ class NewQuestion extends React.Component{
 
                 <div className="close-bottom-right">
 
-                    <Button aria-label="Trash" 
+                    <Button className="btn-trash"
+                            aria-label="Trash" 
                             onClick={()=>this.props.trash()} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">

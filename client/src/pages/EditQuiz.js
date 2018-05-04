@@ -1,7 +1,7 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button, Jumbotron } from "reactstrap";
+import { Button, Jumbotron, Row } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
@@ -473,7 +473,7 @@ class EditQuiz extends React.Component{
                         )}
 
                 </center>
-
+<Row>
                 { !this.state.addingQuestion 
 
                     ? <button className="btn btn-add-block" 
@@ -484,11 +484,11 @@ class EditQuiz extends React.Component{
                     : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
                                 newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
                                 newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
-
+</Row>
                 {/**/}
-
-                <button disabled={!this.state.published ? "disabled" : false}className = "jumbotron" onClick={()=>API.editQuiz(this.state.quiz._id,this.state.quiz).then(res => console.log(res))} >Publish</button>
-
+<Row>
+                <button disabled={!this.state.published ? "disabled" : false}className = "jumbotron btn-publish" onClick={()=>API.editQuiz(this.state.quiz._id,this.state.quiz).then(res => console.log(res))} >PUBLISH YOUR QUIZ</button>
+</Row>
              </div>
 
         )

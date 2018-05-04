@@ -47,3 +47,9 @@
     margin-bottom: 5px;
     min-width: 140px;
 }
+
+.btn-publish {
+    width: 100%;
+    font-weight: 700;
+
+}

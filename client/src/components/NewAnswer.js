@@ -130,7 +130,8 @@ class NewAnswer extends React.Component {
                             
                         ?
 
-                        <Button aria-label="Close" 
+                        <Button className="btn-search"
+                                aria-label="Close" 
                                 onClick={()=>this.setState({search: !this.state.search})} 
                                 title={this.state.search ? "Go Back" : "Search for a new image"}>
 
@@ -147,7 +148,8 @@ class NewAnswer extends React.Component {
 
                     <div className="close-bottom-right">
 
-                        <Button aria-label="Trash" 
+                        <Button className="btn-trash"
+                                aria-label="Trash" 
                                 onClick={()=>this.props.trash()} 
                                 title="Save Your Changes!">
                             <span aria-hidden="true">
