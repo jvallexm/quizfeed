@@ -187,7 +187,10 @@ class NewAnswer extends React.Component {
 
                         : this.props.image && !this.state.search && this.props.type !== "text"
 
-                        ? <img className="answer-image" alt="" src={this.props.image}/>
+                        ? 
+                            <div className="grow pix">
+                                <img className="answer-image" alt="" src={this.props.image}/>
+                            </div>
 
                         : this.props.type !== "text" ? <ImageSearch setImage={this.setImage}/> : ""}
                         
