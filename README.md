@@ -3,6 +3,12 @@
 
 # A Buzzfeed-Style Quiz Maker
 
+[![npm](https://img.shields.io/badge/npm-v5.6.0-blue.svg)](https://www.npmjs.com/) 
+[![mongodb](https://img.shields.io/badge/mongodb-v3.6.3-blue.svg)](https://www.mongodb.com/) 
+[![license](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+
+
  This application creates a BuzzFeed-style site where users can search for quizzes (by quiz name or user name) and they can create quizzes of their own. Question, answer and result options will be randomized images, words or a combination of both. We believe this is valuable for a couple of reasons. First, quizzes are fun! Second, the use of quizzes as a marketing tool can be very effective because they tend to drive tons of traffic to a site and they are a great way to collect email addresses. Email marketing continues to be one of the top ways businesses drive sales, so this would be a great lead generation tool. Quizzes are fun to create and easy to share!
 
 
@@ -40,14 +46,25 @@ To get the application up and running follow these simple steps:
 ## Creating A Quiz
 1. Choose a title for your quiz, a background color and text color.
 
-    ![alt text](client/public/images/title.png)
-2. Next, you'll need to work backwards by adding what the final results of the quiz will be, ie 'You Got...'
+    <img src="client/public/images/title.png" alt="title" style="width: 400px;"/>
 
-    ![alt text](client/public/images/result.png)
+2. Next, you'll need to work backwards by adding the final results of the quiz, ie 'You Got...' Search for images or add an image URL, and then give the result a title and description.
 
-    Search for an image or add an image URL, and then give the result a title and description.
+    <img src="client/public/images/result.png" alt="result" style="width: 400px;"/>
 
-    ![alt text](client/public/images/boxer.png)
+3. Choose the format of your questions...images only, text only, or a combination of images and text.
+
+    <img src="client/public/images/question.png" alt="question" style="width: 400px;">
+
+4. Write your questions and answers, then rank each answer to a corresponding result.
+
+    <img src="client/public/images/q&a.png" alt="q&a" style="width: 400px;">    
+
+5. Publish your quiz!
+
+    <img src="client/public/images/publish.png" alt="publish" style="width: 400px;">    
+
+     
 
 
 
@@ -79,6 +96,8 @@ To get the application up and running follow these simple steps:
 <a name="license"/>
 
 ## License
+
+
 
 
 
