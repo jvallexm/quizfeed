@@ -373,6 +373,10 @@ class EditQuiz extends React.Component{
 
     }
 
+    nextPath(path) {
+        this.props.history.push(path);
+    }
+
     render(){
 
         // Redirects on an error
@@ -491,7 +495,7 @@ class EditQuiz extends React.Component{
 </Row>
                 {/**/}
 <Row>
-                <button disabled={!this.state.published ? "disabled" : false}className = "jumbotron btn-publish" onClick={()=>API.editQuiz(this.state.quiz._id,this.state.quiz).then(res => console.log(res))} >PUBLISH YOUR QUIZ</button>
+                <button disabled={!this.state.published ? "disabled" : false}className = "jumbotron btn-publish" onClick={()=>API.editQuiz(this.state.quiz._id,this.state.quiz).then(res => this.nextPath("/"))} >PUBLISH YOUR QUIZ</button>
 </Row>
              </div>
 

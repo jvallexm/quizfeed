@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Col, Row, CardBody } from "reactstrap";
-import "./PickingRow.css"
+import "./css/PickingRow.css"
 
 const PickingRow = (props) =>{
 

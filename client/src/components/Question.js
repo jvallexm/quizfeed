@@ -1,7 +1,7 @@
 import React        from "react";
 import Answer    from "./Answer";
 import {Card, Row } from 'reactstrap';
-import "./NewQuestion.css"
+import "./css/NewQuestion.css"
 
 class Question extends React.Component{
 

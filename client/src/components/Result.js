@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col } from 'reactstrap';
 import "./Result.css"
-import ImageSearch from './ImageSearch';
 import {
     FacebookShareCount,
     LinkedinShareCount,
@@ -191,16 +190,6 @@ class NewResult extends React.Component{
           </TumblrShareButton>
         </div>
 
-        <div className="share-network">
-          <LivejournalShareButton
-            url={shareUrl}
-            title={title}
-            description={shareUrl}
-            className="share-network-btn"
-          >
-            <LivejournalIcon size={32} round />
-          </LivejournalShareButton>
-        </div>
 
         <div className="share-network">
           <EmailShareButton
