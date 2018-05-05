@@ -23,7 +23,7 @@ class Question extends React.Component{
 
             <Card className="question-card">
 
-                <CardBody className="question-card-body" style={{backgroundColor: this.props.backgroundColor}}>
+                <CardBody className="question-card-body" style={{backgroundColor: this.props.backgroundColor, color: this.props.color}}>
                
                     <h2>{this.props.question.question}</h2>
 
