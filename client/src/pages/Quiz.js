@@ -100,7 +100,7 @@ class Quiz extends React.Component{
 
         quiz.questions[qInd].answered = true;  // Sets this question to be answered
 
-        /* Sets the picked values of all the answers to fals */
+        /* Sets the picked values of all the answers to false */
 
         quiz.questions[qInd].answers.forEach(i => {
 
@@ -112,7 +112,7 @@ class Quiz extends React.Component{
                 if(i.plusTwo)
                     score[i.plusTwo] -= 2;
             }
-            i.picked = "false"
+            i.picked = false
         });
 
         /* Sets the current answer to picked */
