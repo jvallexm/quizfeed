@@ -189,7 +189,7 @@ class Quiz extends React.Component{
 
                     <div id="result">
 
-                      <Result ref="result" result={this.state.finalResult} />
+                      <Result ref="result" result={this.state.finalResult} title={this.state.quiz.title} />
 
                     </div>
                     
