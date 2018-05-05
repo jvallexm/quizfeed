@@ -9,8 +9,8 @@ module.exports = {
 
         console.log("I find quiz")
 
-        db.Quiz.find({})
-               .sort({created_on: -1})
+        db.Quiz.find({isDraft: false})
+               .sort({_id: -1})
                .then(quizzes =>{
                    console.log(quizzes);
                    res.json(quizzes)
