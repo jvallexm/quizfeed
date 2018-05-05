@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardHeader } from 'reactstrap';
-import "./Answer.css"
+import "./css/Answer.css"
 import Image from "./Image";
 
 class Answer extends React.Component {

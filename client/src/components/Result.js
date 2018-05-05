@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col } from 'reactstrap';
-import "./NewResult.css"
-import ImageSearch from './ImageSearch';
+import "./css/NewResult.css"
 import {
     FacebookShareCount,
     LinkedinShareCount,
@@ -103,7 +102,7 @@ class NewResult extends React.Component{
                     </Col>
                 </Row>
                 <Row>
-                <div className="Demo__some-network">
+        <div className="Demo__some-network">
           <FacebookShareButton
             url={shareUrl}
             quote={title}
@@ -124,16 +123,6 @@ class NewResult extends React.Component{
               round />
           </TwitterShareButton>
         </div>
-
-        <div className="Demo__some-network">
-          <WhatsappShareButton
-            url={shareUrl}
-            title={title}
-            separator=":: "
-            className="Demo__some-network__share-button">
-            <WhatsappIcon size={32} round />
-          </WhatsappShareButton>
-          </div>
 
         <div className="Demo__some-network">
           <LinkedinShareButton
@@ -170,30 +159,6 @@ class NewResult extends React.Component{
               size={32}
               round />
           </RedditShareButton>
-        </div>
-
-        <div className="Demo__some-network">
-          <TumblrShareButton
-            url={shareUrl}
-            title={title}
-            windowWidth={660}
-            windowHeight={460}
-            className="Demo__some-network__share-button">
-            <TumblrIcon
-              size={32}
-              round />
-          </TumblrShareButton>
-        </div>
-
-        <div className="Demo__some-network">
-          <LivejournalShareButton
-            url={shareUrl}
-            title={title}
-            description={shareUrl}
-            className="Demo__some-network__share-button"
-          >
-            <LivejournalIcon size={32} round />
-          </LivejournalShareButton>
         </div>
 
         <div className="Demo__some-network">

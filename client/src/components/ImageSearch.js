@@ -1,6 +1,6 @@
 import React from 'react';
 import API   from "../utils/api";
-import "./NewQuestion.css"
+import "./css/NewQuestion.css"
 
 
 class ImageSearch extends React.Component{
