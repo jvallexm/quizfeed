@@ -43,9 +43,11 @@ class Answer extends React.Component {
 
                 <Card className="mb-4 box-shadow">
 
-                    <CardHeader className={this.props.type === "text" ? "text-block-head" : "image-head"}>
+                    <CardHeader className={this.props.type === "text" ? "text-block-head" : "image-head"} onClick={()=>this.props.score(this.props.qInd,this.props.ind,this.props.plusOne,this.props.plusTwo)}>
 
                         {/* Renders text if the block type is not image */}
+
+                        {this.props.picked ? <div className="close"><i className="fa fa-check"/></div>: "" }
 
                         {
                             this.props.type !== "image" && !this.state.search && (this.props.image || this.props.type === "text")
