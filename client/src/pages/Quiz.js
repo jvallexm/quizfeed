@@ -80,11 +80,24 @@ class Quiz extends React.Component{
         console.log("trying to score " + qInd);
         console.log("at answer " + aInd)
         console.log(plusOne + " " + plusTwo)
+        console.log("score " + this.state.score)
 
         let quiz = this.state.quiz;
-        quiz.questions[qInd].answered = true;
-        quiz.questions[qInd].answers[aInd].picked = true;
         let score = this.state.score;
+
+        let oldAnswer;
+        quiz.questions[qInd].answered = true;
+        quiz.questions[qInd].answers.forEach(i => {
+            if(i.picked){
+                console.log(i);
+                if(i.plusOne)
+                    score[i.plusOne] --;
+                if(i.plusTwo)
+                    score[i.plusTwo] -= 2;
+            }
+            i.picked = false
+        });
+        quiz.questions[qInd].answers[aInd].picked = true;
         if(plusOne > -1)
             score[plusOne] ++;
         if(plusTwo > -1)
