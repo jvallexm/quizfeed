@@ -1,6 +1,9 @@
 import React from "react";
 import API   from "../utils/api";
 import { Jumbotron, Button } from 'reactstrap';
+import QuizListItem from '../components/QuizListItem';
+import { Link } from "react-router-dom";
+import './Home.css';
 
 class Home extends React.Component{
 
@@ -44,19 +47,34 @@ class Home extends React.Component{
 
     }
 
+    nextPath(path) {
+        this.props.history.push(path);
+    }
+
     render(){
 
         return(
 
-                <div>
-      <Jumbotron>
-        <h1 className="display-3">Hot Poppers</h1>
-        <h3>(quizfeed)</h3>
-        <p className="lead">
-          <Button color="primary">Create a Quiz</Button>
-        </p>
-      </Jumbotron>
-    </div>
+                <div id="quiz-wrapper" className="container-fluid">
+
+                    <div className="jumbotron text-center" onClick={()=>this.nextPath('/newQuiz')}> 
+                        Create a New Quiz!
+                    </div>
+
+                    {this.state.quizzes.map((q,i)=> 
+
+                        <Link key={"link-" + q._id}to={"/quiz/" + q._id} style={{ textDecoration: 'none', color: 'black' }}>
+
+                            <QuizListItem key={q._id} 
+                                        title={q.title}
+                                        author={q.author}
+                                        author_id={q.author_id}/>
+
+                        </Link>
+                    )}
+
+                </div>
+
 
         )
 
