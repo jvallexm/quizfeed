@@ -21,7 +21,7 @@ describe("quizRoutes", function() {
     
 // testing if quizController finds one quiz by id
     it("should get one quiz by id", function(done) {
-        chai.request(app).get("/api/quizzes/id1").then(function(res) {
+        chai.request(app).get("/api/quizzes/1525354085646").then(function(res) {
             //console.log(res.body);
             expect(res.body).to.be.an("object");  
             done(); 
