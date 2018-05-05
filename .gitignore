@@ -3,3 +3,4 @@ package-lock.json
 DS_Store
 .env
 yarn.lock
+.DS_Store

@@ -7,6 +7,8 @@ import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
 import { SketchPicker } from 'react-color';
 import Result from "../components/Result";
+import ReactDOM from 'react-dom';
+import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
 
@@ -39,9 +41,24 @@ class Quiz extends React.Component{
 
         },
         this.score = this.score.bind(this);
+        this.scrollToBottom = this.scrollToBottom.bind(this);
 
     }
+
+    scrollToBottom = () => {
+        scroll.scrollToBottom();
+    }
     
+    componentDidUpdate(){
+
+
+        if(this.state.finalResult){
+            console.log("trying to scroll to bottom");
+            this.scrollToBottom();
+        }
+
+
+    }
     
     componentWillMount(){
 
@@ -117,7 +134,6 @@ class Quiz extends React.Component{
             }
             finalResult = quiz.results[largest];
 
-
         }
 
 
@@ -165,11 +181,15 @@ class Quiz extends React.Component{
 
                 </center>
 
+                <div >
+
                     { this.state.finalResult ?
 
-                      <Result result={this.state.finalResult} />
+                      <Result ref="result" result={this.state.finalResult} />
                     
                     :""}
+
+                </div>
 
              </div>
 
