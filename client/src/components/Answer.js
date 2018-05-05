@@ -76,30 +76,7 @@ class Answer extends React.Component {
 
                     </CardHeader>
                     
-                    <CardBody className="text-center answer-block">
 
-
-                        {/* Image URL */}
-
-                                {this.props.type !== "text"  && this.state.showUrl?
-                                <input name        = "image" 
-                                       className   = "answer-title" 
-                                       placeholder = "Enter Your Image URL Here" 
-                                       data-ind    = {this.props.ind}
-                                       onChange    = {this.props.handleChange} 
-                                       value       = {this.props.image ? this.props.image : ""}/> : ""}
-
-
-                        {/* Question Title */}
-
-                                {this.props.type !== "image" ?
-                                <h1>{this.props.ind}
-                                       </h1> :""}
-
-                       
-
-
-                            </CardBody>
                             
                         </Card>
 
