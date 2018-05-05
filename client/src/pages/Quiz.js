@@ -181,15 +181,15 @@ class Quiz extends React.Component{
 
                 </center>
 
-                <div >
+                { this.state.finalResult ?
 
-                    { this.state.finalResult ?
+                    <div id="result">
 
                       <Result ref="result" result={this.state.finalResult} />
+
+                    </div>
                     
                     :""}
-
-                </div>
 
              </div>
 
