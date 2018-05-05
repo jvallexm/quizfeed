@@ -63,3 +63,7 @@
 Card{
     box-shadow: 2px 2px 2px black;
 }
+
+#result{
+    margin-bottom: 150px;
+}
