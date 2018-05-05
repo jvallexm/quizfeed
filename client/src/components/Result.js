@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col } from 'reactstrap';
-import "./Result.css"
+import "./css/Result.css"
 import {
     FacebookShareCount,
     LinkedinShareCount,
@@ -16,7 +16,6 @@ import {
     RedditShareButton,
     EmailShareButton,
     TumblrShareButton,
-    LivejournalShareButton,
   
     FacebookIcon,
     TwitterIcon,
@@ -27,7 +26,6 @@ import {
     RedditIcon,
     TumblrIcon,
     EmailIcon,
-    LivejournalIcon,
   } from 'react-share';
 
 class NewResult extends React.Component{

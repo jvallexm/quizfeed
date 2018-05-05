@@ -5,23 +5,20 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, CardSubTi
 const QuizListItem = (props) =>{
 
 
-  return (
-    <div>
-      <Card>
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-        <CardImgOverlay>
-          <Button color="info">Rating</Button>{' '}
-          <Button color="info">#Comments</Button>{' '}
-        </CardImgOverlay>
-        <CardBody>
-          <CardTitle>(Quiz title)</CardTitle>
-          <CardSubtitle>By (QuizAuthor)</CardSubtitle>
-          <CardText>(Quick Quiz Description)</CardText>
-          <Button>Play This Quiz</Button>
-        </CardBody>
-      </Card>
-    </div>
-  );
-};
+  return(
+
+    <Row>
+        <Col md="4">
+            <img className="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/500x300" alt=""></img>
+        </Col>
+        <Col md="8">
+          <h3>{props.title}</h3>
+          <p>{props.blurb}</p>
+          <p className="byline text-right">By {props.author}</p>
+          </Col>
+          <hr/>
+      </Row> )
+
+}
 
 export default QuizListItem;

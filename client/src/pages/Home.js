@@ -66,9 +66,10 @@ class Home extends React.Component{
                         <Link key={"link-" + q._id}to={"/quiz/" + q._id} style={{ textDecoration: 'none', color: 'black' }}>
 
                             <QuizListItem key={q._id} 
-                                        title={q.title}
-                                        author={q.author}
-                                        author_id={q.author_id}/>
+                                          title={q.title}
+                                          author={q.author}
+                                          author_id={q.author_id}
+                                          blurb={q.blurb}/>
 
                         </Link>
                     )}
