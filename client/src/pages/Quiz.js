@@ -1,13 +1,9 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button, Jumbotron, Row } from "reactstrap";
 import Question from '../components/Question';
-import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
-import { SketchPicker } from 'react-color';
 import Result from "../components/Result";
-import ReactDOM from 'react-dom';
 import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
@@ -31,15 +27,14 @@ class Quiz extends React.Component{
                 author: this.props.user.name,
                 author_id: this.props.user._id,
                 comments: [],
-                stars: [],
-                results: []
+                stars: []
             },
             redirect: false,
             score: [],
             answered: 0,
             finalResult: false
 
-        },
+        };
         this.score = this.score.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
 
@@ -53,7 +48,6 @@ class Quiz extends React.Component{
 
 
         if(this.state.finalResult){
-            console.log("trying to scroll to bottom");
             this.scrollToBottom();
         }
 
@@ -98,15 +92,21 @@ class Quiz extends React.Component{
 
     score(qInd,aInd,plusOne,plusTwo){
 
-        let quiz     = this.state.quiz;
-        let score    = this.state.score;
-        let answered = this.state.answered;
+        let quiz        = this.state.quiz;      // This quiz
+        let score       = this.state.score;     // The current score array
+        let answered    = this.state.answered;  // How many of the questions have been answered
+        let finalResult = false;                // If a final answer should be rendered
+        let resultCheck = 0;                    // How many of the quiz questions have been answered
 
-        let oldAnswer;
-        quiz.questions[qInd].answered = true;
+        quiz.questions[qInd].answered = true;  // Sets this question to be answered
+
+        /* Sets the picked values of all the answers to fals */
+
         quiz.questions[qInd].answers.forEach(i => {
+
+            /* If an answer has already been picked it removes the score values from the scores array */
+
             if(i.picked){
-                console.log(i);
                 if(i.plusOne)
                     score[i.plusOne] --;
                 if(i.plusTwo)
@@ -114,29 +114,39 @@ class Quiz extends React.Component{
             }
             i.picked = false
         });
+
+        /* Sets the current answer to picked */
+
         quiz.questions[qInd].answers[aInd].picked = true;
+
+        /* Adds the current picked answer scores to the score  */
+
         if(plusOne > -1)
             score[plusOne] ++;
         if(plusTwo > -1)
             score[plusTwo] +=2
-        let finalResult = false;
-        let resultCheck = 0;
+
+        /* Counts the number of answered questions */
+
         quiz.questions.forEach(i=>{
             if(i.answered)
                 resultCheck++;
         })
+
+        /* If the number of questions is equal to the total it scores the quiz */
+
         if(resultCheck === quiz.questions.length){
 
             console.log(score)
 
-            let largest = -1;
+            let largest = -1;                 // index of the answer with the largest score
             for(let i=0;i<score.length;i++){
 
                 if(score[i]>largest)
                     largest=i;
 
             }
-            finalResult = quiz.results[largest];
+            finalResult = quiz.results[largest]; // sets the final result to be the result at the result index with the highest score
 
         }
 
@@ -173,7 +183,6 @@ class Quiz extends React.Component{
 
                             <Question key             = { "question-"+i            }
                                       question        = { ele                      } 
-                                      save            = { this.saveBlock           }
                                       qInd            = { i                        }
                                       backgroundColor = { ele.backgroundColor      }
                                       color           = { ele.color                }

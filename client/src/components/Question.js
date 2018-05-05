@@ -1,7 +1,6 @@
 import React        from "react";
 import Answer    from "./Answer";
-import {Card, CardBody, Button, CardFooter, Row } from 'reactstrap';
-import { SketchPicker } from 'react-color';
+import {Card, Row } from 'reactstrap';
 import "./NewQuestion.css"
 
 class Question extends React.Component{
@@ -33,26 +32,21 @@ class Question extends React.Component{
 
                             <Answer key             = { "question-" + this.props.qInd + "-answer-" + i } 
                                     ind             = { i                                              }
-                                    image           = { ele.image === "" ? false : ele.image           }
+                                    image           = { ele.image                                      }
                                     qInd            = { this.props.qInd                                }
                                     type            = { this.props.type                                } 
                                     title           = { ele.title                                      }
                                     color           = { ele.color                                      }
                                     backgroundColor = { ele.backgroundColor                            } 
                                     results         = { this.props.results                             }
-                                    picked          = { ele.picked }
+                                    picked          = { ele.picked                                     }
                                     plusOne         = { ele.plusOne                                    } 
                                     plusTwo         = { ele.plusTwo                                    } 
                                     howMany         = { this.props.question.answers.length             } 
-                                    score = { this.props.score }/>
+                                    score           = { this.props.score                               }/>
                         ) : ""
                     }
-                    {this.props.question.answers.length < 9 ?
                     
-                    <div className={this.props.question.answers.length < 3 ? "col-md-6" : "col-md-4"}>
-                    
-
-                    </div> :""}
                 </Row>
             
             </div>

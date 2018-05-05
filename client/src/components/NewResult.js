@@ -77,7 +77,7 @@ class NewResult extends React.Component{
                     {/* Displays image, search block, or image search */}
 
                     <Col>
-                        {!this.state.search && this.state.result.image == "" ?
+                        {!this.state.search && this.state.result.image === "" ?
                             <div className="search-for result-image-search" onClick={()=>this.setState({search: true})}>
                                     <i className="fa fa-search"/>
                                         <h5>Add An Image</h5>
