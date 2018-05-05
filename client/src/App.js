@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home       from "./pages/Home";
 import EditQuiz   from "./pages/EditQuiz";
 import FourOhFour from "./pages/Error";
-import Quiz       from "./pages/Quiz"
-
+import Quiz       from "./pages/Quiz";
+import Navbar     from "./components/Navbar";
 
 /* https://tylermcginnis.com/react-router-pass-props-to-components/ */
 
@@ -41,6 +41,8 @@ class App extends React.Component{
             
             {/* Home page */}
             <Route exact path="/"                render={ (props)=> <Home       {...props} user={this.state.user} /> } />
+            {/* Navbar */}
+            <Route exact path="/components/Navbar" render={ (props)=> <Navbar   {...props} user={this.state.user} /> } />
             {/* Quizzes by User */}
             <Route exact path="/userQuizzes/:id" render={ (props)=> <Home       {...props} /> } />
             {/* Overflow quiz pages */}

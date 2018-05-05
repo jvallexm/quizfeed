@@ -23,4 +23,4 @@ const QuizListItem = () =>{
 
 }
 
-export default QuisListItem;
+export default QuizListItem;
