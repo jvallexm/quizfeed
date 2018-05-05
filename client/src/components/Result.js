@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col } from 'reactstrap';
 import "./css/Result.css"
+import API          from "../utils/api";
 import {
     FacebookShareCount,
     LinkedinShareCount,
@@ -35,8 +36,6 @@ class NewResult extends React.Component{
         this.state = {
             search: false
         }
-        this.setImage = this.setImage.bind(this);
-        this.handleChange = this.handleChange.bind(this);
 
     }
 
@@ -54,20 +53,11 @@ class NewResult extends React.Component{
     componentWillMount(){
 
         console.log("moutning props")
+        console.log(this.props.stars);
         this.setState({result: this.props.result});
 
     }
-    setImage(src){
-        
-        this.props.setImage(src,this.props.rInd);
-        this.setState({search: false});
 
-    }
-    handleChange(e){
-
-        this.props.handleChange(e,this.props.rInd);
-
-    }
     render(){
         // const shareUrl = window.location.href;
         const shareUrl = 'http://quizfeed.com';
@@ -104,51 +94,51 @@ class NewResult extends React.Component{
 
                 <Row>
                     <Col sm="12" className="text-right">
-                <div className="share-network">
-          <FacebookShareButton
-            url={shareUrl}
-            quote={title}
-            picture={this.state.result.image}
-            className="share-network-btn">
-            <FacebookIcon
-              size={32}
-              round />
-          </FacebookShareButton>
-        </div>
+                        <div className="share-network">
+                            <FacebookShareButton
+                                url={shareUrl}
+                                quote={title}
+                                picture={this.state.result.image}
+                                className="share-network-btn">
+                                <FacebookIcon
+                                size={32}
+                                round />
+                            </FacebookShareButton>
+                        </div>
 
-        <div className="share-network">
-          <TwitterShareButton
-            url={shareUrl}
-            title={title}
-            className="share-network-btn">
-            <TwitterIcon
-              size={32}
-              round />
-          </TwitterShareButton>
-        </div>
+                        <div className="share-network">
+                            <TwitterShareButton
+                            url={shareUrl}
+                            title={title}
+                            className="share-network-btn">
+                            <TwitterIcon
+                            size={32}
+                            round />
+                            </TwitterShareButton>
+                        </div>
 
-        <div className="share-network">
-          <WhatsappShareButton
-            url={shareUrl}
-            title={title}
-            separator=":: "
-            className="share-network-btn">
-            <WhatsappIcon size={32} round />
-          </WhatsappShareButton>
-          </div>
+                        <div className="share-network">
+                        <WhatsappShareButton
+                            url={shareUrl}
+                            title={title}
+                            separator=":: "
+                            className="share-network-btn">
+                            <WhatsappIcon size={32} round />
+                        </WhatsappShareButton>
+                        </div>
 
-        <div className="share-network">
-          <LinkedinShareButton
-            url={shareUrl}
-            title={title}
-            windowWidth={750}
-            windowHeight={600}
-            className="share-network-btn">
-            <LinkedinIcon
-              size={32}
-              round />
-          </LinkedinShareButton>
-        </div>
+                    <div className="share-network">
+                    <LinkedinShareButton
+                        url={shareUrl}
+                        title={title}
+                        windowWidth={750}
+                        windowHeight={600}
+                        className="share-network-btn">
+                        <LinkedinIcon
+                        size={32}
+                        round />
+                    </LinkedinShareButton>
+                    </div>
 
         <div className="share-network">
           <PinterestShareButton
@@ -204,7 +194,15 @@ class NewResult extends React.Component{
                     </Row>
            </CardBody>
             </Card>
-</div>
+        </div>
+            <Button onClick={()=>this.props.pushStar()}>
+                {
+                    ! this.props.user
+                    ? <span>Login to Give This Quiz a <i className="fa fa-star"/>!</span>
+                    : this.props.stars.indexOf(this.props.user._id) === -1 
+                    ? <span>Give This Quiz a <i className="fa fa-star"/>!</span>
+                    : <span>You Gave This Quiz a <i className="fa fa-star"/>!</span>}
+            </Button>
 </center>
 
 

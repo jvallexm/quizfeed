@@ -109,17 +109,20 @@ module.exports = {
 
         let type = req.params.type;
 
+        console.log("trying to push to " + req.params.type)
+        console.log(req.body);
+
         if(type === "comment"){
 
             /* Pushes a new comments to the form data comments array */
 
-            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"comments": req.body}})
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"comments": req.body.user_id}})
                        .then(q => res.send(true))
                        .catch(err => res.status(422).json(err));
 
         } else if (type === "star"){
 
-            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"stars": req.body}})
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"stars": req.body.user_id}})
                        .then(q => res.send(true))
                        .catch(err => res.status(422).json(err));
 
