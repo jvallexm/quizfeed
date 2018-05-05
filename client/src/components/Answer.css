@@ -54,15 +54,25 @@ CardHeader{
     flex-direction    : column; 
 }
 .image-head{
-    height: 200px;
+    height: 220px;
     background-color: #353079!important;
 }
+
+/* .box-shadow {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 222px;
+    border-width: 8px!important;
+    border-color: #0248a5!important;
+} */
 
 .card-header {
     padding: 0!important;
     justify-content: center;
     display: flex;
     flex-direction    : column; 
+    border-bottom: 0px!important;
 }
 .smol{
     margin-top: -15px;
@@ -89,6 +99,7 @@ CardHeader{
 
     width: 100%;
    
+   
     -webkit-transition: all 1s ease;
        -moz-transition: all 1s ease;
          -o-transition: all 1s ease;
@@ -98,5 +109,17 @@ CardHeader{
    
   .grow img:hover {
     width: 110%;
+    
 
+  }
+
+  .fa-check {
+    opacity: 1.0!important;
+    -webkit-text-stroke: 1px white;
+    color: black;
+    text-shadow:
+      -1px -1px 0 rgb(255, 255, 255),  
+       1px -1px 0 rgb(255, 255, 255),
+       -1px 1px 0 rgb(255, 255, 255),
+        1px 1px 0 rgb(255, 255, 255);
   }
