@@ -41,7 +41,7 @@ class Answer extends React.Component {
 
                 {/* Icons bar */}
 
-                <Card className="mb-4 box-shadow">
+                <Card className="mb-4 box-shadow" style={this.props.picked ? {border: "solid red 5px"} : null}>
 
                     <CardHeader className={this.props.type === "text" ? "text-block-head" : "image-head"} onClick={()=>this.props.score(this.props.qInd,this.props.ind,this.props.plusOne,this.props.plusTwo)}>
 
