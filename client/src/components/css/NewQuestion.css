@@ -1,6 +1,16 @@
 .question-card {
 	width: 75%;
 }
+.answer-row{
+
+	width: 75%;
+	padding: 20px;
+
+}
+
+.soft-jumbo{
+	padding: 50px !important;
+}
 
 .question-title {
 	width: 90%;
@@ -20,6 +30,11 @@
 	max-height: 200px;
 	overflow: scroll;
 	width: 100%;
+}
+.question-render-card-body{
+
+	padding: 50px;
+
 }
 .search-image{
 
@@ -49,6 +64,7 @@
 	z-index: 2;
 	bottom: 10px;
 	right: 10px;
+	opacity: .5;
 }
 .sidebar{
 	position: absolute;
@@ -58,6 +74,12 @@
 	color: gray;
 }
 
-.card-body {
+.close-right {
+	opacity: .5;
 	border-radius: .25rem .25rem 0rem 0rem!important;
+}
+
+.btn-trash {
+	padding: .15rem .4rem!important;
+    font-size: .85rem!important;
 }

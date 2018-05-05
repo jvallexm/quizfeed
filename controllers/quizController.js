@@ -9,8 +9,8 @@ module.exports = {
 
         console.log("I find quiz")
 
-        db.Quiz.find({})
-               .sort({created_on: -1})
+        db.Quiz.find({isDraft: false})
+               .sort({_id: -1})
                .then(quizzes =>{
                    console.log(quizzes);
                    res.json(quizzes)
@@ -22,7 +22,7 @@ module.exports = {
 
     findAllByUser: (req,res)=>{
 
-        db.Headline.find({created_by: req.params.id})
+        db.Quiz.find({created_by: req.params.id})
                .sort({created_on: -1})
                .then(quizzes => res.json(quizzes))
                .catch(err => res.send(false));
@@ -61,12 +61,14 @@ module.exports = {
 
     publish: (req,res)=>{
 
-        db.Quiz.findOneAndUpdate({_id: req.params.id},req.body.quiz)
-               .then(q =>{
-                     db.Headline.create(req.body.headline)
-                                .then(done => res.send(true))
-                                .catch(err => res.status(422).json(err))
-               })
+        let quiz = req.body;
+        quiz.isDraft = false;
+
+        console.log("I publish");
+        console.log(quiz.isDraft);
+
+        db.Quiz.findOneAndUpdate({_id: req.params.id},quiz)
+               .then(q=> res.send(true))
                .catch(err => res.status(422).json(err));
 
     },
@@ -111,13 +113,13 @@ module.exports = {
 
             /* Pushes a new comments to the form data comments array */
 
-            db.Headline.findOneAndUpdate({_id: req.params.id},{$push: {"comments": req.body}})
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"comments": req.body}})
                        .then(q => res.send(true))
                        .catch(err => res.status(422).json(err));
 
         } else if (type === "star"){
 
-            db.Headline.findOneAndUpdate({_id: req.params.id},{$push: {"stars": req.body}})
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"stars": req.body}})
                        .then(q => res.send(true))
                        .catch(err => res.status(422).json(err));
 

@@ -7,10 +7,11 @@ router.route("/")
 
 router.route("/edit/:id")
       .post(quizController.saveDraft)
+      .put(quizController.publish)
 
 router.route("/:id")
       .get(quizController.findOne)        // Finds a quiz by id
-      .post(quizController.editQuiz)      // Updates fields of a quiz
+      .post(quizController.publish)      // Updates fields of a quiz
       .delete(quizController.deleteOne);  // Deletes a quiz
  
 router.route("/data/:type/:id")

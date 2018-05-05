@@ -2,7 +2,7 @@ import React        from "react";
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, CardSubTitel, Button} from 'reactstrap';
 
 
-const QuizListItem = () =>{
+const QuizListItem = (props) =>{
 
 
   return (

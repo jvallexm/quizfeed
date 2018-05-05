@@ -1,7 +1,7 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button, Jumbotron } from "reactstrap";
+import { Button, Row } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
@@ -30,14 +30,15 @@ class EditQuiz extends React.Component{
                 author_id: this.props.user._id,
                 comments: [],
                 stars: [],
-                results: []
+                responses: []
             },
             redirect: false,
             isNew: false,
             displayColorPicker: false,
             bg: false,
             addingQuestion: false,
-            published: false
+            published: false,
+            errors: []
 
         }
 
@@ -61,12 +62,12 @@ class EditQuiz extends React.Component{
 
             if(this.state.quiz.isDraft && this.state.quiz.title !== "" && this.state.quiz.questions.length > 0){
 
-                console.log("autosaving...")
+                console.log("autosaving..." + this.state.published)
 
                 if(!this.state.published)
 
                     API.postQuiz(this.state.quiz).then((r)=>{
-                        if(r && !this.state.published)
+                            props.history.push("/editquiz/" + this.state.quiz._id);
                             this.setState({published: true});
                     })
 
@@ -78,7 +79,7 @@ class EditQuiz extends React.Component{
                 console.log("Autosaving is disabled for published quizzes");
             }
 
-        },60000);
+        },3000);
 
     }
     
@@ -86,8 +87,6 @@ class EditQuiz extends React.Component{
     componentWillMount(){
 
         let id = this.props.match.params.id;
-
-        API.findAll().then(arr=>console.log(arr));
 
         /* If id is part of the request it tried to find the quiz to edit */
 
@@ -97,18 +96,24 @@ class EditQuiz extends React.Component{
 
             API.getQuizById(id).then(res=>{
 
-                /* Needs logic to set redirect to true if the user is not the quiz author */
-                
-
-                if(res.data){
-
-                    console.log("Quiz found");
-
+                if(!res.data){
+                    this.setState({redirect: true});
                 } else {
 
-                    console.log("Error: no quiz");
-                    this.setState({redirect: true});
+                    console.log(`author quiz ${res.data.author_id} user ${this.props.user._id}`)
 
+                    /* Needs logic to set redirect to true if the user is not the quiz author */
+
+                    if(res.data.author_id === this.props.user._id){
+
+                        this.setState({quiz: res.data, published: true});
+
+                    } else {
+
+                        console.log("Error: no quiz");
+                        this.setState({redirect: true});
+
+                    }
                 }
 
             });
@@ -370,6 +375,66 @@ class EditQuiz extends React.Component{
 
     }
 
+    nextPath(path) {
+        this.props.history.push(path);
+    }
+
+    publish(){
+
+        console.log("trying to publish");
+
+        let quiz = this.state.quiz;
+        let errors = [];
+
+        if(quiz.title === ""){
+
+            errors.push("Your quiz needs to have a title!");
+
+        }
+        if(quiz.questions.length < 2){
+
+            errors.push("Your quiz needs at least two questions")
+
+        }
+        for(let i=0;i<quiz.questions.length;++i){
+
+            let thisQuestion = quiz.questions[i];
+            if(!thisQuestion.question){
+                errors.push("Question " + (i+1) + " needs a title!");
+            }
+            if(thisQuestion.answers.length < 2){
+                errors.push("Question " + (i+1) + " needs at least two answers!");
+            }
+
+            let type = thisQuestion.type;
+
+            thisQuestion.answers.forEach(a=>{
+
+                if(type !== "text" && a.image === ""){
+                    errors.push("Some answers on question " +(i+1) + " are missing images!");
+                } 
+
+                if(type !== "image" && a.title === ""){
+
+                    errors.push("Some answers on question " +(i+1) + " are missing text!")
+
+                }
+
+            });
+
+
+        }
+
+        console.log(errors);
+
+        if(errors.length === 0)
+            API.editQuiz(this.state.quiz._id,this.state.quiz).then(res => this.nextPath("/"));
+        else
+            this.setState({errors: errors});
+
+
+    }
+
     render(){
 
         // Redirects on an error
@@ -424,7 +489,8 @@ class EditQuiz extends React.Component{
                                className   = "quiz-title" 
                                style       = { {color: this.state.quiz.color} }
                                placeholder = { this.state.quiz.color === "black" ? "Type Here to Give Your Quiz a Title" : "Enter a Title to See Your Color Changes!" }
-                               onChange    = { this.handleChange} />
+                               onChange    = { this.handleChange } 
+                               value       = { this.state.quiz.title }/>
                     </div>
 
                 </section>
@@ -454,6 +520,7 @@ class EditQuiz extends React.Component{
                                          question                = { ele                            } 
                                          save                    = { this.saveBlock                 }
                                          qInd                    = { i                              }
+                                         title = {ele.title}
                                          backgroundColor         = { ele.backgroundColor            }
                                          color                   = { ele.color                      }
                                          type                    = { ele.type                       } 
@@ -472,7 +539,7 @@ class EditQuiz extends React.Component{
                         )}
 
                 </center>
-
+<Row>
                 { !this.state.addingQuestion 
 
                     ? <button className="btn btn-add-block" 
@@ -483,11 +550,19 @@ class EditQuiz extends React.Component{
                     : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
                                 newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
                                 newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
-
+</Row>
                 {/**/}
-
-                <button className = "jumbotron">Publish</button>
-
+                
+            <Row>
+                <div className="errors">
+                    {this.state.errors.length > 0 ? <h3>Errors!</h3> : ""}
+                    <ul>
+                    {this.state.errors.map((err,i)=> <li key={"error-" + i}>{err}</li>)}
+                    </ul>
+                </div>
+                <button disabled={!this.state.published ? "disabled" : false}
+                        className = "jumbotron btn-publish" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ</button>
+            </Row>
              </div>
 
         )

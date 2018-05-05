@@ -2,7 +2,7 @@ import React        from "react";
 import NewAnswer    from "./NewAnswer";
 import {Card, CardBody, Button, CardFooter, Row } from 'reactstrap';
 import { SketchPicker } from 'react-color';
-import "./NewQuestion.css"
+import "./css/NewQuestion.css"
 
 class NewQuestion extends React.Component{
 
@@ -116,7 +116,8 @@ class NewQuestion extends React.Component{
 
                 <div className="close-bottom-right">
 
-                    <Button aria-label="Trash" 
+                    <Button className="btn-trash"
+                            aria-label="Trash" 
                             onClick={()=>this.props.trash()} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
@@ -126,14 +127,20 @@ class NewQuestion extends React.Component{
 
                 </div>
 
+                
+
                 <CardBody className="question-card-body" style={{backgroundColor: this.props.backgroundColor}}>
+
+                
                
                     <input className   = "question-title" 
                            name        = "question" 
                            id          = "quizQuestion" 
-                           placeholder = {this.props.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
-                           onChange    = {this.handleChange} 
-                           style       = {{backgroundColor: this.props.backgroundColor, color: this.props.color}}/>
+                           value       = { this.props.question.question }
+                           placeholder = { this.props.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
+
+                           onChange    = { this.handleChange} 
+                           style       = { {backgroundColor: this.props.backgroundColor, color: this.props.color}}/>
   
                     <br/>
 
@@ -177,8 +184,6 @@ class NewQuestion extends React.Component{
 
                 </CardFooter>
                 </Card>
-
-
                 
             </div>
 

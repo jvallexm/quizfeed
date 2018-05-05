@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col } from 'reactstrap';
-import "./NewResult.css"
+import "./css/NewResult.css"
 import ImageSearch from './ImageSearch';
 
 class NewResult extends React.Component{
@@ -53,13 +53,14 @@ class NewResult extends React.Component{
 
                 {/* Result buttons */}
 
-                <div className="close-left">
+                <div className="close">
 
                     {/* Search again after image has been selected */}
 
                     {this.state.result.image !== "" ?
 
-                    <Button aria-label="Text" 
+                    <Button className="btn-search"
+                            aria-label="Text" 
                             onClick={()=> this.setState({search: !this.state.search})} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
@@ -76,7 +77,7 @@ class NewResult extends React.Component{
                     {/* Displays image, search block, or image search */}
 
                     <Col>
-                        {!this.state.search && this.state.result.image == "" ?
+                        {!this.state.search && this.state.result.image === "" ?
                             <div className="search-for result-image-search" onClick={()=>this.setState({search: true})}>
                                     <i className="fa fa-search"/>
                                         <h5>Add An Image</h5>

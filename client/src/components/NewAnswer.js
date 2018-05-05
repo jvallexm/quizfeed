@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardBody, Button, CardHeader, CardFooter, FormGroup, Label, Col, Input } from 'reactstrap';
-import "./NewAnswer.css"
+import "./css/NewAnswer.css"
 import ImageSearch from "./ImageSearch";
 import {SketchPicker} from 'react-color';
 
@@ -130,7 +130,8 @@ class NewAnswer extends React.Component {
                             
                         ?
 
-                        <Button aria-label="Close" 
+                        <Button className="btn-search"
+                                aria-label="Close" 
                                 onClick={()=>this.setState({search: !this.state.search})} 
                                 title={this.state.search ? "Go Back" : "Search for a new image"}>
 
@@ -147,7 +148,8 @@ class NewAnswer extends React.Component {
 
                     <div className="close-bottom-right">
 
-                        <Button aria-label="Trash" 
+                        <Button className="btn-trash"
+                                aria-label="Trash" 
                                 onClick={()=>this.props.trash()} 
                                 title="Save Your Changes!">
                             <span aria-hidden="true">
@@ -165,7 +167,7 @@ class NewAnswer extends React.Component {
                             this.props.type !== "image" && !this.state.search && (this.props.image || this.props.type === "text")
                             ?    
                                 <div className="text-float" style={this.props.type === "text" ? {color: this.props.color, backgroundColor: this.props.backgroundColor} : {color: this.props.color }}>
-                                    {this.props.title}
+                                    <h2>{this.props.title}</h2>
                                 </div>
 
                             :""
@@ -185,7 +187,10 @@ class NewAnswer extends React.Component {
 
                         : this.props.image && !this.state.search && this.props.type !== "text"
 
-                        ? <img className="answer-image" alt="" src={this.props.image}/>
+                        ? 
+                            <div className="grow pix">
+                                <img className="answer-image" alt="" src={this.props.image}/>
+                            </div>
 
                         : this.props.type !== "text" ? <ImageSearch setImage={this.setImage}/> : ""}
                         
@@ -232,7 +237,7 @@ class NewAnswer extends React.Component {
 
                                 <div>
                                 <FormGroup row>
-          <Label for="plusTwo" bsSize="sm" className="text-right" sm={4}>+2 Points</Label>
+          <Label for="plusTwo" className="text-right" sm={4}>+2 Points</Label>
           <Col sm={8}>
             <Input type="select" 
                     bsSize="sm"

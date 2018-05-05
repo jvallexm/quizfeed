@@ -47,3 +47,23 @@
     margin-bottom: 5px;
     min-width: 140px;
 }
+
+.btn-publish {
+    width: 100%;
+    font-weight: 700;
+
+}
+
+.btn-publish:hover, .btn-publish:focus, .btn-publish:active, .btn-publish.active, .btn-publish:active:focus, .open>.dropdown-toggle.btn-publish {
+    color: #fff;
+    background-color: #00b3db;
+    border-color: #285e8e; /*set the color you want here*/
+}
+
+Card{
+    box-shadow: 2px 2px 2px black;
+}
+
+#result{
+    margin-bottom: 150px;
+}

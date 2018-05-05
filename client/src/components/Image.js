@@ -3,7 +3,7 @@ import API   from "../utils/api";
 import "./css/NewQuestion.css"
 
 
-class ImageSearch extends React.Component{
+class Image extends React.Component{
 
     constructor(props){
         super(props);
@@ -66,4 +66,4 @@ class ImageSearch extends React.Component{
 
 }
 
-export default ImageSearch;
+export default Image;

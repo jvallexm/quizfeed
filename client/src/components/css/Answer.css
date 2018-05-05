@@ -1,0 +1,125 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+          box-sizing: border-box;
+}
+ 
+body {
+  background: #333;
+}
+ 
+.pic {
+  /* float: left; */
+  overflow: hidden;
+}
+
+.answer-title {
+    width:100%;
+    background-color: rgba(0,0,0,0);
+    border-width: 0;
+
+}
+.search-for{
+
+    color: white;
+    height: 100%;
+	min-width: 100%;
+    background-color: gray;
+    display           : flex;
+    justify-content   : center;
+    flex-direction    : column; 
+
+}
+
+.text-block-head{
+
+    height: 200px;
+
+}
+
+CardHeader{
+    position: relative;
+}
+
+.text-float{
+    left: 0px;
+    top: 0px;
+    padding: 5px;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    display           : flex;
+    justify-content   : center;
+    flex-direction    : column; 
+}
+.image-head{
+    height: 220px;
+    background-color: #353079!important;
+}
+
+/* .box-shadow {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 222px;
+    border-width: 8px!important;
+    border-color: #0248a5!important;
+} */
+
+.card-header {
+    padding: 0!important;
+    justify-content: center;
+    display: flex;
+    flex-direction    : column; 
+    border-bottom: 0px!important;
+}
+.smol{
+    margin-top: -15px;
+    font-size: 50%;
+}
+
+.btn-success {
+    width: 100%
+}
+
+.answer-block {
+    padding: 10px!important;
+}
+
+.close-bottom-right{
+	position: absolute;
+	z-index: 2;
+	bottom: 10px;
+	right: 10px;
+}
+
+/*GROW*/
+.grow img {
+
+    width: 100%;
+   
+   
+    -webkit-transition: all 1s ease;
+       -moz-transition: all 1s ease;
+         -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+            transition: all 1s ease;
+  }
+   
+  .grow img:hover {
+    width: 110%;
+    
+
+  }
+
+  .fa-check {
+    opacity: 1.0!important;
+    -webkit-text-stroke: 1px white;
+    color: black;
+    text-shadow:
+      -1px -1px 0 rgb(255, 255, 255),  
+       1px -1px 0 rgb(255, 255, 255),
+       -1px 1px 0 rgb(255, 255, 255),
+        1px 1px 0 rgb(255, 255, 255);
+  }
