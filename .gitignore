@@ -4,3 +4,4 @@ DS_Store
 .env
 yarn.lock
 .DS_Store
+yarn-error.log
