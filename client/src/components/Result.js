@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col } from 'reactstrap';
-import "./NewResult.css"
+import "./Result.css"
 import ImageSearch from './ImageSearch';
 import {
     FacebookShareCount,
@@ -79,6 +79,8 @@ class NewResult extends React.Component{
         return(
             <center>
             <div className="space">
+            <meta property="og:image" content={this.state.result.image}/>
+            <meta property="og:image:secure_url" content={this.state.result.image}/>
             <Card className="result-card text-center">
             <CardBody>
 
@@ -102,111 +104,116 @@ class NewResult extends React.Component{
                         </div>
                     </Col>
                 </Row>
+
                 <Row>
-                <div className="Demo__some-network">
+                    <Col sm="12" className="text-right">
+                <div className="share-network">
           <FacebookShareButton
             url={shareUrl}
             quote={title}
-            className="Demo__some-network__share-button">
+            picture={this.state.result.image}
+            className="share-network-btn">
             <FacebookIcon
               size={32}
               round />
           </FacebookShareButton>
         </div>
 
-        <div className="Demo__some-network">
+        <div className="share-network">
           <TwitterShareButton
             url={shareUrl}
             title={title}
-            className="Demo__some-network__share-button">
+            className="share-network-btn">
             <TwitterIcon
               size={32}
               round />
           </TwitterShareButton>
         </div>
 
-        <div className="Demo__some-network">
+        <div className="share-network">
           <WhatsappShareButton
             url={shareUrl}
             title={title}
             separator=":: "
-            className="Demo__some-network__share-button">
+            className="share-network-btn">
             <WhatsappIcon size={32} round />
           </WhatsappShareButton>
           </div>
 
-        <div className="Demo__some-network">
+        <div className="share-network">
           <LinkedinShareButton
             url={shareUrl}
             title={title}
             windowWidth={750}
             windowHeight={600}
-            className="Demo__some-network__share-button">
+            className="share-network-btn">
             <LinkedinIcon
               size={32}
               round />
           </LinkedinShareButton>
         </div>
 
-        <div className="Demo__some-network">
+        <div className="share-network">
           <PinterestShareButton
             url={String(window.location)}
             // media={`${String(window.location)}/${exampleImage}`}
+            media={this.state.result.image}
             windowWidth={1000}
             windowHeight={730}
-            className="Demo__some-network__share-button">
+            className="share-network-btn">
             <PinterestIcon size={32} round />
           </PinterestShareButton>
         </div>
 
-        <div className="Demo__some-network">
+        <div className="share-network">
           <RedditShareButton
             url={shareUrl}
             title={title}
             windowWidth={660}
             windowHeight={460}
-            className="Demo__some-network__share-button">
+            className="share-network-btn">
             <RedditIcon
               size={32}
               round />
           </RedditShareButton>
         </div>
 
-        <div className="Demo__some-network">
+        <div className="share-network">
           <TumblrShareButton
             url={shareUrl}
             title={title}
             windowWidth={660}
             windowHeight={460}
-            className="Demo__some-network__share-button">
+            className="share-network-btn">
             <TumblrIcon
               size={32}
               round />
           </TumblrShareButton>
         </div>
 
-        <div className="Demo__some-network">
+        <div className="share-network">
           <LivejournalShareButton
             url={shareUrl}
             title={title}
             description={shareUrl}
-            className="Demo__some-network__share-button"
+            className="share-network-btn"
           >
             <LivejournalIcon size={32} round />
           </LivejournalShareButton>
         </div>
 
-        <div className="Demo__some-network">
+        <div className="share-network">
           <EmailShareButton
             url={shareUrl}
             subject={title}
             body="body"
-            className="Demo__some-network__share-button">
+            className="share-network-btn">
             <EmailIcon
               size={32}
               round />
           </EmailShareButton>
         </div>
+        </Col>
                     </Row>
            </CardBody>
             </Card>
