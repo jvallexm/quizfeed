@@ -33,7 +33,9 @@ class Quiz extends React.Component{
                 results: []
             },
             redirect: false,
-            score: []
+            score: [],
+            answered: 0,
+            finalResult: false
 
         },
         this.score = this.score.bind(this);
@@ -77,13 +79,9 @@ class Quiz extends React.Component{
 
     score(qInd,aInd,plusOne,plusTwo){
 
-        console.log("trying to score " + qInd);
-        console.log("at answer " + aInd)
-        console.log(plusOne + " " + plusTwo)
-        console.log("score " + this.state.score)
-
-        let quiz = this.state.quiz;
-        let score = this.state.score;
+        let quiz     = this.state.quiz;
+        let score    = this.state.score;
+        let answered = this.state.answered;
 
         let oldAnswer;
         quiz.questions[qInd].answered = true;
@@ -102,10 +100,28 @@ class Quiz extends React.Component{
             score[plusOne] ++;
         if(plusTwo > -1)
             score[plusTwo] +=2
+        let finalResult = false;
+        let resultCheck = 0;
+        quiz.questions.forEach(i=>{
+            if(i.answered)
+                resultCheck++;
+        })
+        if(resultCheck === quiz.questions.length){
+
+            let largest = 0;
+            for(let i=0;i<score.length;i++){
+
+                if(i>largest)
+                    largest=i;
+
+            }
+            finalResult = quiz.results[largest];
 
 
+        }
 
-        this.setState({quiz: quiz, score: score});
+
+        this.setState({quiz: quiz, score: score, answered: answered, finalResult: finalResult});
 
     }
 
@@ -149,19 +165,12 @@ class Quiz extends React.Component{
 
                 </center>
 
-                                {
-                    this.state.quiz.results.map((ele,i)=>
+                    { this.state.finalResult ?
 
-                        <Result key={"result-"+i}
-                                   result={ele}
-                                   save={this.saveBlock}
-                                   rInd={i}
-                                   handleChange={this.handleResultChange}
-                                   setImage    = { this.handleResultImageChange }
-                                   trash = {()=>this.deleteBlock("results",i)}/>
+                      <Result result={this.state.finalResult} />
+                    
+                    :""}
 
-                    )
-                }
              </div>
 
         )
