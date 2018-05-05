@@ -30,7 +30,8 @@ class EditQuiz extends React.Component{
                 author_id: this.props.user._id,
                 comments: [],
                 stars: [],
-                responses: []
+                responses: [],
+                blurb: ""
             },
             redirect: false,
             isNew: false,
@@ -105,6 +106,9 @@ class EditQuiz extends React.Component{
                     /* Needs logic to set redirect to true if the user is not the quiz author */
 
                     if(res.data.author_id === this.props.user._id){
+
+                        if(!res.data.blurb)
+                            res.data.blurb="";
 
                         this.setState({quiz: res.data, published: true});
 
@@ -195,7 +199,9 @@ class EditQuiz extends React.Component{
     handleChange(e){
 
         let quiz = this.state.quiz;
-        if(e.target.value > 60)
+        if(e.target.name === "title" && e.target.value.length > 60)
+            return false;
+        if(e.target.name === "blurb" && e.target.value.length > 250)
             return false;
         quiz[e.target.name] = e.target.value;
         this.setState({quiz: quiz});
@@ -444,7 +450,7 @@ class EditQuiz extends React.Component{
             
         return(
         
-            <div className="container">
+            <div className="container container-fluid">
 
                 <section className="jumbotron text-center" style={{backgroundColor: this.state.quiz.backgroundColor}}>
 
@@ -493,6 +499,10 @@ class EditQuiz extends React.Component{
                                value       = { this.state.quiz.title }/>
                     </div>
 
+                </section>
+
+                <section id="blurb" className="text-center container-fluid">
+                    <textarea id="blurb-box" name="blurb" onChange={this.handleChange} value={this.state.quiz.blurb} placeholder={"Tell us a little bit about your quiz!"}/>
                 </section>
 
                 <button className="btn btn-add-block" 
