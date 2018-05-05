@@ -16,7 +16,6 @@ import {
     RedditShareButton,
     EmailShareButton,
     TumblrShareButton,
-    LivejournalShareButton,
   
     FacebookIcon,
     TwitterIcon,
@@ -27,7 +26,6 @@ import {
     RedditIcon,
     TumblrIcon,
     EmailIcon,
-    LivejournalIcon,
   } from 'react-share';
 
 class NewResult extends React.Component{

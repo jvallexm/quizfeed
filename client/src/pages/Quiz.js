@@ -112,7 +112,7 @@ class Quiz extends React.Component{
                 if(i.plusTwo)
                     score[i.plusTwo] -= 2;
             }
-            i.picked = false
+            i.picked = "false"
         });
 
         /* Sets the current answer to picked */
