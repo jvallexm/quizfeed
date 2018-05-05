@@ -35,7 +35,8 @@ class Quiz extends React.Component{
             redirect: false,
             score: []
 
-        }
+        },
+        this.score = this.score.bind(this);
 
     }
     
@@ -57,7 +58,9 @@ class Quiz extends React.Component{
 
                 if(res.data){
 
-                    this.setState({quiz: res.data, published: true});
+                    let score = [];
+                    res.data.results.forEach(i => score.push(0))
+                    this.setState({quiz: res.data, score: score, published: true});
 
                 } else {
 
@@ -69,6 +72,27 @@ class Quiz extends React.Component{
             });
 
         }
+
+    }
+
+    score(qInd,aInd,plusOne,plusTwo){
+
+        console.log("trying to score " + qInd);
+        console.log("at answer " + aInd)
+        console.log(plusOne + " " + plusTwo)
+
+        let quiz = this.state.quiz;
+        quiz.questions[qInd].answered = true;
+        quiz.questions[qInd].answers[aInd].picked = true;
+        let score = this.state.score;
+        if(plusOne > -1)
+            score[plusOne] ++;
+        if(plusTwo > -1)
+            score[plusTwo] +=2
+
+
+
+        this.setState({quiz: quiz, score: score});
 
     }
 
@@ -98,14 +122,15 @@ class Quiz extends React.Component{
 
                         {this.state.quiz.questions.map((ele,i)=>
 
-                            <Question key                     = { "question-"+i                  }
-                                      question                = { ele                            } 
-                                      save                    = { this.saveBlock                 }
-                                      qInd                    = { i                              }
-                                      backgroundColor         = { ele.backgroundColor            }
-                                      color                   = { ele.color                      }
-                                      type                    = { ele.type                       } 
-                                      results                 = { this.state.quiz.results        } />
+                            <Question key             = { "question-"+i            }
+                                      question        = { ele                      } 
+                                      save            = { this.saveBlock           }
+                                      qInd            = { i                        }
+                                      backgroundColor = { ele.backgroundColor      }
+                                      color           = { ele.color                }
+                                      type            = { ele.type                 } 
+                                      results         = { this.state.quiz.results  } 
+                                      score           = { this.score               }/>
                             
                         )}
 

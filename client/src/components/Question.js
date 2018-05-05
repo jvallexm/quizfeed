@@ -43,9 +43,11 @@ class Question extends React.Component{
                                 color           = { ele.color                                      }
                                 backgroundColor = { ele.backgroundColor                            } 
                                 results         = { this.props.results                             }
+                                picked          = { ele.picked }
                                 plusOne         = { ele.plusOne                                    } 
                                 plusTwo         = { ele.plusTwo                                    } 
-                                howMany         = { this.props.question.answers.length             } />
+                                howMany         = { this.props.question.answers.length             } 
+                                score = { this.props.score }/>
                     ) : ""
                 }
                 {this.props.question.answers.length < 9 ?
