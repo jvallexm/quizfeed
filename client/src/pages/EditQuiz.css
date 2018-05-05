@@ -67,3 +67,7 @@ Card{
 #result{
     margin-bottom: 150px;
 }
+#blurb-box{
+    padding: 10px;
+    width: 75%;
+}
