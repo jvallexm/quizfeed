@@ -1,8 +1,7 @@
 import React from "react";
-import { Card, CardBody, Button, CardHeader, CardFooter, FormGroup, Label, Col, Input } from 'reactstrap';
+import { Card, CardHeader } from 'reactstrap';
 import "./Answer.css"
 import Image from "./Image";
-import {SketchPicker} from 'react-color';
 
 class Answer extends React.Component {
 
@@ -23,21 +22,6 @@ class Answer extends React.Component {
 
             <div className={this.props.howMany < 4 ? "col-md-6" : "col-md-4"}>
 
-                {/* Color picker popover */}
-
-                { 
-                
-                    this.state.displayColorPicker 
-                    
-                    ? <div className="popover">
-                        <div className="cover" onClick={ this.handleClose }/>
-                            <SketchPicker color ={ this.state.bg ? this.props.backgroundColor : this.props.color}
-                                        onChangeComplete={ this.handleChangeComplete }/>
-                    </div> 
-                    
-                    : null 
-                
-                }
 
                 {/* Icons bar */}
 

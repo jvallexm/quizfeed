@@ -58,16 +58,7 @@ class NewResult extends React.Component{
                     {/* Displays image, search block, or image search */}
 
                     <Col>
-                        {!this.state.search && this.state.result.image == "" ?
-                            <div className="search-for result-image-search" onClick={()=>this.setState({search: true})}>
-                                    <i className="fa fa-search"/>
-                                        <h5>Add An Image</h5>
-                            </div>
-                        : this.state.search ? 
-                            <div className="tall">
-                                <ImageSearch setImage={this.setImage}/> 
-                            </div>: 
-                        <img className="result-image" alt="Final Result" src={this.state.result.image}/>}
+                        <img className="result-image" alt="Final Result" src={this.state.result.image}/>
                     </Col>
 
                     {/* Where users fill in answers */}

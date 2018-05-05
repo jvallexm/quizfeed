@@ -1,7 +1,7 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button, Jumbotron, Row } from "reactstrap";
+import { Button, Row } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
@@ -30,7 +30,7 @@ class EditQuiz extends React.Component{
                 author_id: this.props.user._id,
                 comments: [],
                 stars: [],
-                results: []
+                responses: []
             },
             redirect: false,
             isNew: false,
