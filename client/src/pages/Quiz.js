@@ -125,10 +125,12 @@ class Quiz extends React.Component{
         })
         if(resultCheck === quiz.questions.length){
 
-            let largest = 0;
+            console.log(score)
+
+            let largest = -1;
             for(let i=0;i<score.length;i++){
 
-                if(i>largest)
+                if(score[i]>largest)
                     largest=i;
 
             }
