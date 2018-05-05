@@ -1,5 +1,5 @@
 import React        from "react";
-import { Row, Col } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, CardSubTitel, Button} from 'reactstrap';
 
 
 const QuizListItem = (props) =>{
