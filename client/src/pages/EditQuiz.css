@@ -59,3 +59,11 @@
     background-color: #00b3db;
     border-color: #285e8e; /*set the color you want here*/
 }
+
+Card{
+    box-shadow: 2px 2px 2px black;
+}
+
+#result{
+    margin-bottom: 150px;
+}

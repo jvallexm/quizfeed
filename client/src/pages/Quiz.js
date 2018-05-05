@@ -1,12 +1,10 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button, Jumbotron, Row } from "reactstrap";
 import Question from '../components/Question';
-import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
-import { SketchPicker } from 'react-color';
 import Result from "../components/Result";
+import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
 
@@ -29,60 +27,36 @@ class Quiz extends React.Component{
                 author: this.props.user.name,
                 author_id: this.props.user._id,
                 comments: [],
-                stars: [],
-                results: []
+                stars: []
             },
             redirect: false,
-            isNew: false,
-            displayColorPicker: false,
-            bg: false,
-            addingQuestion: false,
-            published: false
+            score: [],
+            answered: 0,
+            finalResult: false
 
+        };
+        this.score = this.score.bind(this);
+        this.scrollToBottom = this.scrollToBottom.bind(this);
+
+    }
+
+    scrollToBottom = () => {
+        scroll.scrollToBottom();
+    }
+    
+    componentDidUpdate(){
+
+
+        if(this.state.finalResult){
+            this.scrollToBottom();
         }
 
-        this.saveBlock                 = this.saveBlock.bind(this);
-        this.handleChange              = this.handleChange.bind(this);
-        this.pushNewBlock              = this.pushNewBlock.bind(this);
-        this.moveIt                    = this.moveIt.bind(this);
-        this.pushNewAnswer             = this.pushNewAnswer.bind(this);
-        this.handleAnswerColorChange   = this.handleAnswerColorChange.bind(this);
-        this.handleQuestionColorChange = this.handleQuestionColorChange.bind(this);
-        this.handleQuestionChange      = this.handleQuestionChange.bind(this);
-        this.handleAnswerImageChange   = this.handleAnswerImageChange.bind(this);
-        this.handleAnswerChange        = this.handleAnswerChange.bind(this);
-        this.handleResultChange        = this.handleResultChange.bind(this);
-        this.handleResultImageChange   = this.handleResultImageChange.bind(this);
-        this.deleteBlock               = this.deleteBlock.bind(this);
-        this.deleteAnswer              = this.deleteAnswer.bind(this);
-
-
-        this.interval  = setInterval(()=>{
-
-            if(this.state.quiz.isDraft && this.state.quiz.title !== "" && this.state.quiz.questions.length > 0){
-
-                console.log("autosaving..." + this.state.published)
-
-                if(!this.state.published)
-
-                    API.postQuiz(this.state.quiz).then((r)=>{
-                            this.setState({published: true});
-                    })
-
-                else
-                
-                    API.saveAsDraft(this.state.quiz._id, this.state.quiz)
-
-            } else {
-                console.log("Autosaving is disabled for published quizzes");
-            }
-
-        },3000);
 
     }
     
-    
     componentWillMount(){
+
+        console.log(window.location.href);
 
         let id = this.props.match.params.id;
 
@@ -96,13 +70,12 @@ class Quiz extends React.Component{
 
             API.getQuizById(id).then(res=>{
 
-                console.log(`author quiz ${res.data.author_id} user ${this.props.user._id}`)
 
-                /* Needs logic to set redirect to true if the user is not the quiz author */
+                if(res.data){
 
-                if(res.data.author_id === this.props.user._id){
-
-                    this.setState({quiz: res.data, published: true});
+                    let score = [];
+                    res.data.results.forEach(i => score.push(0))
+                    this.setState({quiz: res.data, score: score, published: true});
 
                 } else {
 
@@ -113,260 +86,72 @@ class Quiz extends React.Component{
 
             });
 
-        } else {
-
-            /* Needs logic to redirect if a user is not logged in */
-
-            console.log("this quiz is new!");
-            let quiz = this.state.quiz;
-            quiz._id = Date.now();
-
-            // POST QUIZ TO API then set state
-
-            this.setState({isNew: true});
-
         }
 
     }
 
-    saveAsDraft(){
+    score(qInd,aInd,plusOne,plusTwo){
 
-        API.saveAsDraft(this.quiz._id)
-           .then(res=>{
-               if(res)
-                 console.log("autosave success");
-           })
+        let quiz        = this.state.quiz;      // This quiz
+        let score       = this.state.score;     // The current score array
+        let answered    = this.state.answered;  // How many of the questions have been answered
+        let finalResult = false;                // If a final answer should be rendered
+        let resultCheck = 0;                    // How many of the quiz questions have been answered
 
-    }
+        quiz.questions[qInd].answered = true;  // Sets this question to be answered
 
-    /* Creates a new question block */
+        /* Sets the picked values of all the answers to fals */
 
-    pushNewBlock(arr,type){
+        quiz.questions[qInd].answers.forEach(i => {
 
-        let quiz = this.state.quiz;
-        console.log("pushing block " + type);
-        let newObj = arr === "questions" 
+            /* If an answer has already been picked it removes the score values from the scores array */
 
-                    /* Default question block */ 
-                              ? { type:            type,
-                                 backgroundColor: "aquamarine",
-                                 color: "black",
-                                 answers: []}
-                    /* Default result block */  
-                             : { title: "",
-                                 image: "",
-                                 srcUrl: "",
-                                 text: ""  };
-
-        console.log(newObj);
-
-        quiz[arr].push(newObj)
-        this.setState({quiz: quiz, addingQuestion: false});
-    }
-
-    /* Deletes a question from the quiz object */
-
-    deleteBlock(arr,ind){
-
-        let quiz = this.state.quiz;
-        let remove = quiz[arr].splice(ind,1);
-        this.setState({quiz: quiz});
-
-    }
-
-    /* Saves an edited block */
-
-    saveBlock(arr,ind,obj){
-
-        console.log(`Saving ${arr} at index ${ind}`)
-        let quiz = this.state.quiz;
-        quiz[arr][ind] = obj;
-        this.setState({quiz: quiz});
-
-    }
-
-    /* Change handler for the quiz input fields */
-
-    handleChange(e){
-
-        let quiz = this.state.quiz;
-        if(e.target.value > 60)
-            return false;
-        quiz[e.target.name] = e.target.value;
-        this.setState({quiz: quiz});
-
-    }
-
-    /* Saving for later
-
-    componentDidUpdate(prevProps, prevState, snapshot){
-
-        console.log("component did update");
-
-    }
-
-    */
-
-    /* Click handler for the color picker */
-
-    handleClick = (bg) => {
-
-        /* If bg is true, it sets the color picker to check the background
-           Otherwise is changes the text color  */
-
-        this.setState({ displayColorPicker: !this.state.colorpicker,
-                    bg: bg ? true : false })
-    };
-
-    /* Close handler for the color picker */
-
-    handleClose = () => {
-
-        this.setState({ displayColorPicker: false })
-
-    };
-
-    moveIt(up,ind,arr){
-
-       let quiz = this.state.quiz;
-       console.log(quiz[arr][ind]);
-       let remove = quiz[arr].splice(ind,1);
-       let moveBy = up ? -1 : 1;
-       this.setState({quiz: quiz});
-
-    }
-
-        /* Adds a new answer */
-
-    pushNewAnswer(ind){
-
-        let quiz = this.state.quiz;
-        /* Initialized the type of answer */
-    
-        let type = quiz.questions[ind].type;
-        let newAnswer
-        if(type === "image"){
-    
-            newAnswer = {
-                srcUrl: "",
-                    image: "",
-                    plusOne: "",
-                    plusTwo: ""
-                }
-    
-            } else if (type === "text") {
-    
-                newAnswer = {
-                    title: "",
-                    backgroundColor: "taupe",
-                    color: "black",
-                    plusOne: "",
-                    plusTwo: ""
-                }
-    
-            } else if (type === "imageAndText"){
-    
-                newAnswer = {
-                    title: "",
-                    srcUrl: "",
-                    image: "",
-                    color: "black",
-                    plusOne: "",
-                    plusTwo: ""
-                }
-    
+            if(i.picked){
+                if(i.plusOne)
+                    score[i.plusOne] --;
+                if(i.plusTwo)
+                    score[i.plusTwo] -= 2;
             }
-    
-            quiz.questions[ind].answers.push(newAnswer);
-            this.setState({quiz: quiz});
+            i.picked = false
+        });
+
+        /* Sets the current answer to picked */
+
+        quiz.questions[qInd].answers[aInd].picked = true;
+
+        /* Adds the current picked answer scores to the score  */
+
+        if(plusOne > -1)
+            score[plusOne] ++;
+        if(plusTwo > -1)
+            score[plusTwo] +=2
+
+        /* Counts the number of answered questions */
+
+        quiz.questions.forEach(i=>{
+            if(i.answered)
+                resultCheck++;
+        })
+
+        /* If the number of questions is equal to the total it scores the quiz */
+
+        if(resultCheck === quiz.questions.length){
+
+            console.log(score)
+
+            let largest = -1;                 // index of the answer with the largest score
+            for(let i=0;i<score.length;i++){
+
+                if(score[i]>largest)
+                    largest=i;
+
+            }
+            finalResult = quiz.results[largest]; // sets the final result to be the result at the result index with the highest score
+
         }
-    
-        /* Deletes an answer */
-
-    deleteAnswer(qInd,ind){
-
-        let quiz = this.state.quiz;
-        let remove  = quiz.questions[qInd].answers.splice(ind,1);
-        console.log("removing object " + remove);
-        this.setState({quiz: quiz});
-
-    }
-
-    handleAnswerChange(e,qInd,ind){
-
-        let quiz = this.state.quiz;
-        quiz.questions[qInd].answers[ind][e.target.name] = e.target.value;
-        this.setState({quiz: quiz});
-
-    }
-
-    /* Handler for the color picker complete */
-
-    handleQuestionColorChange(color,bg,qInd){
-        let changeField = bg ? "backgroundColor" : "color"; // Checks to see if it needs to change the background or text color
-        let quiz = this.state.quiz;
-        quiz.questions[qInd][changeField] = color.hex;
-        console.log(`changing question ${qInd} ${changeField} to ${color.hex}`);
-        this.setState({quiz: quiz});
-    };
-
-    handleAnswerColorChange(color,bg,qInd,ind){
 
 
-        let quiz = this.state.quiz;
-        quiz.questions[qInd].answers[ind][bg ? "backgroundColor" : "color"] = color.hex;
-        this.setState({quiz: quiz});
-
-    }
-
-    /* Handles changes for answer images */
-
-    handleAnswerImageChange(src,qInd,ind){
-
-        console.log("handling image change for  " + ind);
-
-        let quiz = this.state.quiz;
-        quiz.questions[qInd].answers[ind].image = src;
-        this.setState({quiz: quiz});
-
-    }
-
-        /* Handlechange for text fields */
-
-    handleQuestionChange(e,qInd){
-        
-        let quiz = this.state.quiz;
-        if(e.target.value.length > 60)
-            return false;
-        quiz.questions[qInd][e.target.name] = e.target.value;
-        this.setState({quiz: quiz});
-    
-    }
-
-    /* Handler for the color picker complete */
-
-    handleChangeComplete = (color) => {
-        let quiz = this.state.quiz; 
-        let changeField = this.state.bg ? "backgroundColor" : "color"; // Checks to see if it needs to change the background or text color
-        quiz[changeField] = color.hex;
-        this.setState({quiz:quiz})
-    };
-
-    handleResultChange(e,rInd){
-
-        let quiz = this.state.quiz;
-        if((e.target.name === "title" && e.target.value.length > 50) || (e.target.name === "text" && e.target.value.length>500))
-            return false;
-        quiz.results[rInd][e.target.name] = e.target.value;
-        this.setState({quiz: quiz });
-
-    }
-
-    handleResultImageChange(src,rInd){
-
-        let quiz = this.state.quiz;
-        quiz.results[rInd].image = src;
-        this.setState({quiz: quiz});
+        this.setState({quiz: quiz, score: score, answered: answered, finalResult: finalResult});
 
     }
 
@@ -385,10 +170,10 @@ class Quiz extends React.Component{
 
                     {/* Quiz Title */}
 
-                    <div className="container">
-                        <h1 className = "quiz-title" style= { {color: this.state.quiz.color} }>
+                 
+                        <h1  style= { {color: this.state.quiz.color} }>
  { this.state.quiz.title }</h1>
-                    </div>
+                   
 
                 </section>
 
@@ -396,42 +181,29 @@ class Quiz extends React.Component{
 
                         {this.state.quiz.questions.map((ele,i)=>
 
-                            <Question key                     = { "question-"+i                  }
-                                         question                = { ele                            } 
-                                         save                    = { this.saveBlock                 }
-                                         qInd                    = { i                              }
-                                         backgroundColor         = { ele.backgroundColor            }
-                                         color                   = { ele.color                      }
-                                         type                    = { ele.type                       } 
-                                         results                 = { this.state.quiz.results        }
-                                         moveIt                  = { this.moveIt                    } 
-                                         pushNewAnswer           = { this.pushNewAnswer             }
-                                         deleteAnswer            = { this.deleteAnswer              } 
-                                         handleAnswerColorChange = { this.handleAnswerColorChange   }
-                                         handleColorChange       = { this.handleQuestionColorChange }
-                                         handleAnswerImageChange = { this.handleAnswerImageChange   }
-                                         handleQuestionChange    = { this.handleQuestionChange      }
-                                         handleAnswerChange      = { this.handleAnswerChange        }
-                                         trash                   = { ()=>this.deleteBlock("questions",i)}
-                                         trashAnswer             = { this.deleteAnswer              }/>
+                            <Question key             = { "question-"+i            }
+                                      question        = { ele                      } 
+                                      qInd            = { i                        }
+                                      backgroundColor = { ele.backgroundColor      }
+                                      color           = { ele.color                }
+                                      type            = { ele.type                 } 
+                                      results         = { this.state.quiz.results  } 
+                                      score           = { this.score               }/>
                             
                         )}
 
                 </center>
 
-                                {
-                    this.state.quiz.results.map((ele,i)=>
+                { this.state.finalResult ?
 
-                        <Result key={"result-"+i}
-                                   result={ele}
-                                   save={this.saveBlock}
-                                   rInd={i}
-                                   handleChange={this.handleResultChange}
-                                   setImage    = { this.handleResultImageChange }
-                                   trash = {()=>this.deleteBlock("results",i)}/>
+                    <div id="result">
 
-                    )
-                }
+                      <Result ref="result" result={this.state.finalResult} />
+
+                    </div>
+                    
+                    :""}
+
              </div>
 
         )
