@@ -237,7 +237,7 @@ class NewAnswer extends React.Component {
 
                                 <div>
                                 <FormGroup row>
-          <Label for="plusTwo" bsSize="sm" className="text-right" sm={4}>+2 Points</Label>
+          <Label for="plusTwo" className="text-right" sm={4}>+2 Points</Label>
           <Col sm={8}>
             <Input type="select" 
                     bsSize="sm"

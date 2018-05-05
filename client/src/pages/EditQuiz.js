@@ -37,7 +37,8 @@ class EditQuiz extends React.Component{
             displayColorPicker: false,
             bg: false,
             addingQuestion: false,
-            published: false
+            published: false,
+            errors: []
 
         }
 
@@ -66,6 +67,7 @@ class EditQuiz extends React.Component{
                 if(!this.state.published)
 
                     API.postQuiz(this.state.quiz).then((r)=>{
+                            props.history.push("/editquiz/" + this.state.quiz._id);
                             this.setState({published: true});
                     })
 
@@ -377,6 +379,62 @@ class EditQuiz extends React.Component{
         this.props.history.push(path);
     }
 
+    publish(){
+
+        console.log("trying to publish");
+
+        let quiz = this.state.quiz;
+        let errors = [];
+
+        if(quiz.title === ""){
+
+            errors.push("Your quiz needs to have a title!");
+
+        }
+        if(quiz.questions.length < 2){
+
+            errors.push("Your quiz needs at least two questions")
+
+        }
+        for(let i=0;i<quiz.questions.length;++i){
+
+            let thisQuestion = quiz.questions[i];
+            if(!thisQuestion.question){
+                errors.push("Question " + (i+1) + " needs a title!");
+            }
+            if(thisQuestion.answers.length < 2){
+                errors.push("Question " + (i+1) + " needs at least two answers!");
+            }
+
+            let type = thisQuestion.type;
+
+            thisQuestion.answers.forEach(a=>{
+
+                if(type !== "text" && a.image === ""){
+                    errors.push("Some answers on question " +(i+1) + " are missing images!");
+                } 
+
+                if(type !== "image" && a.title === ""){
+
+                    errors.push("Some answers on question " +(i+1) + " are missing text!")
+
+                }
+
+            });
+
+
+        }
+
+        console.log(errors);
+
+        if(errors.length === 0)
+            API.editQuiz(this.state.quiz._id,this.state.quiz).then(res => this.nextPath("/"));
+        else
+            this.setState({errors: errors});
+
+
+    }
+
     render(){
 
         // Redirects on an error
@@ -494,9 +552,17 @@ class EditQuiz extends React.Component{
                                 newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
 </Row>
                 {/**/}
-<Row>
-                <button disabled={!this.state.published ? "disabled" : false}className = "jumbotron btn-publish" onClick={()=>API.editQuiz(this.state.quiz._id,this.state.quiz).then(res => this.nextPath("/"))} >PUBLISH YOUR QUIZ</button>
-</Row>
+                
+            <Row>
+                <div className="errors">
+                    {this.state.errors.length > 0 ? <h3>Errors!</h3> : ""}
+                    <ul>
+                    {this.state.errors.map((err,i)=> <li key={"error-" + i}>{err}</li>)}
+                    </ul>
+                </div>
+                <button disabled={!this.state.published ? "disabled" : false}
+                        className = "jumbotron btn-publish" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ</button>
+            </Row>
              </div>
 
         )
