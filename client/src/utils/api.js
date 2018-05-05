@@ -22,12 +22,8 @@ export default {
         return axios.post("/api/quizzes/" + id,quiz);
     },
 
-    pushComment: (id)=>{
-        return axios.post("/api/quizzes/comment/" + id);
-    },
-
-    pushStar: (id)=>{
-        return axios.post("/api/quizzes/star/" + id);
+    pushStar: (quizId,obj)=>{
+        return axios.post("/api/quizzes/data/star/" + quizId,obj);
     },
 
     pushResult: (id)=>{

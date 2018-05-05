@@ -69,7 +69,8 @@ class Home extends React.Component{
                                           title={q.title}
                                           author={q.author}
                                           author_id={q.author_id}
-                                          blurb={q.blurb}/>
+                                          blurb={q.blurb}
+                                          stars={q.stars}/>
 
                         </Link>
                     )}
