@@ -1,7 +1,7 @@
 import React        from "react";
 import Answer    from "./Answer";
 import {Card, Row } from 'reactstrap';
-import "./NewQuestion.css"
+import "./css/NewQuestion.css"
 
 class Question extends React.Component{
 
@@ -43,7 +43,8 @@ class Question extends React.Component{
                                     plusOne         = { ele.plusOne                                    } 
                                     plusTwo         = { ele.plusTwo                                    } 
                                     howMany         = { this.props.question.answers.length             } 
-                                    score           = { this.props.score                               }/>
+                                    score           = { this.props.score                               }
+                                    answered        = { this.props.question.answered                   } />
                         ) : ""
                     }
                     

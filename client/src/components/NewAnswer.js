@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardBody, Button, CardHeader, CardFooter, FormGroup, Label, Col, Input } from 'reactstrap';
-import "./NewAnswer.css"
+import "./css/NewAnswer.css"
 import ImageSearch from "./ImageSearch";
 import {SketchPicker} from 'react-color';
 
@@ -188,7 +188,7 @@ class NewAnswer extends React.Component {
                         : this.props.image && !this.state.search && this.props.type !== "text"
 
                         ? 
-                            <div className="grow pix">
+                            <div className="nogrow pic">
                                 <img className="answer-image" alt="" src={this.props.image}/>
                             </div>
 
@@ -237,7 +237,7 @@ class NewAnswer extends React.Component {
 
                                 <div>
                                 <FormGroup row>
-          <Label for="plusTwo" bsSize="sm" className="text-right" sm={4}>+2 Points</Label>
+          <Label for="plusTwo" className="text-right" sm={4}>+2 Points</Label>
           <Col sm={8}>
             <Input type="select" 
                     bsSize="sm"

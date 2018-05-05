@@ -1,0 +1,16 @@
+.pick-card-body {
+    background-color: #5adce27d;
+    cursor: pointer; 
+    font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+    padding: 1rem;
+}
+
+.pick-card-body > p {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.picking-row-jumbo {
+    padding: 20px!important;
+    background-color: #1ecccc!important;
+}

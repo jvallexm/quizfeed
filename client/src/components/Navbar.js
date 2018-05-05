@@ -13,61 +13,60 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
-export default class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-  render() {
-    return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand img src="/client/public/images/Quizfeed-Logo-sm.png">QuizFeed</NavbarBrand>
+class QfNavbar extends React.Component {
+    constructor(props) {
+      super(props);
+  
+      this.toggleNavbar = this.toggleNavbar.bind(this);
+      this.state = {
+        collapsed: true
+      };
+    }
+  
+    toggleNavbar() {
+      this.setState({
+        collapsed: !this.state.collapsed
+      });
+    }
+    render() {
+      return (
+        <div>
+<Navbar color="light" light expand="md">
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-
-                    <NavItem>
-                      <NavLink href="/components/Login">Log In</NavLink>
-                    </NavItem>
-
+              <NavItem>
+                <NavLink href="/components/">Components</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+              </NavItem>
               <UncontrolledDropdown nav inNavbar>
-
-                    <DropdownToggle nav caret>
-                      More!
-                    </DropdownToggle>
-
+                <DropdownToggle nav caret>
+                  Options
+                </DropdownToggle>
                 <DropdownMenu right>
-                    <DropdownItem>
-                        About
-                    </DropdownItem>
-
-                    <DropdownItem>
-                    GitHub
-                    <NavLink href="https://github.com/jvallexm/quizfeed">GitHub</NavLink>
-                    </DropdownItem>
-
-                    <DropdownItem>
-                        Placeholder
-                    </DropdownItem>
+                  <DropdownItem>
+                    Option 1
+                  </DropdownItem>
+                  <DropdownItem>
+                    Option 2
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    Reset
+                  </DropdownItem>
                 </DropdownMenu>
-
               </UncontrolledDropdown>
-
             </Nav>
           </Collapse>
         </Navbar>
-      </div>
-    );
+        </div>
+      );
+    }
   }
-}
-export default Navbar;
+  
+
+export default QfNavbar;

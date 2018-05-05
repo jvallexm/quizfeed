@@ -1,0 +1,72 @@
+.answer-title {
+    width:100%;
+    background-color: rgba(0,0,0,0);
+    border-width: 0;
+
+}
+.search-for{
+
+    color: white;
+    height: 100%;
+	min-width: 100%;
+    background-color: gray;
+    display           : flex;
+    justify-content   : center;
+    flex-direction    : column; 
+
+}
+/* .answer-image{
+    max-width: 100%;
+    max-height: 200px;
+} */
+.text-block-head{
+
+    height: 200px;
+
+}
+
+CardHeader{
+    position: relative;
+}
+
+.text-float{
+    left: 0px;
+    top: 0px;
+    padding: 5px;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    display           : flex;
+    justify-content   : center;
+    flex-direction    : column; 
+}
+.image-head{
+    height: 200px;
+    background-color: #353079!important;
+}
+
+.card-header {
+    padding: 0!important;
+    justify-content: center;
+    display: flex;
+    flex-direction    : column; 
+}
+.smol{
+    margin-top: -15px;
+    font-size: 50%;
+}
+
+.btn-success {
+    width: 100%
+}
+
+.answer-block {
+    padding: 10px!important;
+}
+
+.close-bottom-right{
+	position: absolute;
+	z-index: 2;
+	bottom: 10px;
+	right: 10px;
+}

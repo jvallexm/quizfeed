@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col } from 'reactstrap';
-import "./NewResult.css"
+import "./css/NewResult.css"
 import ImageSearch from './ImageSearch';
 
 class NewResult extends React.Component{
@@ -64,7 +64,7 @@ class NewResult extends React.Component{
                             onClick={()=> this.setState({search: !this.state.search})} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
-                            <i class={this.state.search ? "fa fa-step-backward" : "fa fa-search"}/>
+                            <i className={this.state.search ? "fa fa-step-backward" : "fa fa-search"}/>
                         </span>
                     </Button> : ""}
 

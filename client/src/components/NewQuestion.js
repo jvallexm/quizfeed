@@ -2,7 +2,7 @@ import React        from "react";
 import NewAnswer    from "./NewAnswer";
 import {Card, CardBody, Button, CardFooter, Row } from 'reactstrap';
 import { SketchPicker } from 'react-color';
-import "./NewQuestion.css"
+import "./css/NewQuestion.css"
 
 class NewQuestion extends React.Component{
 

@@ -37,6 +37,7 @@ class Quiz extends React.Component{
         };
         this.score = this.score.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
+        this.pushStar = this.pushStar.bind(this);
 
     }
 
@@ -53,14 +54,19 @@ class Quiz extends React.Component{
 
 
     }
+
+    pushStar(){
+
+        let quiz = this.state.quiz;
+        quiz.stars.push(this.props.user._id);
+        API.pushStar(quiz._id,{user_id: this.props.user._id}).then(res=>console.log(res));
+        this.setState({quiz: quiz});
+
+    }
     
     componentWillMount(){
 
-        console.log(window.location.href);
-
         let id = this.props.match.params.id;
-
-        API.findAll().then(arr=>console.log(arr));
 
         /* If id is part of the request it tried to find the quiz to edit */
 
@@ -74,7 +80,7 @@ class Quiz extends React.Component{
                 if(res.data){
 
                     let score = [];
-                    res.data.results.forEach(i => score.push(0))
+                    res.data.results.forEach(i => score.push(0));
                     this.setState({quiz: res.data, score: score, published: true});
 
                 } else {
@@ -100,7 +106,7 @@ class Quiz extends React.Component{
 
         quiz.questions[qInd].answered = true;  // Sets this question to be answered
 
-        /* Sets the picked values of all the answers to fals */
+        /* Sets the picked values of all the answers to false */
 
         quiz.questions[qInd].answers.forEach(i => {
 
@@ -198,7 +204,11 @@ class Quiz extends React.Component{
 
                     <div id="result">
 
-                      <Result ref="result" result={this.state.finalResult} />
+                      <Result ref="result" result = { this.state.finalResult} 
+                                           title  = { this.state.quiz.title} 
+                                           user   = { this.props.user}
+                                           stars  = { this.state.quiz.stars ? this.state.quiz.stars : []}
+                                           pushStar = {this.pushStar}/>
 
                     </div>
                     
