@@ -22,7 +22,7 @@ module.exports = {
 
     findAllByUser: (req,res)=>{
 
-        db.Headline.find({created_by: req.params.id})
+        db.Quiz.find({created_by: req.params.id})
                .sort({created_on: -1})
                .then(quizzes => res.json(quizzes))
                .catch(err => res.send(false));
@@ -113,13 +113,13 @@ module.exports = {
 
             /* Pushes a new comments to the form data comments array */
 
-            db.Headline.findOneAndUpdate({_id: req.params.id},{$push: {"comments": req.body}})
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"comments": req.body}})
                        .then(q => res.send(true))
                        .catch(err => res.status(422).json(err));
 
         } else if (type === "star"){
 
-            db.Headline.findOneAndUpdate({_id: req.params.id},{$push: {"stars": req.body}})
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"stars": req.body}})
                        .then(q => res.send(true))
                        .catch(err => res.status(422).json(err));
 

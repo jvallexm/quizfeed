@@ -62,6 +62,8 @@ class Quiz extends React.Component{
     
     componentWillMount(){
 
+        console.log(window.location.href);
+
         let id = this.props.match.params.id;
 
         API.findAll().then(arr=>console.log(arr));
