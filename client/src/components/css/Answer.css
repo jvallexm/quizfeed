@@ -109,8 +109,11 @@ CardHeader{
    
   .grow img:hover {
     width: 110%;
-    
 
+  }
+
+  .nogrow img {
+      width: 100%;
   }
 
   .fa-check {
