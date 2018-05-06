@@ -5,6 +5,8 @@ import EditQuiz   from "./pages/EditQuiz";
 import FourOhFour from "./pages/Error";
 import Quiz       from "./pages/Quiz";
 import QfNavbar     from "./components/Navbar";
+import GoogleLogin from 'react-google-login';
+
 
 /* https://tylermcginnis.com/react-router-pass-props-to-components/ */
 
@@ -31,15 +33,32 @@ class App extends React.Component{
 
   }
 
+  responseGoogle(res){
+    console.log(res);
+  }
+
   render(){
 
     return(
 
       <Router>
+
+
+
         <div>
-          
+      
           <QfNavbar/>
 
+
+
+          {/*
+            <GoogleLogin
+              clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+              buttonText="Login"
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+            />
+          */}
           <Switch>
             
             {/* Home page */}
