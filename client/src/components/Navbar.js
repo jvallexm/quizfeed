@@ -48,11 +48,16 @@ class QfNavbar extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
                 <NavItem>
-                <GoogleLogin
-                  clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                  onSuccess={this.responseGoogle}
-                  onFailure={this.responseGoogle}
-                  className="btn"> Login With Google <i className="fab fa-google"/></GoogleLogin>
+                { this.props.user ?
+                  <NavLink> Log Out</NavLink>
+                  :
+                  <GoogleLogin
+                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                    onSuccess={this.responseGoogle}
+                    onFailure={this.responseGoogle}
+                    style={{}}
+                    tag={NavLink}
+                    type={NavLink}> Login <i className="fab fa-google"/></GoogleLogin>}
               </NavItem>
               { this.props.user ?
               <NavItem>
