@@ -1,24 +1,28 @@
 import React from "react";
 import API   from "../utils/api";
 import QuizListItem from '../components/QuizListItem';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
 import './Home.css';
 
 class Home extends React.Component{
 
-    state = {
+    
+    constructor(props){
 
-        quizzes: []
+        super(props);
+        this.state = {
+
+            quizzes: [],
+            dropdownOpen: false
+    
+        }
+        this.toggle = this.toggle.bind(this);
+        this.sort   = this.sort.bind(this);
 
     }
 
     componentDidMount(){
 
-
-        if(this.props.user){
-
-            console.log("has user");
-
-        }
         let id = this.props.match.params.id;
 
         if(id && !this.props.edit) {
@@ -26,8 +30,10 @@ class Home extends React.Component{
             console.log("finding quizzes by " + id);
 
             API.getAllByUser(id).then(res=>{
+                
+                let quizzes = res.data;
 
-                this.setState({quizzes: res.data});
+                this.setState({quizzes: quizzes});
 
             });
 
@@ -40,11 +46,20 @@ class Home extends React.Component{
                 this.setState({quizzes: res.data});
             })
 
-        }else {
+        } else {
 
             console.log("finding all quizzes");
 
             API.findAll().then(res=>{
+
+                let quizzes = res.data.sort((a,b)=>{
+
+                    if(a.responses.length > b.responses.length)
+                        return -1;
+                    else
+                        return 1;
+
+                });
 
                 this.setState({quizzes: res.data});
 
@@ -54,8 +69,44 @@ class Home extends React.Component{
 
     }
 
+    toggle() {
+        this.setState({
+          dropdownOpen: !this.state.dropdownOpen
+        });
+    }
+
     nextPath(path) {
         this.props.history.push(path);
+    }
+
+    sort(type,ascending){
+
+        let quizzes = this.state.quizzes;
+        let up      = ascending ? -1 : 1;
+        let down    = ascending ? 1 : -1;
+
+        let sortedQuizzes = quizzes.sort((a,b)=>{
+
+            if(type !== "_id" && type !== "title"){
+
+                if(a[type].length > b[type].length)
+                    return up;
+                else 
+                    return down;
+
+            } else {
+
+                if(a[type] > b[type])
+                    return up;
+                else
+                    return down;
+
+            }
+
+        });
+
+        this.setState({quizzes: sortedQuizzes});
+
     }
 
     render(){
@@ -64,8 +115,27 @@ class Home extends React.Component{
 
                 <div id="quiz-wrapper" className="container-fluid">
 
-                    <div className="jumbotron text-center" onClick={()=>this.nextPath('/newQuiz')}> 
-                        Create a New Quiz!
+                    <div className = "home-nav text-right">
+                        <Button onClick={()=>this.nextPath('/newQuiz')}>Create a New Quiz</Button>
+                        <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                            <DropdownToggle caret>
+                                Sort By
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem onClick={ ()=>this.sort("responses",true) }>
+                                    Most Taken
+                                </DropdownItem>
+                                <DropdownItem onClick={ ()=>this.sort("stars",true)     }>
+                                    Most Stars
+                                </DropdownItem>
+                                <DropdownItem onClick={ ()=>this.sort("_id",true)       }>
+                                    Newest
+                                </DropdownItem>
+                                <DropdownItem onClick={ ()=>this.sort("_id",false)      }>
+                                    Oldest
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </ButtonDropdown>
                     </div>
 
                     {this.state.quizzes.map((q,i)=> 
