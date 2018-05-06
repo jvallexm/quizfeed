@@ -80,7 +80,8 @@ class Home extends React.Component{
                                           id={q._id}
                                           comments={q.comments}
                                           user={this.props.user}
-                                          edit={this.props.edit}/>
+                                          edit={this.props.edit}
+                                          responses={q.responses}/>
 
                         </div>
                     )}

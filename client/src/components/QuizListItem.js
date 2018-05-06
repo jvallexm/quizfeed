@@ -19,7 +19,8 @@ class QuizListItem extends React.Component{
                         <img className="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/500x300" alt="" href=""/>
                     </Link>
                     <h3 className="text-center space-top">
-                        {this.props.stars.length} <i className={this.props.stars.indexOf(this.props.user._id) > -1? "fa fa-star gold" : "fa fa-star"}/>
+                        {this.props.responses.length} <i className="fa fa-users"/>
+                        <span className="comment-span">{this.props.stars.length} <i className={this.props.stars.indexOf(this.props.user._id) > -1? "fa fa-star gold" : "fa fa-star"}/></span>
                         <span className="comment-span">{this.props.comments.length} <i className="fa fa-comments"/></span>
                     </h3>
                 </Col>

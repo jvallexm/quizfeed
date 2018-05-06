@@ -26,8 +26,12 @@ export default {
         return axios.post("/api/quizzes/data/star/" + quizId,obj);
     },
 
-    pushResult: (id)=>{
-        return axios.post("/api/quizzes/result/" +id);
+    pullStar: (quizId,obj)=>{
+        return axios.post("/api/quizzes/data/unstar/" + quizId,obj);
+    },
+
+    pushResponse: (id,obj)=>{
+        return axios.post("/api/quizzes/data/response/" +id,obj);
     },
 
     deleteQuiz: (id)=>{

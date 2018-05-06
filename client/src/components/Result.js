@@ -187,7 +187,7 @@ class NewResult extends React.Component{
            </CardBody>
             </Card>
         </div>
-            <Button onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ""}>
+            <Button onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ()=>this.props.pullStar()}>
                 {
                     ! this.props.user
                     ? <span>Login to Give This Quiz a <i className="fa fa-star"/>!</span>
@@ -195,7 +195,7 @@ class NewResult extends React.Component{
                     ? <span>Give This Quiz a <i className="fa fa-star"/>!</span>
                     : <span>You Gave This Quiz a <i className="fa fa-star"/>!</span>}
             </Button>
-</center>
+        </center>
 
 
         )
