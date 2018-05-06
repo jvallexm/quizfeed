@@ -13,6 +13,8 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
+import './css/Navbar.css';
+import GoogleLogin from 'react-google-login';
 
 class QfNavbar extends React.Component {
     constructor(props) {
@@ -29,19 +31,29 @@ class QfNavbar extends React.Component {
         collapsed: !this.state.collapsed
       });
     }
+
+    responseGoogle(res){
+
+      console.log(res);
+
+    }
+
     render() {
       return (
-        <div>
-<Navbar color="light" light expand="md">
-          <NavbarBrand href="/"> <img src="../../public/images/Quizfeed-Logo-sm.png"/> </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <Navbar color="light" light expand="md" className="sticky-top">
+            <NavbarBrand href="/"> <img src="./images/Quizfeed-Logo-sm.png"/> </NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/Login/">Log In</NavLink>
+                <NavItem>
+                <GoogleLogin
+                  clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                  onSuccess={this.responseGoogle}
+                  onFailure={this.responseGoogle}
+                  className="btn"> Login With Google <i className="fab fa-google"/></GoogleLogin>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}><i className="fab fa-github"/></NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -63,7 +75,7 @@ class QfNavbar extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
-        </div>
+
       );
     }
   }
