@@ -35,7 +35,6 @@ class NewResult extends React.Component{
 
     componentWillReceiveProps(){
 
-        console.log("new question new props");
         this.setState({result: this.props.result});
 
     }
@@ -44,15 +43,13 @@ class NewResult extends React.Component{
 
     componentWillMount(){
 
-        console.log("moutning props")
-        console.log(this.props.stars);
         this.setState({result: this.props.result});
 
     }
 
     render(){
         // const shareUrl = window.location.href;
-        const shareUrl = 'http://quizfeed.com';
+        const shareUrl = window.location.href;
         const title = this.props.title;
 
         return(
