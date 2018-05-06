@@ -41,7 +41,7 @@ class QfNavbar extends React.Component {
     render() {
       return (
           <Navbar color="light" light expand="md" className="sticky-top">
-            <NavbarBrand href="/"> <img src="./images/Quizfeed-Logo-sm.png"/> </NavbarBrand>
+            <NavbarBrand href="/"> <img src="./images/Quizfeed-Logo-sm.png" alt="Quizfeed"/> </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

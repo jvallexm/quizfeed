@@ -1,14 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col } from 'reactstrap';
 import "./css/Result.css"
-import API          from "../utils/api";
 import {
-    FacebookShareCount,
-    LinkedinShareCount,
-    PinterestShareCount,
-    RedditShareCount,
-    TumblrShareCount,
-  
     FacebookShareButton,
     LinkedinShareButton,
     TwitterShareButton,
@@ -20,7 +13,6 @@ import {
   
     FacebookIcon,
     TwitterIcon,
-    GooglePlusIcon,
     LinkedinIcon,
     PinterestIcon,
     WhatsappIcon,

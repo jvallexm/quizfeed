@@ -501,6 +501,10 @@ class EditQuiz extends React.Component{
 
                 </section>
 
+                <section id="preview-image" className="text-center container-fluid">
+                
+                </section>
+
                 <section id="blurb" className="text-center container-fluid">
 
                     <textarea id="blurb-box" name="blurb" onChange={this.handleChange} value={this.state.quiz.blurb} placeholder={"Tell us a little bit about your quiz!"}/>
