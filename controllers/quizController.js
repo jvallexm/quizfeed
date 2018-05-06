@@ -124,10 +124,16 @@ module.exports = {
 
         } else if (type === "unstar") {
 
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$pull: {"stars": req.body.user_id}})
+                      .then(q => res.send(true))
+                      .catch(err => res.status(422).json(err));
+
+        } else if (type === "response") {
 
 
-        } else if (type === "result") {
-
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"responses": req.body.name}})
+                   .then(q => res.send(true))
+                   .catch(err=> res.status(422).json(err))
 
 
         }

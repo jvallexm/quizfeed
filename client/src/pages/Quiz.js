@@ -38,6 +38,7 @@ class Quiz extends React.Component{
         this.score = this.score.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
         this.pushStar = this.pushStar.bind(this);
+        this.pullStar = this.pullStar.bind(this);
 
     }
 
@@ -60,6 +61,15 @@ class Quiz extends React.Component{
         let quiz = this.state.quiz;
         quiz.stars.push(this.props.user._id);
         API.pushStar(quiz._id,{user_id: this.props.user._id}).then(res=>console.log(res));
+        this.setState({quiz: quiz});
+
+    }
+
+    pullStar(){
+
+        let quiz = this.state.quiz;
+        let remove = quiz.stars.splice(quiz.stars.indexOf(this.props.user._id),1);
+        API.pullStar(quiz._id,{user_id: this.props.user._id}).then(res=>console.log(res));
         this.setState({quiz: quiz});
 
     }
@@ -153,8 +163,10 @@ class Quiz extends React.Component{
 
             }
             finalResult = quiz.results[largest]; // sets the final result to be the result at the result index with the highest score
+            API.pushResponse(this.state.quiz._id,{name: finalResult.title}).then(r=>console.log(r));
 
         }
+
 
 
         this.setState({quiz: quiz, score: score, answered: answered, finalResult: finalResult});
@@ -204,11 +216,12 @@ class Quiz extends React.Component{
 
                     <div id="result">
 
-                      <Result ref="result" result = { this.state.finalResult} 
-                                           title  = { this.state.quiz.title} 
-                                           user   = { this.props.user}
-                                           stars  = { this.state.quiz.stars ? this.state.quiz.stars : []}
-                                           pushStar = {this.pushStar}/>
+                      <Result ref="result" result   = { this.state.finalResult } 
+                                           title    = { this.state.quiz.title } 
+                                           user     = { this.props.user }
+                                           stars    = { this.state.quiz.stars ? this.state.quiz.stars : [] }
+                                           pushStar = {this.pushStar }
+                                           pullStar = { this.pullStar }/>
 
                     </div>
                     
