@@ -146,13 +146,13 @@ class NewAnswer extends React.Component {
                         
                     </div>
 
-                    <div className="close-bottom-right">
+                    <div className="close-trash">
 
                         <Button className="btn-trash"
                                 aria-label="Trash" 
                                 onClick={()=>this.props.trash()} 
-                                title="Save Your Changes!">
-                            <span aria-hidden="true">
+                                title="Delete This Answer">
+                            <span aria-hidden="false">
                                 <i className="fas fa-trash"></i>
                             </span>
                         </Button>

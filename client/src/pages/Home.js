@@ -1,8 +1,6 @@
 import React from "react";
 import API   from "../utils/api";
-import { Jumbotron, Button } from 'reactstrap';
 import QuizListItem from '../components/QuizListItem';
-import { Link } from "react-router-dom";
 import './Home.css';
 
 class Home extends React.Component{
@@ -63,16 +61,17 @@ class Home extends React.Component{
 
                     {this.state.quizzes.map((q,i)=> 
 
-                        <Link key={"link-" + q._id}to={"/quiz/" + q._id} style={{ textDecoration: 'none', color: 'black' }}>
+                        <div className="space-bottom">
 
                             <QuizListItem key={q._id} 
                                           title={q.title}
                                           author={q.author}
                                           author_id={q.author_id}
                                           blurb={q.blurb}
-                                          stars={q.stars}/>
+                                          stars={q.stars}
+                                          id={q._id}/>
 
-                        </Link>
+                        </div>
                     )}
 
                 </div>

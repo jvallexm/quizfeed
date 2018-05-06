@@ -15,6 +15,7 @@ import {
 
 import './css/Navbar.css';
 import GoogleLogin from 'react-google-login';
+import Logo from './images/Quizfeed-Logo-sm.png';
 
 class QfNavbar extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class QfNavbar extends React.Component {
     render() {
       return (
           <Navbar color="light" light expand="md" className="sticky-top">
-            <NavbarBrand href="/"> <img src="./images/Quizfeed-Logo-sm.png"/> </NavbarBrand>
+            <NavbarBrand href="/"> <img src={Logo} alt="Quizfeed"/> </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

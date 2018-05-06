@@ -65,3 +65,13 @@
 	padding: .15rem .4rem!important;
     font-size: .85rem!important;
 }
+.close-result{
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    z-index: 2;
+}
+.trash-result{
+
+    
+}
