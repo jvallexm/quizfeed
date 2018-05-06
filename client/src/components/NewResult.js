@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col } from 'reactstrap';
 import "./css/NewResult.css"
-import ImageSearch from './ImageSearch';
+import ImageSearch from './Image';
 
 class NewResult extends React.Component{
 

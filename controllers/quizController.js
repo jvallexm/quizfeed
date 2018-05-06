@@ -7,12 +7,9 @@ module.exports = {
 
     findAll:   (req,res)=>{
 
-        console.log("I find quiz")
-
         db.Quiz.find({isDraft: false})
                .sort({_id: -1})
                .then(quizzes =>{
-                   console.log(quizzes);
                    res.json(quizzes)
                })
                .catch(err => res.status(422).json(err));
@@ -85,8 +82,7 @@ module.exports = {
                .catch(err =>{
                     console.log(err);
                     res.status(422).json(err)
-                });
-               
+        });       
 
     },
 

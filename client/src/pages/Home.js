@@ -61,15 +61,16 @@ class Home extends React.Component{
 
                     {this.state.quizzes.map((q,i)=> 
 
-                        <div className="space-bottom">
+                        <div className="space-bottom" key={q._id} >
 
-                            <QuizListItem key={q._id} 
-                                          title={q.title}
+                            <QuizListItem title={q.title}
                                           author={q.author}
                                           author_id={q.author_id}
                                           blurb={q.blurb}
                                           stars={q.stars}
-                                          id={q._id}/>
+                                          id={q._id}
+                                          comments={q.comments}
+                                          user={this.props.user}/>
 
                         </div>
                     )}
