@@ -1,7 +1,7 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button, Row } from "reactstrap";
+import { Button, Row, Card, CardHeader, CardTitle, Col, } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
@@ -505,25 +505,15 @@ class EditQuiz extends React.Component{
                     <textarea id="blurb-box" name="blurb" onChange={this.handleChange} value={this.state.quiz.blurb} placeholder={"Tell us a little bit about your quiz!"}/>
                 </section>
 
-                <button className="btn btn-add-block" 
-                        onClick={()=>this.pushNewBlock("results")}>
-                    Add a Final Result
-                </button>
-                {
-                    this.state.quiz.results.map((ele,i)=>
 
-                        <NewResult key={"result-"+i}
-                                   result={ele}
-                                   save={this.saveBlock}
-                                   rInd={i}
-                                   handleChange={this.handleResultChange}
-                                   setImage    = { this.handleResultImageChange }
-                                   trash = {()=>this.deleteBlock("results",i)}/>
 
-                    )
-                }
                 <center>
-
+                <Card>
+    <CardHeader className="text-center">
+        <CardTitle className="editquiz-header">
+        Your Questions
+        </CardTitle>
+        </CardHeader></Card>
                         {this.state.quiz.questions.map((ele,i)=>
 
                             <NewQuestion key                     = { "question-"+i                  }
@@ -548,20 +538,59 @@ class EditQuiz extends React.Component{
                             
                         )}
 
-                </center>
-<Row>
                 { !this.state.addingQuestion 
 
-                    ? <button className="btn btn-add-block" 
-                            onClick={()=>this.setState({addingQuestion: true})}>
-                        Add a Question
-                    </button>
-
-                    : <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
-                                newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
-                                newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> }
+? 
+<div>
+    <Row>
+        <Col>
+<button className="btn btn-add-block" 
+        onClick={()=>this.setState({addingQuestion: true})}>
+    Add a Question
+</button>
+</Col>
 </Row>
-                {/**/}
+
+                <button className="btn btn-add-block" 
+                        onClick={()=>this.pushNewBlock("results")}>
+                    Add a Final Result
+                </button>
+                </div>
+                
+
+: 
+<PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
+            newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
+            newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> 
+            
+            
+            }
+
+                        
+
+                </center>
+
+            
+               
+<Card>
+    <CardHeader className="text-center">
+        <CardTitle className="editquiz-header">
+        Your Results
+        </CardTitle>
+        </CardHeader></Card>
+                { 
+                    this.state.quiz.results.map((ele,i)=>
+
+                        <NewResult key={"result-"+i}
+                                   result={ele}
+                                   save={this.saveBlock}
+                                   rInd={i}
+                                   handleChange={this.handleResultChange}
+                                   setImage    = { this.handleResultImageChange }
+                                   trash = {()=>this.deleteBlock("results",i)}/>
+                        )
+                        
+                }
                 
             <Row>
                 <div className="errors">
@@ -573,6 +602,9 @@ class EditQuiz extends React.Component{
                 <button disabled={!this.state.published ? "disabled" : false}
                         className = "jumbotron btn-publish" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ</button>
             </Row>
+
+
+            
              </div>
 
         )
