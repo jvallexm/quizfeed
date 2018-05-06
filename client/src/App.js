@@ -4,6 +4,7 @@ import Home       from "./pages/Home";
 import EditQuiz   from "./pages/EditQuiz";
 import FourOhFour from "./pages/Error";
 import Quiz       from "./pages/Quiz";
+import QfNavbar     from "./components/Navbar";
 import GoogleLogin from 'react-google-login';
 
 
@@ -45,6 +46,10 @@ class App extends React.Component{
 
 
         <div>
+      
+          <QfNavbar/>
+
+
 
           {/*
             <GoogleLogin
