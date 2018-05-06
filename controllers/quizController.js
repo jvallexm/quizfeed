@@ -19,8 +19,8 @@ module.exports = {
 
     findAllByUser: (req,res)=>{
 
-        db.Quiz.find({created_by: req.params.id})
-               .sort({created_on: -1})
+        db.Quiz.find({author_id: req.params.id})
+               .sort({_id: -1})
                .then(quizzes => res.json(quizzes))
                .catch(err => res.send(false));
 

@@ -27,9 +27,11 @@
 }
 
 .image-search{
-	max-height: 200px;
+	padding: 15px;
+	min-height: 220px;
 	overflow: scroll;
 	width: 100%;
+	background-color: white;
 }
 .question-render-card-body{
 

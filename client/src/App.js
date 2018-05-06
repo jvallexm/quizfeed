@@ -58,6 +58,8 @@ class App extends React.Component{
             <Route exact path="/"                render={ (props)=> <Home       {...props} user={this.state.user} /> } />
             {/* Quizzes by User */}
             <Route exact path="/userQuizzes/:id" render={ (props)=> <Home       {...props} /> } />
+            {/* Edit user quizzes */}
+            <Route exact path="/myquizzes"       render={ (props)=> <Home       {...props} edit={true} user={this.state.user}/>}/>
             {/* Overflow quiz pages */}
             <Route exact path="/page/:offset"    render={ (props)=> <Home       {...props} /> } />
             {/* Creating a new quiz */}
