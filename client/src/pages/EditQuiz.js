@@ -502,82 +502,77 @@ class EditQuiz extends React.Component{
                 </section>
 
                 <section id="blurb" className="text-center container-fluid">
+
                     <textarea id="blurb-box" name="blurb" onChange={this.handleChange} value={this.state.quiz.blurb} placeholder={"Tell us a little bit about your quiz!"}/>
+
                 </section>
 
 
 
                 <center>
-                <Card>
-    <CardHeader className="text-center">
-        <CardTitle className="editquiz-header">
-        Your Questions
-        </CardTitle>
-        </CardHeader></Card>
-                        {this.state.quiz.questions.map((ele,i)=>
 
-                            <NewQuestion key                     = { "question-"+i                  }
-                                         question                = { ele                            } 
-                                         save                    = { this.saveBlock                 }
-                                         qInd                    = { i                              }
-                                         title = {ele.title}
-                                         backgroundColor         = { ele.backgroundColor            }
-                                         color                   = { ele.color                      }
-                                         type                    = { ele.type                       } 
-                                         results                 = { this.state.quiz.results        }
-                                         moveIt                  = { this.moveIt                    } 
-                                         pushNewAnswer           = { this.pushNewAnswer             }
-                                         deleteAnswer            = { this.deleteAnswer              } 
-                                         handleAnswerColorChange = { this.handleAnswerColorChange   }
-                                         handleColorChange       = { this.handleQuestionColorChange }
-                                         handleAnswerImageChange = { this.handleAnswerImageChange   }
-                                         handleQuestionChange    = { this.handleQuestionChange      }
-                                         handleAnswerChange      = { this.handleAnswerChange        }
-                                         trash                   = { ()=>this.deleteBlock("questions",i)}
-                                         trashAnswer             = { this.deleteAnswer              }/>
+                    <Card>
+                        <CardHeader className="text-center">
+                            <CardTitle className="editquiz-header">
+                                Your Questions
+                            </CardTitle>
+                        </CardHeader>
+                    </Card>
+
+                    {this.state.quiz.questions.map((ele,i)=>
+
+                        <NewQuestion key                     = { "question-"+i                  }
+                                     question                = { ele                            } 
+                                     save                    = { this.saveBlock                 }
+                                     qInd                    = { i                              }
+                                     title                   = { ele.title                      }
+                                     backgroundColor         = { ele.backgroundColor            }
+                                     color                   = { ele.color                      }
+                                     type                    = { ele.type                       } 
+                                     results                 = { this.state.quiz.results        }
+                                     moveIt                  = { this.moveIt                    } 
+                                     pushNewAnswer           = { this.pushNewAnswer             }
+                                     deleteAnswer            = { this.deleteAnswer              } 
+                                     handleAnswerColorChange = { this.handleAnswerColorChange   }
+                                     handleColorChange       = { this.handleQuestionColorChange }
+                                     handleAnswerImageChange = { this.handleAnswerImageChange   }
+                                     handleQuestionChange    = { this.handleQuestionChange      }
+                                     handleAnswerChange      = { this.handleAnswerChange        }
+                                     trash                   = { ()=>this.deleteBlock("questions",i)}
+                                     trashAnswer             = { this.deleteAnswer              }/>
                             
-                        )}
+                    )}
 
-                { !this.state.addingQuestion 
+                    { !this.state.addingQuestion 
 
-? 
-<div>
-    <Row>
-        <Col>
-<button className="btn btn-add-block" 
-        onClick={()=>this.setState({addingQuestion: true})}>
-    Add a Question
-</button>
-</Col>
-</Row>
-
-                <button className="btn btn-add-block" 
-                        onClick={()=>this.pushNewBlock("results")}>
-                    Add a Final Result
-                </button>
-                </div>
+                        ? 
+                            <div className="text-center container-fluid">
+                                    <button className="btn btn-add-block" 
+                                                onClick={()=>this.setState({addingQuestion: true})}>
+                                        Add a Question
+                                    </button>
+                            </div>
                 
+                        : 
 
-: 
-<PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
-            newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
-            newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> 
-            
-            
-            }
+                            <PickingRow newImageBlock        ={ ()=>this.pushNewBlock("questions","image")        }
+                                        newTextBlock         ={ ()=>this.pushNewBlock("questions","text")         }
+                                        newImageAndTextBlock ={ ()=>this.pushNewBlock("questions","imageAndText") }/> 
+                
+                    }
 
                         
 
                 </center>
-
-            
-               
-<Card>
-    <CardHeader className="text-center">
-        <CardTitle className="editquiz-header">
-        Your Results
-        </CardTitle>
-        </CardHeader></Card>
+                
+                <Card>
+                    <CardHeader className="text-center">
+                        <CardTitle className="editquiz-header">
+                            Your Results
+                        </CardTitle>
+                    </CardHeader>
+                </Card>
+                
                 { 
                     this.state.quiz.results.map((ele,i)=>
 
@@ -591,19 +586,22 @@ class EditQuiz extends React.Component{
                         )
                         
                 }
+
+                <button className="btn btn-add-block" 
+                        onClick={()=>this.pushNewBlock("results")}>
+                            Add a Final Result
+                </button>
                 
-            <Row>
-                <div className="errors">
-                    {this.state.errors.length > 0 ? <h3>Errors!</h3> : ""}
-                    <ul>
-                    {this.state.errors.map((err,i)=> <li key={"error-" + i}>{err}</li>)}
-                    </ul>
-                </div>
-                <button disabled={!this.state.published ? "disabled" : false}
-                        className = "jumbotron btn-publish" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ</button>
-            </Row>
-
-
+                <Row>
+                    <div className="errors">
+                        {this.state.errors.length > 0 ? <h3>Errors!</h3> : ""}
+                        <ul>
+                        {this.state.errors.map((err,i)=> <li key={"error-" + i}>{err}</li>)}
+                        </ul>
+                    </div>
+                    <button disabled={!this.state.published ? "disabled" : false}
+                            className = "jumbotron btn-publish" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ</button>
+                </Row>
             
              </div>
 

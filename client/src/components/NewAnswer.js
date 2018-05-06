@@ -236,17 +236,18 @@ class NewAnswer extends React.Component {
 
 
                                 <div>
-                                <FormGroup row>
-          <Label for="plusTwo" className="text-right" sm={4}>+2 Points</Label>
-          <Col sm={8}>
-            <Input type="select" 
-                    bsSize="sm"
-                    name="plusTwo" 
-                    onChange = {this.props.handleChange} 
-                    data-ind = {this.props.ind} 
-                    value    = {this.props.plusTwo} />
-          </Col>
-        </FormGroup>
+                                    {/*
+                                    <FormGroup row>
+                                        <Label for="plusTwo" className="text-right" sm={4}>+2 Points</Label>
+                                        <Col sm={8}>
+                                            <Input type="select" 
+                                                    bsSize="sm"
+                                                    name="plusTwo" 
+                                                    onChange = {this.props.handleChange} 
+                                                    data-ind = {this.props.ind} 
+                                                    value    = {this.props.plusTwo} />
+                                        </Col>
+                                    </FormGroup>*/}
                                     +2 Points &nbsp;
                                     <select name     = "plusTwo" 
                                             onChange = {this.props.handleChange} 
