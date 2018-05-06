@@ -42,14 +42,12 @@ class App extends React.Component{
     return(
 
       <Router>
-
-
-
+        
         <div>
-      
-          <QfNavbar/>
+        
+        <QfNavbar/>
 
-
+        <div style={{margin: "20px"}}/>
 
           {/*
             <GoogleLogin
