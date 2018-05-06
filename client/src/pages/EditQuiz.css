@@ -74,4 +74,20 @@ Card{
 
 .editquiz-header {
     margin-top: 15px;
+    margin-bottom: 20px;
+    height: 30px;
+}
+
+
+h4 {
+    margin-bottom: 4px!important;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    margin: 0!important;
+    /* Set the hr color */
+    color: rgb(9, 34, 102); /* old IE */
+    background-color: rgb(9, 34, 102); /* Modern Browsers */
 }
