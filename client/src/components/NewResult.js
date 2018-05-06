@@ -53,14 +53,14 @@ class NewResult extends React.Component{
 
                 {/* Result buttons */}
 
-                <div className="close">
+                <div className="close-result">
 
                     {/* Search again after image has been selected */}
 
                     {this.state.result.image !== "" ?
 
                     <Button className="btn-search"
-                            aria-label="Text" 
+                            aria-label="search" 
                             onClick={()=> this.setState({search: !this.state.search})} 
                             title="Save Your Changes!">
                         <span aria-hidden="true">
@@ -68,6 +68,12 @@ class NewResult extends React.Component{
                         </span>
                     </Button> : ""}
 
+                </div>
+
+                <div className="close-trash-question">
+                    <i className="fa fa-trash"
+                       title="Delete this result"
+                       onClick={()=>this.props.trash("results",this.props.rInd)}/>
                 </div>
 
                 {/* Main card info */}

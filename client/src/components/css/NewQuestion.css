@@ -66,6 +66,16 @@
 	right: 10px;
 	opacity: .5;
 }
+
+.close-trash-question{
+	position: absolute;
+	z-index: 2;
+	top: 0px;
+	right: -20px;
+	color: gray;
+	cursor: pointer;
+}
+
 .sidebar{
 	position: absolute;
 	top: 0px;

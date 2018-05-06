@@ -178,8 +178,15 @@ class EditQuiz extends React.Component{
     deleteBlock(arr,ind){
 
         let quiz = this.state.quiz;
-        let remove = quiz[arr].splice(ind,1);
-        this.setState({quiz: quiz});
+        if(arr !== "results"){
+            let remove = quiz[arr].splice(ind,1);
+            this.setState({quiz: quiz});
+        }
+        else{
+            let remove = quiz[arr].splice(ind,1);
+            console.log(remove[0]);
+            this.setState({quiz: quiz});
+        }
 
     }
 
@@ -237,12 +244,13 @@ class EditQuiz extends React.Component{
 
     };
 
-    moveIt(up,ind,arr){
+    moveIt(up,ind){
 
        let quiz = this.state.quiz;
-       console.log(quiz[arr][ind]);
-       let remove = quiz[arr].splice(ind,1);
        let moveBy = up ? -1 : 1;
+       let swap = quiz.questions[ind + moveBy];
+       quiz.questions[ind + moveBy] = quiz.questions[ind];
+       quiz.questions[ind] = swap;
        this.setState({quiz: quiz});
 
     }
@@ -502,7 +510,7 @@ class EditQuiz extends React.Component{
                 </section>
 
                 <section id="preview-image" className="text-center container-fluid">
-                
+
                 </section>
 
                 <section id="blurb" className="text-center container-fluid">
@@ -543,7 +551,8 @@ class EditQuiz extends React.Component{
                                      handleQuestionChange    = { this.handleQuestionChange      }
                                      handleAnswerChange      = { this.handleAnswerChange        }
                                      trash                   = { ()=>this.deleteBlock("questions",i)}
-                                     trashAnswer             = { this.deleteAnswer              }/>
+                                     trashAnswer             = { this.deleteAnswer              }
+                                     totalQuestions          = { this.state.quiz.questions.length -1 }/>
                             
                     )}
 
@@ -578,15 +587,15 @@ class EditQuiz extends React.Component{
                 </Card>
                 
                 { 
-                    this.state.quiz.results.map((ele,i)=>
+                    this.state.quiz.results.map((ele,ii)=>
 
-                        <NewResult key={"result-"+i}
+                        <NewResult key={"result-"+ii}
                                    result={ele}
                                    save={this.saveBlock}
-                                   rInd={i}
+                                   rInd={ii}
                                    handleChange={this.handleResultChange}
                                    setImage    = { this.handleResultImageChange }
-                                   trash = {()=>this.deleteBlock("results",i)}/>
+                                   trash = {this.deleteBlock}/>
                         )
                         
                 }

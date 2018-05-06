@@ -71,9 +71,13 @@ class NewQuestion extends React.Component{
 
             <Card className="question-card">
                 <div className="sidebar">
-                    <i className="fa fa-arrow-up" onClick={()=>console.log("Hot Poppers")}/>
+                    { this.props.qInd !== 0 ?
+                        <i className="fa fa-arrow-up" onClick={()=>this.props.moveIt(true,this.props.qInd)}/>
+                    : <i className="fa fa-arrow-up"/> }
                     {this.props.qInd + 1}
-                    <i className="fa fa-arrow-down" onClick={()=>console.log("Hot Poppers")}/>
+                    {this.props.qInd < this.props.totalQuestions  ? 
+                        <i className="fa fa-arrow-down" onClick={()=>this.props.moveIt(false,this.props.qInd) }/>
+                    : null}
                 </div>
 
                 {/* Renders color picker */}
@@ -114,16 +118,13 @@ class NewQuestion extends React.Component{
 
                 </div>
 
-                <div className="close-bottom-right">
+                <div className="close-trash-question">
 
-                    <Button className="btn-trash"
-                            aria-label="Trash" 
-                            onClick={()=>this.props.trash()} 
-                            title="Save Your Changes!">
                         <span aria-hidden="true">
-                            <i className="fas fa-trash"></i>
+                            <i className="fas fa-trash" 
+                               title="Delete this answer"
+                               onClick={()=>this.props.trash()} ></i>
                         </span>
-                    </Button>
 
                 </div>
 
