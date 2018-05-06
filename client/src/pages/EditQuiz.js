@@ -523,13 +523,12 @@ class EditQuiz extends React.Component{
 
                 <center>
 
-                    <Card>
-                        <CardHeader className="text-center">
-                            <CardTitle className="editquiz-header">
-                                Your Questions
-                            </CardTitle>
-                        </CardHeader>
-                    </Card>
+                    <div className="text-center">
+                        <div className="editquiz-header">
+                           <h4 className="editquuiz-header-text"> Your Questions</h4>
+<hr className="superline"/>
+                </div>
+                </div>
 
                     {this.state.quiz.questions.map((ele,i)=>
 
@@ -578,14 +577,13 @@ class EditQuiz extends React.Component{
 
                 </center>
                 
-                <Card>
-                    <CardHeader className="text-center">
-                        <CardTitle className="editquiz-header">
-                            Your Results
-                        </CardTitle>
-                    </CardHeader>
-                </Card>
-                
+
+                    <div className="text-center">
+                        <div className="editquiz-header">
+                           <h4 className="editquuiz-header-text"> Your Results</h4>
+<hr className="superline"/>
+                </div>
+                </div>
                 { 
                     this.state.quiz.results.map((ele,ii)=>
 
@@ -599,12 +597,12 @@ class EditQuiz extends React.Component{
                         )
                         
                 }
-
+<div className="text-center container-fluid">
                 <button className="btn btn-add-block" 
                         onClick={()=>this.pushNewBlock("results")}>
                             Add a Final Result
                 </button>
-                
+                </div>
                 <Row>
                     <div className="errors">
                         {this.state.errors.length > 0 ? <h3>Errors!</h3> : ""}
