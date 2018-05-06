@@ -14,6 +14,7 @@ import {
   DropdownItem } from 'reactstrap';
 
 import './css/Navbar.css';
+import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import Logo from './images/Quizfeed-Logo-sm.png';
 
@@ -53,6 +54,11 @@ class QfNavbar extends React.Component {
                   onFailure={this.responseGoogle}
                   className="btn"> Login With Google <i className="fab fa-google"/></GoogleLogin>
               </NavItem>
+              { this.props.user ?
+              <NavItem>
+                <NavLink href="/myquizzes">My Quizzes</NavLink>
+              </NavItem>
+              : "" }
               <NavItem>
                 <NavLink onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}><i className="fab fa-github"/></NavLink>
               </NavItem>

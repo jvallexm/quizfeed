@@ -21,7 +21,7 @@ class Home extends React.Component{
         }
         let id = this.props.match.params.id;
 
-        if(id) {
+        if(id && !this.props.edit) {
 
             console.log("finding quizzes by " + id);
 
@@ -31,7 +31,16 @@ class Home extends React.Component{
 
             });
 
-        } else {
+        } else if(this.props.edit){
+
+            console.log("findind this user's quizzes " +this.props.user._id)
+
+            API.getAllByUser(this.props.user._id).then(res=>{
+                console.log(res.data.length);
+                this.setState({quizzes: res.data});
+            })
+
+        }else {
 
             console.log("finding all quizzes");
 
@@ -70,7 +79,8 @@ class Home extends React.Component{
                                           stars={q.stars}
                                           id={q._id}
                                           comments={q.comments}
-                                          user={this.props.user}/>
+                                          user={this.props.user}
+                                          edit={this.props.edit}/>
 
                         </div>
                     )}
