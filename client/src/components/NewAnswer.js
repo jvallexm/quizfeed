@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardBody, Button, CardHeader, CardFooter, FormGroup, Label, Col, Input } from 'reactstrap';
 import "./css/NewAnswer.css"
-import ImageSearch from "./ImageSearch";
+import ImageSearch from "./Image";
 import {SketchPicker} from 'react-color';
 
 class NewAnswer extends React.Component {
