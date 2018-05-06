@@ -48,11 +48,9 @@ class Quiz extends React.Component{
     
     componentDidUpdate(){
 
-
         if(this.state.finalResult){
             this.scrollToBottom();
         }
-
 
     }
 
@@ -73,6 +71,19 @@ class Quiz extends React.Component{
         this.setState({quiz: quiz});
 
     }
+
+    componentDidMount() {
+
+        Events.scrollEvent.register('begin', function () {
+          console.log("begin", arguments);
+        });
+    
+        Events.scrollEvent.register('end', function () {
+          console.log("end", arguments);
+        });
+    
+      }
+
     
     componentWillMount(){
 
@@ -105,6 +116,8 @@ class Quiz extends React.Component{
         }
 
     }
+
+    
 
     score(qInd,aInd,plusOne,plusTwo){
 
@@ -206,7 +219,8 @@ class Quiz extends React.Component{
                                       color           = { ele.color                }
                                       type            = { ele.type                 } 
                                       results         = { this.state.quiz.results  } 
-                                      score           = { this.score               }/>
+                                      score           = { this.score               }
+                                      id              = { "question-"+i            }/>
                             
                         )}
 

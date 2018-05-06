@@ -15,10 +15,12 @@
     flex-direction    : column; 
 
 }
-/* .answer-image{
-    max-width: 100%;
-    max-height: 200px;
-} */
+ .answer-image{
+    min-height: 220px;
+    display: block;
+    width: auto;
+    height: auto;
+}
 .text-block-head{
 
     height: 200px;
