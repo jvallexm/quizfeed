@@ -34,9 +34,15 @@ class QfNavbar extends React.Component {
       });
     }
 
-    responseGoogle(res){
+    failure(res){
 
       console.log(res);
+
+    }
+
+    success(res){
+
+
 
     }
 
@@ -53,8 +59,8 @@ class QfNavbar extends React.Component {
                   :
                   <GoogleLogin
                     clientId="827588567531-e91v1ho0plbtqgcbd8am9cn5sj6rlvqh.apps.googleusercontent.com"
-                    onSuccess={this.responseGoogle}
-                    onFailure={this.responseGoogle}
+                    onSuccess={this.success}
+                    onFailure={this.failure}
                     style={{}}
                     tag={NavLink}> Login <i className="fab fa-google"/></GoogleLogin>}
               </NavItem>
