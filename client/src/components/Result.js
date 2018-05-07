@@ -186,7 +186,7 @@ class NewResult extends React.Component{
         </div>
             <Button onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ()=>this.props.pullStar()}>
                 {
-                    ! this.props.user
+                    ! this.props.user._id
                     ? <span>Login to Give This Quiz a <i className="fa fa-star"/>!</span>
                     : this.props.stars.indexOf(this.props.user._id) === -1 
                     ? <span>Give This Quiz a <i className="fa fa-star"/>!</span>
