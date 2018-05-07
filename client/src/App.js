@@ -26,6 +26,8 @@ class App extends React.Component{
 
   setUser(user){
 
+    console.log("Setting user: ");
+    console.log(user);
     this.setState({user: user});
 
   }

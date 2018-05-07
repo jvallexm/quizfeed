@@ -26,9 +26,25 @@ module.exports = {
 
     getOne: (req,res)=>{
 
-        db.User.findById(req.params.id)
-               .then(user => res.json(user))
-               .catch(err => res.status(422).json(err));
+        console.log("trying to get one");
+
+        db.User.findOne({_id: req.params.id})
+               .then(result => {
+
+                   console.log("Finding user...");
+
+                   if(result){
+
+                       res.send(result);
+
+                   } else {
+
+                        db.User.create(req.body)
+                               .then(success => res.send(req.body))
+                               .catch(err => res.send(err));
+
+                   }
+        });
         
     }
     

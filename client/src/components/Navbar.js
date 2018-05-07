@@ -47,7 +47,8 @@ class QfNavbar extends React.Component {
       let newUser = res.profileObj;
       newUser.stars = [];
       newUser._id = newUser.googleId;
-      API.getUser(newUser._id,newUser).then(r => console.log(r));
+      API.getUser(newUser._id,newUser)
+         .then(user => this.props.setUser(user.data));
 
     }
 
@@ -59,8 +60,8 @@ class QfNavbar extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
                 <NavItem>
-                { !this.props.user ?
-                  <NavLink> Log Out</NavLink>
+                { this.props.user ?
+                  <NavLink>Log Out</NavLink>
                   :
                   <GoogleLogin
                     clientId="827588567531-e91v1ho0plbtqgcbd8am9cn5sj6rlvqh.apps.googleusercontent.com"

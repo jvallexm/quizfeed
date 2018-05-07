@@ -6,7 +6,7 @@ const imageRoutes = require("./images");
 // API Routes 
 
 router.use("/quizzes", quizRoutes);  // Quiz routes
-router.use("/users",   quizRoutes);   // user routes
+router.use("/users",   userRoutes);   // user routes
 router.use("/images",  imageRoutes);   // user routes
 
 module.exports = router;
