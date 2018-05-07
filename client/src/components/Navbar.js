@@ -60,7 +60,7 @@ class QfNavbar extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
                 <NavItem>
-                { this.props.user ?
+                { this.props.user._id ?
                   <NavLink>Log Out</NavLink>
                   :
                   <GoogleLogin
