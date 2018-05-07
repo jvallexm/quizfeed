@@ -615,7 +615,7 @@ class EditQuiz extends React.Component{
                     <Col className="publish-col">
                     <hr className="superline"/><br></br>
                     <button disabled={!this.state.published ? "disabled" : false}
-                            className = "jumbotron btn-publish pull-right" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ &nbsp;<i class="fas fa-arrow-circle-right"></i></button>
+                            className = "jumbotron btn-publish container-fluid" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ &nbsp;<i class="fas fa-arrow-circle-right"></i></button>
                     </Col>
                 </Row>
             

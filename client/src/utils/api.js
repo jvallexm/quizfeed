@@ -44,6 +44,9 @@ export default {
     
     getImages: (q)=>{
         return axios.get("/api/images/search/" + q);
+    },
+    getUser: (id,obj)=>{
+        return axios.post("/api/users/" + id, obj);
     }
 
 }
