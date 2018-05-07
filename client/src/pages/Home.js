@@ -161,7 +161,9 @@ class Home extends React.Component{
                 <div id="quiz-wrapper" className="container-fluid">
 
                     <div className = "home-nav text-right">
-                        <Button onClick={()=>this.nextPath('/newQuiz')}>Create a New Quiz</Button>
+                        <Button title={this.props.user._id ? "Create a New Quiz" : "You Need to Login to Create a Quiz!"}
+                                disabled={this.props.user._id ? false : "disabled"}
+                                onClick={()=>this.nextPath('/newQuiz')}>Create a New Quiz</Button>
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret>
                                 Sort By
@@ -206,7 +208,8 @@ class Home extends React.Component{
                                           comments={q.comments}
                                           user={this.props.user}
                                           edit={this.props.edit}
-                                          responses={q.responses}/>
+                                          responses={q.responses}
+                                          preview={q.previewImage}/>
 
                         </div>
                     )}
