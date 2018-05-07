@@ -80,49 +80,41 @@ class QfNavbar extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
                 <NavItem>
-                { this.props.user._id ?
-                  ""
-                  :
+                { !this.props.user._id ?
                   <GoogleLogin
                     clientId="827588567531-e91v1ho0plbtqgcbd8am9cn5sj6rlvqh.apps.googleusercontent.com"
                     onSuccess={this.success}
                     onFailure={this.failure}
                     style={{}}
-                    tag={NavLink}> Login <i className="fab fa-google"/></GoogleLogin>}
+                    tag={NavLink}> Login <i className="fab fa-google"/></GoogleLogin>:""}
               </NavItem>
-              { this.props.user ?
-              <NavItem>
-                <NavLink href="/myquizzes">My Quizzes</NavLink>
-              </NavItem>
-              : "" }
+              {!this.props.user._id?
               <NavItem>
                 <NavLink onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}><i className="fab fa-github"/></NavLink>
-              </NavItem>
+              </NavItem>:""}
 
-              {this.props.user._id? 
-                  <NavItem>
-                    <NavLink onClick={()=>this.props.setUser({})}>
-                          Logout
-                    </NavLink>
-                  </NavItem>: ""}
-              
-             {/* <UncontrolledDropdown nav inNavbar>
+            {this.props.user._id?
+             <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Options
+                <img className="nav-image" alt={this.props.user.givenName} src={this.props.user.imageUrl} />
+
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
+                  <DropdownItem href="/myquizzes">
+                    <i className="fas fa-clipboard-list"/> My Quizzes 
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
+                    <i className="fas fa-cog"/> Settings 
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
+                  <DropdownItem onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}>
+                    <i className="fab fa-github"/> View on Github
+                  </DropdownItem>
+                  <DropdownItem onClick={()=>this.props.setUser({})}>
+                    <i className="fas fa-sign-out-alt"/> Logout
                   </DropdownItem>
                 </DropdownMenu>
-             </UncontrolledDropdown> */}
+             </UncontrolledDropdown> :""}
             </Nav>
           </Collapse>
         </Navbar>
