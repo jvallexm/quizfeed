@@ -15,7 +15,7 @@ import {
 
 import './css/Navbar.css';
 import { Link } from 'react-router-dom';
-import GoogleLogin from 'react-google-login';
+import { GoogleLogin, GoogleLogout} from 'react-google-login';
 import Logo from './images/Quizfeed-Logo-sm.png';
 import API from '../utils/api';
 
@@ -61,6 +61,17 @@ class QfNavbar extends React.Component {
 
     }
 
+    componentDidMount(){
+      this.devSuccess();
+    }
+
+    devSuccess(){
+
+      API.getUser("104210337055222011322",{})
+         .then(user => this.setUser(user.data));
+
+    }
+
     render() {
       return (
           <Navbar color="light" light expand="md" className="sticky-top">
@@ -70,7 +81,7 @@ class QfNavbar extends React.Component {
             <Nav className="ml-auto" navbar>
                 <NavItem>
                 { this.props.user._id ?
-                  <NavLink>Log Out</NavLink>
+                  ""
                   :
                   <GoogleLogin
                     clientId="827588567531-e91v1ho0plbtqgcbd8am9cn5sj6rlvqh.apps.googleusercontent.com"
@@ -87,7 +98,15 @@ class QfNavbar extends React.Component {
               <NavItem>
                 <NavLink onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}><i className="fab fa-github"/></NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
+
+              {this.props.user._id? 
+                  <NavItem>
+                    <NavLink onClick={()=>this.props.setUser({})}>
+                          Logout
+                    </NavLink>
+                  </NavItem>: ""}
+              
+             {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
                 </DropdownToggle>
@@ -103,7 +122,7 @@ class QfNavbar extends React.Component {
                     Reset
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+             </UncontrolledDropdown> */}
             </Nav>
           </Collapse>
         </Navbar>
