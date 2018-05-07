@@ -26,7 +26,7 @@ class EditQuiz extends React.Component{
                 backgroundColor: "#b7f5a2",
                 color: "black",
                 _id: Date.now(),
-                author: this.props.user.name,
+                author: this.props.user.givenName,
                 author_id: this.props.user._id,
                 comments: [],
                 stars: [],
