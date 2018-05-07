@@ -1,7 +1,7 @@
 import React        from "react";
 import { Card, Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import './css/QuizList.css';
 
 class QuizListItem extends React.Component{
 
@@ -19,8 +19,8 @@ class QuizListItem extends React.Component{
                         <img className="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/500x300" alt="" href=""/>
                     </Link>
                     <h3 className="text-center space-top">
-                        {this.props.responses.length} <i className="fa fa-users"/>
-                        <span className="comment-span">{this.props.stars.length} <i className={this.props.stars.indexOf(this.props.user._id) > -1? "fa fa-star gold" : "fa fa-star"}/></span>
+                        {this.props.responses.length} <i className="fa fa-users"/>&nbsp;&nbsp;
+                        <span className="comment-span">{this.props.stars.length} <i className={this.props.stars.indexOf(this.props.user._id) > -1? "fa fa-star gold" : "fa fa-star"}/></span>&nbsp;&nbsp;
                         <span className="comment-span">{this.props.comments.length} <i className="fa fa-comments"/></span>
                     </h3>
                 </Col>
@@ -28,11 +28,12 @@ class QuizListItem extends React.Component{
                     <Link to={edit + this.props.id} style={{ textDecoration: 'none', color: 'black' }}>
                         <h3>{this.props.title}</h3>
                     </Link>
+                   
+                    <p>{this.props.blurb}</p>
                     {! this.props.edit ?
                     <Link to={"/userquizzes/" + this.props.author_id} style={{ textDecoration: 'none', color: 'black' }}>
                         <span className="byline">By {this.props.author}</span>
                     </Link> : ""}
-                    <p>{this.props.blurb}</p>
             
                 </Col>
                 <hr/>
