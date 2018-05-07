@@ -174,13 +174,13 @@ class Quiz extends React.Component{
 
         /*
 
-        Test to make sure scoring works */
+        Test to make sure scoring works 
 
         for(let i=0;i<quiz.results.length;++i){
 
             console.log(`Score for ${quiz.results[i].title}: ${score[i]}`)
 
-        }
+        } */
 
         /* If the number of questions is equal to the total it scores the quiz */
 
