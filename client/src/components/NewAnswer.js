@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button, CardHeader, CardFooter, FormGroup, Label, Col, Input } from 'reactstrap';
+import { Card, CardBody, Button, CardHeader, CardFooter, } from 'reactstrap';
 import "./css/NewAnswer.css"
 import ImageSearch from "./Image";
 import {SketchPicker} from 'react-color';
