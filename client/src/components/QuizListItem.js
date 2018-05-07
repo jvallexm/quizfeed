@@ -16,7 +16,7 @@ class QuizListItem extends React.Component{
                 {/*<Link key={"link-" + q._id}to={"/quiz/" + q._id} style={{ textDecoration: 'none', color: 'black' }}> */}
                 <Col md="4">
                     <Link to={edit + this.props.id} style={{ textDecoration: 'none', color: 'black' }}>
-                        <img className="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/500x300" alt="" href=""/>
+                        <img className="img-fluid rounded mb-3 mb-md-0" src={this.props.preview || "http://placehold.it/500x300"} alt="" href=""/>
                     </Link>
                     <h3 className="text-center space-top">
                         {this.props.responses.length} <i className="fa fa-users"/>&nbsp;&nbsp;

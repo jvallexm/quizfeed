@@ -20,7 +20,7 @@ class Answer extends React.Component {
     {
         return(
 
-            <div className={this.props.howMany < 4 ? "col-md-6" : "col-md-4"}>
+            <div className={this.props.howMany < 5 ? "col-md-6" : "col-md-4"}>
 
 
                 {/* Icons bar */}
