@@ -1,10 +1,7 @@
 .sticky-top{
-
     position: fixed;
     top: 0;
     left: 0;
-
-
 }
 
 .nav-image{
@@ -12,6 +9,19 @@
     border-radius: 50%;
 }
 
+.quiz-logo {
+    height: 40px;
+  }
+
+.bg-blue {
+    background-color: #a8ffff!important;
+    height: 60px;
+    /* border-bottom-width: 2px;
+    border-bottom-color: #48a0b5; */
+    border-bottom: 2px solid #48a0b5;;
+}
+
 .push-left{
     margin-left: 10px;
 }
+
