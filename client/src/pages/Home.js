@@ -13,7 +13,8 @@ class Home extends React.Component{
         this.state = {
 
             quizzes: [],
-            dropdownOpen: false
+            dropdownOpen: false,
+            loaded: false
     
         }
         this.toggle = this.toggle.bind(this);
@@ -43,7 +44,7 @@ class Home extends React.Component{
 
             API.getAllByUser(this.props.user._id).then(res=>{
                 console.log(res.data.length);
-                this.setState({quizzes: res.data});
+                this.setState({quizzes: res.data, loaded: true});
             })
 
         } else {
@@ -137,6 +138,16 @@ class Home extends React.Component{
                             </DropdownMenu>
                         </ButtonDropdown>
                     </div>
+
+                    {this.props.edit && this.state.quizzes.length === 0 && this.state.loaded 
+                    ?   <div className="text-center">
+                            <h2> Looks Like You Haven't Made Any Quizzes Yet </h2>
+                            <Button className="btn-block big-big" onClick={()=>this.nextPath('newQuiz')}>
+                                Make A New Quiz!
+                            </Button>
+                        </div>
+
+                    : ""}
 
                     {this.state.quizzes.map((q,i)=> 
 
