@@ -24,6 +24,8 @@ class QfNavbar extends React.Component {
       super(props);
   
       this.toggleNavbar = this.toggleNavbar.bind(this);
+      this.setUser = this.setUser.bind(this);
+      this.success = this.success.bind(this);
       this.state = {
         collapsed: true
       };
@@ -41,6 +43,10 @@ class QfNavbar extends React.Component {
 
     }
 
+    setUser(user){
+      this.props.setUser(user);
+    }
+
     success(res){
 
       console.log(res.profileObj);
@@ -50,8 +56,8 @@ class QfNavbar extends React.Component {
       API.getUser(newUser._id,newUser)
          .then(user =>{
            console.log(user);
-           this.props.setUser(user.data);
-          });
+           this.setUser(user.data);
+      });
 
     }
 
