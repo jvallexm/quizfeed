@@ -61,16 +61,6 @@ class QfNavbar extends React.Component {
 
     }
 
-    componentDidMount(){
-      this.devSuccess();
-    }
-
-    devSuccess(){
-
-      API.getUser("104210337055222011322",{})
-         .then(user => this.setUser(user.data));
-
-    }
 
     render() {
       return (
