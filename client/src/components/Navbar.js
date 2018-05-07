@@ -7,7 +7,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -18,6 +17,7 @@ import { Link } from 'react-router-dom';
 import { GoogleLogin, GoogleLogout} from 'react-google-login';
 import Logo from './images/Quizfeed-Logo-sm.png';
 import API from '../utils/api';
+import { BrowserRouter, NavLink } from "react-router-dom";
 
 class QfNavbar extends React.Component {
     constructor(props) {
@@ -62,8 +62,11 @@ class QfNavbar extends React.Component {
 
     render() {
       return (
+        
           <Navbar color="light" light expand="md" className="sticky-top">
-            <NavbarBrand onClick={()=>this.nextPath("/")}> <img src={Logo} alt="Quizfeed"/> </NavbarBrand>
+              <Link  to="/">
+                <img src={Logo} alt="Quizfeed"/> 
+              </Link>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -74,11 +77,11 @@ class QfNavbar extends React.Component {
                     onSuccess={this.success}
                     onFailure={this.failure}
                     style={{}}
-                    tag={NavLink}> Login <i className="fab fa-google"/></GoogleLogin>:""}
+                    tag="span"> Login <i className="fab fa-google"/></GoogleLogin>:""}
               </NavItem>
               {!this.props.user._id?
               <NavItem>
-                <NavLink onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}><i className="fab fa-github"/></NavLink>
+                <span onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}><i className="fab fa-github"/></span>
               </NavItem>:""}
 
             {this.props.user._id?
@@ -88,8 +91,10 @@ class QfNavbar extends React.Component {
 
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem onClick={()=>this.nextPath("/")}>
-                    <i className="fas fa-clipboard-list"/> My Quizzes 
+                  <DropdownItem>
+                    <Link to="/myquizzes">
+                      <i className="fas fa-clipboard-list"/> My Quizzes 
+                    </Link>
                   </DropdownItem>
                   <DropdownItem>
                     <i className="fas fa-cog"/> Settings 
@@ -106,6 +111,7 @@ class QfNavbar extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
+ 
 
       );
     }

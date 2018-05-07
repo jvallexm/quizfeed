@@ -19,10 +19,23 @@ class Home extends React.Component{
         }
         this.toggle = this.toggle.bind(this);
         this.sort   = this.sort.bind(this);
+        this.loadItUp   = this.loadItUp.bind(this);
+
+    }
+    componentWillMount(){
+
+        this.loadItUp();
 
     }
 
-    componentDidMount(){
+    componentDidUpdate(prevProps, prevState, snapshot){
+
+        if(prevProps !== this.props)
+            this.loadItUp();
+
+    }
+
+    loadItUp(){
 
         let id = this.props.match.params.id;
 
@@ -32,7 +45,12 @@ class Home extends React.Component{
 
             API.getAllByUser(id).then(res=>{
                 
-                let quizzes = res.data;
+                let quizzes = [];
+
+                res.data.forEach(i=>{
+                    if(!i.isDraft)
+                        quizzes.push(i);
+                })
 
                 this.setState({quizzes: quizzes});
 
@@ -67,7 +85,6 @@ class Home extends React.Component{
             });
 
         }
-
     }
 
     toggle() {

@@ -42,7 +42,7 @@ class App extends React.Component{
 
       <Router>
         
-        <div>
+        <div className="App"> 
         
         <QfNavbar setUser={this.setUser} user={this.state.user}/>
 
