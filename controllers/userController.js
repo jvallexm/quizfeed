@@ -36,13 +36,13 @@ module.exports = {
                    if(result){
 
                        console.log("user found");
-                       res.send(result);
+                       res.json(result);
 
                    } else {
 
                         console.log("creating new user");
                         db.User.create(req.body)
-                               .then(success => res.send(req.body))
+                               .then(success => res.json(req.body))
                                .catch(err => res.send(err));
 
                    }
