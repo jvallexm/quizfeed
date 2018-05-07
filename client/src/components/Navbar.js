@@ -69,10 +69,10 @@ class QfNavbar extends React.Component {
 
     render() {
       return (
-        
-          <Navbar color="light" light expand="md" className="sticky-top">
+        <header>
+          <Navbar expand="md" className="sticky-top bg-blue">
               <Link  to="/">
-                <img src={Logo} alt="Quizfeed"/> 
+                <img src={Logo} className="quiz-logo" alt="Quizfeed"/> 
               </Link>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
@@ -123,7 +123,7 @@ class QfNavbar extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
- 
+ </header>
 
       );
     }
