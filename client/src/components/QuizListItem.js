@@ -11,7 +11,7 @@ class QuizListItem extends React.Component{
 
         return(
 
-        <Card style={{padding: "20px"}}>
+        <Card style={{padding: "20px 20px 5px 20px"}}>
             <Row>
                 {/*<Link key={"link-" + q._id}to={"/quiz/" + q._id} style={{ textDecoration: 'none', color: 'black' }}> */}
                 <Col md="4">
