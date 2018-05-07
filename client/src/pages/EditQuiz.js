@@ -603,15 +603,20 @@ class EditQuiz extends React.Component{
                             Add a Final Result
                 </button>
                 </div>
-                <Row>
+
+                <Row className="text-right">
+                
                     <div className="errors">
                         {this.state.errors.length > 0 ? <h3>Errors!</h3> : ""}
                         <ul>
                         {this.state.errors.map((err,i)=> <li key={"error-" + i}>{err}</li>)}
                         </ul>
                     </div>
+                    <Col className="publish-col">
+                    <hr className="superline"/><br></br>
                     <button disabled={!this.state.published ? "disabled" : false}
-                            className = "jumbotron btn-publish" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ</button>
+                            className = "jumbotron btn-publish pull-right" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ &nbsp;<i class="fas fa-arrow-circle-right"></i></button>
+                    </Col>
                 </Row>
             
              </div>
