@@ -99,5 +99,14 @@ hr {
 }
 
 #preview-image{
-    width: 75%;
+    width: 500px;
+    position: relative;
+    max-height: 300px;
+    overflow: scroll;
+}
+.close-preview{
+    position: absolute;
+    left: 30px;
+    top: 10px;
+    z-index: 3;
 }

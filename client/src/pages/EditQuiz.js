@@ -134,15 +134,20 @@ class EditQuiz extends React.Component{
 
         } else {
 
-            /* Needs logic to redirect if a user is not logged in */
+            if(!this.props.user._id){
 
-            console.log("this quiz is new!");
-            let quiz = this.state.quiz;
-            quiz._id = Date.now();
+                this.setState({redirect: true});
 
-            // POST QUIZ TO API then set state
+            } else {
 
-            this.setState({isNew: true});
+                console.log("this quiz is new!");
+                let quiz = this.state.quiz;
+                quiz._id = Date.now();
+
+                // POST QUIZ TO API then set state
+
+                this.setState({isNew: true});
+            }
 
         }
 
@@ -538,6 +543,15 @@ class EditQuiz extends React.Component{
                 </div>
 
                 <section id="preview-image" className="text-center container-fluid">
+
+                    <div className="close-preview">
+                        <Button aria-label="Search"  
+                                title="Change Font Color!">
+                            <span aria-hidden="true">
+                            <i className="fas fa-search"></i>
+                            </span>
+                        </Button>
+                    </div>
 
                     { this.state.quiz.previewImage === "" && !this.state.imageSearch
                     ? <Jumbotron onClick={()=>this.setState({imageSearch: true})}> Search For an Image <i className="fas fa-search"/></Jumbotron>

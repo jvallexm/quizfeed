@@ -229,10 +229,9 @@ class NewAnswer extends React.Component {
                             </CardBody>
                             <CardFooter>    
 
+                                <h6>Result Scoring</h6>
+
                                 {/* Selector for +2 Points */}
-
-
-
 
 
                                 <div>
@@ -254,7 +253,7 @@ class NewAnswer extends React.Component {
                                             data-ind = {this.props.ind} 
                                             value    = {this.props.plusTwo}>
 
-                                         <option value="-1">-</option> 
+                                         <option value="-1">{this.props.results.length === 0 ? "Add a Result To Score" : "-" }</option> 
 
                                          {this.props.results.map((r,i)=> 
 
@@ -276,7 +275,7 @@ class NewAnswer extends React.Component {
                                             data-ind = {this.props.ind} 
                                             value    = {this.props.plusOne}>
 
-                                        <option value="-1">-</option>
+                                        <option value="-1">{this.props.results.length === 0 ? "Add a Result To Score" : "-" }</option>
 
                                         {this.props.results.map((r,i)=> 
 
