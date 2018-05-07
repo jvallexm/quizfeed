@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import Question from '../components/Question';
 import "./EditQuiz.css";
 import Result from "../components/Result";
-import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
 
@@ -51,6 +51,15 @@ class Quiz extends React.Component{
         if(this.state.finalResult){
             this.scrollToBottom();
         }
+        console.log ("how many answered" + this.state.answered)
+        console.log("quiz question length " + this.state.quiz.questions.length);
+
+
+        // scroller.scrollTo('myScrollToElement', {
+        //     duration: 1500,
+        //     delay: 100,
+        //     smooth: true,      
+        //   })
 
     }
 
