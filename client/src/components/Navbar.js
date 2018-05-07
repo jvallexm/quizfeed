@@ -56,11 +56,14 @@ class QfNavbar extends React.Component {
 
     }
 
+    nextPath(path) {
+      this.props.history.push(path);
+    }
 
     render() {
       return (
           <Navbar color="light" light expand="md" className="sticky-top">
-            <NavbarBrand href="/"> <img src={Logo} alt="Quizfeed"/> </NavbarBrand>
+            <NavbarBrand onClick={()=>this.nextPath("/")}> <img src={Logo} alt="Quizfeed"/> </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -85,7 +88,7 @@ class QfNavbar extends React.Component {
 
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem href="/myquizzes">
+                  <DropdownItem onClick={()=>this.nextPath("/")}>
                     <i className="fas fa-clipboard-list"/> My Quizzes 
                   </DropdownItem>
                   <DropdownItem>
