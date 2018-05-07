@@ -44,6 +44,10 @@ class QfNavbar extends React.Component {
     success(res){
 
       console.log(res.profileObj);
+      let newUser = res.profileObj;
+      newUser.stars = [];
+      newUser._id = newUser.googleId;
+      API.getUser(newUser._id,newUser).then(r => console.log(r));
 
     }
 
