@@ -32,7 +32,17 @@ module.exports = {
 
         db.Quiz.find({_id: req.params.id, isDraft: true})
                .then(quizzes => res.json(quizzes))
-               .catch(err => res.send(false));
+               .catch(err => res.send(err));
+
+    },
+
+    /* Finds starred quizzes */
+
+    findFavorites: (req,res)=>{
+
+        db.Quiz.find({stars: {$in: [req.params.id]}})
+               .then(quizzes=>res.json(quizzes))
+               .catch(err => res.send(err))
 
     },
 

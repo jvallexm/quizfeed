@@ -1,6 +1,7 @@
 import React from "react";
 import API   from "../utils/api";
 import QuizListItem from '../components/QuizListItem';
+import { Redirect } from 'react-router';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
 import './Home.css';
 
@@ -14,7 +15,8 @@ class Home extends React.Component{
 
             quizzes: [],
             dropdownOpen: false,
-            loaded: false
+            loaded: false,
+            redirect: false
     
         }
         this.toggle = this.toggle.bind(this);
@@ -39,7 +41,7 @@ class Home extends React.Component{
 
         let id = this.props.match.params.id;
 
-        if(id && !this.props.edit) {
+        if(id && !this.props.edit && !this.props.faves) {
 
             console.log("finding quizzes by " + id);
 
@@ -58,12 +60,34 @@ class Home extends React.Component{
 
         } else if(this.props.edit){
 
-            console.log("findind this user's quizzes " +this.props.user._id)
+            if(!this.props.user._id)
+                this.setState({redirect: true});
+            
+            else{
 
-            API.getAllByUser(this.props.user._id).then(res=>{
-                console.log(res.data.length);
-                this.setState({quizzes: res.data, loaded: true});
-            })
+                console.log("findind this user's quizzes " +this.props.user._id)
+
+                API.getAllByUser(this.props.user._id).then(res=>{
+                    console.log(res.data.length);
+                    this.setState({quizzes: res.data, loaded: true});
+                });
+
+            }
+
+        } else if(this.props.faves){
+
+            if(!this.props.user._id){
+
+                this.setState({redirect: true});
+
+            } else {
+
+                API.getFavorites(this.props.user._id).then(res=>{
+                    console.log(res);
+                    this.setState({quizzes: res.data});
+                });
+
+            }
 
         } else {
 
@@ -80,7 +104,7 @@ class Home extends React.Component{
 
                 });
 
-                this.setState({quizzes: res.data});
+                this.setState({quizzes: quizzes});
 
             });
 
@@ -128,6 +152,9 @@ class Home extends React.Component{
     }
 
     render(){
+
+        if(this.state.redirect)
+            return <Redirect to="/404"/>;
 
         return(
 

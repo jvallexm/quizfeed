@@ -1,12 +1,13 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button, Row, Col, } from "reactstrap";
+import { Button, Row, Col, Jumbotron, } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
 import { SketchPicker } from 'react-color';
 import NewResult from "../components/NewResult";
+import Image from '../components/Image';
 
 
 
@@ -31,7 +32,8 @@ class EditQuiz extends React.Component{
                 comments: [],
                 stars: [],
                 responses: [],
-                blurb: ""
+                blurb: "",
+                previewImage: ""
             },
             redirect: false,
             isNew: false,
@@ -39,7 +41,8 @@ class EditQuiz extends React.Component{
             bg: false,
             addingQuestion: false,
             published: false,
-            errors: []
+            errors: [],
+            imageSearch: false
 
         }
 
@@ -57,6 +60,7 @@ class EditQuiz extends React.Component{
         this.handleResultImageChange   = this.handleResultImageChange.bind(this);
         this.deleteBlock               = this.deleteBlock.bind(this);
         this.deleteAnswer              = this.deleteAnswer.bind(this);
+        this.handleImageChange         = this.handleImageChange.bind(this);
 
 
         this.interval  = setInterval(()=>{
@@ -81,6 +85,12 @@ class EditQuiz extends React.Component{
             }
 
         },3000);
+
+    }
+
+    componentWillUnmount(){
+
+        clearInterval(this.interval);
 
     }
     
@@ -215,6 +225,14 @@ class EditQuiz extends React.Component{
 
     }
 
+    handleImageChange(src){
+
+        let quiz = this.state.quiz;
+        quiz.previewImage = src;
+        this.setState({quiz: quiz, imageSearch: false})
+
+    }
+
     /* Saving for later
 
     componentDidUpdate(prevProps, prevState, snapshot){
@@ -314,6 +332,8 @@ class EditQuiz extends React.Component{
     handleAnswerChange(e,qInd,ind){
 
         let quiz = this.state.quiz;
+        if(e.target.value > 500)
+            return false;
         quiz.questions[qInd].answers[ind][e.target.name] = e.target.value;
         this.setState({quiz: quiz});
 
@@ -448,6 +468,7 @@ class EditQuiz extends React.Component{
 
 
     }
+    
 
     render(){
 
@@ -509,7 +530,20 @@ class EditQuiz extends React.Component{
 
                 </section>
 
+                <div className="text-center">
+                        <div className="editquiz-header">
+                           <h4 className="editquuiz-header-text">Your Quiz Header</h4>
+                           <hr className="superline"/>
+                         </div>
+                </div>
+
                 <section id="preview-image" className="text-center container-fluid">
+
+                    { this.state.quiz.previewImage === "" && !this.state.imageSearch
+                    ? <Jumbotron onClick={()=>this.setState({imageSearch: true})}> Search For an Image <i className="fas fa-search"/></Jumbotron>
+                    : this.state.imageSearch 
+                    ? <Image setImage={this.handleImageChange}/>
+                    : <img src={this.state.quiz.previewImage} alt="preview" />}
 
                 </section>
 
@@ -526,9 +560,9 @@ class EditQuiz extends React.Component{
                     <div className="text-center">
                         <div className="editquiz-header">
                            <h4 className="editquuiz-header-text"> Your Questions</h4>
-<hr className="superline"/>
-                </div>
-                </div>
+                           <hr className="superline"/>
+                         </div>
+                    </div>
 
                     {this.state.quiz.questions.map((ele,i)=>
 
@@ -581,9 +615,9 @@ class EditQuiz extends React.Component{
                     <div className="text-center">
                         <div className="editquiz-header">
                            <h4 className="editquuiz-header-text"> Your Results</h4>
-<hr className="superline"/>
-                </div>
-                </div>
+                            <hr className="superline"/>
+                         </div>
+                    </div>
                 { 
                     this.state.quiz.results.map((ele,ii)=>
 
@@ -597,7 +631,7 @@ class EditQuiz extends React.Component{
                         )
                         
                 }
-<div className="text-center container-fluid">
+            <div className="text-center container-fluid">
                 <button className="btn btn-add-block" 
                         onClick={()=>this.pushNewBlock("results")}>
                             Add a Final Result

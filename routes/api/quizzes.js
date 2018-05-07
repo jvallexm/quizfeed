@@ -20,4 +20,7 @@ router.route("/data/:type/:id")
 router.route("/user/:id")
       .get(quizController.findAllByUser); // Finds all quizes by a single user
 
+router.route("/favorites/:id")
+      .get(quizController.findFavorites);
+
 module.exports = router;
