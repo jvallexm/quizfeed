@@ -223,7 +223,7 @@ class EditQuiz extends React.Component{
         let quiz = this.state.quiz;
         if(e.target.name === "title" && e.target.value.length > 60)
             return false;
-        if(e.target.name === "blurb" && e.target.value.length > 250)
+        if((e.target.name === "blurb" && e.target.value.length > 250) || (e.target.name === "previewImage" && e.target.value.length > 250))
             return false;
         quiz[e.target.name] = e.target.value;
         this.setState({quiz: quiz});
@@ -543,21 +543,26 @@ class EditQuiz extends React.Component{
                 </div>
 
                 <section id="preview-image" className="text-center container-fluid">
-
+                    
+                    {this.state.quiz.previewImage !== "" ?
                     <div className="close-preview">
                         <Button aria-label="Search"  
-                                title="Change Font Color!">
+                                title="Search For an Image!"
+                                onClick={()=>this.setState({imageSearch: !this.state.imageSearch})}>
                             <span aria-hidden="true">
-                            <i className="fas fa-search"></i>
+                            {this.state.imageSearch ? <i className="fa fa-step-backward"/>  :<i className="fas fa-search"></i>}
                             </span>
                         </Button>
+                    </div> : ""}
+                    <div className="preview-fill">
+                        { this.state.quiz.previewImage === "" && !this.state.imageSearch
+                        ? <Jumbotron onClick={()=>this.setState({imageSearch: true})}> Search For an Image <i className="fas fa-search"/></Jumbotron>
+                        : this.state.imageSearch 
+                        ? <Image setImage={this.handleImageChange}/>
+                        : <img src={this.state.quiz.previewImage} className="preview-image" alt="preview" />}
                     </div>
 
-                    { this.state.quiz.previewImage === "" && !this.state.imageSearch
-                    ? <Jumbotron onClick={()=>this.setState({imageSearch: true})}> Search For an Image <i className="fas fa-search"/></Jumbotron>
-                    : this.state.imageSearch 
-                    ? <Image setImage={this.handleImageChange}/>
-                    : <img src={this.state.quiz.previewImage} alt="preview" />}
+                    <input name="previewImage" value={this.state.quiz.previewImage} onChange={this.handleChange}/>
 
                 </section>
 

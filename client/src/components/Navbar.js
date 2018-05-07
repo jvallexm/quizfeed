@@ -54,7 +54,7 @@ class QfNavbar extends React.Component {
 
     }
 
-    /* Block Out for Production */
+    /* Block Out Below for Production */
 
     componentDidMount(){
       this.devSuccess();
@@ -65,7 +65,9 @@ class QfNavbar extends React.Component {
       API.getUser("104210337055222011322",{})
          .then(user => this.props.setUser(user.data));
 
-    }
+    } 
+
+    /* Block Out Above For Production */
 
     render() {
       return (
@@ -84,11 +86,13 @@ class QfNavbar extends React.Component {
                     onSuccess={this.success}
                     onFailure={this.failure}
                     style={{}}
-                    tag="span"> Login <i className="fab fa-google"/></GoogleLogin>:""}
+                    tag="span"
+                    type="span"
+                    > Login <i className="fab fa-google"/></GoogleLogin>:""}
               </NavItem>
               {!this.props.user._id?
               <NavItem>
-                <span onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}><i className="fab fa-github"/></span>
+                <span className="push-left" onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}>View On Github <i className="fab fa-github"/></span>
               </NavItem>:""}
 
             {this.props.user._id?

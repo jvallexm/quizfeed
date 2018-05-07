@@ -73,7 +73,7 @@ class NewResult extends React.Component{
                     {/* Where users fill in answers */}
 
                     <Col className="text-left result-text-col">
-                                <h4>You Got: {this.state.result.title}</h4>
+                                <h4>You Got: {this.state.result.title}!!</h4>
                         <div className="text-area-container">
                             <p>{this.state.result.text} 
                                 </p>
