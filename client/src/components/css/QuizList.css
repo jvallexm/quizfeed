@@ -1,0 +1,15 @@
+.fa-users, .fa-comments{
+    color: rgb(4, 133, 184);
+}
+
+.space-top {
+    color: grey;
+    font-size: 1.2rem;
+}
+
+.byline {
+    float: right!important;
+    font-style: italic;
+    color: grey;
+    margin-right: 20px;
+}
