@@ -32,7 +32,8 @@ class Quiz extends React.Component{
             redirect: false,
             score: [],
             answered: 0,
-            finalResult: false
+            finalResult: false,
+            pushed: false
 
         };
         this.score = this.score.bind(this);
@@ -185,7 +186,11 @@ class Quiz extends React.Component{
 
             }
             finalResult = quiz.results[largest]; // sets the final result to be the result at the result index with the highest score
-            API.pushResponse(this.state.quiz._id,{name: finalResult.title}).then(r=>console.log(r));
+            if(!this.state.pushed)
+                API.pushResponse(this.state.quiz._id,{name: finalResult.title}).then(r=>{
+                    console.log(r);
+                    this.setState({pushed:true})  
+                });
 
         }
 
