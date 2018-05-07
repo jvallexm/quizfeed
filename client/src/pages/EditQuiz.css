@@ -97,3 +97,7 @@ hr {
 .publish-col {
     padding-top: 10px;
 }
+
+#preview-image{
+    width: 75%;
+}

@@ -47,6 +47,9 @@ export default {
     },
     getUser: (id,obj)=>{
         return axios.post("/api/users/" + id, obj);
+    },
+    getFavorites: (id)=>{
+        return axios.get("/api/quizzes/favorites/" + id);
     }
 
 }

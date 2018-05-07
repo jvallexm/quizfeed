@@ -67,6 +67,8 @@ class App extends React.Component{
             <Route exact path="/editQuiz/:id"    render={ (props)=> <EditQuiz   {...props} user={this.state.user} /> } />
             {/* Taking a Quiz*/}
             <Route exact path="/quiz/:id"        render={ (props)=> <Quiz       {...props} user={this.state.user} /> } />
+            {/*  */}
+            <Route exact path="/favorites"   render={  (props)=> <Home      {...props} user={this.state.user} faves={true} /> } />
             {/* Error Page */}
             <Route exact path="/404/:code?"      render={ (props)=> <FourOhFour {...props} /> } />
 

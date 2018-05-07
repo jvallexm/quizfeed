@@ -44,21 +44,28 @@ class QfNavbar extends React.Component {
 
     success(res){
 
-      console.log(res.profileObj);
       let newUser = res.profileObj;
       newUser.stars = [];
       newUser._id = newUser.googleId;
       API.getUser(newUser._id,newUser)
          .then(user =>{
-           console.log(user);
            this.props.setUser(user.data);
       });
 
     }
 
-    nextPath(path) {
-      this.props.history.push(path);
+    /* Block Out for Production */
+
+    componentDidMount(){
+      this.devSuccess();
     }
+
+    devSuccess(){
+
+      API.getUser("104210337055222011322",{})
+         .then(user => this.props.setUser(user.data));
+
+    } 
 
     render() {
       return (
@@ -98,6 +105,11 @@ class QfNavbar extends React.Component {
                   </DropdownItem>
                   <DropdownItem>
                     <i className="fas fa-cog"/> Settings 
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to="/favorites">
+                      <i className="fas fa-star"/> Favorites 
+                    </Link>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}>
