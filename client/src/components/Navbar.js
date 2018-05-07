@@ -52,7 +52,7 @@ class QfNavbar extends React.Component {
                   <NavLink> Log Out</NavLink>
                   :
                   <GoogleLogin
-                    clientId={process.env.REACT_APP_CLIENT_ID}
+                    clientId="827588567531-e91v1ho0plbtqgcbd8am9cn5sj6rlvqh.apps.googleusercontent.com"
                     onSuccess={this.responseGoogle}
                     onFailure={this.responseGoogle}
                     style={{}}
