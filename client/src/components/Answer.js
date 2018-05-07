@@ -29,7 +29,7 @@ class Answer extends React.Component {
                     !this.props.answered ? null: this.props.picked ? {border: "solid green 5px"} : {opacity: "0.5"}
                 }>
 
-                    <CardHeader className={this.props.type === "text" ? "text-block-head" : "image-head"} onClick={()=>this.props.score(this.props.qInd,this.props.ind,this.props.plusOne,this.props.plusTwo)}>
+                    <CardHeader className={this.props.type === "text" ? "text-block-head" : "image-head"} onClick={()=>this.props.score(this.props.qInd,this.props.ind,this.props.plusOne,this.props.plusTwo, this.props.scroll)}>
 
                         {/* Renders text if the block type is not image */}
 
