@@ -17,6 +17,7 @@ import './css/Navbar.css';
 import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import Logo from './images/Quizfeed-Logo-sm.png';
+import API from '../utils/api';
 
 class QfNavbar extends React.Component {
     constructor(props) {
@@ -42,7 +43,7 @@ class QfNavbar extends React.Component {
 
     success(res){
 
-
+      console.log(res.profileObj);
 
     }
 

@@ -17,10 +17,7 @@ class App extends React.Component{
     super(props);
     this.state = {
 
-      user: {
-        name: "hot poppers",
-        _id: "42069"
-      }
+      user: {}
     }
     this.setUser = this.setUser.bind(this);
 
