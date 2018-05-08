@@ -27,6 +27,7 @@
     "mongoose": "^5.0.11",
     "node-bing-api": "^4.0.0",
     "react-color": "^2.14.1",
+    "react-google-login": "^3.2.1",
     "react-share": "^2.1.1",
     "shutterstock": "^0.13.0"
   }
