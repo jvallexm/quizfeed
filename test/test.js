@@ -32,7 +32,7 @@ describe("quizRoutes", function() {
 
 // testing if quizController finds all quizzes by a single user
     it("should find all quizzes by a single user", function(done) {
-        chai.request(app).get("/api/user/id2").then(function(res) {
+        chai.request(app).get("/api/user/104210337055222011322").then(function(res) {
             expect(res.body).to.be.an("array");
             done();
         })  .catch(function(error) {
@@ -44,7 +44,7 @@ describe("quizRoutes", function() {
 // testing if userController finds one user by id
 describe("userRoutes", function() {
     it("should display a single user by id", function(done) {
-        chai.request(app).get("/api/users/id3").then(function(res) {
+        chai.request(app).get("/api/users/104210337055222011322").then(function(res) {
             //console.log(res.body);
             expect(res.body).to.be.an("object");  
             done();

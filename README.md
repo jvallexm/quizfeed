@@ -6,7 +6,7 @@
 [![mongodb](https://img.shields.io/badge/mongodb-v3.6.3-blue.svg)](https://www.mongodb.com/) 
 [![license](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/jvallexm/quizfeed/blob/readme/LICENSE)
 
-This application creates a BuzzFeed-style site where users can search for quizzes (by quiz name or user name) and they can create quizzes of their own. Question, answer and result options will be randomized images, words or a combination of both. We believe this is valuable for a couple of reasons. First, quizzes are fun! Second, the use of quizzes as a marketing tool can be very effective because they tend to drive tons of traffic to a site and they are a great way to collect email addresses. Email marketing continues to be one of the top ways businesses drive sales, so this would be a great lead generation tool. Quizzes are fun to create and easy to share!
+This application is a BuzzFeed-style quiz making site. Users can search for quizzes (by quiz name or user name), they can create quizzes of their own and they can easily share them in a variety of ways. The question, answer and result options will feature randomized images, words or a combination of both. We believe this app is valuable for a couple of reasons. First, quizzes are fun! Second, as a marketing tool, the use of a click-heavy activity can be a very effective way of generating heavy traffic to your site and offers the potential for capturing user information for lead generation. Quizzes are fun to make and easy to share!
 
 
 ## Table of Contents  
@@ -41,23 +41,27 @@ To get the application up and running follow these simple steps:
 <a name="creatingAQuiz"/>
 
 ## Creating A Quiz
-1. Choose a title for your quiz, a background color and text color.
+1. After you've logged in, choose a title for your quiz (along with background and text colors), select a main image and also write a brief summary.
 
     <img src="client/public/images/title.png" alt="title" style="width: 400px;"/>
 
-2. Next, you'll need to work backwards by adding the final results of the quiz, ie 'You Got...' Search for images or add an image URL, and then give the result a title and description.
+2. Next, you will have two options...write your questions, or your results. You may want to work backwards by adding the final results of the quiz first which we'll explain later. 
 
-    <img src="client/public/images/result.png" alt="result" style="width: 400px;"/>
+    <img src="client/public/images/questionResult.png" alt="questionResult" style="width: 400px;"/>
 
-3. Choose the format of your questions...images only, text only, or a combination of images and text.
+3. Search for results images or add an image URL, and then give the result a title and description.   
 
-    <img src="client/public/images/question.png" alt="question" style="width: 400px;">
+    <img src="client/public/images/results.png" alt="results" style="width: 400px;"/>
 
-4. Write your questions and answers, then rank each answer to a corresponding result.
+4. Choose the format of your questions: images only, text only, or a combination of images and text.
+
+    <img src="client/public/images/questions.png" alt="questions" style="width: 400px;">
+
+5. Write your questions and answers, and assign each answer a result value (+1 or +2). This is why it's helpful to begin with the results option. Assign the result that most strongly correlates to the answer by assigning it +2 points. You can select a second result that is less strongly correlated by assigning +1 point, or you can leave the second points selection empty. Points are added together at the end to reveal the strongest result for the user!
 
     <img src="client/public/images/q&a.png" alt="q&a" style="width: 400px;">    
 
-5. Publish your quiz!
+6. Last, but not least, publish your quiz!
 
     <img src="client/public/images/publish.png" alt="publish" style="width: 400px;">    
 
