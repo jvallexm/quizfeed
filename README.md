@@ -66,19 +66,17 @@ To get the application up and running, follow these simple steps:
 
     <img src="client/public/images/publish.png" alt="publish" style="width: 400px;">   
 
+<a name="notesAndTips"/>    
+
 ## Notes & Tips      
 
 - Once you've created a title and at least one question, your quiz will automatically save every 30 seconds!
 - Your published quizzes and saved drafts will all appear in the drop down menu by your profile under 'My Quizzes'.  
 - Once you've completed a quiz:
-    - You can save any that you love by clicking 'give this quiz a :star:' to add to your favorites! 
+    - You can save any that you love by clicking 'Give This Quiz a :star:' to add to your favorites! 
     - You can then share any quiz by choosing your preferred method!
 
-        <img src="client/public/images/icons.png" alt="icons" style="width: 200px;">
-
-
-
-
+        <img src="client/public/images/icons.png" alt="icons" style="width: 150px;">
 
 <a name="builtWith"/>
 
