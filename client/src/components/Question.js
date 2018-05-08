@@ -22,7 +22,7 @@ class Question extends React.Component{
 
             <Card className="question-card soft-jumbo" style={{backgroundColor: this.props.backgroundColor, color: this.props.color}}>
                
-                    <h2 name={this.props.id} >{this.props.question.question}</h2>
+                    <h2>{this.props.question.question}</h2>
 
             </Card>
             <div className="answer-row">

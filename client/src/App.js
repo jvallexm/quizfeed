@@ -4,7 +4,7 @@ import Home       from "./pages/Home";
 import EditQuiz   from "./pages/EditQuiz";
 import FourOhFour from "./pages/Error";
 import Quiz       from "./pages/Quiz";
-import QfNavbar     from "./components/Navbar";
+import QfNavbar   from "./components/Navbar";
 
 
 
@@ -68,9 +68,11 @@ class App extends React.Component{
             {/* Taking a Quiz*/}
             <Route exact path="/quiz/:id"        render={ (props)=> <Quiz       {...props} user={this.state.user} /> } />
             {/*  */}
-            <Route exact path="/favorites"   render={  (props)=> <Home      {...props} user={this.state.user} faves={true} /> } />
+            <Route exact path="/favorites"       render={ (props)=> <Home      {...props} user={this.state.user} faves={true} /> } />
             {/* Error Page */}
             <Route exact path="/404/:code?"      render={ (props)=> <FourOhFour {...props} /> } />
+            {/* Default */}
+            <Route component={FourOhFour} />
 
           </Switch>
         </div>
