@@ -20,7 +20,7 @@ This application is a BuzzFeed-style quiz making site. Users can search for quiz
 <a name="gettingStarted"/>
 
 ## Getting Started
-To get the application up and running follow these simple steps:
+To get the application up and running, follow these simple steps:
 
    1. Clone the repository onto your computer.
    ```
@@ -57,7 +57,7 @@ To get the application up and running follow these simple steps:
 
     <img src="client/public/images/questions.png" alt="questions" style="width: 400px;">
 
-5. Write your questions and answers, and assign each answer a result value (+1 or +2). This is why it's helpful to begin with the results option. Assign the result that most strongly correlates to the answer by assigning it +2 points. You can select a second result that is less strongly correlated by assigning +1 point, or you can leave the second points selection empty. Points are added together at the end to reveal the strongest result for the user!
+5. Write your questions and answers, and assign each answer a result value (+1 or +2). This is why it's helpful to begin with the results option. Assign the result that most strongly correlates to the answer by assigning it +2 points. You can select a second result that is less strongly correlated by assigning +1 point, or you can leave the second point selection empty. All points are added together at the end to reveal the strongest result for the user!
 
     <img src="client/public/images/q&a.png" alt="q&a" style="width: 400px;">    
 
