@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, Button, Row, Col } from 'reactstrap';
+import { Card, CardBody, Button, Row, Col, CardFooter } from 'reactstrap';
 import "./css/Result.css"
 import {
     FacebookShareButton,
@@ -116,82 +116,80 @@ class NewResult extends React.Component{
                         </WhatsappShareButton>
                         </div>
 
-                    <div className="share-network">
-                    <LinkedinShareButton
-                        url={shareUrl}
-                        title={title}
-                        windowWidth={750}
-                        windowHeight={600}
-                        className="share-network-btn">
-                        <LinkedinIcon
-                        size={32}
-                        round />
-                    </LinkedinShareButton>
-                    </div>
+                        <div className="share-network">
+                            <LinkedinShareButton
+                                url={shareUrl}
+                                title={title}
+                                windowWidth={750}
+                                windowHeight={600}
+                                className="share-network-btn">
+                                <LinkedinIcon size={32} round />
+                            </LinkedinShareButton>
+                        </div>
 
-        <div className="share-network">
-          <PinterestShareButton
-            url={String(window.location)}
-            // media={`${String(window.location)}/${exampleImage}`}
-            media={this.state.result.image}
-            windowWidth={1000}
-            windowHeight={730}
-            className="share-network-btn">
-            <PinterestIcon size={32} round />
-          </PinterestShareButton>
+                        <div className="share-network">
+                            <PinterestShareButton
+                                url={String(window.location)}
+                                // media={`${String(window.location)}/${exampleImage}`}
+                                media={this.state.result.image}
+                                windowWidth={1000}
+                                windowHeight={730}
+                                className="share-network-btn">
+                                <PinterestIcon size={32} round />
+                            </PinterestShareButton>
+                        </div>
+
+                        <div className="share-network">
+                            <RedditShareButton
+                                url={shareUrl}
+                                title={title}
+                                windowWidth={660}
+                                windowHeight={460}
+                                className="share-network-btn">
+                                <RedditIcon size={32}round />
+                            </RedditShareButton>
+                        </div>
+
+                        <div className="share-network">
+                            <TumblrShareButton
+                                url={shareUrl}
+                                title={title}
+                                windowWidth={660}
+                                windowHeight={460}
+                                className="share-network-btn">
+                                <TumblrIcon size={32} round />
+                            </TumblrShareButton>
+                        </div>
+
+                        <div className="share-network">
+                            <EmailShareButton
+                                url={shareUrl}
+                                subject={title}
+                                body="body"
+                                className="share-network-btn">
+                                <EmailIcon size={32} round />
+                            </EmailShareButton>
+                        </div>
+
+                    </Col>
+                </Row>
+            </CardBody>
+
+            <CardFooter>
+                <Button onClick={this.props.showComments}> Show Comments <i className="fa fa-comments white"/></Button>
+                <Button  className={this.props.stars.indexOf(this.props.user._id) === -1 ? "" : "btn-gold"} onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ()=>this.props.pullStar()}>
+                    {
+                        ! this.props.user._id
+                        ? <span>Login to Give This Quiz a <i className="fa fa-star"/>!</span>
+                        : this.props.stars.indexOf(this.props.user._id) === -1 
+                        ? <span>Give This Quiz a <i className="fa fa-star"/>!</span>
+                        : <span>You Gave This Quiz a <i className="fa fa-star"/>!</span>}
+                </Button>
+            </CardFooter>
+
+        </Card>
         </div>
 
-        <div className="share-network">
-          <RedditShareButton
-            url={shareUrl}
-            title={title}
-            windowWidth={660}
-            windowHeight={460}
-            className="share-network-btn">
-            <RedditIcon
-              size={32}
-              round />
-          </RedditShareButton>
-        </div>
-
-        <div className="share-network">
-          <TumblrShareButton
-            url={shareUrl}
-            title={title}
-            windowWidth={660}
-            windowHeight={460}
-            className="share-network-btn">
-            <TumblrIcon
-              size={32}
-              round />
-          </TumblrShareButton>
-        </div>
-
-
-        <div className="share-network">
-          <EmailShareButton
-            url={shareUrl}
-            subject={title}
-            body="body"
-            className="share-network-btn">
-            <EmailIcon
-              size={32}
-              round />
-          </EmailShareButton>
-        </div>
-        </Col>
-                    </Row>
-           </CardBody>
-            </Card>
-        </div>
-            <Button onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ()=>this.props.pullStar()}>
-                {
-                    ! this.props.user._id
-                    ? <span>Login to Give This Quiz a <i className="fa fa-star"/>!</span>
-                    : this.props.stars.indexOf(this.props.user._id) === -1 
-                    ? <span>Give This Quiz a <i className="fa fa-star"/>!</span>
-                    : <span>You Gave This Quiz a <i className="fa fa-star"/>!</span>}
-            </Button>
         </center>
 
 
