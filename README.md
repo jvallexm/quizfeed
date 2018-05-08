@@ -6,12 +6,13 @@
 [![mongodb](https://img.shields.io/badge/mongodb-v3.6.3-blue.svg)](https://www.mongodb.com/) 
 [![license](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/jvallexm/quizfeed/blob/readme/LICENSE)
 
-This application is a BuzzFeed-style quiz making site. Users can search for quizzes (by quiz name or user name), they can create quizzes of their own and they can easily share them in a variety of ways. The question, answer and result options will feature randomized images, words or a combination of both. We believe this app is valuable for a couple of reasons. First, quizzes are fun! Second, as a marketing tool, the use of a click-heavy activity can be a very effective way of generating heavy traffic to your site and offers the potential for capturing user information for lead generation. Quizzes are fun to make and easy to share!
+This application is a BuzzFeed-style quiz making site. Users can search for quizzes (by quiz name or user name), they can create quizzes of their own and they can easily share them in a variety of ways. The question, answer and result options feature randomized images, words or a combination of both. We believe this app is valuable for a couple of reasons. First, quizzes are fun! Second, as a marketing tool, the use of a click-heavy activity can be a very effective way of generating heavy traffic to your site and offers the potential for capturing user information for lead generation. QuizFeed quizzes are fun to make and easy to share!
 
 
 ## Table of Contents  
 [Getting Started](#gettingStarted)  
 [Creating A Quiz](#creatingAQuiz)  
+[Notes & Tips](#notesAndTips)  
 [Built With](#builtWith)  
 [Authors](#authors)  
 [License](#license)
@@ -41,7 +42,7 @@ To get the application up and running, follow these simple steps:
 <a name="creatingAQuiz"/>
 
 ## Creating A Quiz
-1. After you've logged in, choose a title for your quiz (along with background and text colors), select a main image and also write a brief summary.
+1. After you've logged in, choose a title for your quiz (along with background and text colors), select a main image and also write a brief summary. 
 
     <img src="client/public/images/title.png" alt="title" style="width: 400px;"/>
 
@@ -63,9 +64,17 @@ To get the application up and running, follow these simple steps:
 
 6. Last, but not least, publish your quiz!
 
-    <img src="client/public/images/publish.png" alt="publish" style="width: 400px;">    
+    <img src="client/public/images/publish.png" alt="publish" style="width: 400px;">   
 
-     
+## Notes & Tips      
+
+- Once you've created a title and at least one question, your quiz will automatically save every 30 seconds!
+- Your published quizzes and saved drafts will all appear in the drop down menu by your profile under 'My Quizzes'.  
+- Once you've completed a quiz:
+    - You can save any that you love by clicking 'give this quiz a :star:' to add to your favorites! 
+    - You can then share any quiz by choosing your preferred method!
+
+        <img src="client/public/images/icons.png" alt="icons" style="width: 200px;">
 
 
 
