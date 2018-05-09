@@ -14,7 +14,8 @@ class NewAnswer extends React.Component {
             search: false,
             bg: false,
             showUrl: false,
-            tooltipOpen: false
+            tooltipOpen: false,
+            imageIsBroken: false
 
         }
 
@@ -52,6 +53,23 @@ class NewAnswer extends React.Component {
     handleChangeComplete = (color) =>{
         
         this.props.colorChange(color,this.state.bg,this.props.qInd,this.props.ind)
+
+    }
+
+    imageError(){
+        if(!this.state.imageIsBroken){
+            this.props.breakImage(true);
+            this.setState({imageIsBroken: true});
+        }
+
+    }
+
+    imageFix(){
+
+        if(this.state.imageIsBroken){
+            this.props.breakImage(false)
+            this.setState({imageIsBroken: false});
+        }
 
     }
 
@@ -197,7 +215,11 @@ class NewAnswer extends React.Component {
 
                         ? 
                             <div className="nogrow pic">
-                                <img className="answer-image" alt="" src={this.props.image}/>
+                                <img className="answer-image" 
+                                     alt="" 
+                                     src={this.props.image}
+                                     onError={()=>this.imageError()}
+                                     onLoad={()=>this.imageFix()}/>
                             </div>
 
                         : this.props.type !== "text" ? <ImageSearch setImage={this.setImage}/> : ""}
@@ -240,12 +262,12 @@ class NewAnswer extends React.Component {
                                 <h6 className="text-center"><div className="right-float"><span id={"q-"+this.props.qInd+"-a-"+this.props.ind}><i className="fas fa-question-circle" style={{opacity: .5}}></i></span></div>Result Scoring </h6>
                                 <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target={"q-"+this.props.qInd+"-a-"+this.props.ind} toggle={this.toggle}>
                                 Use these menus to choose the result that correlates to your answer. +2 points correlates strongly, while +1 point correlates less so. <br/>You can always leave the second menu empty. <br/>If you don't see any options in the menus, create a few results first! 
-        </Tooltip>
+                                </Tooltip>
                                 
 
                                 {/* Selector for +2 Points */}
 
-<div className = "point-block">
+                            <div className = "point-block">
                                 <div className="text-right">
                                     {/*
                                     <FormGroup row>

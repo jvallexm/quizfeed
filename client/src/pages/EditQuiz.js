@@ -42,7 +42,8 @@ class EditQuiz extends React.Component{
             addingQuestion: false,
             published: false,
             errors: [],
-            imageSearch: false
+            imageSearch: false,
+            brokenImages: false
 
         }
 
@@ -61,6 +62,7 @@ class EditQuiz extends React.Component{
         this.deleteBlock               = this.deleteBlock.bind(this);
         this.deleteAnswer              = this.deleteAnswer.bind(this);
         this.handleImageChange         = this.handleImageChange.bind(this);
+        this.brokenImageCheck          = this.brokenImageCheck.bind(this);
 
 
         this.interval  = setInterval(()=>{
@@ -150,6 +152,15 @@ class EditQuiz extends React.Component{
             }
 
         }
+
+    }
+
+    brokenImageCheck(broke){
+
+        if(broke)
+            this.setState({brokenImages: this.state.brokenImages + 1})
+        else
+            this.setState({brokenImages: this.state.brokenImages + 1})
 
     }
 
@@ -427,7 +438,13 @@ class EditQuiz extends React.Component{
 
         if(quiz.title === ""){
 
-            errors.push("Your quiz needs to have a title!");
+            errors.push("Your quiz needs to have a title");
+
+        }
+
+        if(quiz.previewImage === ""){
+
+            errors.push("Your quiz needs to have a preview image")
 
         }
         if(quiz.questions.length < 2){
@@ -455,14 +472,21 @@ class EditQuiz extends React.Component{
 
                 if(type !== "image" && a.title === ""){
 
-                    errors.push("Some answers on question " +(i+1) + " are missing text!")
+                    errors.push("Some answers on question " +(i+1) + " are missing text!");
 
                 }
+
+                if(a.plusOne < 0 && a.plusTwo < 0)
+
+                    errors.push("Some answers on question " + (i+1) + " are missing results!");
 
             });
 
 
         }
+
+        if(this.state.brokenImages > 0)
+            errors.push("You have " + this.state.brokenImages + " broken images that need to be fixed before we can publish your quiz!");
 
         console.log(errors);
 
@@ -559,7 +583,8 @@ class EditQuiz extends React.Component{
                         ? <Jumbotron onClick={()=>this.setState({imageSearch: true})}> Search For an Image <i className="fas fa-search"/></Jumbotron>
                         : this.state.imageSearch 
                         ? <Image setImage={this.handleImageChange}/>
-                        : <img src={this.state.quiz.previewImage} className="preview-image" alt="preview" />}
+                        : <img src={this.state.quiz.previewImage} 
+                               className="preview-image" alt="preview" />}
                     </div>
 
                     <input name="previewImage" className="url" value={this.state.quiz.previewImage} onChange={this.handleChange}/>
@@ -604,7 +629,8 @@ class EditQuiz extends React.Component{
                                      handleAnswerChange      = { this.handleAnswerChange        }
                                      trash                   = { ()=>this.deleteBlock("questions",i)}
                                      trashAnswer             = { this.deleteAnswer              }
-                                     totalQuestions          = { this.state.quiz.questions.length -1 }/>
+                                     totalQuestions          = { this.state.quiz.questions.length -1 }
+                                     breakImage              = { this.brokenImageCheck            } />
                             
                     )}
 

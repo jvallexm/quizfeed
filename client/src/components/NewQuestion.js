@@ -170,7 +170,8 @@ class NewQuestion extends React.Component{
                                    plusOne         = { ele.plusOne                                    } 
                                    plusTwo         = { ele.plusTwo                                    } 
                                    howMany         = { this.props.question.answers.length             } 
-                                   trash           = { ()=>this.props.trashAnswer(this.props.qInd,i)  }/>
+                                   trash           = { ()=>this.props.trashAnswer(this.props.qInd,i)  } 
+                                   breakImage      = { this.props.breakImage                          } />
                     ) : ""
                 }
                 {this.props.question.answers.length < 9 ?
