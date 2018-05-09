@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Button, CardHeader, CardFooter, } from 'reactstrap';
+import { Card, CardBody, Button, CardHeader, CardFooter, Tooltip,} from 'reactstrap';
 import "./css/NewAnswer.css"
 import ImageSearch from "./Image";
 import {SketchPicker} from 'react-color';
@@ -13,10 +13,12 @@ class NewAnswer extends React.Component {
 
             search: false,
             bg: false,
-            showUrl: false
+            showUrl: false,
+            tooltipOpen: false
 
         }
 
+        this.toggle = this.toggle.bind(this);
         this.setImage = this.setImage.bind(this);
 
     }
@@ -52,6 +54,12 @@ class NewAnswer extends React.Component {
         this.props.colorChange(color,this.state.bg,this.props.qInd,this.props.ind)
 
     }
+
+    toggle() {
+        this.setState({
+          tooltipOpen: !this.state.tooltipOpen
+        });
+      }
 
     render()
     {
@@ -227,14 +235,18 @@ class NewAnswer extends React.Component {
 
 
                             </CardBody>
-                            <CardFooter>    
+                            <CardFooter >    
 
-                                <h6>Result Scoring</h6>
+                                <h6 className="text-center">Result Scoring <a href="#" id="TooltipExample"><i class="fas fa-question-circle pull-right" style={{opacity: .5}}></i></a></h6>
+                                <Tooltip placement="right" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.toggle}>
+          Hello world!
+        </Tooltip>
+                                
 
                                 {/* Selector for +2 Points */}
 
 
-                                <div>
+                                <div className="text-right">
                                     {/*
                                     <FormGroup row>
                                         <Label for="plusTwo" className="text-right" sm={4}>+2 Points</Label>
@@ -268,7 +280,7 @@ class NewAnswer extends React.Component {
 
                                 {/* Selector for +1 Points */}
 
-                                <div>
+                                <div className="text-right">
                                     +1 Point &nbsp;
                                     <select name     = "plusOne" 
                                             onChange = {this.props.handleChange} 

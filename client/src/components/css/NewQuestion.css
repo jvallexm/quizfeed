@@ -1,3 +1,5 @@
+/* newquestion.css */
+
 .question-card {
 	width: 75%;
 }
@@ -93,5 +95,6 @@
 
 .btn-trash {
 	padding: .15rem .4rem!important;
-    font-size: .85rem!important;
+	font-size: .85rem!important;
+	opacity: .5;
 }

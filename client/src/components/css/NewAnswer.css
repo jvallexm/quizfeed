@@ -1,3 +1,5 @@
+/* newanswer.css */
+
 .answer-title {
     width:100%;
     background-color: rgba(0,0,0,0);
@@ -77,4 +79,8 @@ CardHeader{
     z-index: 2;
     top: 10px;
     right: 10px;
+}
+
+.fa-question-circle {
+float: right;
 }
