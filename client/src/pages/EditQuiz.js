@@ -1,7 +1,7 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button, Row, Col, Jumbotron, } from "reactstrap";
+import { Button, Row, Col, Jumbotron, Card, CardBody, Input, FormGroup, Tooltip} from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
@@ -43,7 +43,8 @@ class EditQuiz extends React.Component{
             published: false,
             errors: [],
             imageSearch: false,
-            brokenImages: false
+            brokenImages: false,
+            tooltipOpen: false
 
         }
 
@@ -63,7 +64,7 @@ class EditQuiz extends React.Component{
         this.deleteAnswer              = this.deleteAnswer.bind(this);
         this.handleImageChange         = this.handleImageChange.bind(this);
         this.brokenImageCheck          = this.brokenImageCheck.bind(this);
-
+        this.toggle                    = this.toggle.bind(this);
 
         this.interval  = setInterval(()=>{
 
@@ -429,6 +430,12 @@ class EditQuiz extends React.Component{
         this.props.history.push(path);
     }
 
+    toggle() {
+        this.setState({
+          tooltipOpen: !this.state.tooltipOpen
+        });
+      }
+
     publish(){
 
         console.log("trying to publish");
@@ -497,6 +504,8 @@ class EditQuiz extends React.Component{
 
 
     }
+
+    
     
 
     render(){
@@ -565,7 +574,13 @@ class EditQuiz extends React.Component{
                            <hr className="superline"/>
                          </div>
                 </div>
-
+<center>
+<Card className = "header-card">
+    <CardBody>
+    <div className="right-float"><span id="header-box-tip"><i className="fas fa-question-circle" style={{opacity: .5}}></i></span></div>
+                                <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="header-box-tip" toggle={this.toggle}>
+                                The image and text in Your Quiz Header is used to list your quiz on the home page and in social media, and to convince users to take your quiz! <br/>It won't appear while users are taking your quiz.
+                                </Tooltip>
                 <section id="preview-image" className="text-center container-fluid">
                     
                     {this.state.quiz.previewImage !== "" ?
@@ -587,15 +602,18 @@ class EditQuiz extends React.Component{
                                className="preview-image" alt="preview" />}
                     </div>
 
-                    <input name="previewImage" className="url" value={this.state.quiz.previewImage} onChange={this.handleChange}/>
+                    <input name="previewImage" className="url greybox" value={this.state.quiz.previewImage} onChange={this.handleChange}/>
 
                 </section>
-
                 <section id="blurb" className="text-center container-fluid">
 
-                    <textarea id="blurb-box" name="blurb" onChange={this.handleChange} value={this.state.quiz.blurb} placeholder={"Tell us a little bit about your quiz!"}/>
+<Input type="textarea" id="blurb-box" name="blurb" onChange={this.handleChange} value={this.state.quiz.blurb} placeholder={"Tell us a little bit about your quiz!"}/>
 
-                </section>
+</section>
+                </CardBody>
+                </Card>
+</center>
+
 
 
 

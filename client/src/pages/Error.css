@@ -1,3 +1,5 @@
+/* error.css */
+
 .homebutton{
     margin-top: 25px;
 }
@@ -53,13 +55,7 @@
 .text-area-container{
     height: 100%;
 }
-.url{
-    margin-top: 10px;
-    opacity: .6;
-    font-size: .7rem;
-    border-width: 0;
-    padding: 2px 6px;
-}
+
 .result-text-col
 {
     padding-left: 0!important;

@@ -73,7 +73,7 @@ Card{
 }
 #blurb-box{
     padding: 10px;
-    width: 75%;
+    width: 100%;
 }
 
 .editquiz-header {
@@ -103,13 +103,12 @@ hr.superline {
 }
 
 #preview-image{
-    padding: 10px;
-    background-color: green;
+    /* padding: 10px; */
     width: 500px;
     position: relative;
     height: 350px;
     overflow: scroll;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 .close-preview{
     position: absolute;
