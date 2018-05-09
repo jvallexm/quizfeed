@@ -236,6 +236,7 @@ class NewAnswer extends React.Component {
                         {/* Image URL */}
 
                                 {this.props.type !== "text"  && this.state.showUrl?
+
                                 <input name        = "image" 
                                        className   = "answer-title url greybox" 
                                        placeholder = "Enter Your Image URL Here" 
@@ -243,7 +244,11 @@ class NewAnswer extends React.Component {
                                        onChange    = {this.props.handleChange} 
                                        value       = {this.props.image ? this.props.image : ""}/> : ""}
 
+                                {this.props.type !== "text" ?
+
                                 <button className="smol" onClick={()=>this.setState({showUrl: !this.state.showUrl})}>{this.state.showUrl ? "Hide URL" : "Add Image By Url"}</button>
+
+                                :""}
 
 
                         {/* Question Title */}

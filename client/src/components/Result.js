@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col, CardFooter } from 'reactstrap';
+import API from "../utils/api";
 import "./css/Result.css"
 import {
     FacebookShareButton,
@@ -26,8 +27,12 @@ class NewResult extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            search: false
+            search: false,
+            comment: ""
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.pushNewComment  = this.pushNewComment.bind(this);
+        this.returnDate = this.returnDate.bind(this);
 
     }
 
@@ -44,6 +49,46 @@ class NewResult extends React.Component{
     componentWillMount(){
 
         this.setState({result: this.props.result});
+
+    }
+
+    pushNewComment(e){
+
+        e.preventDefault();
+        let comment = {
+            author_id: this.props.user._id,
+            author: this.props.user.givenName,
+            comment: this.state.comment,
+            posted_on: Date.now()
+        }
+
+        console.log("trying to push to quiz " + this.props.quizId);
+        console.log(comment);
+
+        API.pushComment(this.props.quizId,comment).then(res=>{
+            if(res.data)
+                this.props.pushComment(comment);
+            console.log(res);
+
+        });
+        this.setState({comment: ""});
+
+    }
+
+    handleChange(e){
+
+        if(e.target.value.length < 250){
+
+            this.setState({comment: e.target.value});
+
+        }
+
+    }
+
+    returnDate(date){
+
+        let then = new Date(date);
+        return `${then.getMonth()+1}/${then.getDate()}/${then.getFullYear()}`;
 
     }
 
@@ -185,6 +230,32 @@ class NewResult extends React.Component{
                         ? <span>Give This Quiz a <i className="fa fa-star"/>!</span>
                         : <span>You Gave This Quiz a <i className="fa fa-star"/>!</span>}
                 </Button>
+
+                {this.props.showComments ?
+                
+                <div id="the-comments">
+
+                    {this.props.comments.map((c,i)=>
+                    <Card key={"comment-" + i}>
+                        <CardBody>
+                            {c.comment}
+                        </CardBody>
+                        <CardFooter>
+                            Posted by {c.author} on {this.returnDate(c.posted_on)}
+                        </CardFooter>
+                    </Card>)}
+
+                    <form onSubmit={this.pushNewComment}>
+                            <input value={this.state.comment}
+                                    placeholder="Leave a constructive comment"
+                                    onChange={this.handleChange}/>
+                            <input type="submit"/>
+                    </form>
+
+                </div>
+
+                :""}
+
             </CardFooter>
 
         </Card>
