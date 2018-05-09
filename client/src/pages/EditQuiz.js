@@ -160,7 +160,7 @@ class EditQuiz extends React.Component{
         if(broke)
             this.setState({brokenImages: this.state.brokenImages + 1})
         else
-            this.setState({brokenImages: this.state.brokenImages + 1})
+            this.setState({brokenImages: this.state.brokenImages - 1})
 
     }
 
@@ -497,6 +497,24 @@ class EditQuiz extends React.Component{
 
 
     }
+
+    imageError(){
+
+        if(!this.state.imageIsBroken){
+            this.brokenImageCheck(true);
+            this.setState({imageIsBroken: true});
+        }
+
+    }
+
+    imageFix(){
+
+        if(this.state.imageIsBroken){
+            this.brokenImageCheck(false);
+            this.setState({imageIsBroken: false});
+        }
+
+    }
     
 
     render(){
@@ -584,7 +602,9 @@ class EditQuiz extends React.Component{
                         : this.state.imageSearch 
                         ? <Image setImage={this.handleImageChange}/>
                         : <img src={this.state.quiz.previewImage} 
-                               className="preview-image" alt="preview" />}
+                               className="preview-image" alt="preview" 
+                               onLoad={()=>this.imageFix()}
+                               onError={()=>this.imageError()}/>}
                     </div>
 
                     <input name="previewImage" className="url" value={this.state.quiz.previewImage} onChange={this.handleChange}/>
@@ -672,7 +692,8 @@ class EditQuiz extends React.Component{
                                    rInd={ii}
                                    handleChange={this.handleResultChange}
                                    setImage    = { this.handleResultImageChange }
-                                   trash = {this.deleteBlock}/>
+                                   trash = {this.deleteBlock}
+                                   breakImage = { this.brokenImageCheck }/>
                         )
                         
                 }
