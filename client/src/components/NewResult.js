@@ -8,7 +8,8 @@ class NewResult extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            search: false
+            search: false,
+            imageIsBroken: false
         }
         this.setImage = this.setImage.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -41,6 +42,23 @@ class NewResult extends React.Component{
     handleChange(e){
 
         this.props.handleChange(e,this.props.rInd);
+
+    }
+    imageError(){
+
+        if(!this.state.imageIsBroken){
+            this.props.breakImage(true);
+            this.setState({imageIsBroken: true});
+        }
+
+    }
+
+    imageFix(){
+
+        if(this.state.imageIsBroken){
+            this.props.breakImage(false)
+            this.setState({imageIsBroken: false});
+        }
 
     }
     render(){
@@ -92,7 +110,7 @@ class NewResult extends React.Component{
                             <div className="tall">
                                 <ImageSearch setImage={this.setImage}/> 
                             </div>: 
-                        <img className="result-image" alt="Final Result" src={this.state.result.image}/>}
+                        <img onLoad={()=>this.imageFix()} onError={()=>this.imageError()}className="result-image" alt="Final Result" src={this.state.result.image}/>}
                     </Col>
 
                     {/* Where users fill in answers */}

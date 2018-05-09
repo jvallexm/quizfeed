@@ -54,7 +54,6 @@ class Quiz extends React.Component{
             this.scrollToBottom();
         }
 
-
     }
 
     pushStar(){
@@ -228,8 +227,6 @@ class Quiz extends React.Component{
 
                         {this.state.quiz.questions.map((ele,i)=>
 
-                            <Element name={"question-" + i} className="element">
-
                             <Question key             = { "question-"+i            }
                                       question        = { ele                      } 
                                       qInd            = { i                        }
@@ -238,9 +235,8 @@ class Quiz extends React.Component{
                                       type            = { ele.type                 } 
                                       results         = { this.state.quiz.results  } 
                                       score           = { this.score               }
-                                      id              = { "question-"+i            }/>
-                            
-                            </Element>
+                                      name              = { "question-"+i            }/>
+            
                             
                         )}
 

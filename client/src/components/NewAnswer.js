@@ -57,6 +57,7 @@ class NewAnswer extends React.Component {
     }
 
     imageError(){
+
         if(!this.state.imageIsBroken){
             this.props.breakImage(true);
             this.setState({imageIsBroken: true});
@@ -219,7 +220,8 @@ class NewAnswer extends React.Component {
                                      alt="" 
                                      src={this.props.image}
                                      onError={()=>this.imageError()}
-                                     onLoad={()=>this.imageFix()}/>
+                                     onLoad={()=>this.imageFix()}
+                                     style={this.state.imageIsBroken ? {border: "5px solid red"} :{}}/>
                             </div>
 
                         : this.props.type !== "text" ? <ImageSearch setImage={this.setImage}/> : ""}
