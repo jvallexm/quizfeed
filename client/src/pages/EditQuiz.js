@@ -562,7 +562,7 @@ class EditQuiz extends React.Component{
                         : <img src={this.state.quiz.previewImage} className="preview-image" alt="preview" />}
                     </div>
 
-                    <input name="previewImage" value={this.state.quiz.previewImage} onChange={this.handleChange}/>
+                    <input name="previewImage" className="url" value={this.state.quiz.previewImage} onChange={this.handleChange}/>
 
                 </section>
 
@@ -668,7 +668,7 @@ class EditQuiz extends React.Component{
                     <Col className="publish-col">
                     <hr className="superline"/><br></br>
                     <button disabled={!this.state.published ? "disabled" : false}
-                            className = "jumbotron btn-publish container-fluid" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ &nbsp;<i class="fas fa-arrow-circle-right"></i></button>
+                            className = "jumbotron btn-publish container-fluid" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ &nbsp;<i className="fas fa-arrow-circle-right"></i></button>
                     </Col>
                 </Row>
             

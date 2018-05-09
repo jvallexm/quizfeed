@@ -78,6 +78,7 @@ CardHeader{
 }
 .smol{
     margin-top: -15px;
+    margin-bottom: 5px;
     font-size: 50%;
 }
 
@@ -127,4 +128,8 @@ CardHeader{
        1px -1px 0 rgb(255, 255, 255),
        -1px 1px 0 rgb(255, 255, 255),
         1px 1px 0 rgb(255, 255, 255);
+  }
+
+  .point-block {
+      margin-right: 1.8rem;
   }

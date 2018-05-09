@@ -7,14 +7,15 @@
     "axios": "^0.16.2",
     "bootstrap": "^4.1.0",
     "node-bing-api": "^4.0.0",
+    "popper.js": "^1.14.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-google-login": "^3.2.1",
     "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.14",
+    "react-scripts": "1.1.4",
     "react-scroll": "^1.7.9",
     "react-share": "^2.1.1",
-    "reactstrap": "^5.0.0"
+    "reactstrap": "^6.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

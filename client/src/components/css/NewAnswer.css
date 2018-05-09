@@ -81,6 +81,10 @@ CardHeader{
     right: 10px;
 }
 
-.fa-question-circle {
+.right-float {
 float: right;
+}
+
+.greybox {
+    background-color: rgba(124, 124, 124, 0.1)!important;
 }

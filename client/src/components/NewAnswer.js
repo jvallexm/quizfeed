@@ -213,21 +213,21 @@ class NewAnswer extends React.Component {
 
                                 {this.props.type !== "text"  && this.state.showUrl?
                                 <input name        = "image" 
-                                       className   = "answer-title" 
+                                       className   = "answer-title url greybox" 
                                        placeholder = "Enter Your Image URL Here" 
                                        data-ind    = {this.props.ind}
                                        onChange    = {this.props.handleChange} 
                                        value       = {this.props.image ? this.props.image : ""}/> : ""}
 
-                                <button className="smol" onClick={()=>this.setState({showUrl: !this.state.showUrl})}>{this.state.showUrl ? "Hide" : "Add Image By Url"}</button>
+                                <button className="smol" onClick={()=>this.setState({showUrl: !this.state.showUrl})}>{this.state.showUrl ? "Hide URL" : "Add Image By Url"}</button>
 
 
                         {/* Question Title */}
 
                                 {this.props.type !== "image" ?
                                 <input name        = "title" 
-                                       className   = "answer-title text-center" 
-                                       placeholder = "Type Your Answer Here" 
+                                       className   = "answer-title text-center greybox" 
+                                       placeholder = "Type Your Answer Text Here" 
                                        data-ind    = {this.props.ind}
                                        onChange    = {this.props.handleChange} /> :""}
 
@@ -237,15 +237,15 @@ class NewAnswer extends React.Component {
                             </CardBody>
                             <CardFooter >    
 
-                                <h6 className="text-center">Result Scoring <a href="#" id="TooltipExample"><i class="fas fa-question-circle pull-right" style={{opacity: .5}}></i></a></h6>
-                                <Tooltip placement="right" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.toggle}>
-          Hello world!
+                                <h6 className="text-center"><div className="right-float"><span id={"q-"+this.props.qInd+"-a-"+this.props.ind}><i className="fas fa-question-circle" style={{opacity: .5}}></i></span></div>Result Scoring </h6>
+                                <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target={"q-"+this.props.qInd+"-a-"+this.props.ind} toggle={this.toggle}>
+                                Use these menus to choose the result that correlates to your answer. +2 points correlates strongly, while +1 point correlates less so. <br/>You can always leave the second menu empty. <br/>If you don't see any options in the menus, create a few results first! 
         </Tooltip>
                                 
 
                                 {/* Selector for +2 Points */}
 
-
+<div className = "point-block">
                                 <div className="text-right">
                                     {/*
                                     <FormGroup row>
@@ -298,6 +298,7 @@ class NewAnswer extends React.Component {
                                         )}
 
                                     </select>
+                                </div>
                                 </div>
                             </CardFooter>
                         </Card>
