@@ -101,18 +101,12 @@ module.exports = {
     deleteOne: (req,res)=>{
 
     },
-
-    /* Updates a quiz after an edit has been made */
-
-    editQuiz: (req,res)=>{
-
-
-    },
-
+    
     /* Updates quiz data when users have taken it */
 
     updateData: (req,res)=>{
-
+        
+        
         let type = req.params.type;
 
         console.log("trying to push to " + req.params.type)
@@ -122,8 +116,10 @@ module.exports = {
 
             /* Pushes a new comments to the form data comments array */
 
-            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"comments": req.body.user_id}})
-                       .then(q => res.send(true))
+            console.log("comment")
+
+            db.Quiz.findOneAndUpdate({_id: req.params.id},{$push: {"comments": req.body}})
+                       .then(q => res.json(q))
                        .catch(err => res.status(422).json(err));
 
         } else if (type === "star"){
