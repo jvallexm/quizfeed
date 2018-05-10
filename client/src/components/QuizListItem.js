@@ -3,7 +3,7 @@ import { Card, Row, Col, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Comment from './Comment';
 import './css/QuizList.css';
-import PieChart from './PieChart'
+//import PieChart from './PieChart'
 
 class QuizListItem extends React.Component{
 
@@ -86,9 +86,9 @@ class QuizListItem extends React.Component{
                         <h3>{this.props.isDraft ? "(Draft) " :""}{this.props.title}</h3>
                     </Link>
                    
-                    {this.props.edit && this.state.pieChartData.length > 0
+                    {/*this.props.edit && this.state.pieChartData.length > 0
                     ? <PieChart id={`PieChart${this.props.id}`} data={this.state.pieChartData} />                     
-                    :<p>{this.props.blurb}</p>}
+                    :*/}<p>{this.props.blurb}</p> {/*}*/}
 
                     {! this.props.edit ?
                     <Link to={"/userquizzes/" + this.props.author_id} style={{ textDecoration: 'none', color: 'black' }}>

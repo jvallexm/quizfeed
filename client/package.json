@@ -23,7 +23,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "google-charts": "^1.1.0"
-  }
+  "devDependencies": {}
 }
