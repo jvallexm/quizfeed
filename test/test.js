@@ -32,7 +32,7 @@ describe("quizRoutes", function() {
 
 // testing if quizController finds all quizzes by a single user
     it("should find all quizzes by a single user", function(done) {
-        chai.request(app).get("/api/user/104210337055222011322").then(function(res) {
+        chai.request(app).get("/api/users/101050207951913667731").then(function(res) {
             expect(res.body).to.be.an("array");
             done();
         })  .catch(function(error) {
@@ -53,10 +53,3 @@ describe("userRoutes", function() {
         });        
     });
 });
-
-// NOTES: 
-//       line 24 - replace id1 when we have an actual id 
-//       line 35 - replace id2 when we have an id 
-//       line 47 - replace id3 when we have an id
-
-// command line: npm test

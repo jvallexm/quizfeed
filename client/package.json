@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^4.1.0",
+    "chart.js": "^2.7.2",
     "popper.js": "^1.14.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -21,5 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "google-charts": "^1.1.0"
   }
 }

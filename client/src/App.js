@@ -5,7 +5,7 @@ import EditQuiz   from "./pages/EditQuiz";
 import FourOhFour from "./pages/Error";
 import Quiz       from "./pages/Quiz";
 import QfNavbar   from "./components/Navbar";
-
+import PieChart   from "./components/PieChart";
 
 
 /* https://tylermcginnis.com/react-router-pass-props-to-components/ */
