@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col, CardFooter } from 'reactstrap';
+import Comment from "./Comment";
 import API from "../utils/api";
 import "./css/Result.css"
 import {
@@ -236,14 +237,10 @@ class NewResult extends React.Component{
                 <div id="the-comments">
 
                     {this.props.comments.map((c,i)=>
-                    <Card key={"comment-" + i}>
-                        <CardBody>
-                            {c.comment}
-                        </CardBody>
-                        <CardFooter>
-                            Posted by {c.author} on {this.returnDate(c.posted_on)}
-                        </CardFooter>
-                    </Card>)}
+
+                        <Comment key={"comment-i"} comment={c} date={this.returnDate(c.posted_on)}/>
+                        
+                    )}
 
                     <form onSubmit={this.pushNewComment}>
                             <input value={this.state.comment}

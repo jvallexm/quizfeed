@@ -223,18 +223,6 @@ class Quiz extends React.Component{
 
                 </section>
 
-                { this.state.quiz.results.length > 0 ?
-                      <Result ref="result" result   = { this.state.quiz.results[0] } 
-                                           title    = { this.state.quiz.title } 
-                                           user     = { this.props.user }
-                                           stars    = { this.state.quiz.stars ? this.state.quiz.stars : [] }
-                                           pushStar = {this.pushStar }
-                                           pullStar = { this.pullStar }
-                                           showComments = {()=>this.setState({showComments: !this.state.showComments})}
-                                           comments = { this.state.quiz.comments}
-                                           pushComment = {this.pushComment}
-                                           quizId={this.state.quiz._id}/> :""}
-
                 <center>
 
                         {this.state.quiz.questions.map((ele,i)=>

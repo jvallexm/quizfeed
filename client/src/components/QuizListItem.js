@@ -1,9 +1,25 @@
 import React        from "react";
-import { Card, Row, Col} from 'reactstrap';
+import { Card, Row, Col, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
+import Comment from './Comment';
 import './css/QuizList.css';
 
 class QuizListItem extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            showComments: false
+        }   
+        this.returnDate = this.returnDate.bind(this);
+    }
+
+    returnDate(date){
+
+        let then = new Date(date);
+        return `${then.getMonth()+1}/${then.getDate()}/${then.getFullYear()}`;
+
+    }
 
     render(){
 
@@ -21,7 +37,7 @@ class QuizListItem extends React.Component{
                     <h3 className="text-center space-top">
                         {this.props.responses.length} <i className="fa fa-users"/>&nbsp;&nbsp;
                         <span className="comment-span">{this.props.stars.length} <i className={this.props.stars.indexOf(this.props.user._id) > -1? "fa fa-star gold" : "fa fa-star"}/></span>&nbsp;&nbsp;
-                        <span className="comment-span">{this.props.comments.length} <i className="fa fa-comments"/></span>
+                        <span className="comment-span" onClick={()=>this.setState({showComments: !this.state.showComments})}>{this.props.comments.length} <i className="fa fa-comments"/></span>
                     </h3>
                 </Col>
                 <Col md="8">
@@ -38,6 +54,14 @@ class QuizListItem extends React.Component{
                 </Col>
                 <hr/>
             </Row> 
+            {this.state.showComments ?
+                <CardFooter>
+                {this.props.comments.length > 0 ?
+                this.props.comments.map((c,i)=>
+                    <Comment key={this.props.id + "-comment-" + i} comment={c} date={this.returnDate(c.posted_on)}/>
+                ) : "No comments yet.. take the quiz and write one!"}
+                </CardFooter>
+            : ""}
         </Card>)
     }
 
