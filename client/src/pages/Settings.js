@@ -32,7 +32,9 @@ class Settings extends React.Component{
                     {/* Display error image */}
 
                     <Col>
-                        <p>Put photo editing function here.</p>
+                        <img className="pic" alt={this.props.user.givenName} src={this.props.user.imageUrl} />
+                        <Button className="homebutton" href="/">Change your name here
+                        </Button>    
                     </Col>
 
                     {/* Where users fill in answers */}

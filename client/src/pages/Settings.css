@@ -2,6 +2,11 @@
     margin-top: 25px;
 }
 
+.pic {
+    /* float: left; */
+    overflow: hidden;
+  }
+
 .settings-card{
     padding:10px;
     width: 75%;
