@@ -124,3 +124,15 @@ hr.superline {
 .preview-fill{
     height: 300px;
 }
+#sticky-footer{
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    font-size: 50%;
+    background-color: gray;
+    color: white;
+    padding: 5px;
+    opacity: .5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}

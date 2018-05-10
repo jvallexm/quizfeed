@@ -258,7 +258,8 @@ class NewAnswer extends React.Component {
                                        className   = "answer-title text-center greybox" 
                                        placeholder = "Type Your Answer Text Here" 
                                        data-ind    = {this.props.ind}
-                                       onChange    = {this.props.handleChange} /> :""}
+                                       onChange    = {this.props.handleChange} 
+                                       value       = {this.props.title} /> :""}
 
                        
 
@@ -276,18 +277,7 @@ class NewAnswer extends React.Component {
 
                             <div className = "point-block">
                                 <div className="text-right">
-                                    {/*
-                                    <FormGroup row>
-                                        <Label for="plusTwo" className="text-right" sm={4}>+2 Points</Label>
-                                        <Col sm={8}>
-                                            <Input type="select" 
-                                                    bsSize="sm"
-                                                    name="plusTwo" 
-                                                    onChange = {this.props.handleChange} 
-                                                    data-ind = {this.props.ind} 
-                                                    value    = {this.props.plusTwo} />
-                                        </Col>
-                                    </FormGroup>*/}
+
                                     +2 Points &nbsp;
                                     <select name     = "plusTwo" 
                                             onChange = {this.props.handleChange} 
@@ -334,11 +324,7 @@ class NewAnswer extends React.Component {
 
                     </div>
 
-
-
-
-
-    )
+        )
 
     }
 
