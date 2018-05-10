@@ -252,7 +252,8 @@ class Home extends React.Component{
                                           user={this.props.user}
                                           edit={this.props.edit}
                                           responses={q.responses}
-                                          preview={q.previewImage}/>
+                                          preview={q.previewImage}
+                                          isDraft={q.isDraft}/>
 
                         </div>
                     )}

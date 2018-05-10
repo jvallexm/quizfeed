@@ -42,7 +42,7 @@ class QuizListItem extends React.Component{
                 </Col>
                 <Col md="8">
                     <Link to={edit + this.props.id} style={{ textDecoration: 'none', color: 'black' }}>
-                        <h3>{this.props.title}</h3>
+                        <h3>{this.props.isDraft ? "(Draft) " :""}{this.props.title}</h3>
                     </Link>
                    
                     <p>{this.props.blurb}</p>

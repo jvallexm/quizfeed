@@ -43,7 +43,8 @@ class EditQuiz extends React.Component{
             published: false,
             errors: [],
             imageSearch: false,
-            brokenImages: false
+            brokenImages: false,
+            saving: false
 
         }
 
