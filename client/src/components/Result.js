@@ -245,12 +245,16 @@ class NewResult extends React.Component{
                         
                     )}
 
+                    {this.props.user._id?
+
                     <form onSubmit={this.pushNewComment}>
                             <input value={this.state.comment}
                                     placeholder="Leave a constructive comment"
                                     onChange={this.handleChange}/>
                             <input type="submit"/>
-                    </form>
+                    </form> 
+                    
+                    :""}
 
                 </div>
 

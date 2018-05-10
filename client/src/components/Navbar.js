@@ -122,7 +122,9 @@ class QfNavbar extends React.Component {
                     <i className="fab fa-github"/> View on Github
                   </DropdownItem>
                   <DropdownItem onClick={()=>this.props.setUser({})}>
-                    <i className="fas fa-sign-out-alt"/> Logout
+                    <Link to="/">
+                      <i className="fas fa-sign-out-alt"/> Logout
+                    </Link>
                   </DropdownItem>
                 </DropdownMenu>
              </UncontrolledDropdown> :""}
