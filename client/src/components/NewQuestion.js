@@ -142,7 +142,6 @@ class NewQuestion extends React.Component{
                            id          = "quizQuestion" 
                            value       = { this.props.question.question }
                            placeholder = { this.props.color === "black" ? "Type Your Question Here!" : "Enter a Title to See Your Color Changes!"}
-
                            onChange    = { this.handleChange} 
                            style       = { {backgroundColor: this.props.backgroundColor, color: this.props.color}}/>
   

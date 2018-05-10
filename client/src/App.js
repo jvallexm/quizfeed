@@ -6,8 +6,6 @@ import FourOhFour from "./pages/Error";
 import Quiz       from "./pages/Quiz";
 import QfNavbar   from "./components/Navbar";
 
-
-
 /* https://tylermcginnis.com/react-router-pass-props-to-components/ */
 
 class App extends React.Component{

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import Question from '../components/Question';
 import "./EditQuiz.css";
 import Result from "../components/Result";
-import { Events, animateScroll as scroll, scrollSpy, scroller, Element } from 'react-scroll'
+import { animateScroll as scroll } from 'react-scroll'
 
 
 
@@ -178,7 +178,7 @@ class Quiz extends React.Component{
             let largest = -1;                 // index of the answer with the largest score
             for(let i=0;i<quiz.results.length;i++){
 
-                if(largest == -1 || score[i]>score[largest])
+                if(largest === -1 || score[i]>score[largest])
                     largest=i;
 
             }
