@@ -3,7 +3,7 @@ import { Card, Row, Col, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Comment from './Comment';
 import './css/QuizList.css';
-import PieChart from '../PieChart'
+import PieChart from './PieChart'
 
 class QuizListItem extends React.Component{
 
@@ -13,16 +13,44 @@ class QuizListItem extends React.Component{
         this.state = {
             showComments: false,
             pieChartData: [
-              ['Task', 'Hours per Day'],
-              ['Work',     11],
-              ['Eat',      2],
-              ['Commute',  2],
-              ['Watch TV', 2],
-              ['Sleep',    7]
+
             ]
         }   
         this.returnDate = this.returnDate.bind(this);
     }
+
+    componentWillMount(){
+
+        if(this.props.edit){
+
+            let responses = this.props.responses;
+            let pieChartNames = [];
+            responses.forEach(i=>{
+                if(pieChartNames.indexOf(i) === -1)
+                    pieChartNames.push(i);
+            })
+            console.log(pieChartNames);
+            let responsesArray = [];
+            pieChartNames.forEach(i => responsesArray.push(0));
+            responses.forEach( i=> responsesArray[pieChartNames.indexOf(i)]++ );
+            console.log(responsesArray);
+            let pieChartData = [];
+            pieChartData.push(["Results","Percentage Total Responses"])
+            for(let i=0;i<pieChartNames.length;i++){
+                pieChartData.push([pieChartNames[i],responsesArray[i]]);
+            }
+            this.setState({pieChartData: pieChartData});
+
+        }
+
+    }
+
+    /*        ['Task', 'Hours per Day'],
+              ['Work',     11],
+              ['Eat',      2],
+              ['Commute',  2],
+              ['Watch TV', 2],
+              ['Sleep',    7] */
 
     returnDate(date){
 
@@ -58,9 +86,9 @@ class QuizListItem extends React.Component{
                         <h3>{this.props.isDraft ? "(Draft) " :""}{this.props.title}</h3>
                     </Link>
                    
-                    {this.props.edit
+                    {this.props.edit && this.state.pieChartData.length > 0
                     ? <PieChart id={`PieChart${this.props.id}`} data={this.state.pieChartData} />                     
-                    :<p>HI{hi + this.props.blurb}</p>}
+                    :<p>{this.props.blurb}</p>}
 
                     {! this.props.edit ?
                     <Link to={"/userquizzes/" + this.props.author_id} style={{ textDecoration: 'none', color: 'black' }}>

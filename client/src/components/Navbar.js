@@ -4,7 +4,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   UncontrolledDropdown,
@@ -14,10 +13,9 @@ import {
 
 import './css/Navbar.css';
 import { Link } from 'react-router-dom';
-import { GoogleLogin, GoogleLogout} from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 import Logo from './images/Quizfeed-Logo-sm.png';
 import API from '../utils/api';
-import { BrowserRouter, NavLink } from "react-router-dom";
 
 class QfNavbar extends React.Component {
     constructor(props) {
@@ -62,7 +60,7 @@ class QfNavbar extends React.Component {
 
     devSuccess(){
 
-      API.getUser("104210337055222011322",{})
+      API.getUser("109878694496271074658",{})
          .then(user => this.props.setUser(user.data));
 
     } 

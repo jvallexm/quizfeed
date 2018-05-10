@@ -216,7 +216,7 @@ class Home extends React.Component{
                             <h3>Loading <i className="fa fa-spinner fa-spin"/></h3>
                         : this.state.byId ?
                             <div>
-                                <img className="home-img" src={this.state.userImage} alt="User Image"/> 
+                                <img className="home-img" src={this.state.userImage} alt="User"/> 
                                 <h3>Quizzes By {this.state.userName}</h3>
                             </div>
                         : ""}

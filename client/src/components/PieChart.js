@@ -1,8 +1,5 @@
-import React, {Component} from "react";
+import React from "react";
 import {GoogleCharts} from 'google-charts';
-
-function drawChart() {
-    }
 
 class PieChart extends React.Component {
     
@@ -19,6 +16,7 @@ class PieChart extends React.Component {
     render () {
         return <div id={this.props.id}></div>
     }
+
 };
 
 
