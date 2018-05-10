@@ -3,13 +3,23 @@ import { Card, Row, Col, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Comment from './Comment';
 import './css/QuizList.css';
+import PieChart from '../PieChart'
 
 class QuizListItem extends React.Component{
+
 
     constructor(props){
         super(props);
         this.state = {
-            showComments: false
+            showComments: false,
+            pieChartData: [
+              ['Task', 'Hours per Day'],
+              ['Work',     11],
+              ['Eat',      2],
+              ['Commute',  2],
+              ['Watch TV', 2],
+              ['Sleep',    7]
+            ]
         }   
         this.returnDate = this.returnDate.bind(this);
     }
@@ -48,7 +58,10 @@ class QuizListItem extends React.Component{
                         <h3>{this.props.isDraft ? "(Draft) " :""}{this.props.title}</h3>
                     </Link>
                    
-                    <p>{this.props.blurb}</p>
+                    {this.props.edit
+                    ? <PieChart id={`PieChart${this.props.id}`} data={this.state.pieChartData} />                     
+                    :<p>HI{hi + this.props.blurb}</p>}
+
                     {! this.props.edit ?
                     <Link to={"/userquizzes/" + this.props.author_id} style={{ textDecoration: 'none', color: 'black' }}>
                         <span className="byline">By {this.props.author}</span>
