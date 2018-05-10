@@ -1,9 +1,9 @@
 import React        from "react";
 import { Card, CardBody, Button, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import "./Error.css"
+import "./Settings.css"
 
-class FourOhFour extends React.Component{
+class Settings extends React.Component{
 
     state = {};
     
@@ -22,18 +22,24 @@ class FourOhFour extends React.Component{
         return(
             <center>
             <div className="space">
-            <Card className="error-card text-center">
+            <Card className="result-card text-center">
             <CardBody>
 
                 {/* Main card info */}
 
                 <Row>
 
+                    {/* Display error image */}
+
+                    <Col>
+                        <p>Put photo editing function here.</p>
+                    </Col>
+
                     {/* Where users fill in answers */}
 
-                    <Col className="text-left">
-                        <h2>You've reached an error: {this.state.errorCode ? "CODE" : "NO CODE"}</h2>
-                        <Button className="homebutton" href="/">Return Home
+                    <Col className="text-left result-text-col">
+                        <h1>Your Display Name: {this.state.errorCode ? "CODE" : "NO CODE"}</h1>
+                        <Button className="homebutton" href="/">Change your name here
                         </Button>
                     </Col>
                 </Row>
@@ -53,4 +59,4 @@ class FourOhFour extends React.Component{
 
 }
 
-export default FourOhFour;
+export default Settings;
