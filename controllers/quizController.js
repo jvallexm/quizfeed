@@ -60,7 +60,7 @@ module.exports = {
 
     saveDraft: (req,res)=>{
 
-        db.Quiz.findOneAndUpdate({_id: req.params.id},req.body.quiz)
+        db.Quiz.findOneAndUpdate({_id: req.params.id},req.body)
                .then(q=> res.send(true))
                .catch(err => res.status(422).json(err));
 
