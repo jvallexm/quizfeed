@@ -29,7 +29,8 @@ class NewResult extends React.Component{
         super(props);
         this.state = {
             search: false,
-            comment: ""
+            comment: "",
+            showComments: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.pushNewComment  = this.pushNewComment.bind(this);
@@ -222,7 +223,7 @@ class NewResult extends React.Component{
             </CardBody>
 
             <CardFooter>
-                <Button onClick={this.props.showComments}> Show Comments <i className="fa fa-comments white"/></Button>
+                <Button onClick={()=>this.setState({showComments: !this.state.showComments})}> {this.state.showComments ? "Hide" : "Show"} Comments <i className="fa fa-comments white"/></Button>
                 <Button  className={this.props.stars.indexOf(this.props.user._id) === -1 ? "" : "btn-gold"} onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ()=>this.props.pullStar()}>
                     {
                         ! this.props.user._id
@@ -232,7 +233,7 @@ class NewResult extends React.Component{
                         : <span>You Gave This Quiz a <i className="fa fa-star"/>!</span>}
                 </Button>
 
-                {this.props.showComments ?
+                {this.state.showComments ?
                 
                 <div id="the-comments">
 
