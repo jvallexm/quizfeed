@@ -81,10 +81,13 @@ class EditQuiz extends React.Component{
 
                 else
                 
-                    API.saveAsDraft(this.state.quiz._id, this.state.quiz)
+                    API.saveAsDraft(this.state.quiz._id, this.state.quiz).then(()=>
+                        setTimeout(()=>{
+                            this.setState({saving: false})
+                        },1000)
+                    );
+                    this.setState({saving: true});
 
-            } else {
-                console.log("Autosaving is disabled for published quizzes");
             }
 
         },3000);
@@ -114,8 +117,6 @@ class EditQuiz extends React.Component{
                     this.setState({redirect: true, errorCode: 0});
                 } else {
 
-                    console.log(`author quiz ${res.data.author_id} user ${this.props.user._id}`)
-
                     /* Needs logic to set redirect to true if the user is not the quiz author */
 
                     if(res.data.author_id === this.props.user._id){
@@ -143,12 +144,8 @@ class EditQuiz extends React.Component{
 
             } else {
 
-                console.log("this quiz is new!");
                 let quiz = this.state.quiz;
                 quiz._id = Date.now();
-
-                // POST QUIZ TO API then set state
-
                 this.setState({isNew: true});
             }
 
@@ -709,6 +706,15 @@ class EditQuiz extends React.Component{
                             className = "jumbotron btn-publish container-fluid" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ &nbsp;<i className="fas fa-arrow-circle-right"></i></button>
                     </Col>
                 </Row>
+                
+                {this.state.published ?
+                <div id="sticky-footer">
+                    {
+                        ! this.state.quiz.isDraft
+                        ? <span> Autosaving is Disabled For Published Quizzes </span>
+                        : <span> {this.state.saving ? <span>Saving... <i className="fa fa-spinner fa-spin"/> </span> : <span>Saved to Drafts <i className="fa fa-check"/></span>}</span>
+                    }
+                </div> : ""}
             
              </div>
 

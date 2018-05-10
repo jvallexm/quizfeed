@@ -2,6 +2,7 @@ import React from "react";
 import API   from "../utils/api";
 import QuizListItem from '../components/QuizListItem';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
 import './Home.css';
 
@@ -34,8 +35,9 @@ class Home extends React.Component{
 
     componentDidUpdate(prevProps, prevState, snapshot){
 
-        if(prevProps !== this.props)
+        if(prevProps !== this.props){
             this.loadItUp();
+        }
 
     }
 
@@ -116,7 +118,7 @@ class Home extends React.Component{
 
                 });
 
-                this.setState({quizzes: quizzes});
+                this.setState({quizzes: quizzes, byId: false});
 
             });
 
@@ -225,6 +227,18 @@ class Home extends React.Component{
                             <h2> Looks Like You Haven't Made Any Quizzes Yet </h2>
                             <Button className="btn-block big-big" onClick={()=>this.nextPath('newQuiz')}>
                                 Make A New Quiz!
+                            </Button>
+                        </div>
+
+                    : ""}
+
+                    {this.props.faves && this.state.quizzes.length === 0 && this.state.loaded 
+                    ?   <div className="text-center">
+                            <h2> Looks Like You Haven't Starred Any Quizzes Yet! </h2>
+                            <Button className="btn-block big-big">
+                                <Link to="/">
+                                    Back to the Home Page!
+                                </Link>
                             </Button>
                         </div>
 

@@ -224,7 +224,9 @@ class NewResult extends React.Component{
 
             <CardFooter>
                 <Button onClick={()=>this.setState({showComments: !this.state.showComments})}> {this.state.showComments ? "Hide" : "Show"} Comments <i className="fa fa-comments white"/></Button>
-                <Button  className={this.props.stars.indexOf(this.props.user._id) === -1 ? "" : "btn-gold"} onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ()=>this.props.pullStar()}>
+                <Button className={this.props.stars.indexOf(this.props.user._id) === -1 ? "" : "btn-gold"} 
+                        onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ()=>this.props.pullStar()}
+                        disabled={this.props.user._id ? false : true}>
                     {
                         ! this.props.user._id
                         ? <span>Login to Give This Quiz a <i className="fa fa-star"/>!</span>
