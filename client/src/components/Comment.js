@@ -1,13 +1,22 @@
 import React from 'react'
+import { Card, CardBody, CardFooter} from 'reactstrap';
 
-const Comment = () =>{
+const Comment = (props) =>{
 
     return(
 
-        <h1>Hot Poppers</h1>
+        <Card>
+            <CardBody>
+                {props.comment.comment}
+            </CardBody>
+            <CardFooter>
+                Posted by {props.comment.author} on {props.date}
+            </CardFooter>
+        </Card>
 
     )
 
 }
 
 export default Comment;
+
