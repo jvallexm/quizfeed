@@ -1,5 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Button, Row, Col, CardFooter } from 'reactstrap';
+import Comment from "./Comment";
+import API from "../utils/api";
 import "./css/Result.css"
 import {
     FacebookShareButton,
@@ -26,8 +28,13 @@ class NewResult extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            search: false
+            search: false,
+            comment: "",
+            showComments: false
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.pushNewComment  = this.pushNewComment.bind(this);
+        this.returnDate = this.returnDate.bind(this);
 
     }
 
@@ -44,6 +51,46 @@ class NewResult extends React.Component{
     componentWillMount(){
 
         this.setState({result: this.props.result});
+
+    }
+
+    pushNewComment(e){
+
+        e.preventDefault();
+        let comment = {
+            author_id: this.props.user._id,
+            author: this.props.user.givenName,
+            comment: this.state.comment,
+            posted_on: Date.now()
+        }
+
+        console.log("trying to push to quiz " + this.props.quizId);
+        console.log(comment);
+
+        API.pushComment(this.props.quizId,comment).then(res=>{
+            if(res.data)
+                this.props.pushComment(comment);
+            console.log(res);
+
+        });
+        this.setState({comment: ""});
+
+    }
+
+    handleChange(e){
+
+        if(e.target.value.length < 250){
+
+            this.setState({comment: e.target.value});
+
+        }
+
+    }
+
+    returnDate(date){
+
+        let then = new Date(date);
+        return `${then.getMonth()+1}/${then.getDate()}/${then.getFullYear()}`;
 
     }
 
@@ -176,8 +223,10 @@ class NewResult extends React.Component{
             </CardBody>
 
             <CardFooter>
-                <Button onClick={this.props.showComments}> Show Comments <i className="fa fa-comments white"/></Button>
-                <Button  className={this.props.stars.indexOf(this.props.user._id) === -1 ? "" : "btn-gold"} onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ()=>this.props.pullStar()}>
+                <Button onClick={()=>this.setState({showComments: !this.state.showComments})}> {this.state.showComments ? "Hide" : "Show"} Comments <i className="fa fa-comments white"/></Button>
+                <Button className={this.props.stars.indexOf(this.props.user._id) === -1 ? "" : "btn-gold"} 
+                        onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ()=>this.props.pullStar()}
+                        disabled={this.props.user._id ? false : true}>
                     {
                         ! this.props.user._id
                         ? <span>Login to Give This Quiz a <i className="fa fa-star"/>!</span>
@@ -185,6 +234,28 @@ class NewResult extends React.Component{
                         ? <span>Give This Quiz a <i className="fa fa-star"/>!</span>
                         : <span>You Gave This Quiz a <i className="fa fa-star"/>!</span>}
                 </Button>
+
+                {this.state.showComments ?
+                
+                <div id="the-comments">
+
+                    {this.props.comments.map((c,i)=>
+
+                        <Comment key={"comment-i"} comment={c} date={this.returnDate(c.posted_on)}/>
+                        
+                    )}
+
+                    <form onSubmit={this.pushNewComment}>
+                            <input value={this.state.comment}
+                                    placeholder="Leave a constructive comment"
+                                    onChange={this.handleChange}/>
+                            <input type="submit"/>
+                    </form>
+
+                </div>
+
+                :""}
+
             </CardFooter>
 
         </Card>

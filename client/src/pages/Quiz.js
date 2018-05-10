@@ -41,6 +41,15 @@ class Quiz extends React.Component{
         this.scrollToBottom = this.scrollToBottom.bind(this);
         this.pushStar = this.pushStar.bind(this);
         this.pullStar = this.pullStar.bind(this);
+        this.pushComment = this.pushComment.bind(this);
+
+    }
+
+    pushComment(obj){
+
+        let quiz = this.state.quiz;
+        quiz.comments.push(obj);
+        this.setState({quiz: quiz});
 
     }
 
@@ -53,7 +62,6 @@ class Quiz extends React.Component{
         if(this.state.finalResult){
             this.scrollToBottom();
         }
-
 
     }
 
@@ -210,25 +218,14 @@ class Quiz extends React.Component{
 
                  
                         <h1  style= { {color: this.state.quiz.color} }>
- { this.state.quiz.title }</h1>
+            { this.state.quiz.title }</h1>
                    
 
                 </section>
 
-                {/* this.state.quiz.results.length > 0 ?
-                      <Result ref="result" result   = { this.state.quiz.results[0] } 
-                                           title    = { this.state.quiz.title } 
-                                           user     = { this.props.user }
-                                           stars    = { this.state.quiz.stars ? this.state.quiz.stars : [] }
-                                           pushStar = {this.pushStar }
-                                           pullStar = { this.pullStar }
-                showComments = {()=>this.setState({showComments: !this.state.showComments})}/> :"" */}
-
                 <center>
 
                         {this.state.quiz.questions.map((ele,i)=>
-
-                            <Element name={"question-" + i} className="element">
 
                             <Question key             = { "question-"+i            }
                                       question        = { ele                      } 
@@ -238,9 +235,8 @@ class Quiz extends React.Component{
                                       type            = { ele.type                 } 
                                       results         = { this.state.quiz.results  } 
                                       score           = { this.score               }
-                                      id              = { "question-"+i            }/>
-                            
-                            </Element>
+                                      name              = { "question-"+i            }/>
+            
                             
                         )}
 
@@ -256,7 +252,10 @@ class Quiz extends React.Component{
                                            stars    = { this.state.quiz.stars ? this.state.quiz.stars : [] }
                                            pushStar = {this.pushStar }
                                            pullStar = { this.pullStar }
-                                           showComments = {()=>this.setState({showComments: !this.state.showComments})}/>
+                                           showComments = {()=>this.setState({showComments: !this.state.showComments})}
+                                           comments = { this.state.quiz.comments}
+                                           pushComment = {this.pushComment}
+                                           quizId={this.state.quiz._id}/>
 
                     </div>
                     

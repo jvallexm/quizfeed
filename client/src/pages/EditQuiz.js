@@ -43,7 +43,8 @@ class EditQuiz extends React.Component{
             published: false,
             errors: [],
             imageSearch: false,
-            brokenImages: false
+            brokenImages: false,
+            saving: false
 
         }
 
@@ -80,10 +81,13 @@ class EditQuiz extends React.Component{
 
                 else
                 
-                    API.saveAsDraft(this.state.quiz._id, this.state.quiz)
+                    API.saveAsDraft(this.state.quiz._id, this.state.quiz).then(()=>
+                        setTimeout(()=>{
+                            this.setState({saving: false})
+                        },1000)
+                    );
+                    this.setState({saving: true});
 
-            } else {
-                console.log("Autosaving is disabled for published quizzes");
             }
 
         },3000);
@@ -110,10 +114,8 @@ class EditQuiz extends React.Component{
             API.getQuizById(id).then(res=>{
 
                 if(!res.data){
-                    this.setState({redirect: true});
+                    this.setState({redirect: true, errorCode: 0});
                 } else {
-
-                    console.log(`author quiz ${res.data.author_id} user ${this.props.user._id}`)
 
                     /* Needs logic to set redirect to true if the user is not the quiz author */
 
@@ -127,7 +129,7 @@ class EditQuiz extends React.Component{
                     } else {
 
                         console.log("Error: no quiz");
-                        this.setState({redirect: true});
+                        this.setState({redirect: true, errorCode: "1"});
 
                     }
                 }
@@ -138,16 +140,12 @@ class EditQuiz extends React.Component{
 
             if(!this.props.user._id){
 
-                this.setState({redirect: true});
+                this.setState({redirect: true, errorCode: "2"});
 
             } else {
 
-                console.log("this quiz is new!");
                 let quiz = this.state.quiz;
                 quiz._id = Date.now();
-
-                // POST QUIZ TO API then set state
-
                 this.setState({isNew: true});
             }
 
@@ -160,7 +158,7 @@ class EditQuiz extends React.Component{
         if(broke)
             this.setState({brokenImages: this.state.brokenImages + 1})
         else
-            this.setState({brokenImages: this.state.brokenImages + 1})
+            this.setState({brokenImages: this.state.brokenImages - 1})
 
     }
 
@@ -232,7 +230,7 @@ class EditQuiz extends React.Component{
     handleChange(e){
 
         let quiz = this.state.quiz;
-        if(e.target.name === "title" && e.target.value.length > 60)
+        if(e.target.name === "title" && e.target.value.length > 120)
             return false;
         if((e.target.name === "blurb" && e.target.value.length > 250) || (e.target.name === "previewImage" && e.target.value.length > 250))
             return false;
@@ -248,16 +246,6 @@ class EditQuiz extends React.Component{
         this.setState({quiz: quiz, imageSearch: false})
 
     }
-
-    /* Saving for later
-
-    componentDidUpdate(prevProps, prevState, snapshot){
-
-        console.log("component did update");
-
-    }
-
-    */
 
     /* Click handler for the color picker */
 
@@ -497,6 +485,24 @@ class EditQuiz extends React.Component{
 
 
     }
+
+    imageError(){
+
+        if(!this.state.imageIsBroken){
+            this.brokenImageCheck(true);
+            this.setState({imageIsBroken: true});
+        }
+
+    }
+
+    imageFix(){
+
+        if(this.state.imageIsBroken){
+            this.brokenImageCheck(false);
+            this.setState({imageIsBroken: false});
+        }
+
+    }
     
 
     render(){
@@ -504,7 +510,7 @@ class EditQuiz extends React.Component{
         // Redirects on an error
 
         if(this.state.redirect)
-            return <Redirect to="/404"/>
+            return <Redirect to={"/404/" + this.state.errorCode}/>
             
         return(
         
@@ -584,7 +590,9 @@ class EditQuiz extends React.Component{
                         : this.state.imageSearch 
                         ? <Image setImage={this.handleImageChange}/>
                         : <img src={this.state.quiz.previewImage} 
-                               className="preview-image" alt="preview" />}
+                               className="preview-image" alt="preview" 
+                               onLoad={()=>this.imageFix()}
+                               onError={()=>this.imageError()}/>}
                     </div>
 
                     <input name="previewImage" className="url" value={this.state.quiz.previewImage} onChange={this.handleChange}/>
@@ -672,7 +680,8 @@ class EditQuiz extends React.Component{
                                    rInd={ii}
                                    handleChange={this.handleResultChange}
                                    setImage    = { this.handleResultImageChange }
-                                   trash = {this.deleteBlock}/>
+                                   trash = {this.deleteBlock}
+                                   breakImage = { this.brokenImageCheck }/>
                         )
                         
                 }
@@ -697,6 +706,15 @@ class EditQuiz extends React.Component{
                             className = "jumbotron btn-publish container-fluid" onClick={()=>this.publish()} >PUBLISH YOUR QUIZ &nbsp;<i className="fas fa-arrow-circle-right"></i></button>
                     </Col>
                 </Row>
+                
+                {this.state.published ?
+                <div id="sticky-footer">
+                    {
+                        ! this.state.quiz.isDraft
+                        ? <span> Autosaving is Disabled For Published Quizzes </span>
+                        : <span> {this.state.saving ? <span>Saving... <i className="fa fa-spinner fa-spin"/> </span> : <span>Saved to Drafts <i className="fa fa-check"/></span>}</span>
+                    }
+                </div> : ""}
             
              </div>
 

@@ -108,7 +108,9 @@ class QfNavbar extends React.Component {
                     </Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <i className="fas fa-cog"/> Settings 
+                    <Link to="/settings">  
+                      <i className="fas fa-cog"/> Settings 
+                    </Link>
                   </DropdownItem>
                   <DropdownItem>
                     <Link to="/favorites">

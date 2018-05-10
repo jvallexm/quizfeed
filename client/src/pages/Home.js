@@ -2,6 +2,7 @@ import React from "react";
 import API   from "../utils/api";
 import QuizListItem from '../components/QuizListItem';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
 import './Home.css';
 
@@ -16,7 +17,9 @@ class Home extends React.Component{
             quizzes: [],
             dropdownOpen: false,
             loaded: false,
-            redirect: false
+            redirect: false,
+            errorCode: "",
+            userImage: ""
     
         }
         this.toggle = this.toggle.bind(this);
@@ -32,8 +35,9 @@ class Home extends React.Component{
 
     componentDidUpdate(prevProps, prevState, snapshot){
 
-        if(prevProps !== this.props)
+        if(prevProps !== this.props){
             this.loadItUp();
+        }
 
     }
 
@@ -54,14 +58,22 @@ class Home extends React.Component{
                         quizzes.push(i);
                 })
 
-                this.setState({quizzes: quizzes});
+                API.getUser(id).then(res=>{
+                    if(res.data.errors)
+                        this.setState({redirect: true, errorCode: "5"})
+                    else
+                        this.setState({userImage: res.data.imageUrl, userName: res.data.givenName});
+
+                });
+
+                this.setState({quizzes: quizzes, byId: id, loaded: true});
 
             });
 
         } else if(this.props.edit){
 
             if(!this.props.user._id)
-                this.setState({redirect: true});
+                this.setState({redirect: true, errorCode: "3"});
             
             else{
 
@@ -78,7 +90,7 @@ class Home extends React.Component{
 
             if(!this.props.user._id){
 
-                this.setState({redirect: true});
+                this.setState({redirect: true, errorCode: "4"});
 
             } else {
 
@@ -97,14 +109,16 @@ class Home extends React.Component{
 
                 let quizzes = res.data.sort((a,b)=>{
 
-                    if(a.responses.length > b.responses.length)
+                    let aHotness = a.responses.length + (2 * a.stars.length) + (3 * a.comments.length);
+                    let bHotness = b.responses.length + (2 * b.stars.length) + (3 * b.comments.length);
+                    if(aHotness > bHotness)
                         return -1;
                     else
                         return 1;
 
                 });
 
-                this.setState({quizzes: quizzes});
+                this.setState({quizzes: quizzes, byId: false});
 
             });
 
@@ -129,7 +143,16 @@ class Home extends React.Component{
 
         let sortedQuizzes = quizzes.sort((a,b)=>{
 
-            if(type !== "_id" && type !== "title"){
+            if(type === "hotness"){            
+
+                let aHotness = a.responses.length + (2 * a.stars.length) + (3 * a.comments.length);
+                let bHotness = b.responses.length + (2 * b.stars.length) + (3 * b.comments.length);
+                if(aHotness > bHotness)
+                    return up;
+                else
+                    return down;
+
+            } else if(type !== "_id" && type !== "title"){
 
                 if(a[type].length > b[type].length)
                     return up;
@@ -154,7 +177,7 @@ class Home extends React.Component{
     render(){
 
         if(this.state.redirect)
-            return <Redirect to="/404"/>;
+            return <Redirect to={"/404/" + this.state.errorCode}/>;
 
         return(
 
@@ -162,13 +185,16 @@ class Home extends React.Component{
 
                     <div className = "home-nav text-right">
                         <Button title={this.props.user._id ? "Create a New Quiz" : "You Need to Login to Create a Quiz!"}
-                                disabled={this.props.user._id ? false : "disabled"}
+                                disabled={this.props.user._id ? false : true}
                                 onClick={()=>this.nextPath('/newQuiz')}>Create a New Quiz</Button>
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret>
                                 Sort By
                             </DropdownToggle>
                             <DropdownMenu>
+                                <DropdownItem onClick={ ()=>this.sort("hotness",true) }>
+                                    Hotness
+                                </DropdownItem>
                                 <DropdownItem onClick={ ()=>this.sort("responses",true) }>
                                     Most Taken
                                 </DropdownItem>
@@ -185,6 +211,17 @@ class Home extends React.Component{
                         </ButtonDropdown>
                     </div>
 
+                    <section className="text-center container-fluid">
+                        {this.state.byId && this.state.userImage===""?
+                            <h3>Loading <i className="fa fa-spinner fa-spin"/></h3>
+                        : this.state.byId ?
+                            <div>
+                                <img className="home-img" src={this.state.userImage} alt="User Image"/> 
+                                <h3>Quizzes By {this.state.userName}</h3>
+                            </div>
+                        : ""}
+                    </section>
+
                     {this.props.edit && this.state.quizzes.length === 0 && this.state.loaded 
                     ?   <div className="text-center">
                             <h2> Looks Like You Haven't Made Any Quizzes Yet </h2>
@@ -194,6 +231,26 @@ class Home extends React.Component{
                         </div>
 
                     : ""}
+
+                    {this.props.faves && this.state.quizzes.length === 0 && this.state.loaded 
+                    ?   <div className="text-center">
+                            <h2> Looks Like You Haven't Starred Any Quizzes Yet! </h2>
+                            <Button className="btn-block big-big">
+                                <Link to="/">
+                                    Back to the Home Page!
+                                </Link>
+                            </Button>
+                        </div>
+
+                    : ""}
+
+                    {this.state.byId && this.state.loaded && this.state.quizzes.length ===0?
+                        <div className="text-center container-fluid">
+                            <h2>Looks Like {this.state.userName} hasn't made any quizzes yet!</h2>
+                        </div>
+
+                    :""}
+                
 
                     {this.state.quizzes.map((q,i)=> 
 
@@ -209,7 +266,8 @@ class Home extends React.Component{
                                           user={this.props.user}
                                           edit={this.props.edit}
                                           responses={q.responses}
-                                          preview={q.previewImage}/>
+                                          preview={q.previewImage}
+                                          isDraft={q.isDraft}/>
 
                         </div>
                     )}

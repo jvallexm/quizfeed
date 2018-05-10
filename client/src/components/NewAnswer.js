@@ -57,6 +57,7 @@ class NewAnswer extends React.Component {
     }
 
     imageError(){
+
         if(!this.state.imageIsBroken){
             this.props.breakImage(true);
             this.setState({imageIsBroken: true});
@@ -219,7 +220,8 @@ class NewAnswer extends React.Component {
                                      alt="" 
                                      src={this.props.image}
                                      onError={()=>this.imageError()}
-                                     onLoad={()=>this.imageFix()}/>
+                                     onLoad={()=>this.imageFix()}
+                                     style={this.state.imageIsBroken ? {border: "5px solid red"} :{}}/>
                             </div>
 
                         : this.props.type !== "text" ? <ImageSearch setImage={this.setImage}/> : ""}
@@ -234,6 +236,7 @@ class NewAnswer extends React.Component {
                         {/* Image URL */}
 
                                 {this.props.type !== "text"  && this.state.showUrl?
+
                                 <input name        = "image" 
                                        className   = "answer-title url greybox" 
                                        placeholder = "Enter Your Image URL Here" 
@@ -241,7 +244,11 @@ class NewAnswer extends React.Component {
                                        onChange    = {this.props.handleChange} 
                                        value       = {this.props.image ? this.props.image : ""}/> : ""}
 
+                                {this.props.type !== "text" ?
+
                                 <button className="smol" onClick={()=>this.setState({showUrl: !this.state.showUrl})}>{this.state.showUrl ? "Hide URL" : "Add Image By Url"}</button>
+
+                                :""}
 
 
                         {/* Question Title */}
@@ -251,7 +258,8 @@ class NewAnswer extends React.Component {
                                        className   = "answer-title text-center greybox" 
                                        placeholder = "Type Your Answer Text Here" 
                                        data-ind    = {this.props.ind}
-                                       onChange    = {this.props.handleChange} /> :""}
+                                       onChange    = {this.props.handleChange} 
+                                       value       = {this.props.title} /> :""}
 
                        
 
@@ -269,18 +277,7 @@ class NewAnswer extends React.Component {
 
                             <div className = "point-block">
                                 <div className="text-right">
-                                    {/*
-                                    <FormGroup row>
-                                        <Label for="plusTwo" className="text-right" sm={4}>+2 Points</Label>
-                                        <Col sm={8}>
-                                            <Input type="select" 
-                                                    bsSize="sm"
-                                                    name="plusTwo" 
-                                                    onChange = {this.props.handleChange} 
-                                                    data-ind = {this.props.ind} 
-                                                    value    = {this.props.plusTwo} />
-                                        </Col>
-                                    </FormGroup>*/}
+
                                     +2 Points &nbsp;
                                     <select name     = "plusTwo" 
                                             onChange = {this.props.handleChange} 
@@ -327,11 +324,7 @@ class NewAnswer extends React.Component {
 
                     </div>
 
-
-
-
-
-    )
+        )
 
     }
 
