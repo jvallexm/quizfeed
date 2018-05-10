@@ -110,7 +110,7 @@ class EditQuiz extends React.Component{
             API.getQuizById(id).then(res=>{
 
                 if(!res.data){
-                    this.setState({redirect: true});
+                    this.setState({redirect: true, errorCode: 0});
                 } else {
 
                     console.log(`author quiz ${res.data.author_id} user ${this.props.user._id}`)
@@ -127,7 +127,7 @@ class EditQuiz extends React.Component{
                     } else {
 
                         console.log("Error: no quiz");
-                        this.setState({redirect: true});
+                        this.setState({redirect: true, errorCode: "1"});
 
                     }
                 }
@@ -138,7 +138,7 @@ class EditQuiz extends React.Component{
 
             if(!this.props.user._id){
 
-                this.setState({redirect: true});
+                this.setState({redirect: true, errorCode: "2"});
 
             } else {
 
@@ -232,7 +232,7 @@ class EditQuiz extends React.Component{
     handleChange(e){
 
         let quiz = this.state.quiz;
-        if(e.target.name === "title" && e.target.value.length > 60)
+        if(e.target.name === "title" && e.target.value.length > 120)
             return false;
         if((e.target.name === "blurb" && e.target.value.length > 250) || (e.target.name === "previewImage" && e.target.value.length > 250))
             return false;
@@ -248,16 +248,6 @@ class EditQuiz extends React.Component{
         this.setState({quiz: quiz, imageSearch: false})
 
     }
-
-    /* Saving for later
-
-    componentDidUpdate(prevProps, prevState, snapshot){
-
-        console.log("component did update");
-
-    }
-
-    */
 
     /* Click handler for the color picker */
 
@@ -522,7 +512,7 @@ class EditQuiz extends React.Component{
         // Redirects on an error
 
         if(this.state.redirect)
-            return <Redirect to="/404"/>
+            return <Redirect to={"/404/" + this.state.errorCode}/>
             
         return(
         

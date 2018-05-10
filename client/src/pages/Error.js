@@ -1,5 +1,5 @@
 import React        from "react";
-import { Card, CardBody, Button, Row, Col } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import "./Error.css"
 
@@ -7,12 +7,32 @@ class FourOhFour extends React.Component{
 
     state = {};
     
-    componentDidMount(){
+    componentWillMount(){
 
         let code = this.props.match.params.code;
-        console.log("doing a mount");
+
         if(code){
-            this.setState({errorCode: code});
+            switch(code){
+                case "0":
+                    this.setState({errorCode: "The quiz you're looking for doesn't exist"});
+                    break;
+                case "1":
+                    this.setState({errorCode: "You don't have permission to edit that quiz"});
+                    break;
+                case "2":
+                    this.setState({errorCode: "You have to be logged in to crete a new quiz"});
+                    break;
+                case "3":
+                    this.setState({errorCode: "You need to be logged in to view your quizzes"});
+                    break;
+                case "4":
+                    this.setState({errorCode: "You need to be logged in to view your favorites"});    
+                    break;
+                case "5":
+                    this.setState({errorCode: "That user doesn't exist"});
+                    break;
+
+            }
         }
 
     };
@@ -20,29 +40,19 @@ class FourOhFour extends React.Component{
     render(){
 
         return(
-            <center>
-            <div className="space">
-            <Card className="error-card text-center">
-            <CardBody>
+            
 
-                {/* Main card info */}
+            <div id="error-div" className="text-center">
 
-                <Row>
+                <h1> Uh oh! </h1>
+                <h3>{this.state.errorCode || "Doesn't look like that page exists"}</h3>
+                <Button>
+                    <Link to="/">
+                        Back to the Home page
+                    </Link>
+                </Button>
 
-                    {/* Where users fill in answers */}
-
-                    <Col className="text-left">
-                        <h2>You've reached an error: {this.state.errorCode ? "CODE" : "NO CODE"}</h2>
-                        <Button className="homebutton" href="/">Return Home
-                        </Button>
-                    </Col>
-                </Row>
-            </CardBody>
-            </Card>
             </div>
-          
-        </center>
-
 
 
             

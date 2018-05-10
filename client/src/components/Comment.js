@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, CardBody, CardFooter} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const Comment = (props) =>{
 
@@ -10,7 +11,7 @@ const Comment = (props) =>{
                 {props.comment.comment}
             </CardBody>
             <CardFooter>
-                Posted by {props.comment.author} on {props.date}
+                Posted by <Link to={"/userquizzes/" + props.comment.author_id}>{props.comment.author}</Link> on {props.date}
             </CardFooter>
         </Card>
 

@@ -27,13 +27,13 @@ class App extends React.Component{
   setUser(user){
 
     console.log("Setting user: ");
-    console.log(user);
+    //console.log(user);
     this.setState({user: user});
 
   }
 
   responseGoogle(res){
-    console.log(res);
+    //console.log(res);
   }
 
   render(){
