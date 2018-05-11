@@ -99,7 +99,7 @@ class QuizListItem extends React.Component{
                 <hr/>
             </Row> 
             {this.state.showComments ?
-                <CardFooter>
+                <CardFooter className="comment-footer">
                 {this.props.comments.length > 0 ?
                 this.props.comments.map((c,i)=>
                     <Comment key={this.props.id + "-comment-" + i} comment={c} date={this.returnDate(c.posted_on)}/>

@@ -259,6 +259,7 @@ class Home extends React.Component{
                             <QuizListItem title={q.title}
                                           author={q.author}
                                           author_id={q.author_id}
+                                          author_image={q.authorImage}
                                           blurb={q.blurb}
                                           stars={q.stars}
                                           id={q._id}
