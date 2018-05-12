@@ -96,7 +96,7 @@ class NewResult extends React.Component{
     }
 
     render(){
-        // const shareUrl = window.location.href;
+        
         const shareUrl = window.location.href;
         const title = this.props.title;
 

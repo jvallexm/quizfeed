@@ -20,7 +20,6 @@ class NewResult extends React.Component{
 
     componentWillReceiveProps(){
 
-        console.log("new question new props");
         this.setState({result: this.props.result});
 
     }
@@ -29,7 +28,6 @@ class NewResult extends React.Component{
 
     componentWillMount(){
 
-        console.log("moutning props")
         this.setState({result: this.props.result});
 
     }

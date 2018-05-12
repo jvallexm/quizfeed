@@ -3,6 +3,8 @@ import { Card, Row, Col, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Comment from './Comment';
 import './css/QuizList.css';
+import { Chart } from 'react-google-charts';
+
 //import PieChart from './PieChart'
 
 class QuizListItem extends React.Component{
@@ -29,16 +31,17 @@ class QuizListItem extends React.Component{
                 if(pieChartNames.indexOf(i) === -1)
                     pieChartNames.push(i);
             })
-            console.log(pieChartNames);
+            //console.log(pieChartNames);
             let responsesArray = [];
             pieChartNames.forEach(i => responsesArray.push(0));
             responses.forEach( i=> responsesArray[pieChartNames.indexOf(i)]++ );
-            console.log(responsesArray);
+            //console.log(responsesArray);
             let pieChartData = [];
             pieChartData.push(["Results","Percentage Total Responses"])
             for(let i=0;i<pieChartNames.length;i++){
                 pieChartData.push([pieChartNames[i],responsesArray[i]]);
             }
+            console.log(pieChartData);
             this.setState({pieChartData: pieChartData});
 
         }
@@ -86,9 +89,9 @@ class QuizListItem extends React.Component{
                         <h3>{this.props.isDraft ? "(Draft) " :""}{this.props.title}</h3>
                     </Link>
                    
-                    {/*this.props.edit && this.state.pieChartData.length > 0
-                    ? <PieChart id={`PieChart${this.props.id}`} data={this.state.pieChartData} />                     
-                    :*/}<p>{this.props.blurb}</p> {/*}*/}
+                    {this.props.edit && this.state.pieChartData.length > 0
+                    ? <Chart chartType="PieChart" data={this.state.pieChartData} height="150px"/>                     
+                    : <p>{this.props.blurb}</p> }
 
                     {! this.props.edit ?
                     <Link to={"/userquizzes/" + this.props.author_id} style={{ textDecoration: 'none', color: 'black' }}>
