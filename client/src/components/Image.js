@@ -74,17 +74,22 @@ class Image extends React.Component{
 
                 {this.state.images.map((img,i)=>
 
-                    <img key={"search-image-"+img} 
-                         src={img} 
-                         alt={this.state.lastQuery} 
-                         className="search-image" 
-                         onClick={()=>this.props.setImage(img)}/>
+                    <img className = "search-image" 
+                         key       = { "search-image-"+img            } 
+                         src       = { img                            } 
+                         alt       = { this.state.lastQuery           } 
+                         onClick   = { () => this.props.setImage(img) } />
 
                 )}
 
                 {/* Shows Loading while the images load */}
 
-                {this.state.loading?<h4>Loading <i className="fa fa-spinner fa-spin"/></h4>:""}
+                { this.state.loading
+                    ?
+                        <h4>Loading <i className="fa fa-spinner fa-spin"/></h4>
+                    :
+                ""}
+
             </div>
 
         )

@@ -31,6 +31,9 @@ class FourOhFour extends React.Component{
                 case "5":
                     this.setState({errorCode: "That user doesn't exist"});
                     break;
+                default:
+                    console.log("Unknown code");
+                    break;
 
             }
         }

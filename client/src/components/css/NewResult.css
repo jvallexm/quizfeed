@@ -40,15 +40,13 @@
     width: 100%;
 }
 .text-area-count{
-    position: absolute;
-    right: 20px;
-    bottom: 5px;
     font-size: 50%;
 }
 .input-count{
     font-size: 50%;
 }
 .text-area-container{
+    min-height: 200px;
     height: 100%;
 }
 .url{
@@ -73,7 +71,9 @@
     left: 35px;
     z-index: 2;
 }
-.trash-result{
+.smol-words{
 
-    
+    margin-top: -5px;
+    font-size: 50%;
+
 }

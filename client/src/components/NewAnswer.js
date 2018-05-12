@@ -267,9 +267,25 @@ class NewAnswer extends React.Component {
                             </CardBody>
                             <CardFooter >    
 
-                                <h6 className="text-center"><div className="right-float"><span id={"q-"+this.props.qInd+"-a-"+this.props.ind}><i className="fas fa-question-circle" style={{opacity: .5}}></i></span></div>Result Scoring </h6>
-                                <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target={"q-"+this.props.qInd+"-a-"+this.props.ind} toggle={this.toggle}>
-                                Use these menus to choose the result that correlates to your answer. +2 points correlates strongly, while +1 point correlates less so. <br/>You can always leave the second menu empty. <br/>If you don't see any options in the menus, create a few results first! 
+                                <h6 className="text-center">
+
+                                    <div className="right-float">
+                                        <span id={"q-"+this.props.qInd+"-a-"+this.props.ind}>
+                                            <i className="fas fa-question-circle" style={{opacity: .5}}/>
+                                        </span>
+                                    </div>
+                                    
+                                    Result Scoring 
+
+                                </h6>
+
+                                <Tooltip placement="bottom" 
+                                         isOpen={this.state.tooltipOpen} 
+                                         target={"q-"+this.props.qInd+"-a-"+this.props.ind} 
+                                         toggle={this.toggle}>
+
+                                    Use these menus to choose the result that correlates to your answer. +2 points correlates strongly, while +1 point correlates less so. <br/>You can always leave the second menu empty. <br/>If you don't see any options in the menus, create a few results first! 
+                                    
                                 </Tooltip>
                                 
 
