@@ -18,6 +18,8 @@ class Comment extends React.Component{
 
     componentWillMount(){
 
+        /* Sets the user's image when the component load */
+
         API.getUser(this.props.comment.author_id)
            .then(res=>{
                this.setState({user: res.data.imageUrl});
@@ -33,7 +35,7 @@ class Comment extends React.Component{
 
                 <li className="comment user-comment">
                     <div className="info">
-                    Posted by <Link to={"/userquizzes/" + this.props.comment.author_id}>{this.props.comment.author}</Link>
+                        Posted by <Link to={"/userquizzes/" + this.props.comment.author_id}>{this.props.comment.author}</Link>
                         <span>{this.props.date}</span>
                     </div>
 
