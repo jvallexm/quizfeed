@@ -2,36 +2,50 @@ import React from 'react'
 import { Card, CardBody, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import "./css/Comment.css"
+import API from '../utils/api'
 
-const Comment = (props) =>{
+class Comment extends React.Component{
 
-    return(
+    constructor(props){
 
-        // <Card>
-        //     <CardBody>
-        //         {props.comment.comment}
-        //     </CardBody>
-        //     <CardFooter>
-        //         Posted by <Link to={"/userquizzes/" + props.comment.author_id}>{props.comment.author}</Link> on {props.date}
-        //     </CardFooter>
-        // </Card>
+        super(props);
+        this.state = {
+            user: false
+        }
 
-<ul class="comment-section">
+    }
 
-<li class="comment user-comment">
-    <div class="info">
-    Posted by <Link to={"/userquizzes/" + props.comment.author_id}>{props.comment.author}</Link>
-        <span>{props.date}</span>
-    </div>
-    <a class="avatar" href="#">
-        <img src="/images/avatar_author.jpg" width="35" alt="Profile Avatar" title={props.comment.author} />
-    </a>
-    <p>{props.comment.comment}</p>
-</li>
+    componentWillMount(){
 
-</ul>
+        API.getUser(this.props.comment.author_id)
+           .then(res=>{
+               this.setState({user: res.data.imageUrl});
+           });
 
-    )
+    }
+
+    render(){
+
+        return(
+
+            <ul className="comment-section">
+
+                <li className="comment user-comment">
+                    <div className="info">
+                    Posted by <Link to={"/userquizzes/" + this.props.comment.author_id}>{this.props.comment.author}</Link>
+                        <span>{this.props.date}</span>
+                    </div>
+
+                    <div className="avatar">
+                        <img src={this.state.user || "/images/avatar_author.jpg"} width="35" alt="Profile Avatar" title={this.props.comment.author} />
+                    </div>
+                    <p>{this.props.comment.comment}</p>
+                </li>
+
+            </ul>
+
+        )
+    }
 
 }
 

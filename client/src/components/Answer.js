@@ -31,6 +31,8 @@ class Answer extends React.Component {
 
                     <CardHeader className={this.props.type === "text" ? "text-block-head" : "image-head"} onClick={()=>this.props.score(this.props.qInd,this.props.ind,this.props.plusOne,this.props.plusTwo, this.props.scroll)}>
 
+                        {this.props.type==="imageAndText" ? <div className="drop-shadow"/>:""}
+
                         {/* Renders text if the block type is not image */}
 
                         {this.props.picked ? <div className="close"><i className="fa fa-check"/></div>: "" }
