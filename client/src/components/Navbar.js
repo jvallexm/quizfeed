@@ -1,14 +1,13 @@
 
 import React from 'react';
 import {
-  Collapse,
   Navbar,
   Nav,
   NavItem,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem, Button } from 'reactstrap';
+  DropdownItem } from 'reactstrap';
 
 import './css/Navbar.css';
 import { Link } from 'react-router-dom';
@@ -44,7 +43,7 @@ class QfNavbar extends React.Component {
 
     }
 
-    /* Block Out Below for Production 
+    /* Block Out Below for Production */
 
     componentDidMount(){
       this.devSuccess();
@@ -57,7 +56,7 @@ class QfNavbar extends React.Component {
 
     } 
 
-    Block Out Above For Production */
+    /* Block Out Above For Production */
 
     render() {
       return (
@@ -66,6 +65,8 @@ class QfNavbar extends React.Component {
 
           <Navbar expand="md" className="sticky-top bg-blue">
 
+            {/* Quizfeed Login */}
+
             <Link  to="/">
 
               <img src={Logo} className="quiz-logo" alt="Quizfeed"/> 
@@ -73,6 +74,8 @@ class QfNavbar extends React.Component {
             </Link>
 
             <Nav className="ml-auto" navbar>
+
+                {/* Shows login button if logged in */}
                 
                 { !this.props.user._id 
                   ?
@@ -84,56 +87,93 @@ class QfNavbar extends React.Component {
                         onFailure={this.failure}
                         style={{}}
                         tag="span"
-                        type="span"
-                        > Login <i className="fab fa-google"/>
+                        type="span"> 
+                          Login <i className="fab fa-google"/>
                       </GoogleLogin>
 
                     </NavItem>
                   :
                 ""}
               
-              {!this.props.user._id?
-              <NavItem className="github-btn">
-                <span onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}>View On Github <i className="fab fa-github"/></span>
-              </NavItem>:""}
+                {/* View project on github */}
 
-            {this.props.user._id?
-             <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                <img className="nav-image" alt={this.props.user.givenName} src={this.props.user.imageUrl} />
+                { !this.props.user._id
+                  ?
+                    <NavItem className="github-btn">
+                      <span onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}>
+                        View On Github <i className="fab fa-github"/>
+                      </span>
+                    </NavItem>
+                  :
+                ""}
 
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    <Link to="/myquizzes">
-                      <i className="fas fa-clipboard-list"/> My Quizzes 
-                    </Link>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Link to="/settings">  
-                      <i className="fas fa-cog"/> Settings 
-                    </Link>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Link to="/favorites">
-                      <i className="fas fa-star"/> Favorites 
-                    </Link>
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}>
-                    <i className="fab fa-github"/> View on Github
-                  </DropdownItem>
-                  <DropdownItem onClick={()=>this.props.setUser({})}>
-                    <Link to="/">
-                      <i className="fas fa-sign-out-alt"/> Logout
-                    </Link>
-                  </DropdownItem>
-                </DropdownMenu>
-             </UncontrolledDropdown> :""}
+                {/* Logged in user dropdown menu */}
+
+                { this.props.user._id
+                  ?
+                    <UncontrolledDropdown nav inNavbar>
+
+                      {/* Dropdown header user image */}
+
+                      <DropdownToggle nav caret>
+                        <img className="nav-image" alt={this.props.user.givenName} src={this.props.user.imageUrl} />
+                      </DropdownToggle>
+
+                      {/* Dropdown links */}
+
+                      <DropdownMenu right>
+
+                        {/* My Quizzes */}
+
+                        <DropdownItem>
+                          <Link to="/myquizzes">
+                            <i className="fas fa-clipboard-list"/> My Quizzes 
+                          </Link>
+                        </DropdownItem>
+
+                        {/* Settings */}
+
+                        <DropdownItem>
+                          <Link to="/settings">  
+                            <i className="fas fa-cog"/> Settings 
+                          </Link>
+                        </DropdownItem>
+
+                        {/* Favorites */}
+
+                        <DropdownItem>
+                          <Link to="/favorites">
+                            <i className="fas fa-star"/> Favorites 
+                          </Link>
+                        </DropdownItem>
+
+                        <DropdownItem divider />
+
+                        {/* Github */}
+
+                        <DropdownItem onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}>
+                          <i className="fab fa-github"/> View on Github
+                        </DropdownItem>
+
+                        {/* Logout */}
+
+                        <DropdownItem onClick={()=>this.props.setUser({})}>
+                          <Link to="/">
+                            <i className="fas fa-sign-out-alt"/> Logout
+                          </Link>
+                        </DropdownItem>
+
+                      </DropdownMenu>
+
+                  </UncontrolledDropdown> 
+                :
+
+              ""}
             </Nav>
 
         </Navbar>
- </header>
+
+      </header>
 
       );
     }

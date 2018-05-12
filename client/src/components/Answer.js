@@ -1,82 +1,66 @@
 import React from "react";
 import { Card, CardHeader } from 'reactstrap';
 import "./css/Answer.css"
-import Image from "./Image";
 
-class Answer extends React.Component {
+const Answer = (props)=> {
 
-    constructor(props){
+    return(
 
-        super(props);
-        this.state = {
+        <div className={props.howMany < 5 ? "col-md-6" : "col-md-4"}>
+            
+            {/* Icons bar */}
 
-        }
+            <Card className="mb-4" style={
+                !props.answered ? null: props.picked ? {border: "solid green 5px"} : {opacity: "0.5"}}>
 
-
-    }
-
-
-    render()
-    {
-        return(
-
-            <div className={this.props.howMany < 5 ? "col-md-6" : "col-md-4"}>
-
-
-                {/* Icons bar */}
-
-                <Card className="mb-4" style={
-                    !this.props.answered ? null: this.props.picked ? {border: "solid green 5px"} : {opacity: "0.5"}
-                }>
-
-                    <CardHeader className={this.props.type === "text" ? "text-block-head" : "image-head"} onClick={()=>this.props.score(this.props.qInd,this.props.ind,this.props.plusOne,this.props.plusTwo, this.props.scroll)}>
-
-                        {this.props.type==="imageAndText" ? <div className="drop-shadow"/>:""}
-
-                        {/* Renders text if the block type is not image */}
-
-                        {this.props.picked ? <div className="close"><i className="fa fa-check"/></div>: "" }
-
-                        {
-                            this.props.type !== "image" && !this.state.search && (this.props.image || this.props.type === "text")
-                            ?    
-                                <div className="text-float" style={this.props.type === "text" ? {color: this.props.color, backgroundColor: this.props.backgroundColor} : {color: this.props.color }}>
-                                    <h2>{this.props.title}</h2>
-                                </div>
-
-                            :""
-
-                        }
-
-                        {/* Renders either a search block or the image based on state*/}
-
-                        { this.props.image && !this.state.search && this.props.type !== "text"
-
-                        ? 
-                        
-                        <div className="grow pic">
-                        <img className="answer-image" alt="" src={this.props.image}/>
-                        </div>
-
-                        : this.props.type !== "text" ? <Image setImage={this.setImage}/> : ""}
-                        
-                        
-
-                    </CardHeader>
+                <CardHeader className={props.type === "text" ? "text-block-head" : "image-head"} 
+                            onClick={()=>props.score(props.qInd,props.ind,props.plusOne,props.plusTwo, props.scroll)}>
                     
+                    {/* Drop shadow for image and text blocks */}
 
+                    { props.type==="imageAndText" 
+                        ? 
+                            <div className="drop-shadow"/> 
+                        : 
+                    null }
+
+                    {/* Shows a checkmark if the image has been picked */}
+
+                    { props.picked 
+                        ? 
+                            <div className="close"><i className="fa fa-check"/></div>
+                        : 
+                    null }
+
+                    {/* Renders floating text if the block type is not image */}
+
+                    { props.type !== "image" && (props.image || props.type === "text")
+                        ?    
+                            <div className="text-float" style={props.type === "text" ? {color: props.color, backgroundColor: props.backgroundColor} : {color: props.color }}>
+                                <h2>{props.title}</h2>
+                            </div>
+                        : 
+                    null }
+
+                    {/* Renders an image if there is one */}
+
+                    { props.image && props.type !== "text"
+                        ? 
+                            <div className="grow pic">
+                                <img className="answer-image" alt="" src={props.image}/>
+                            </div>
+                        
+                        : 
+                    null }
+                        
+                </CardHeader>
                             
-                        </Card>
+            </Card>
 
-                    </div>
-
-
-
-
+        </div>
 
     )
 
-    }
 
 }
 
