@@ -35,3 +35,21 @@ button a {
 
 button a:hover {
     text-decoration: none;}
+
+.login-btn {
+    font-weight: 500;
+    background-color: #8af7f7;
+    border-radius: .25rem;
+    padding: 3px 10px;
+    color: rgb(14, 33, 129);
+}
+
+.github-btn {
+    font-weight: 500;
+    background-color: #8af7f7;
+    border-radius: .25rem;
+    padding: 3px 10px;
+    color: rgb(128, 126, 126);
+    margin-left: 10px;
+}
+
