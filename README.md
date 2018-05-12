@@ -5,6 +5,7 @@
 [![npm](https://img.shields.io/badge/npm-v5.6.0-blue.svg)](https://www.npmjs.com/)
 [![mongodb](https://img.shields.io/badge/mongodb-v3.6.3-blue.svg)](https://www.mongodb.com/) 
 [![license](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/jvallexm/quizfeed/blob/readme/LICENSE)
+[![react](https://img.shields.io/badge/react-v16.3.2-green.svg)](https://reactjs.org/docs/hello-world.html) 
 
 This application is a BuzzFeed-style quiz making site. Users can search for quizzes (by quiz name or user name), they can create quizzes of their own and they can easily share them in a variety of ways. The question, answer and result options feature randomized images, words or a combination of both. We believe this app is valuable for a couple of reasons. First, quizzes are fun! Second, as a marketing tool, the use of a click-heavy activity can be a very effective way of generating heavy traffic to your site and offers the potential for capturing user information for lead generation. QuizFeed quizzes are fun to make and easy to share!
 
