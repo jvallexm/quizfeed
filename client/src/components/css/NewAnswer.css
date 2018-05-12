@@ -83,6 +83,7 @@ CardHeader{
 
 .right-float {
 float: right;
+display: block;
 }
 
 .greybox {
