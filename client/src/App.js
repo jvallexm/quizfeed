@@ -5,6 +5,7 @@ import EditQuiz   from "./pages/EditQuiz";
 import FourOhFour from "./pages/Error";
 import Quiz       from "./pages/Quiz";
 import QfNavbar   from "./components/Navbar";
+import QfModal      from "./components/Modal"
 
 /* https://tylermcginnis.com/react-router-pass-props-to-components/ */
 
@@ -14,10 +15,11 @@ class App extends React.Component{
 
     super(props);
     this.state = {
-
+      modal: false,
       user: {}
     }
     this.setUser = this.setUser.bind(this);
+    this.toggle = this.toggle.bind(this);
 
   }
   
@@ -34,6 +36,16 @@ class App extends React.Component{
     //console.log(res);
   }
 
+  toggle(func, text, btntext, title) {
+    this.setState({
+      modal: !this.state.modal,
+      modalFunction: func,
+      text: text,
+      btntext: btntext,
+      title: title
+    });
+  }
+
   render(){
 
     return(
@@ -43,8 +55,14 @@ class App extends React.Component{
         <div className="App"> 
         
         <QfNavbar setUser={this.setUser} user={this.state.user}/>
+        <QfModal modal={this.state.modal} 
+                  toggle={this.toggle} 
+                  modalFunction={this.state.modalFunction} 
+                  title={this.state.title} 
+                  btntext={this.state.btntext}
+                  text={this.state.text}/>
 
-        <div style={{margin: "20px"}}/>
+        <div style={{margin: "10px"}}/>
 
           {/*
            
@@ -62,7 +80,7 @@ class App extends React.Component{
             {/* Creating a new quiz */}
             <Route exact path="/newQuiz"         render={ (props)=> <EditQuiz   {...props} user={this.state.user} /> } />
             {/* Editing existing quiz */}
-            <Route exact path="/editQuiz/:id"    render={ (props)=> <EditQuiz   {...props} user={this.state.user} /> } />
+            <Route exact path="/editQuiz/:id"    render={ (props)=> <EditQuiz   {...props} user={this.state.user} toggle={this.toggle} /> } />
             {/* Taking a Quiz*/}
             <Route exact path="/quiz/:id"        render={ (props)=> <Quiz       {...props} user={this.state.user} /> } />
             {/*  */}
@@ -73,7 +91,11 @@ class App extends React.Component{
             <Route component={FourOhFour} />
 
           </Switch>
+
+         
+         
         </div>
+
       </Router>
 
     )
