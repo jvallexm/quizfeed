@@ -185,10 +185,11 @@ class Home extends React.Component{
 
                     <div className = "home-nav text-right">
                         <Button title={this.props.user._id ? "Create a New Quiz" : "You Need to Login to Create a Quiz!"}
+                                className="btn-info btn-newquiz"
                                 disabled={this.props.user._id ? false : true}
                                 onClick={()=>this.nextPath('/newQuiz')}>Create a New Quiz</Button>
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                            <DropdownToggle caret>
+                            <DropdownToggle caret className="btn-sortby" style={{verticalAlign: "bottom"}}>
                                 Sort By
                             </DropdownToggle>
                             <DropdownMenu>

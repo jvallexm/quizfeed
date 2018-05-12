@@ -9,7 +9,7 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem, Button } from 'reactstrap';
 
 import './css/Navbar.css';
 import { Link } from 'react-router-dom';
@@ -74,10 +74,11 @@ class QfNavbar extends React.Component {
               <Link  to="/">
                 <img src={Logo} className="quiz-logo" alt="Quizfeed"/> 
               </Link>
+
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-                <NavItem>
+                <NavItem className="login-btn">
                 { !this.props.user._id ?
                   <GoogleLogin
                     clientId="827588567531-e91v1ho0plbtqgcbd8am9cn5sj6rlvqh.apps.googleusercontent.com"
@@ -89,8 +90,8 @@ class QfNavbar extends React.Component {
                     > Login <i className="fab fa-google"/></GoogleLogin>:""}
               </NavItem>
               {!this.props.user._id?
-              <NavItem>
-                <span className="push-left" onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}>View On Github <i className="fab fa-github"/></span>
+              <NavItem className="github-btn">
+                <span onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}>View On Github <i className="fab fa-github"/></span>
               </NavItem>:""}
 
             {this.props.user._id?

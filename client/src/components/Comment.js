@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, CardFooter} from 'reactstrap';
+// import { Card, CardBody, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import "./css/Comment.css"
 import API from '../utils/api'
@@ -14,6 +14,7 @@ class Comment extends React.Component{
         }
 
     }
+
 
     componentWillMount(){
 
