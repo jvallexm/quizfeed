@@ -73,7 +73,7 @@ Card{
 }
 #blurb-box{
     padding: 10px;
-    width: 75%;
+    width: 100%;
 }
 
 .editquiz-header {
@@ -104,9 +104,10 @@ hr.superline {
 
 #preview-image{
     padding: 10px;
-    background-color: green;
-    width: 500px;
+    background-color: rgb(226, 226, 226);
+    width: 90%;
     position: relative;
+    border-radius: .25rem;
     height: 350px;
     overflow: scroll;
     margin-bottom: 10px;
@@ -139,4 +140,8 @@ hr.superline {
 
 .btn-secondary {
     margin-right: 5px;
+}
+
+.header-card {
+    width: 55%;
 }
