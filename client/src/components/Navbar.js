@@ -44,7 +44,7 @@ class QfNavbar extends React.Component {
 
     }
 
-    /* Block Out Below for Production */
+    /* Block Out Below for Production 
 
     componentDidMount(){
       this.devSuccess();
@@ -57,7 +57,7 @@ class QfNavbar extends React.Component {
 
     } 
 
-   /* Block Out Above For Production */
+    Block Out Above For Production */
 
     render() {
       return (
@@ -74,16 +74,23 @@ class QfNavbar extends React.Component {
 
             <Nav className="ml-auto" navbar>
                 
-                { !this.props.user._id ?
-                <NavItem className="login-btn">
-                  <GoogleLogin
-                    clientId="827588567531-e91v1ho0plbtqgcbd8am9cn5sj6rlvqh.apps.googleusercontent.com"
-                    onSuccess={this.success}
-                    onFailure={this.failure}
-                    style={{}}
-                    tag="span"
-                    type="span"
-                    > Login <i className="fab fa-google"/></GoogleLogin></NavItem>:""}
+                { !this.props.user._id 
+                  ?
+                    <NavItem className="login-btn">
+
+                      <GoogleLogin
+                        clientId="827588567531-e91v1ho0plbtqgcbd8am9cn5sj6rlvqh.apps.googleusercontent.com"
+                        onSuccess={this.success}
+                        onFailure={this.failure}
+                        style={{}}
+                        tag="span"
+                        type="span"
+                        > Login <i className="fab fa-google"/>
+                      </GoogleLogin>
+
+                    </NavItem>
+                  :
+                ""}
               
               {!this.props.user._id?
               <NavItem className="github-btn">
