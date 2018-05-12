@@ -29,11 +29,9 @@ class QuizListItem extends React.Component{
                 if(pieChartNames.indexOf(i) === -1)
                     pieChartNames.push(i);
             })
-            //console.log(pieChartNames);
             let responsesArray = [];
             pieChartNames.forEach(i => responsesArray.push(0));
             responses.forEach( i=> responsesArray[pieChartNames.indexOf(i)]++ );
-            //console.log(responsesArray);
             let pieChartData = [];
             pieChartData.push(["Results","Percentage Total Responses"])
             for(let i=0;i<pieChartNames.length;i++){
@@ -45,13 +43,6 @@ class QuizListItem extends React.Component{
         }
 
     }
-
-    /*        ['Task', 'Hours per Day'],
-              ['Work',     11],
-              ['Eat',      2],
-              ['Commute',  2],
-              ['Watch TV', 2],
-              ['Sleep',    7] */
 
     returnDate(date){
 
@@ -67,9 +58,7 @@ class QuizListItem extends React.Component{
         return(
 
         <Card style={{padding: "20px 20px 5px 20px"}}>
-            {this.props.isDraft?
-              "draft"  
-            :""}
+
             <Row>
                 {/*<Link key={"link-" + q._id}to={"/quiz/" + q._id} style={{ textDecoration: 'none', color: 'black' }}> */}
                 <Col md="4">
