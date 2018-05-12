@@ -638,7 +638,8 @@ class EditQuiz extends React.Component{
                                      trash                   = { ()=>this.deleteBlock("questions",i)}
                                      trashAnswer             = { this.deleteAnswer              }
                                      totalQuestions          = { this.state.quiz.questions.length -1 }
-                                     breakImage              = { this.brokenImageCheck            } />
+                                     breakImage              = { this.brokenImageCheck            } 
+                                     toggle                  = {this.props.toggle}    />
                             
                     )}
 

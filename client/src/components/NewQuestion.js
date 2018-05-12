@@ -123,7 +123,10 @@ class NewQuestion extends React.Component{
                         <span aria-hidden="true">
                             <i className="fas fa-trash" 
                                title="Delete this answer"
-                               onClick={()=>this.props.trash()} ></i>
+                               onClick={()=>this.props.toggle(this.props.trash,"Are You Sure You Want to Delete?","Delete","Delete Question")}
+
+                               ></i>
+                               
                         </span>
 
                 </div>
