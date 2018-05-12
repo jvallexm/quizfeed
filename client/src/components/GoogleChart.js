@@ -5,7 +5,7 @@ const GoogleChart = (props) =>{
 
     return(
 
-        <Chart graph_id={props.id} chartType="PieChart" data={props.pieChartData} height="150px"/>
+        <Chart chart_id={props.id} chartType="PieChart" data={props.pieChartData} height="150px"/>
 
     )
 
