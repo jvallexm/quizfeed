@@ -2,10 +2,8 @@ import React        from "react";
 import { Card, Row, Col, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Comment from './Comment';
+import GoogleChart from './GoogleChart';
 import './css/QuizList.css';
-import { Chart } from 'react-google-charts';
-
-//import PieChart from './PieChart'
 
 class QuizListItem extends React.Component{
 
@@ -89,8 +87,8 @@ class QuizListItem extends React.Component{
                         <h3>{this.props.isDraft ? "(Draft) " :""}{this.props.title}</h3>
                     </Link>
                    
-                    {this.props.edit && this.state.pieChartData.length > 0
-                    ? <Chart chartType="PieChart" data={this.state.pieChartData} height="150px"/>                     
+                    {this.props.edit && this.state.pieChartData.length > 0 && !this.props.isDraft
+                    ? <GoogleChart pieChartData={this.state.pieChartData} id={this.props.id + "-chart"}/>
                     : <p>{this.props.blurb}</p> }
 
                     {! this.props.edit ?
