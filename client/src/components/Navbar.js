@@ -78,8 +78,9 @@ class QfNavbar extends React.Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-                <NavItem className="login-btn">
+                
                 { !this.props.user._id ?
+                <NavItem className="login-btn">
                   <GoogleLogin
                     clientId="827588567531-e91v1ho0plbtqgcbd8am9cn5sj6rlvqh.apps.googleusercontent.com"
                     onSuccess={this.success}
@@ -87,8 +88,8 @@ class QfNavbar extends React.Component {
                     style={{}}
                     tag="span"
                     type="span"
-                    > Login <i className="fab fa-google"/></GoogleLogin>:""}
-              </NavItem>
+                    > Login <i className="fab fa-google"/></GoogleLogin></NavItem>:""}
+              
               {!this.props.user._id?
               <NavItem className="github-btn">
                 <span onClick={()=>window.open("http://github.com/jvallexm/quizfeed")}>View On Github <i className="fab fa-github"/></span>

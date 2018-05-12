@@ -30,8 +30,10 @@
     color: rgba(104, 104, 104, 0.616)!important;
     border-color: rgba(66, 136, 201, .2)!important;
     padding: 0;
+    
 }
 
 .btn-newquiz{
     color: white!important;
+    margin-right: 10px;
 }
