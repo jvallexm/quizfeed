@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Collapse,
   Navbar,
-  NavbarToggler,
   Nav,
   NavItem,
   UncontrolledDropdown,
@@ -21,17 +20,10 @@ class QfNavbar extends React.Component {
     constructor(props) {
       super(props);
   
-      this.toggleNavbar = this.toggleNavbar.bind(this);
       this.success = this.success.bind(this);
       this.state = {
         collapsed: true
       };
-    }
-  
-    toggleNavbar() {
-      this.setState({
-        collapsed: !this.state.collapsed
-      });
     }
 
     failure(res){
@@ -52,7 +44,7 @@ class QfNavbar extends React.Component {
 
     }
 
-    /* Block Out Below for Production 
+    /* Block Out Below for Production */
 
     componentDidMount(){
       this.devSuccess();
@@ -65,18 +57,21 @@ class QfNavbar extends React.Component {
 
     } 
 
-   Block Out Above For Production */
+   /* Block Out Above For Production */
 
     render() {
       return (
-        <header>
-          <Navbar expand="md" className="sticky-top bg-blue">
-              <Link  to="/">
-                <img src={Logo} className="quiz-logo" alt="Quizfeed"/> 
-              </Link>
 
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
+        <header>
+
+          <Navbar expand="md" className="sticky-top bg-blue">
+
+            <Link  to="/">
+
+              <img src={Logo} className="quiz-logo" alt="Quizfeed"/> 
+              
+            </Link>
+
             <Nav className="ml-auto" navbar>
                 
                 { !this.props.user._id ?
@@ -129,7 +124,7 @@ class QfNavbar extends React.Component {
                 </DropdownMenu>
              </UncontrolledDropdown> :""}
             </Nav>
-          </Collapse>
+
         </Navbar>
  </header>
 
