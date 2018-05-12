@@ -52,7 +52,7 @@ class QfNavbar extends React.Component {
 
     }
 
-    /* Block Out Below for Production 
+    /* Block Out Below for Production */
 
     componentDidMount(){
       this.devSuccess();
@@ -60,12 +60,12 @@ class QfNavbar extends React.Component {
 
     devSuccess(){
 
-      API.getUser("109878694496271074658",{})
+      API.getUser("104210337055222011322",{})
          .then(user => this.props.setUser(user.data));
 
     } 
 
-   Block Out Above For Production */
+   /* Block Out Above For Production */
 
     render() {
       return (
