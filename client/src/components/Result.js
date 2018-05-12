@@ -64,13 +64,14 @@ class NewResult extends React.Component{
             posted_on: Date.now()
         }
 
-        console.log("trying to push to quiz " + this.props.quizId);
-        console.log(comment);
+        // console.log("trying to push to quiz " + this.props.quizId);
+        // console.log(comment);
 
         API.pushComment(this.props.quizId,comment).then(res=>{
             if(res.data)
                 this.props.pushComment(comment);
-            console.log(res);
+            else
+                console.log(res);
 
         });
         this.setState({comment: ""});
@@ -95,7 +96,7 @@ class NewResult extends React.Component{
     }
 
     render(){
-        // const shareUrl = window.location.href;
+        
         const shareUrl = window.location.href;
         const title = this.props.title;
 

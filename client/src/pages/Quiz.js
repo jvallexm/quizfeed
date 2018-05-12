@@ -92,7 +92,7 @@ class Quiz extends React.Component{
 
         if(id) {
 
-            console.log("finding quizzes with id " + id);
+            // console.log("finding quizzes with id " + id);
 
             API.getQuizById(id).then(res=>{
 
@@ -185,7 +185,7 @@ class Quiz extends React.Component{
             finalResult = quiz.results[largest]; // sets the final result to be the result at the result index with the highest score
             if(!this.state.pushed)
                 API.pushResponse(this.state.quiz._id,{name: finalResult.title}).then(r=>{
-                    console.log(r);
+                    // console.log(r);
                     this.setState({pushed:true})  
                 });
 

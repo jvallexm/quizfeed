@@ -133,3 +133,12 @@ CardHeader{
   .point-block {
       margin-right: 1.8rem;
   }
+  .drop-shadow{
+      width: 100%;
+      height: 100%;
+      background-color: #DDDDDD;
+      opacity: .3;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+  }

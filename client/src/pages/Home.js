@@ -47,7 +47,7 @@ class Home extends React.Component{
 
         if(id && !this.props.edit && !this.props.faves) {
 
-            console.log("finding quizzes by " + id);
+            // console.log("finding quizzes by " + id);
 
             API.getAllByUser(id).then(res=>{
                 
@@ -77,7 +77,7 @@ class Home extends React.Component{
             
             else{
 
-                console.log("findind this user's quizzes " +this.props.user._id)
+                // console.log("findind this user's quizzes " +this.props.user._id)
 
                 API.getAllByUser(this.props.user._id).then(res=>{
                     console.log(res.data.length);
@@ -103,7 +103,7 @@ class Home extends React.Component{
 
         } else {
 
-            console.log("finding all quizzes");
+            // console.log("finding all quizzes");
 
             API.findAll().then(res=>{
 

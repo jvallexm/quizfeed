@@ -70,7 +70,7 @@ class EditQuiz extends React.Component{
 
             if(this.state.quiz.isDraft && this.state.quiz.title !== "" && this.state.quiz.questions.length > 0){
 
-                console.log("autosaving..." + this.state.published)
+                console.log("autosaving...")
 
                 if(!this.state.published)
 
@@ -109,7 +109,7 @@ class EditQuiz extends React.Component{
 
         if(id) {
 
-            console.log("finding quizzes with id " + id);
+            // console.log("finding quizzes with id " + id);
 
             API.getQuizById(id).then(res=>{
 
@@ -128,7 +128,7 @@ class EditQuiz extends React.Component{
 
                     } else {
 
-                        console.log("Error: no quiz");
+                        // console.log("Error: no quiz");
                         this.setState({redirect: true, errorCode: "1"});
 
                     }
@@ -177,7 +177,7 @@ class EditQuiz extends React.Component{
     pushNewBlock(arr,type){
 
         let quiz = this.state.quiz;
-        console.log("pushing block " + type);
+        //console.log("pushing block " + type);
         let newObj = arr === "questions" 
 
                     /* Default question block */ 
@@ -191,7 +191,7 @@ class EditQuiz extends React.Component{
                                  srcUrl: "",
                                  text: ""  };
 
-        console.log(newObj);
+        //console.log(newObj);
 
         quiz[arr].push(newObj)
         this.setState({quiz: quiz, addingQuestion: false});
@@ -218,7 +218,7 @@ class EditQuiz extends React.Component{
 
     saveBlock(arr,ind,obj){
 
-        console.log(`Saving ${arr} at index ${ind}`)
+        // console.log(`Saving ${arr} at index ${ind}`)
         let quiz = this.state.quiz;
         quiz[arr][ind] = obj;
         this.setState({quiz: quiz});
@@ -328,7 +328,7 @@ class EditQuiz extends React.Component{
 
         let quiz = this.state.quiz;
         let remove  = quiz.questions[qInd].answers.splice(ind,1);
-        console.log("removing object " + remove);
+        // console.log("removing object " + remove);
         this.setState({quiz: quiz});
 
     }
@@ -349,7 +349,7 @@ class EditQuiz extends React.Component{
         let changeField = bg ? "backgroundColor" : "color"; // Checks to see if it needs to change the background or text color
         let quiz = this.state.quiz;
         quiz.questions[qInd][changeField] = color.hex;
-        console.log(`changing question ${qInd} ${changeField} to ${color.hex}`);
+        // console.log(`changing question ${qInd} ${changeField} to ${color.hex}`);
         this.setState({quiz: quiz});
     };
 
@@ -366,7 +366,7 @@ class EditQuiz extends React.Component{
 
     handleAnswerImageChange(src,qInd,ind){
 
-        console.log("handling image change for  " + ind);
+        // console.log("handling image change for  " + ind);
 
         let quiz = this.state.quiz;
         quiz.questions[qInd].answers[ind].image = src;
@@ -419,7 +419,7 @@ class EditQuiz extends React.Component{
 
     publish(){
 
-        console.log("trying to publish");
+        // console.log("trying to publish");
 
         let quiz = this.state.quiz;
         let errors = [];
@@ -476,7 +476,7 @@ class EditQuiz extends React.Component{
         if(this.state.brokenImages > 0)
             errors.push("You have " + this.state.brokenImages + " broken images that need to be fixed before we can publish your quiz!");
 
-        console.log(errors);
+        // console.log(errors);
 
         if(errors.length === 0)
             API.editQuiz(this.state.quiz._id,this.state.quiz).then(res => this.nextPath("/"));
