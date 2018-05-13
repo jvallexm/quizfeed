@@ -71,6 +71,7 @@ Card{
 #result{
     margin-bottom: 150px;
 }
+
 #blurb-box{
     padding: 10px;
     width: 100%;
@@ -117,6 +118,8 @@ hr.superline {
     left: 10px;
     top: 10px;
     z-index: 3;
+    opacity: .5;
+
 }
 .preview-image{
     width: 100%;
@@ -124,6 +127,12 @@ hr.superline {
 }
 .preview-fill{
     height: 300px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 #sticky-footer{
     position: fixed;

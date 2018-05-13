@@ -56,13 +56,13 @@ class Image extends React.Component{
     render(){
         return(
 
-            <div className="image-search">
+            <div className="image-search scrollbar" id="style-7">
                 
-                <h5>Search for an Image</h5>
+                <h5 className="image-search-header">Search for an Image</h5>
 
                 {/* Image Search Form */}
 
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} className="image-search-input">
                     <input onChange={this.handleChange}/><button type="submit"><i className="fa fa-search"/></button>
                 </form>
 

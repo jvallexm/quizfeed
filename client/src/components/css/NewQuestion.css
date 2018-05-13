@@ -31,9 +31,16 @@
 .image-search{
 	padding: 15px;
 	min-height: 220px;
-	overflow: scroll;
+	overflow-y: scroll;
 	width: 100%;
 	background-color: white;
+	/* display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-direction: column;
+	flex-direction: column; */
+	border-radius: .25rem;
 }
 .question-render-card-body{
 
