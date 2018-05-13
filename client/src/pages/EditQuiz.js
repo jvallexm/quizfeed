@@ -581,7 +581,7 @@ class EditQuiz extends React.Component{
                 <center>
 <Card className="header-card">
     <CardBody>
-    <div className="right-float">
+    <div className="right-position">
                                         <span id="header-tooltip">
                                             <i className="fas fa-question-circle" style={{opacity: .5}}/>
                                         </span>
@@ -591,7 +591,7 @@ class EditQuiz extends React.Component{
                                          target="header-tooltip" 
                                          toggle={this.toggle}>
 
-                                    The image and description in your header... 
+                                    The image and description in your header are important! <br/>While they won't appear in your quiz, they are used to list your quiz on the home page and in social media. Make your header fun and enticing so more people take your quiz.
                                     
                                 </Tooltip>
                 <section id="preview-image" className="text-center container-fluid">

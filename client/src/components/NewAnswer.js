@@ -284,7 +284,7 @@ class NewAnswer extends React.Component {
                                          target={"q-"+this.props.qInd+"-a-"+this.props.ind} 
                                          toggle={this.toggle}>
 
-                                    Use these menus to choose the result that correlates to your answer. +2 points correlates strongly, while +1 point correlates less so. <br/>You can always leave the second menu empty. <br/>If you don't see any options in the menus, create a few results first! 
+                                    Use these menus to choose the result that correlates to your answer. +2 points correlates strongly, while +1 point correlates less so. <br/>You can always leave the second menu empty, but be sure to fill in the first! <br/>If you don't see any options in the menus, create a few results to start. 
                                     
                                 </Tooltip>
                                 

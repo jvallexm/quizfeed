@@ -147,8 +147,8 @@ class NewResult extends React.Component{
                                     
                                     <div className="row">
                                         
-                                        <div className="col-md-4">
-                                            <h4>You Got:</h4>
+                                        <div className="col-md-4" style={{textOverflow: "clip", overflow: "hidden", whiteSpace: "nowrap"}}>
+                                            <h4>You&nbsp;Got:</h4>
                                         </div>
 
                                         <div className="col-md-8 result-text-col">
