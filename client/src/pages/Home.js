@@ -2,6 +2,7 @@ import React from "react";
 import API   from "../utils/api";
 import QuizListItem from '../components/QuizListItem';
 import { Redirect } from 'react-router';
+import { GoogleLogin } from 'react-google-login';
 import { Link } from 'react-router-dom';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
 import './Home.css';
@@ -184,10 +185,26 @@ class Home extends React.Component{
                 <div id="quiz-wrapper" className="container-fluid">
 
                     <div className = "home-nav text-right">
+
+                        {this.props.user._id ?
+
                         <Button title={this.props.user._id ? "Create a New Quiz" : "You Need to Login to Create a Quiz!"}
                                 className="btn-info btn-newquiz"
                                 disabled={this.props.user._id ? false : true}
                                 onClick={()=>this.nextPath('/newQuiz')}>Create a New Quiz</Button>
+                        :        
+                        <Button className="btn-info btn-newquiz">               
+                        <GoogleLogin
+                            clientId="827588567531-e91v1ho0plbtqgcbd8am9cn5sj6rlvqh.apps.googleusercontent.com"
+                            onSuccess={this.success}
+                            onFailure={this.failure}
+                            tag="span"
+                            style={{}}
+                            type="span"> 
+                            Login to Create a New Quiz
+                        </GoogleLogin>
+                        </Button>}
+
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret className="btn-sortby" style={{verticalAlign: "bottom"}}>
                                 Sort By
@@ -226,9 +243,11 @@ class Home extends React.Component{
                     {this.props.edit && this.state.quizzes.length === 0 && this.state.loaded 
                     ?   <div className="text-center">
                             <h2> Looks Like You Haven't Made Any Quizzes Yet </h2>
-                            <Button className="btn-block big-big" onClick={()=>this.nextPath('newQuiz')}>
-                                Make A New Quiz!
-                            </Button>
+                            <Link to="/newquiz">
+                                <Button className="btn-block big-big">
+                                    Make A New Quiz!
+                                </Button>
+                            </Link>
                         </div>
 
                     : ""}

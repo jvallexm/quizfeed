@@ -579,9 +579,9 @@ class EditQuiz extends React.Component{
                            <hr className="superline"/>
                          </div>
                 <center>
-<Card className="header-card">
-    <CardBody>
-    <div className="right-position">
+                    <Card className="header-card">
+                        <CardBody>
+                        <div className="right-position">
                                         <span id="header-tooltip">
                                             <i className="fas fa-question-circle" style={{opacity: .5}}/>
                                         </span>

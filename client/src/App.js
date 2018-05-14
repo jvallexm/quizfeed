@@ -70,7 +70,7 @@ class App extends React.Component{
           <Switch>
             
             {/* Home page */}
-            <Route exact path="/"                render={ (props)=> <Home       {...props} user={this.state.user} /> } />
+            <Route exact path="/"                render={ (props)=> <Home       {...props} user={this.state.user} setUser={this.setUser} /> } />
             {/* Quizzes by User */}
             <Route exact path="/userQuizzes/:id" render={ (props)=> <Home       {...props} user={this.state.user} /> } />
             {/* Edit user quizzes */}
