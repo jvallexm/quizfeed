@@ -26,6 +26,7 @@ class Home extends React.Component{
         this.toggle = this.toggle.bind(this);
         this.sort   = this.sort.bind(this);
         this.loadItUp   = this.loadItUp.bind(this);
+        this.success = this.success.bind(this);
 
     }
     componentWillMount(){
@@ -134,6 +135,24 @@ class Home extends React.Component{
 
     nextPath(path) {
         this.props.history.push(path);
+    }
+
+    failure(res){
+
+        console.log(res);
+  
+    }
+  
+    success(res){
+  
+        let newUser = res.profileObj;
+        newUser.stars = [];
+        newUser._id = newUser.googleId;
+        API.getUser(newUser._id,newUser)
+           .then(user =>{
+             this.props.setUser(user.data);
+        });
+  
     }
 
     sort(type,ascending){
