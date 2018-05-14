@@ -13,11 +13,59 @@
 }
 
 .byline {
-    float: right!important;
     font-style: italic;
     color: grey;
-    margin-right: 20px;
+    margin: 0 20px;
 }
 .chart-wapper{
     max-height: 150px;
+}
+
+.quiz-image-box {
+    margin-bottom: 15px;
+}
+
+.quiz-rating-box {
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    padding-right: 40px;
+    margin-bottom: 5px;
+}
+
+.quiz-desc-box{
+    margin-bottom: 10px;
+}
+
+.effect6
+{
+    position:relative;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+}
+.effect6:before, .effect6:after
+{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.5);
+    -moz-box-shadow:0 0 20px rgba(0,0,0,0.5);
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+    top:50%;
+    bottom:0;
+    left:10px;
+    right:10px;
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
+}
+.effect6:after
+{
+    right:10px;
+    left:auto;
+    -webkit-transform:skew(8deg) rotate(3deg);
+       -moz-transform:skew(8deg) rotate(3deg);
+        -ms-transform:skew(8deg) rotate(3deg);
+         -o-transform:skew(8deg) rotate(3deg);
+            transform:skew(8deg) rotate(3deg);
 }

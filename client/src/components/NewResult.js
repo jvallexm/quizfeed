@@ -191,7 +191,7 @@ class NewResult extends React.Component{
                         <input  className   = "result-headline url" 
                                 name        = "image" 
                                 value       = { this.state.result.image } 
-                                placeholder = "Or enter an image url" 
+                                placeholder = "Or, Enter an Image URL" 
                                 onChange    = { this.handleChange } />
 
                     
