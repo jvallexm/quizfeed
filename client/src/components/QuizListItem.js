@@ -83,7 +83,7 @@ class QuizListItem extends React.Component{
                     </Link>
                    
                     {this.props.edit && this.state.pieChartData.length > 0
-                    ? <GoogleChart id={this.props.id + "-chart"} data={this.state.pieChartData} />
+                    ? <GoogleChart id={this.props.id + "-chart"} pieChartData={this.state.pieChartData} />
                     : <p className="quiz-desc">{this.props.blurb}</p> }
 
                     {! this.props.edit ?
