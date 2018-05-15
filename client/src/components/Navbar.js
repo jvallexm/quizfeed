@@ -44,7 +44,7 @@ class QfNavbar extends React.Component {
     }
 
 
-    /* Block Out Below for Production 
+    /* Block Out Below for Production
 
 
     componentDidMount(){
@@ -62,7 +62,8 @@ class QfNavbar extends React.Component {
      Block Out Above For Production */
 
 
-    render() {
+    render(){
+
       return (
 
         <header>

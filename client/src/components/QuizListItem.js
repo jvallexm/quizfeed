@@ -19,9 +19,9 @@ class QuizListItem extends React.Component{
         this.returnDate = this.returnDate.bind(this);
     }
 
-    componentWillMount(){
+    componentDidMount(){
 
-        if(this.props.edit){
+
 
             let responses = this.props.responses;
             let pieChartNames = [];
@@ -40,7 +40,6 @@ class QuizListItem extends React.Component{
             console.log(pieChartData);
             this.setState({pieChartData: pieChartData});
 
-        }
 
     }
 
@@ -84,7 +83,7 @@ class QuizListItem extends React.Component{
                     </Link>
                    
                     {this.props.edit && this.state.pieChartData.length > 0
-                    ? <GoogleChart pieChartData={this.state.pieChartData} id={this.props.id + "-chart"}/>
+                    ? <GoogleChart id={this.props.id + "-chart"} data={this.state.pieChartData} />
                     : <p className="quiz-desc">{this.props.blurb}</p> }
 
                     {! this.props.edit ?
