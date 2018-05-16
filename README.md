@@ -7,7 +7,7 @@
 [![license](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/jvallexm/quizfeed/blob/readme/LICENSE)
 [![react](https://img.shields.io/badge/react-v16.3.2-green.svg)](https://reactjs.org/docs/hello-world.html) 
 
-This application is a BuzzFeed-style quiz making site. Users can search for quizzes (by quiz name or user name), they can create quizzes of their own and they can easily share them in a variety of ways. The question, answer and result options feature randomized images, words or a combination of both. We believe this app is valuable for a couple of reasons. First, quizzes are fun! Second, as a marketing tool, the use of a click-heavy activity can be a very effective way of generating heavy traffic to your site and offers the potential for capturing user information for lead generation. QuizFeed quizzes are fun to make and easy to share!
+This application is a BuzzFeed-style quiz making site. Users can search for quizzes (by quiz name or user name), they can create quizzes of their own and they can easily share them in a variety of ways. The question, answer and result options feature images, words or a combination of both. We believe this app is valuable for a couple of reasons. First, quizzes are fun! Second, as a marketing tool, the use of a click-heavy activity can be a very effective way of generating heavy traffic to your site and offers the potential for capturing user information for lead generation. QuizFeed quizzes are fun to make and easy to share!
 
 
 ## Table of Contents  
@@ -73,7 +73,7 @@ To get the application up and running, follow these simple steps:
 
 - Once you've created a title and at least one question, your quiz will automatically save every 30 seconds!
 - Your published quizzes and saved drafts will all appear in the drop down menu by your profile under 'My Quizzes'.  
-- Once you've completed a quiz:
+- Once you've taken a quiz:
     - You can save any that you love by clicking 'Give This Quiz a :star:' to add to your favorites! 
     - You can then share any quiz by choosing your preferred method!
 
