@@ -19,9 +19,9 @@ class QuizListItem extends React.Component{
         this.returnDate = this.returnDate.bind(this);
     }
 
-    componentWillMount(){
+    componentDidMount(){
 
-        if(this.props.edit){
+
 
             let responses = this.props.responses;
             let pieChartNames = [];
@@ -40,7 +40,6 @@ class QuizListItem extends React.Component{
             console.log(pieChartData);
             this.setState({pieChartData: pieChartData});
 
-        }
 
     }
 
@@ -57,34 +56,45 @@ class QuizListItem extends React.Component{
 
         return(
 
-        <Card style={{padding: "20px 20px 5px 20px"}}>
+        <Card className="effect6" style={{padding: "20px 20px 5px 20px"}}>
 
             <Row>
                 {/*<Link key={"link-" + q._id}to={"/quiz/" + q._id} style={{ textDecoration: 'none', color: 'black' }}> */}
-                <Col md="4">
-                    <Link to={edit + this.props.id} style={{ textDecoration: 'none', color: 'black' }}>
-                        <img className="img-fluid rounded mb-3 mb-md-0" src={this.props.preview || "http://placehold.it/500x300"} alt="" href=""/>
-                    </Link>
-                    <h3 className="text-center space-top">
-                        {this.props.responses.length} <i className="fa fa-users"/>&nbsp;&nbsp;
-                        <span className="comment-span">{this.props.stars.length} <i className={this.props.stars.indexOf(this.props.user._id) > -1? "fa fa-star gold" : "fa fa-star"}/></span>&nbsp;&nbsp;
-                        <span className="comment-span" onClick={()=>this.setState({showComments: !this.state.showComments})}>{this.props.comments.length} <i className="fa fa-comments"/></span>
-                    </h3>
+                <Col md="4" className="quiz-image-box">
+                    <div className="img-overlay">
+                        <Link to={edit + this.props.id} style={{ textDecoration: 'none', color: 'black' }}>
+                            <img className="img-fluid rounded mb-3 mb-md-0" src={this.props.preview || "http://placehold.it/500x300"} alt="" href=""/>
+                        </Link>
+                        <div className="quiz-rating-box">
+                            
+                        <h3 className="text-center space-top">
+
+                            <span className="comment-span-words">{this.props.responses.length}</span> <i className="fa fa-users"/>&nbsp;&nbsp;
+                            <span className="comment-span"><span className="comment-span-words">{this.props.stars.length}</span> <i className="fa fa-star gold"/></span>&nbsp;&nbsp;
+                            <span className="comment-span" onClick={()=>this.setState({showComments: !this.state.showComments})}><span className="comment-span-words">{this.props.comments.length}</span> <i className="fa fa-comments"/></span>
+                        </h3>
+                        </div>
+                    </div>
                 </Col>
                 <Col md="8">
+                <div className="quiz-desc-box">
                     <Link to={edit + this.props.id} style={{ textDecoration: 'none', color: 'black' }}>
                         <h3>{this.props.isDraft ? "(Draft) " :""}{this.props.title}</h3>
                     </Link>
                    
                     {this.props.edit && this.state.pieChartData.length > 0
-                    ? <GoogleChart pieChartData={this.state.pieChartData} id={this.props.id + "-chart"}/>
-                    : <p>{this.props.blurb}</p> }
+                    ? <GoogleChart id={this.props.id + "-chart"} pieChartData={this.state.pieChartData} />
+                    : <p className="quiz-desc">{this.props.blurb}</p> }
 
                     {! this.props.edit ?
                     <Link to={"/userquizzes/" + this.props.author_id} style={{ textDecoration: 'none', color: 'black' }}>
-                        <span className="byline">By {this.props.author}</span>
+                    
+                        <p className="byline text-right">By {this.props.author}</p>
+                        
                     </Link> : ""}
-            
+                    </div>
+              {/*}      <div id="spacer" style={{width: '100%', height: '50px', float:'left', display:'inline-block'}}></div>*/}
+
                 </Col>
                 <hr/>
             </Row> 

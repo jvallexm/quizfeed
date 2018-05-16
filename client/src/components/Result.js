@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, Button, Row, Col, CardFooter } from 'reactstrap';
+import { Card, CardBody, Button, Row, Col, CardFooter, Form, FormGroup, Input } from 'reactstrap';
 import Comment from "./Comment";
 import API from "../utils/api";
 import "./css/Result.css"
@@ -224,7 +224,7 @@ class NewResult extends React.Component{
             </CardBody>
 
             <CardFooter>
-                <Button onClick={()=>this.setState({showComments: !this.state.showComments})}> {this.state.showComments ? "Hide" : "Show"} Comments <i className="fa fa-comments white"/></Button>
+                <Button color="primary" onClick={()=>this.setState({showComments: !this.state.showComments})}> {this.state.showComments ? "Hide" : "Show"} Comments <i className="fa fa-comments white"/></Button>&nbsp;&nbsp;
                 <Button className={this.props.stars.indexOf(this.props.user._id) === -1 ? "" : "btn-gold"} 
                         onClick={this.props.stars.indexOf(this.props.user._id) === -1 ? ()=>this.props.pushStar() : ()=>this.props.pullStar()}
                         disabled={this.props.user._id ? false : true}>
@@ -247,14 +247,18 @@ class NewResult extends React.Component{
                     )}
 
                     {this.props.user._id?
-
-                    <form onSubmit={this.pushNewComment}>
-                            <input value={this.state.comment}
+<div className="comment-section">
+                    <Form inline onSubmit={this.pushNewComment}>
+                    
+                            <Input  style={{ width: '87%'}}
+                                    value={this.state.comment}
                                     placeholder="Leave a constructive comment"
                                     onChange={this.handleChange}/>
-                            <input type="submit"/>
-                    </form> 
-                    
+                                    &nbsp;&nbsp;
+                            <Button color="info" type="submit">Submit</Button>
+                            
+                    </Form> 
+                    </div>
                     :""}
 
                 </div>

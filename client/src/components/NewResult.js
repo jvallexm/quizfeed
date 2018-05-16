@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, Button, Row, Col, CardFooter } from 'reactstrap';
+import { Card, CardBody, Button, Row, Col } from 'reactstrap';
 import "./css/NewResult.css"
 import ImageSearch from './Image';
 
@@ -147,8 +147,8 @@ class NewResult extends React.Component{
                                     
                                     <div className="row">
                                         
-                                        <div className="col-md-4">
-                                            <h4>You Got:</h4>
+                                        <div className="col-md-4" style={{textOverflow: "clip", overflow: "hidden", whiteSpace: "nowrap"}}>
+                                            <h4>You&nbsp;Got:</h4>
                                         </div>
 
                                         <div className="col-md-8 result-text-col">
@@ -191,7 +191,7 @@ class NewResult extends React.Component{
                         <input  className   = "result-headline url" 
                                 name        = "image" 
                                 value       = { this.state.result.image } 
-                                placeholder = "Or enter an image url" 
+                                placeholder = "Or, Enter an Image URL" 
                                 onChange    = { this.handleChange } />
 
                     

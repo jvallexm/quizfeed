@@ -1,7 +1,7 @@
 import React        from "react";
 import API          from "../utils/api";
 import { Redirect } from 'react-router';
-import { Button, Row, Col, Jumbotron, } from "reactstrap";
+import { Button, Row, Col, Jumbotron, Card, CardBody, Tooltip } from "reactstrap";
 import NewQuestion from '../components/NewQuestion';
 import PickingRow from '../components/PickingRow';
 import "./EditQuiz.css";
@@ -44,7 +44,8 @@ class EditQuiz extends React.Component{
             errors: [],
             imageSearch: false,
             brokenImages: false,
-            saving: false
+            saving: false,
+            tooltipOpen: false
 
         }
 
@@ -64,6 +65,7 @@ class EditQuiz extends React.Component{
         this.deleteAnswer              = this.deleteAnswer.bind(this);
         this.handleImageChange         = this.handleImageChange.bind(this);
         this.brokenImageCheck          = this.brokenImageCheck.bind(this);
+        this.toggle                    = this.toggle.bind(this);
 
 
         this.interval  = setInterval(()=>{
@@ -503,6 +505,12 @@ class EditQuiz extends React.Component{
         }
 
     }
+
+    toggle() {
+        this.setState({
+          tooltipOpen: !this.state.tooltipOpen
+        });
+      }
     
 
     render(){
@@ -570,8 +578,22 @@ class EditQuiz extends React.Component{
                            <h4 className="editquuiz-header-text">Your Quiz Header</h4>
                            <hr className="superline"/>
                          </div>
-                </div>
+                <center>
+                    <Card className="header-card">
+                        <CardBody>
+                        <div className="right-position">
+                                        <span id="header-tooltip">
+                                            <i className="fas fa-question-circle" style={{opacity: .5}}/>
+                                        </span>
+                                    </div>
+                                    <Tooltip placement="bottom" 
+                                         isOpen={this.state.tooltipOpen} 
+                                         target="header-tooltip" 
+                                         toggle={this.toggle}>
 
+                                    The image and description in your header are important! <br/>While they won't appear in your quiz, they are used to list your quiz on the home page and in social media. Make your header fun and enticing so more people take your quiz.
+                                    
+                                </Tooltip>
                 <section id="preview-image" className="text-center container-fluid">
                     
                     {this.state.quiz.previewImage !== "" ?
@@ -595,7 +617,11 @@ class EditQuiz extends React.Component{
                                onError={()=>this.imageError()}/>}
                     </div>
 
-                    <input name="previewImage" className="url" value={this.state.quiz.previewImage} onChange={this.handleChange}/>
+                    <input name="previewImage" 
+                            className="url" 
+                            placeholder="or, Enter Your Image URL Here"
+                            value={this.state.quiz.previewImage} 
+                            onChange={this.handleChange}/>
 
                 </section>
 
@@ -604,8 +630,10 @@ class EditQuiz extends React.Component{
                     <textarea id="blurb-box" name="blurb" onChange={this.handleChange} value={this.state.quiz.blurb} placeholder={"Tell us a little bit about your quiz!"}/>
 
                 </section>
-
-
+</CardBody>
+</Card>
+</center>
+</div>
 
                 <center>
 

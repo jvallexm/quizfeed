@@ -44,7 +44,7 @@ class QfNavbar extends React.Component {
     }
 
 
-    /* Block Out Below for Production */
+    /* Block Out Below for Production
 
 
     componentDidMount(){
@@ -59,10 +59,11 @@ class QfNavbar extends React.Component {
     } 
 
 
-    /* Block Out Above For Production */
+     Block Out Above For Production */
 
 
-    render() {
+    render(){
+
       return (
 
         <header>
@@ -135,13 +136,13 @@ class QfNavbar extends React.Component {
                           </Link>
                         </DropdownItem>
 
-                        {/* Settings */}
+                        {/* Settings 
 
                         <DropdownItem>
                           <Link to="/settings">  
                             <i className="fas fa-cog"/> Settings 
                           </Link>
-                        </DropdownItem>
+                        </DropdownItem>*/}
 
                         {/* Favorites */}
 

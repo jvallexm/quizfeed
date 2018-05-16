@@ -31,13 +31,12 @@ body {
     display           : flex;
     justify-content   : center;
     flex-direction    : column; 
-
+    border-radius: .25rem;
 }
 
 .text-block-head{
-
     height: 200px;
-
+    border-radius: .25rem;
 }
 
 CardHeader{
@@ -57,7 +56,8 @@ CardHeader{
 }
 .image-head{
     height: 220px;
-    background-color: #353079!important;
+    /* background-color: #353079!important; */
+    background-color: #dfdfdf!important;
 }
 
 /* .box-shadow {
